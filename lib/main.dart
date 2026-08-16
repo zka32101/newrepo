@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_core/shared_core.dart'
     hide progressProvider, LearningProgress, ProgressNotifier, FirebaseService;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'app/router.dart';
 import 'app/theme.dart';
+import 'features/progress/data/repositories/incorrect_monster_repository.dart';
+import 'features/progress/data/repositories/review_time_capsule_repository.dart';
+import 'features/progress/providers/incorrect_monster_provider.dart';
+import 'features/progress/providers/review_time_capsule_provider.dart';
 import 'features/settings/providers/theme_provider.dart';
 import 'providers/character_provider.dart';
 import 'services/firebase_service.dart';
@@ -14,6 +19,8 @@ import 'features/progress/services/daily_mystery_notification_service.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FirebaseService.initialize(); // google-services.json 未配置時はローカルモードで継続
+
+  final prefs = await SharedPreferences.getInstance();
 
   tz.initializeTimeZones();
 
@@ -29,6 +36,11 @@ void main() async {
       overrides: [
         // 理科コレのキャラクターノティファイアを注入
         characterStateProvider.overrideWith(CharacterNotifier.new),
+        // まちがい図鑑・復習タイムカプセルの永続化リポジトリを注入
+        incorrectMonsterRepositoryProvider
+            .overrideWithValue(IncorrectMonsterRepositoryImpl(prefs)),
+        reviewTimeCapsuleRepositoryProvider
+            .overrideWithValue(ReviewTimeCapsuleRepositoryImpl(prefs)),
       ],
       child: const MyApp(),
     ),

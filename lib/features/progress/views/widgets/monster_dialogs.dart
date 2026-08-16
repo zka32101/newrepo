@@ -140,7 +140,9 @@ class MonsterEvolutionDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final nextState = monster.getNextEvolutionState();
+    // `monster` はこのダイアログを開く前に呼ばれた evolveMonster() で
+    // 既に進化後の状態に更新済み。ここからさらに次の進化状態を計算すると
+    // 1段階先を指してしまうため、「After」側はそのまま monster.evolutionState を使う。
 
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -207,12 +209,11 @@ class MonsterEvolutionDialog extends ConsumerWidget {
                       MonsterImage(
                         monster: monster,
                         size: 40,
-                        evolutionStateOverride:
-                            nextState ?? monster.evolutionState,
+                        evolutionStateOverride: monster.evolutionState,
                       ),
                       SizedBox(height: 4),
                       Text(
-                        nextState?.label ?? monster.evolutionState.label,
+                        monster.evolutionState.label,
                         style: TextStyle(fontSize: 11, color: Colors.blue),
                       ),
                     ],

@@ -329,8 +329,8 @@ class _AiChatScreenState extends ConsumerState<AiChatScreen> {
     text = text.trim();
     if (text.isEmpty || _isLoading) return;
 
-    final canSend =
-        await ref.read(monthlyUsageProvider.notifier).recordUsage();
+    final usageNotifier = ref.read(monthlyUsageProvider.notifier);
+    final canSend = await usageNotifier.canSend();
     if (!canSend) return;
 
     _controller.clear();
@@ -342,6 +342,8 @@ class _AiChatScreenState extends ConsumerState<AiChatScreen> {
 
     try {
       final reply = await _claudeService.askHaiku(text);
+      // 応答が得られたときだけ利用回数を消費する（通信/APIエラー時は消費しない）
+      await usageNotifier.recordUsage();
       if (!mounted) return;
       setState(() {
         _messages.add(_ChatMessage(text: reply, isUser: false));
@@ -351,7 +353,9 @@ class _AiChatScreenState extends ConsumerState<AiChatScreen> {
       if (!mounted) return;
       setState(() {
         _messages.add(_ChatMessage(
-          text: '⚠️ エラーが発生しました。しばらくしてからもう一度試してね。',
+          text: e is ClaudeServiceException
+              ? e.message
+              : '⚠️ エラーが発生しました。しばらくしてからもう一度試してね。',
           isUser: false,
         ));
         _isLoading = false;

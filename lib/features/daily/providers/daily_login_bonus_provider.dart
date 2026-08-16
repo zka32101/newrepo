@@ -114,8 +114,9 @@ class DailyLoginBonusNotifier extends AsyncNotifier<DailyBonusState> {
       return; // 既に受け取り済み
     }
 
-    // 連続日数を更新
-    final newConsecutive = current.consecutiveDays + 1;
+    // `_load()` が「本日受け取った場合の」連続日数を既に計算して
+    // current.consecutiveDays に入れているため、ここで further +1 はしない
+    final newConsecutive = current.consecutiveDays;
     await prefs.setInt(_consecutiveDaysKey, newConsecutive);
     await prefs.setString(_lastClaimedKey, DateTime.now().toIso8601String());
 

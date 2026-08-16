@@ -2,13 +2,23 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 // ② AIはかせチャット: Claude API呼び出しサービス
+class ClaudeServiceException implements Exception {
+  final String message;
+  ClaudeServiceException(this.message);
+
+  @override
+  String toString() => message;
+}
+
 class ClaudeService {
   static const String _apiUrl = 'https://api.anthropic.com/v1/messages';
   static const String _model = 'claude-haiku-4-5-20251001';
 
-  // APIキーは本番前に環境変数か設定ファイルから取得する
-  // ここはプレースホルダ — 実際のキーに差し替えること
-  static const String _apiKey = 'YOUR_ANTHROPIC_API_KEY';
+  // APIキーはソースにハードコードしない。ビルド時に
+  // `--dart-define=ANTHROPIC_API_KEY=...` で注入する（本番はサーバー経由の
+  // プロキシ越しに呼び出すのが望ましく、これはその移行までの暫定対応）。
+  static const String _apiKey =
+      String.fromEnvironment('ANTHROPIC_API_KEY');
 
   static const String _systemPrompt = '''
 あなたは「りかハカセ」という小学生の理科の先生キャラクターです。
@@ -29,6 +39,12 @@ class ClaudeService {
 ''';
 
   Future<String> askHaiku(String question) async {
+    if (_apiKey.isEmpty) {
+      throw ClaudeServiceException(
+        'りかハカセは今おやすみ中だよ。少ししてからもう一度聞いてね！',
+      );
+    }
+
     try {
       final response = await http
           .post(
@@ -53,12 +69,18 @@ class ClaudeService {
         final data = jsonDecode(utf8.decode(response.bodyBytes));
         return data['content'][0]['text'] as String;
       } else if (response.statusCode == 429) {
-        return 'ただいまりかハカセはとても混んでいます。少し待ってからもう一度聞いてね！';
+        throw ClaudeServiceException(
+          'ただいまりかハカセはとても混んでいます。少し待ってからもう一度聞いてね！',
+        );
       } else {
-        return 'エラーが起きたよ（${response.statusCode}）。もう一度試してね！';
+        throw ClaudeServiceException(
+          'エラーが起きたよ（${response.statusCode}）。もう一度試してね！',
+        );
       }
+    } on ClaudeServiceException {
+      rethrow;
     } catch (e) {
-      return 'つながらなかったよ。インターネットをかくにんしてね！';
+      throw ClaudeServiceException('つながらなかったよ。インターネットをかくにんしてね！');
     }
   }
 }

@@ -28,6 +28,25 @@ class PredictionNotifier extends StateNotifier<Map<String, PredictionStats>> {
     // Firestore実装時まで SharedPrefs のみ使用
     // キー: prediction_stats_{experimentId}:totalAttempts
     // キー: prediction_stats_{experimentId}:correctPredictions
+    const prefix = 'prediction_stats_';
+    const totalSuffix = ':totalAttempts';
+    final experimentIds = prefs.getKeys().where(
+          (key) => key.startsWith(prefix) && key.endsWith(totalSuffix),
+        ).map(
+          (key) => key.substring(prefix.length, key.length - totalSuffix.length),
+        );
+
+    for (final experimentId in experimentIds) {
+      final keyPrefix = '$prefix$experimentId';
+      final totalAttempts = prefs.getInt('$keyPrefix:totalAttempts') ?? 0;
+      final correctPredictions =
+          prefs.getInt('$keyPrefix:correctPredictions') ?? 0;
+      stats[experimentId] = PredictionStats(
+        experimentId: experimentId,
+        totalAttempts: totalAttempts,
+        correctPredictions: correctPredictions,
+      );
+    }
 
     state = stats;
   }

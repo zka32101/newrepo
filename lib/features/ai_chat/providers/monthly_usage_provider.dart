@@ -19,7 +19,14 @@ class MonthlyUsageState {
 
 class MonthlyUsageNotifier extends StateNotifier<MonthlyUsageState> {
   MonthlyUsageNotifier()
-      : super(MonthlyUsageState(usedCount: 0, yearMonth: _currentYearMonth()));
+      : super(MonthlyUsageState(usedCount: 0, yearMonth: _currentYearMonth())) {
+    _loadFuture = load();
+  }
+
+  /// SharedPreferences からの読み込み完了を表す Future。
+  /// state の初期値（usedCount: 0）は読み込みが終わるまでの仮値でしかないため、
+  /// 制限判定を行うメソッドは必ずこれを待ってから state を参照する。
+  late final Future<void> _loadFuture;
 
   static String _currentYearMonth() {
     final now = DateTime.now();
@@ -34,7 +41,15 @@ class MonthlyUsageNotifier extends StateNotifier<MonthlyUsageState> {
     state = MonthlyUsageState(usedCount: count, yearMonth: ym);
   }
 
+  /// 送信可否だけを確認する（カウントは消費しない）。
+  Future<bool> canSend() async {
+    await _loadFuture;
+    return !state.isLimitReached;
+  }
+
+  /// 実際にAIから応答を得られたときにだけ呼び、利用回数を1消費する。
   Future<bool> recordUsage() async {
+    await _loadFuture;
     if (state.isLimitReached) return false;
 
     final prefs = await SharedPreferences.getInstance();
@@ -49,9 +64,5 @@ class MonthlyUsageNotifier extends StateNotifier<MonthlyUsageState> {
 
 final monthlyUsageProvider =
     StateNotifierProvider<MonthlyUsageNotifier, MonthlyUsageState>(
-  (ref) {
-    final notifier = MonthlyUsageNotifier();
-    notifier.load();
-    return notifier;
-  },
+  (ref) => MonthlyUsageNotifier(),
 );
