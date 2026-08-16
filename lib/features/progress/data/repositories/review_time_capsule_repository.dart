@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../shared/utils/app_logger.dart';
 import '../../models/review_schedule.dart';
 
 /// 復習タイムカプセル Repository インターフェース
@@ -56,7 +57,7 @@ class ReviewTimeCapsuleRepositoryImpl implements ReviewTimeCapsuleRepository {
               TimeCapsule.fromJson(jsonDecode(json) as Map<String, dynamic>))
           .toList();
     } catch (e) {
-      print('Error loading time capsules: $e');
+      logDebug('Error loading time capsules: $e');
       return [];
     }
   }
@@ -112,7 +113,7 @@ class ReviewTimeCapsuleRepositoryImpl implements ReviewTimeCapsuleRepository {
 
       await update(capsule);
     } catch (e) {
-      print('Error creating time capsule: $e');
+      logDebug('Error creating time capsule: $e');
       rethrow;
     }
   }
@@ -146,7 +147,7 @@ class ReviewTimeCapsuleRepositoryImpl implements ReviewTimeCapsuleRepository {
 
       await update(updated);
     } catch (e) {
-      print('Error completing review: $e');
+      logDebug('Error completing review: $e');
       rethrow;
     }
   }
@@ -164,7 +165,7 @@ class ReviewTimeCapsuleRepositoryImpl implements ReviewTimeCapsuleRepository {
         updated.map((c) => jsonEncode(c.toJson())).toList(),
       );
     } catch (e) {
-      print('Error updating time capsule: $e');
+      logDebug('Error updating time capsule: $e');
       rethrow;
     }
   }
@@ -179,7 +180,7 @@ class ReviewTimeCapsuleRepositoryImpl implements ReviewTimeCapsuleRepository {
         updated.map((c) => jsonEncode(c.toJson())).toList(),
       );
     } catch (e) {
-      print('Error deleting time capsule: $e');
+      logDebug('Error deleting time capsule: $e');
       rethrow;
     }
   }
@@ -189,7 +190,7 @@ class ReviewTimeCapsuleRepositoryImpl implements ReviewTimeCapsuleRepository {
     try {
       await _prefs.remove(_storageKey);
     } catch (e) {
-      print('Error clearing time capsules: $e');
+      logDebug('Error clearing time capsules: $e');
       rethrow;
     }
   }

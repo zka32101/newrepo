@@ -1,0 +1,28 @@
+# .github/dependabot.yml
+# 依存パッケージの脆弱性を自動検知し、PRを自動作成する設定。
+
+version: 2
+updates:
+  # Dart/Flutter パッケージ (pubspec.yaml)
+  - package-ecosystem: "pub"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  # Android (Gradle)
+  - package-ecosystem: "gradle"
+    directory: "/android"
+    schedule:
+      interval: "weekly"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  # iOS (CocoaPods) — ios/Podfile が生成されたら有効化する
+  # - package-ecosystem: "bundler"
+  #   directory: "/ios"
+  #   schedule:
+  #     interval: "weekly"

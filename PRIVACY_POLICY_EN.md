@@ -52,7 +52,7 @@ Processed by RevenueCat and Apple/Google Play billing systems. We do not directl
 
 ### Data Access & Deletion
 Users can request access to or deletion of their personal data at any time. Contact us at:  
-**Email**: funvestment1@gmail.com
+**Email**: petitworksappsdev@gmail.com
 
 Upon request, we will provide or delete your data within 30 days.
 
@@ -86,7 +86,7 @@ This app uses the following third-party services:
 - Parental consent mechanisms available
 - No data sharing with third parties for marketing
 
-Parents may contact us at funvestment1@gmail.com with privacy concerns.
+Parents may contact us at petitworksappsdev@gmail.com with privacy concerns.
 
 ## Data Retention
 
@@ -103,7 +103,7 @@ We may update this Privacy Policy periodically. Changes will be posted here with
 If you have questions about this Privacy Policy or our data practices, please contact:
 
 **Petit Works Apps**  
-📧 Email: funvestment1@gmail.com  
+📧 Email: petitworksappsdev@gmail.com  
 🌐 Privacy Policy Updates: [Will be added when URL is finalized]
 
 ---

@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../shared/utils/app_logger.dart';
 import '../data/repositories/review_time_capsule_repository.dart';
 import '../models/review_schedule.dart';
 
@@ -81,7 +82,7 @@ class ReviewTimeCapsuleNotifier extends StateNotifier<List<TimeCapsule>> {
       state = capsules;
       _isInitialized = true;
     } catch (e) {
-      print('Error initializing time capsules: $e');
+      logDebug('Error initializing time capsules: $e');
       state = [];
       _isInitialized = true;
     }
@@ -106,7 +107,7 @@ class ReviewTimeCapsuleNotifier extends StateNotifier<List<TimeCapsule>> {
       final updated = await _repository.getAll();
       state = updated;
     } catch (e) {
-      print('Error creating time capsule: $e');
+      logDebug('Error creating time capsule: $e');
       rethrow;
     }
   }
@@ -123,7 +124,7 @@ class ReviewTimeCapsuleNotifier extends StateNotifier<List<TimeCapsule>> {
       final updated = await _repository.getAll();
       state = updated;
     } catch (e) {
-      print('Error completing review: $e');
+      logDebug('Error completing review: $e');
       rethrow;
     }
   }
@@ -134,7 +135,7 @@ class ReviewTimeCapsuleNotifier extends StateNotifier<List<TimeCapsule>> {
       await _repository.delete(capsuleId);
       state = state.where((c) => c.id != capsuleId).toList();
     } catch (e) {
-      print('Error deleting time capsule: $e');
+      logDebug('Error deleting time capsule: $e');
       rethrow;
     }
   }
@@ -145,7 +146,7 @@ class ReviewTimeCapsuleNotifier extends StateNotifier<List<TimeCapsule>> {
       await _repository.deleteAll();
       state = [];
     } catch (e) {
-      print('Error clearing time capsules: $e');
+      logDebug('Error clearing time capsules: $e');
       rethrow;
     }
   }
@@ -155,7 +156,7 @@ class ReviewTimeCapsuleNotifier extends StateNotifier<List<TimeCapsule>> {
     try {
       return await _repository.getTodayReviews();
     } catch (e) {
-      print('Error getting today reviews: $e');
+      logDebug('Error getting today reviews: $e');
       rethrow;
     }
   }

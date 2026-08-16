@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../shared/utils/app_logger.dart';
 import '../data/seeds/stages.dart';
 import '../data/seeds/sample_questions.dart';
 import '../data/seeds/creatures.dart';
@@ -15,31 +16,31 @@ class FirestoreSeeding {
       // 既存データを確認
       final stagesSnapshot = await _firestore.collection('stages').limit(1).get();
       if (stagesSnapshot.docs.isNotEmpty) {
-        print('⚠️  既にデータが存在します。スキップします。');
+        logDebug('⚠️  既にデータが存在します。スキップします。');
         return;
       }
 
-      print('🌱 Firestore シーディング開始...');
+      logDebug('🌱 Firestore シーディング開始...');
 
       // ステージデータをシーディング
       await _seedStages();
-      print('✅ ステージデータをシーディング完了');
+      logDebug('✅ ステージデータをシーディング完了');
 
       // 問題データをシーディング
       await _seedQuestions();
-      print('✅ 問題データをシーディング完了');
+      logDebug('✅ 問題データをシーディング完了');
 
       // 詳細解説データをシーディング
       await _seedDetailedExplanations();
-      print('✅ 詳細解説をシーディング完了');
+      logDebug('✅ 詳細解説をシーディング完了');
 
       // 生き物データをシーディング
       await _seedCreatures();
-      print('✅ 生き物図鑑をシーディング完了');
+      logDebug('✅ 生き物図鑑をシーディング完了');
 
-      print('🎉 すべてのシーディングが完了しました！');
+      logDebug('🎉 すべてのシーディングが完了しました！');
     } catch (e) {
-      print('❌ シーディングエラー: $e');
+      logDebug('❌ シーディングエラー: $e');
       rethrow;
     }
   }
@@ -115,7 +116,7 @@ class FirestoreSeeding {
           stagesData.firstWhere((s) => s['id'] == stageId, orElse: () => {});
 
       if (stageData.isEmpty) {
-        print('⚠️  ステージID「$stageId」が見つかりません');
+        logDebug('⚠️  ステージID「$stageId」が見つかりません');
         return;
       }
 
@@ -138,9 +139,9 @@ class FirestoreSeeding {
       }
       await batch.commit();
 
-      print('✅ ステージ「$stageId」とその問題をシーディング完了');
+      logDebug('✅ ステージ「$stageId」とその問題をシーディング完了');
     } catch (e) {
-      print('❌ エラー: $e');
+      logDebug('❌ エラー: $e');
       rethrow;
     }
   }
@@ -155,7 +156,7 @@ class FirestoreSeeding {
 
       return snapshot.docs.map((doc) => doc.data()).toList();
     } catch (e) {
-      print('❌ エラー: $e');
+      logDebug('❌ エラー: $e');
       return [];
     }
   }
@@ -172,7 +173,7 @@ class FirestoreSeeding {
 
       return snapshot.docs.map((doc) => doc.data()).toList();
     } catch (e) {
-      print('❌ エラー: $e');
+      logDebug('❌ エラー: $e');
       return [];
     }
   }
@@ -189,7 +190,7 @@ class FirestoreSeeding {
 
       return snapshot.docs.map((doc) => doc.data()).toList();
     } catch (e) {
-      print('❌ エラー: $e');
+      logDebug('❌ エラー: $e');
       return [];
     }
   }
@@ -201,7 +202,7 @@ class FirestoreSeeding {
 
       return snapshot.docs.map((doc) => doc.data()).toList();
     } catch (e) {
-      print('❌ エラー: $e');
+      logDebug('❌ エラー: $e');
       return [];
     }
   }
@@ -217,7 +218,7 @@ class FirestoreSeeding {
 
       return snapshot.docs.map((doc) => doc.data()).toList();
     } catch (e) {
-      print('❌ エラー: $e');
+      logDebug('❌ エラー: $e');
       return [];
     }
   }

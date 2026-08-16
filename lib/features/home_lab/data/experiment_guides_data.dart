@@ -1,3 +1,4 @@
+import '../../../shared/utils/app_logger.dart';
 import '../models/experiment_guide.dart';
 
 /// 50個の実験ガイドデータ
@@ -213,7 +214,7 @@ bool validateExperimentData() {
   final ids = experimentGuidesData.map((e) => e.id).toList();
   final uniqueIds = ids.toSet();
   if (ids.length != uniqueIds.length) {
-    print('❌ エラー: ID が重複しています');
+    logDebug('❌ エラー: ID が重複しています');
     return false;
   }
 
@@ -223,7 +224,7 @@ bool validateExperimentData() {
         exp.title.isEmpty ||
         exp.materials.isEmpty ||
         exp.steps.isEmpty) {
-      print('❌ エラー: ${exp.id} に必須フィールドが欠落');
+      logDebug('❌ エラー: ${exp.id} に必須フィールドが欠落');
       return false;
     }
   }
@@ -234,11 +235,11 @@ bool validateExperimentData() {
   final grade5 = experimentGuidesData.where((e) => e.grade == 5).length;
   final grade6 = experimentGuidesData.where((e) => e.grade == 6).length;
 
-  print('📊 グレード分布 (現在 / 目標):');
-  print('  Grade 3: $grade3 / ${targetExperimentCountByGrade[3]}');
-  print('  Grade 4: $grade4 / ${targetExperimentCountByGrade[4]}');
-  print('  Grade 5: $grade5 / ${targetExperimentCountByGrade[5]}');
-  print('  Grade 6: $grade6 / ${targetExperimentCountByGrade[6]}');
+  logDebug('📊 グレード分布 (現在 / 目標):');
+  logDebug('  Grade 3: $grade3 / ${targetExperimentCountByGrade[3]}');
+  logDebug('  Grade 4: $grade4 / ${targetExperimentCountByGrade[4]}');
+  logDebug('  Grade 5: $grade5 / ${targetExperimentCountByGrade[5]}');
+  logDebug('  Grade 6: $grade6 / ${targetExperimentCountByGrade[6]}');
 
   final isComplete = grade3 == targetExperimentCountByGrade[3] &&
       grade4 == targetExperimentCountByGrade[4] &&
@@ -246,9 +247,9 @@ bool validateExperimentData() {
       grade6 == targetExperimentCountByGrade[6];
 
   if (!isComplete) {
-    print('⚠️  データ未完成（Day1でのデータ拡充待ち）。ID/必須フィールドチェックは PASS');
+    logDebug('⚠️  データ未完成（Day1でのデータ拡充待ち）。ID/必須フィールドチェックは PASS');
   } else {
-    print('✅ すべてのチェック PASS (合計 ${experimentGuidesData.length} 個)');
+    logDebug('✅ すべてのチェック PASS (合計 ${experimentGuidesData.length} 個)');
   }
 
   return true;

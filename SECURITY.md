@@ -48,7 +48,7 @@
 
 ## Reporting Security Issues
 
-Email: funvestment1@gmail.com
+Email: petitworksappsdev@gmail.com
 Subject: [SECURITY] shokollen_science - [Brief Description]
 
 Response Times:
@@ -80,4 +80,4 @@ None currently known.
 ---
 
 **Last Updated:** 2026-08-07
-**Security Contact:** funvestment1@gmail.com
+**Security Contact:** petitworksappsdev@gmail.com

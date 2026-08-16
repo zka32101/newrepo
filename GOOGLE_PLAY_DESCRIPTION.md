@@ -102,7 +102,7 @@
 
 ご質問、ご要望、バグ報告などございましたら、以下までお気軽にご連絡ください：
 
-Email: funvestment1@gmail.com
+Email: petitworksappsdev@gmail.com
 
 ---
 

@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../shared/utils/app_logger.dart';
 import 'package:uuid/uuid.dart';
 import '../data/repositories/incorrect_monster_repository.dart';
 import '../models/incorrect_monster.dart';
@@ -61,7 +62,7 @@ class IncorrectMonsterNotifier extends StateNotifier<List<IncorrectMonster>> {
       state = monsters;
       _isInitialized = true;
     } catch (e) {
-      print('Error initializing monsters: $e');
+      logDebug('Error initializing monsters: $e');
       state = [];
       _isInitialized = true;
     }
@@ -97,7 +98,7 @@ class IncorrectMonsterNotifier extends StateNotifier<List<IncorrectMonster>> {
       await _repository.save(monster);
       state = [...state, monster];
     } catch (e) {
-      print('Error recording incorrect: $e');
+      logDebug('Error recording incorrect: $e');
       rethrow;
     }
   }
@@ -120,7 +121,7 @@ class IncorrectMonsterNotifier extends StateNotifier<List<IncorrectMonster>> {
       await _repository.update(updated);
       state = state.map((m) => m.id == monsterId ? updated : m).toList();
     } catch (e) {
-      print('Error evolving monster: $e');
+      logDebug('Error evolving monster: $e');
       rethrow;
     }
   }
@@ -131,7 +132,7 @@ class IncorrectMonsterNotifier extends StateNotifier<List<IncorrectMonster>> {
       await _repository.delete(monsterId);
       state = state.where((m) => m.id != monsterId).toList();
     } catch (e) {
-      print('Error deleting monster: $e');
+      logDebug('Error deleting monster: $e');
       rethrow;
     }
   }
@@ -142,7 +143,7 @@ class IncorrectMonsterNotifier extends StateNotifier<List<IncorrectMonster>> {
       await _repository.deleteAll();
       state = [];
     } catch (e) {
-      print('Error clearing all monsters: $e');
+      logDebug('Error clearing all monsters: $e');
       rethrow;
     }
   }

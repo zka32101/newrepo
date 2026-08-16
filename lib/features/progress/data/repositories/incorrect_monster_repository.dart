@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../shared/utils/app_logger.dart';
 import '../../models/incorrect_monster.dart';
 
 /// IncorrectMonster のリポジトリインターフェース
@@ -44,7 +45,7 @@ class IncorrectMonsterRepositoryImpl implements IncorrectMonsterRepository {
           .map((json) => IncorrectMonster.fromJson(jsonDecode(json) as Map<String, dynamic>))
           .toList();
     } catch (e) {
-      print('Error loading monsters: $e');
+      logDebug('Error loading monsters: $e');
       return [];
     }
   }
@@ -79,7 +80,7 @@ class IncorrectMonsterRepositoryImpl implements IncorrectMonsterRepository {
         updated.map((m) => jsonEncode(m.toJson())).toList(),
       );
     } catch (e) {
-      print('Error saving monster: $e');
+      logDebug('Error saving monster: $e');
       rethrow;
     }
   }
@@ -94,7 +95,7 @@ class IncorrectMonsterRepositoryImpl implements IncorrectMonsterRepository {
         updated.map((m) => jsonEncode(m.toJson())).toList(),
       );
     } catch (e) {
-      print('Error updating monster: $e');
+      logDebug('Error updating monster: $e');
       rethrow;
     }
   }
@@ -109,7 +110,7 @@ class IncorrectMonsterRepositoryImpl implements IncorrectMonsterRepository {
         updated.map((m) => jsonEncode(m.toJson())).toList(),
       );
     } catch (e) {
-      print('Error deleting monster: $e');
+      logDebug('Error deleting monster: $e');
       rethrow;
     }
   }
@@ -119,7 +120,7 @@ class IncorrectMonsterRepositoryImpl implements IncorrectMonsterRepository {
     try {
       await _prefs.remove(_storageKey);
     } catch (e) {
-      print('Error clearing monsters: $e');
+      logDebug('Error clearing monsters: $e');
       rethrow;
     }
   }

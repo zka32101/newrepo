@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# .githooks/pre-commit
+#
+# 有効化方法（clone後に一度だけ実行）:
+#   git config core.hooksPath .githooks
+#
+# 目的: コミット対象の差分に禁止ワード（本名・会社名等）が含まれていないかチェックする。
+# 下記 FORBIDDEN_WORDS を自分の環境に合わせて編集すること（本名・社名等は書き込まずここに列挙）。
+
+set -euo pipefail
+
+# ここに検知したい単語を追加する（例: 本名のローマ字表記、会社名の略称など）
+FORBIDDEN_WORDS=(
+  "LAC"
+  "株式会社ラック"
+  # "YourFullName"
+  # "yourname@company.co.jp"
+)
+
+DIFF=$(git diff --cached)
+FOUND=0
+
+for word in "${FORBIDDEN_WORDS[@]}"; do
+  if echo "$DIFF" | grep -iq -- "$word"; then
+    echo "⚠️  禁止ワード検出: '$word' がコミット差分に含まれています。"
+    FOUND=1
+  fi
+done
+
+if [ "$FOUND" -eq 1 ]; then
+  echo ""
+  echo "コミットを中止しました。該当箇所を修正するか、意図的な場合は"
+  echo "  git commit --no-verify"
+  echo "でスキップできます（推奨しません）。"
+  exit 1
+fi
+
+exit 0
