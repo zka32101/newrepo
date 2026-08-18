@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../shared/constants/app_colors.dart';
@@ -28,8 +29,8 @@ class ProgressScreen extends ConsumerWidget {
             _buildStatsRow(progress),
             _buildBadgeSection(context, progress),
             _buildStageProgressSection(progress),
-            // デバッグ: リセットボタン（必要に応じて削除）
-            _buildResetButton(context, ref),
+            // デバッグ専用: リリースビルドでは非表示（本番の子どもユーザーには出さない）
+            if (kDebugMode) _buildResetButton(context, ref),
             const SizedBox(height: 32),
           ],
         ),
