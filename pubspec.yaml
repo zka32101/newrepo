@@ -70,7 +70,9 @@ dependencies:
 
   # ============== Shared Core ==============
   shared_core:
-    path: H:\マイドライブ\apps\shared_core
+    git:
+      url: https://github.com/org-zka32101/shared_core.git
+      ref: main
 
   # ============== Monetization ==============
   purchases_flutter: ^10.0.0

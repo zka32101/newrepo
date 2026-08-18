@@ -5,7 +5,7 @@
 - **アプリ名**: 小学コレ！理科 (shokollen_science)
 - **対象**: 小学3〜6年生の理科学習
 - **ソース**: `G:\マイドライブ\apps\shokollen_science`
-- **shared_core**: `G:\マイドライブ\apps\shared_core`
+- **shared_core**: git dependency（https://github.com/org-zka32101/shared_core, ref: main）。ローカルpath参照は廃止済み
 
 ## APKビルド手順
 
@@ -60,7 +60,7 @@ cd S:/ && flutter pub get
 - `subst S:` による仮想ドライブ割り当てで回避
 - `android/gradle.properties` に `android.overridePathCheck=true` 追加済み
 - `android/settings.gradle.kts` でビルドディレクトリを `C:/rika-build/` に変更済み
-- `pubspec.yaml` の shared_core は絶対パス指定（`G:\マイドライブ\apps\shared_core`）
+- `pubspec.yaml` の shared_core は git dependency（`https://github.com/org-zka32101/shared_core.git`, ref: main）
 
 ## 実装済み機能（v0.9.0 → v1.0 準備中）
 
