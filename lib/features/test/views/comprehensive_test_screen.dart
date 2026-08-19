@@ -174,11 +174,12 @@ class _ComprehensiveTestScreenState
         children: [
           Row(
             children: [
-              GestureDetector(
-                onTap: () => context.go('/home'),
-                child: const Icon(Icons.close, color: Colors.white),
+              IconButton(
+                onPressed: () => context.go('/home'),
+                icon: const Icon(Icons.close, color: Colors.white),
+                tooltip: '閉じる',
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: 2),
               Expanded(
                 child: Text(
                   '${widget.grade}年生 まとめテスト',

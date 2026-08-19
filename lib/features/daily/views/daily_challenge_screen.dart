@@ -60,11 +60,12 @@ class _DailyChallengeScreenState extends ConsumerState<DailyChallengeScreen> {
                 children: [
                   Row(
                     children: [
-                      GestureDetector(
-                        onTap: () => context.pop(),
-                        child: const Icon(Icons.close, color: Colors.white),
+                      IconButton(
+                        onPressed: () => context.pop(),
+                        icon: const Icon(Icons.close, color: Colors.white),
+                        tooltip: '閉じる',
                       ),
-                      const SizedBox(width: 12),
+                      const SizedBox(width: 4),
                       const Expanded(
                         child: Text('⚡ デイリーチャレンジ',
                             style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),

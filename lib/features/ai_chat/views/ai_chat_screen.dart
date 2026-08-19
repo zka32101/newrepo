@@ -304,20 +304,19 @@ class _AiChatScreenState extends ConsumerState<AiChatScreen> {
             ),
           ),
           const SizedBox(width: 8),
-          GestureDetector(
-            onTap: state.isLimitReached || _isLoading
+          IconButton(
+            onPressed: state.isLimitReached || _isLoading
                 ? null
                 : () => _sendMessage(_controller.text),
-            child: Container(
-              width: 44,
-              height: 44,
-              decoration: BoxDecoration(
-                color: state.isLimitReached || _isLoading
-                    ? Colors.grey.shade300
-                    : const Color(0xFF5C6BC0),
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(Icons.send, color: Colors.white, size: 20),
+            icon: const Icon(Icons.send, color: Colors.white, size: 20),
+            tooltip: '送信',
+            style: IconButton.styleFrom(
+              backgroundColor: state.isLimitReached || _isLoading
+                  ? Colors.grey.shade300
+                  : const Color(0xFF5C6BC0),
+              disabledBackgroundColor: Colors.grey.shade300,
+              shape: const CircleBorder(),
+              minimumSize: const Size(44, 44),
             ),
           ),
         ],

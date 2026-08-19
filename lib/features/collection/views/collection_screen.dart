@@ -51,11 +51,12 @@ class _CollectionScreenState extends ConsumerState<CollectionScreen>
                     padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
                     child: Row(
                       children: [
-                        GestureDetector(
-                          onTap: () => context.go('/home'),
-                          child: const Icon(Icons.arrow_back_rounded, color: Colors.white),
+                        IconButton(
+                          onPressed: () => context.go('/home'),
+                          icon: const Icon(Icons.arrow_back_rounded, color: Colors.white),
+                          tooltip: '戻る',
                         ),
-                        const SizedBox(width: 12),
+                        const SizedBox(width: 4),
                         const Text('📚 コレクション帳',
                             style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
                         const Spacer(),

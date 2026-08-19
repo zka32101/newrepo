@@ -170,11 +170,12 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
         children: [
           Row(
             children: [
-              GestureDetector(
-                onTap: () => context.go('/home'),
-                child: const Icon(Icons.close, color: Colors.white),
+              IconButton(
+                onPressed: () => context.go('/home'),
+                icon: const Icon(Icons.close, color: Colors.white),
+                tooltip: '閉じる',
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: 4),
               Expanded(
                 child: Text(
                   quiz.stageName,
