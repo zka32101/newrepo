@@ -17,6 +17,13 @@ class MonsterGetDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final gradientColors = isDark
+        ? [const Color(0xFF3A2430), const Color(0xFF2A1A22)]
+        : [Colors.pink[50]!, Colors.pink[100]!];
+    final surfaceColor = isDark ? const Color(0xFF2A2A3E) : Colors.white;
+    final bodyTextColor = isDark ? Colors.grey[300] : Colors.grey[700];
+
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Container(
@@ -24,7 +31,7 @@ class MonsterGetDialog extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           gradient: LinearGradient(
-            colors: [Colors.pink[50]!, Colors.pink[100]!],
+            colors: gradientColors,
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -48,7 +55,7 @@ class MonsterGetDialog extends StatelessWidget {
               height: 120,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white,
+                color: surfaceColor,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black12,
@@ -82,14 +89,14 @@ class MonsterGetDialog extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: Colors.white,
+                color: surfaceColor,
               ),
               child: Text(
                 '「正解できるまで、\nずっとともだちだよ！」',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 13,
-                  color: Colors.grey[700],
+                  color: bodyTextColor,
                   height: 1.6,
                 ),
               ),
@@ -143,6 +150,13 @@ class MonsterEvolutionDialog extends ConsumerWidget {
     // `monster` はこのダイアログを開く前に呼ばれた evolveMonster() で
     // 既に進化後の状態に更新済み。ここからさらに次の進化状態を計算すると
     // 1段階先を指してしまうため、「After」側はそのまま monster.evolutionState を使う。
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final gradientColors = isDark
+        ? [const Color(0xFF3A3220), const Color(0xFF2E2818)]
+        : [Colors.amber[50]!, Colors.amber[100]!];
+    final surfaceColor = isDark ? const Color(0xFF2A2A3E) : Colors.white;
+    final mutedTextColor = isDark ? Colors.grey[400] : Colors.grey[600];
+    final mutedTextColorAlt = isDark ? Colors.grey[400] : Colors.grey[700];
 
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -151,7 +165,7 @@ class MonsterEvolutionDialog extends ConsumerWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           gradient: LinearGradient(
-            colors: [Colors.amber[50]!, Colors.amber[100]!],
+            colors: gradientColors,
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -165,7 +179,7 @@ class MonsterEvolutionDialog extends ConsumerWidget {
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
-                color: Colors.orange[800],
+                color: Colors.orange[isDark ? 300 : 800],
               ),
             ),
             SizedBox(height: 24),
@@ -175,7 +189,7 @@ class MonsterEvolutionDialog extends ConsumerWidget {
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: Colors.white,
+                color: surfaceColor,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -195,7 +209,7 @@ class MonsterEvolutionDialog extends ConsumerWidget {
                             .values[
                                 (monster.correctionsCount - 1).clamp(0, 3)]
                             .label,
-                        style: TextStyle(fontSize: 11, color: Colors.grey[600]),
+                        style: TextStyle(fontSize: 11, color: mutedTextColor),
                       ),
                     ],
                   ),
@@ -233,7 +247,7 @@ class MonsterEvolutionDialog extends ConsumerWidget {
                     children: [
                       Text(
                         'つぎの進化まで',
-                        style: TextStyle(fontSize: 12, color: Colors.grey[700]),
+                        style: TextStyle(fontSize: 12, color: mutedTextColorAlt),
                       ),
                       Text(
                         '${monster.correctionsCount}/3',
@@ -268,7 +282,7 @@ class MonsterEvolutionDialog extends ConsumerWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 12,
-                    color: Colors.grey[600],
+                    color: mutedTextColor,
                   ),
                 ),
               ),
@@ -320,6 +334,9 @@ class MonsterStatusDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final infoBoxColor = isDark ? const Color(0xFF2A2A3E) : Colors.grey[100];
+
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: SingleChildScrollView(
@@ -383,7 +400,7 @@ class MonsterStatusDialog extends ConsumerWidget {
                 padding: EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: Colors.grey[100],
+                  color: infoBoxColor,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

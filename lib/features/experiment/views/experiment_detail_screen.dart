@@ -28,13 +28,13 @@ class ExperimentDetailScreen extends StatelessWidget {
                 children: [
                   _buildInfoRow(data),
                   const SizedBox(height: 16),
-                  _buildMaterialsCard(data),
+                  _buildMaterialsCard(context, data),
                   const SizedBox(height: 12),
-                  _buildStepsCard(data),
+                  _buildStepsCard(context, data),
                   const SizedBox(height: 12),
-                  _buildPointCard(data),
+                  _buildPointCard(context, data),
                   const SizedBox(height: 12),
-                  _buildSafetyCard(data),
+                  _buildSafetyCard(context, data),
                   const SizedBox(height: 32),
                 ],
               ),
@@ -107,9 +107,10 @@ class ExperimentDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMaterialsCard(Map<String, dynamic> data) {
+  Widget _buildMaterialsCard(BuildContext context, Map<String, dynamic> data) {
     final materials = data['materials'] as List<String>;
     return _sectionCard(
+      context: context,
       title: '📦 用意するもの',
       color: Colors.blue[600]!,
       child: Wrap(
@@ -139,9 +140,10 @@ class ExperimentDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildStepsCard(Map<String, dynamic> data) {
+  Widget _buildStepsCard(BuildContext context, Map<String, dynamic> data) {
     final steps = data['steps'] as List<String>;
     return _sectionCard(
+      context: context,
       title: '🧪 実験の手順',
       color: Colors.green[600]!,
       child: Column(
@@ -188,8 +190,9 @@ class ExperimentDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPointCard(Map<String, dynamic> data) {
+  Widget _buildPointCard(BuildContext context, Map<String, dynamic> data) {
     return _sectionCard(
+      context: context,
       title: '💡 学びのポイント',
       color: Colors.amber[700]!,
       child: Container(
@@ -207,8 +210,9 @@ class ExperimentDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSafetyCard(Map<String, dynamic> data) {
+  Widget _buildSafetyCard(BuildContext context, Map<String, dynamic> data) {
     return _sectionCard(
+      context: context,
       title: '⚠️ 安全上の注意',
       color: Colors.red[600]!,
       child: Container(
@@ -228,6 +232,7 @@ class ExperimentDetailScreen extends StatelessWidget {
   }
 
   Widget _sectionCard({
+    required BuildContext context,
     required String title,
     required Color color,
     required Widget child,
@@ -236,7 +241,7 @@ class ExperimentDetailScreen extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
           BoxShadow(

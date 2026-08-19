@@ -619,7 +619,7 @@ class _SectionCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -824,8 +824,8 @@ class _VideoCardState extends State<_VideoCard> {
           Container(
             padding:
                 const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-            decoration: const BoxDecoration(
-              color: Colors.white,
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
               borderRadius:
                   BorderRadius.vertical(bottom: Radius.circular(12)),
             ),

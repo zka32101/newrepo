@@ -410,7 +410,7 @@ class _SectionCardState extends State<_SectionCard>
           child: Container(
             margin: const EdgeInsets.only(bottom: 14),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
@@ -557,7 +557,7 @@ class _SectionCardState extends State<_SectionCard>
           child: Container(
             margin: const EdgeInsets.only(bottom: 14),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(

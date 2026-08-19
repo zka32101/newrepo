@@ -191,7 +191,7 @@ class _PraiseDialogState extends State<_PraiseDialog>
         child: Container(
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(24),
             boxShadow: [
               BoxShadow(

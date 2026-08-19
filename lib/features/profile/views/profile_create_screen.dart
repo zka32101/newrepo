@@ -110,8 +110,8 @@ class _ProfileCreateScreenState
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.all(24),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).cardColor,
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(28)),
                   ),

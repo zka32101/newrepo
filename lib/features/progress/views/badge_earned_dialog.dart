@@ -49,6 +49,12 @@ class _BadgeEarnedDialogState extends State<BadgeEarnedDialog>
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final cardColor = isDark ? const Color(0xFF2A2A3E) : Colors.white;
+    final labelColor = isDark ? Colors.grey[400] : Colors.grey[700];
+    final descriptionColor = isDark ? Colors.grey[300] : const Color(0xFF555555);
+    final inactiveDotColor = isDark ? Colors.grey[700] : Colors.grey[300];
+
     return Dialog(
       backgroundColor: Colors.transparent,
       child: FadeTransition(
@@ -59,7 +65,7 @@ class _BadgeEarnedDialogState extends State<BadgeEarnedDialog>
             margin: const EdgeInsets.symmetric(horizontal: 20),
             padding: const EdgeInsets.all(28),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: cardColor,
               borderRadius: BorderRadius.circular(28),
               boxShadow: [
                 BoxShadow(
@@ -97,7 +103,7 @@ class _BadgeEarnedDialogState extends State<BadgeEarnedDialog>
                   '🎊 バッジ獲得！',
                   style: TextStyle(
                     fontSize: 13,
-                    color: Colors.grey[500],
+                    color: labelColor,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -118,9 +124,9 @@ class _BadgeEarnedDialogState extends State<BadgeEarnedDialog>
                 // ── 説明 ──
                 Text(
                   _current.description,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 14,
-                    color: Color(0xFF555555),
+                    color: descriptionColor,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -140,7 +146,7 @@ class _BadgeEarnedDialogState extends State<BadgeEarnedDialog>
                           shape: BoxShape.circle,
                           color: i == _currentIndex
                               ? _current.color
-                              : Colors.grey[300],
+                              : inactiveDotColor,
                         ),
                       ),
                     ),

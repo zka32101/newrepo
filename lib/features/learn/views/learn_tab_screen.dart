@@ -138,7 +138,7 @@ class _LearnTabScreenState extends ConsumerState<LearnTabScreen> {
             margin: const EdgeInsets.only(bottom: 10),
             padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(14),
               border: Border.all(color: Colors.orange.shade200),
               boxShadow: [
@@ -294,7 +294,7 @@ class _LearnStageTile extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 10),
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
             color: isCleared

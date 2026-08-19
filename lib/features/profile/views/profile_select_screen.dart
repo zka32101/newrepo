@@ -155,7 +155,7 @@ class _ProfileCard extends StatelessWidget {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: isActive ? AppColors.sciencePrimary : Colors.transparent,

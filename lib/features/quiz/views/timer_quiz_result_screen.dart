@@ -190,7 +190,7 @@ class _TimerQuizResultScreenState extends State<TimerQuizResultScreen> {
                     margin: const EdgeInsets.only(bottom: 12),
                     padding: const EdgeInsets.all(14),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.circular(14),
                       border: Border.all(
                         color: isCorrect

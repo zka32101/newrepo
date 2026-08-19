@@ -51,7 +51,7 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
                   const SizedBox(height: 24),
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: TextField(
@@ -269,7 +269,7 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(14),
         boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 8)],
       ),
@@ -336,7 +336,7 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 6)],
       ),

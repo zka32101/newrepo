@@ -181,7 +181,7 @@ class _ClaimBonusDialogState extends ConsumerState<_ClaimBonusDialog>
           child: Container(
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(

@@ -278,7 +278,7 @@ class _HomeLabScreenState extends ConsumerState<HomeLabScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: const Color(0xFF2E7D32).withOpacity(0.4)),
         boxShadow: [

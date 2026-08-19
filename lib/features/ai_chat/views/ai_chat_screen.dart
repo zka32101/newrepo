@@ -212,7 +212,7 @@ class _AiChatScreenState extends ConsumerState<AiChatScreen> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(16),
             ),
             child: const Row(
@@ -246,7 +246,7 @@ class _AiChatScreenState extends ConsumerState<AiChatScreen> {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(color: const Color(0xFF5C6BC0).withOpacity(0.4)),
               ),

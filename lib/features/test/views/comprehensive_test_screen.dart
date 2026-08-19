@@ -72,7 +72,7 @@ class _ComprehensiveTestScreenState
                       width: double.infinity,
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(16),
                         boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 8)],
                       ),
@@ -245,7 +245,7 @@ class _ComprehensiveTestScreenState
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text('ランク $rank  $pct%',
@@ -259,7 +259,7 @@ class _ComprehensiveTestScreenState
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 8)],
                 ),
