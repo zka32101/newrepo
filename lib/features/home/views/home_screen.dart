@@ -65,29 +65,56 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildAppBar(),
+
+          _sectionDivider('📅 今日のアクション'),
           _buildStreakBanner(),
           const DailyLoginBonusWidget(), // デイリーログインボーナス
           const PraiseReceivedWidget(), // 親からのほめメッセージ
           const WeeklyChallengeWidget(), // 今週のチャレンジ
           _buildDailyChallengeCard(),    // デイリーチャレンジ追加
+
+          _sectionDivider('🔬 おすすめ・キャラクター'),
           SeasonalRecommendationWidget(
             onTap: (stageId) => context.push('/quiz/$stageId'),
           ),
           _buildCharacterCard(),         // キャラ図鑑
+
+          _sectionDivider('🏆 がんばりの記録'),
           _buildWeeklyReportCard(),
           _buildGradeTestCard(),
           const MissionCardWidget(),     // ミッションカード
           const DoctorCharacterWidget(), // 博士キャラ追加
           const SizedBox(height: 8),
+
+          _sectionDivider('📚 学習をすすめる'),
           _buildReviewCard(),            // にがて問題追加
           _buildTodayThemeCard(),
           _buildEncyclopediaSection(),
           _buildStageListSection(),
           _buildCollectionAndTestSection(),
+
+          _sectionDivider('✨ もっと理科をたのしむ'),
           _buildDailyMysteryBadge(),
           _buildInnovationFeatures(),
           const SizedBox(height: 24),
         ],
+      ),
+    );
+  }
+
+  // ── セクション見出し（ホーム画面の各グループを視覚的に区切る） ──────
+  Widget _sectionDivider(String title) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 20, 16, 4),
+      child: Text(
+        title,
+        style: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 0.5,
+          color: isDark ? Colors.grey[400] : AppColors.textGray,
+        ),
       ),
     );
   }
