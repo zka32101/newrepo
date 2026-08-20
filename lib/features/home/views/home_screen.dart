@@ -1457,7 +1457,7 @@ class _CreatureCell extends StatelessWidget {
                             .clamp(0, 4))
                 : '???',
             style: TextStyle(
-              fontSize: 9,
+              fontSize: 11,
               color: unlocked
                   ? AppColors.textDark
                   : AppColors.textGray,
