@@ -100,6 +100,22 @@ extension EvolutionStateExt on EvolutionState {
 }
 ```
 
+#### 進化ステートマシン
+
+```mermaid
+stateDiagram-v2
+    [*] --> baby: モンスター誕生（まちがい記録時）
+    baby --> juvenile: 正解（1回目）😢→😕
+    juvenile --> adult: 正解（2回目）😕→😐
+    adult --> sage: 正解（3回目）😐→😊
+    sage --> [*]: これ以上進化しない（canEvolve() == false）
+
+    note right of baby: たまご
+    note right of juvenile: 幼生
+    note right of adult: 成体
+    note right of sage: 博士（最終形態）
+```
+
 ### 2. Riverpod Provider
 
 ```dart

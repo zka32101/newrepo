@@ -25,6 +25,30 @@ Firestore
     └── {recordId}
 ```
 
+```mermaid
+erDiagram
+    USERS ||--o{ CHILDREN : "親が持つ（親のみ）"
+    USERS ||--o{ EXPERIMENTS : "子が記録（子のみ）"
+    EXPERIMENTS ||--o{ EXPERIMENT_RECORDS : "集約される"
+
+    USERS {
+        string userId PK
+        string profile "名前・avatar"
+        string parent_id FK "子のみ：親のuserId"
+    }
+    CHILDREN {
+        string childId PK "親に紐付く子ユーザー"
+    }
+    EXPERIMENTS {
+        string recordId PK
+        string childId FK
+    }
+    EXPERIMENT_RECORDS {
+        string recordId PK
+        string childId FK "セキュリティルールでchildIdのみ書込可"
+    }
+```
+
 ---
 
 ## 🗂️ Collection スキーマ詳細
@@ -178,6 +202,26 @@ parentComments[] に追加
 子に通知: 「お母さんがほめてくれました」
   ↓ (バッジシステム統合)
 badge_earned_dialog.dart
+```
+
+```mermaid
+sequenceDiagram
+    actor Child as 子
+    participant FS as Firestore<br/>users/{childId}/experiments
+    participant Parent as parent_dashboard_screen.dart
+    actor ParentUser as 親
+    participant FCM as Cloud Messaging
+    participant Badge as badge_earned_dialog.dart
+
+    Child->>FS: 実験を記録・写真アップロード
+    FS-->>Parent: トリガー → view更新
+    Parent-->>ParentUser: 実験記録を表示
+    ParentUser->>Parent: 「ほめる」コメント追加
+    Parent->>FS: parentComments[] に追加
+    FS->>FCM: 通知トリガー
+    FCM-->>Child: 「お母さんがほめてくれました」
+    FS->>Badge: バッジシステム統合
+    Badge-->>Child: バッジ獲得ダイアログ表示
 ```
 
 ---
