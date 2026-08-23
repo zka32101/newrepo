@@ -81,7 +81,7 @@ dependencies:
   intl: ^0.19.0
   uuid: ^4.0.0
   http: ^1.2.0
-  share_plus: ^10.0.0
+  share_plus: ^13.3.0
 
   # ============== 解説画面強化 ==============
   youtube_player_iframe: ^4.0.0   # YouTube インライン再生
