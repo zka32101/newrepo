@@ -24,6 +24,7 @@ import '../../progress/providers/daily_mystery_provider.dart';
 import '../widgets/home_section_action.dart';
 import '../widgets/home_section_recommend.dart';
 import '../widgets/home_section_records.dart';
+import '../widgets/home_section_learning.dart';
 import '../widgets/home_section_discover.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -75,43 +76,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           const HomeSectionRecommend(),   // 🔬 おすすめ・キャラクター
           const HomeSectionRecords(),     // 🏆 がんばりの記録
 
-          // セクション4（学習をすすめる）は複雑なため、段階的にリファクタリング予定
-          _buildSectionLearning(),        // 📚 学習をすすめる
-
+          const HomeSectionLearning(),    // 📚 学習をすすめる
           const HomeSectionDiscover(),    // ✨ もっと理科をたのしむ
         ],
       ),
     );
   }
 
-  /// セクション4: 学習をすすめる（段階的リファクタリング中）
-  Widget _buildSectionLearning() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16, 20, 16, 4),
-          child: Text(
-            '📚 学習をすすめる',
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 0.5,
-              color: Theme.of(context).brightness == Brightness.dark
-                  ? Colors.grey[400]
-                  : AppColors.textGray,
-            ),
-          ),
-        ),
-        // 既存のセクション4 コンテンツ
-        _buildReviewCard(),            // にがて問題追加
-        _buildTodayThemeCard(),
-        _buildEncyclopediaSection(),
-        _buildStageListSection(),
-        _buildCollectionAndTestSection(),
-      ],
-    );
-  }
 
   // ── アプリバー ────────────────────────────────────────
   Widget _buildAppBar() {
