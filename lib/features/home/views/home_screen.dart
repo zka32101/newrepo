@@ -21,6 +21,10 @@ import '../../parent/widgets/praise_received_widget.dart';
 import '../../weekly_challenge/widgets/weekly_challenge_widget.dart';
 import '../../../shared/widgets/furigana_text.dart';
 import '../../progress/providers/daily_mystery_provider.dart';
+import '../widgets/home_section_action.dart';
+import '../widgets/home_section_recommend.dart';
+import '../widgets/home_section_records.dart';
+import '../widgets/home_section_discover.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -66,56 +70,46 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         children: [
           _buildAppBar(),
 
-          _sectionDivider('📅 今日のアクション'),
-          _buildStreakBanner(),
-          const DailyLoginBonusWidget(), // デイリーログインボーナス
-          const PraiseReceivedWidget(), // 親からのほめメッセージ
-          const WeeklyChallengeWidget(), // 今週のチャレンジ
-          _buildDailyChallengeCard(),    // デイリーチャレンジ追加
+          // セクションの widget 化
+          const HomeSectionAction(),      // 📅 今日のアクション
+          const HomeSectionRecommend(),   // 🔬 おすすめ・キャラクター
+          const HomeSectionRecords(),     // 🏆 がんばりの記録
 
-          _sectionDivider('🔬 おすすめ・キャラクター'),
-          SeasonalRecommendationWidget(
-            onTap: (stageId) => context.push('/quiz/$stageId'),
-          ),
-          _buildCharacterCard(),         // キャラ図鑑
+          // セクション4（学習をすすめる）は複雑なため、段階的にリファクタリング予定
+          _buildSectionLearning(),        // 📚 学習をすすめる
 
-          _sectionDivider('🏆 がんばりの記録'),
-          _buildWeeklyReportCard(),
-          _buildGradeTestCard(),
-          const MissionCardWidget(),     // ミッションカード
-          const DoctorCharacterWidget(), // 博士キャラ追加
-          const SizedBox(height: 8),
-
-          _sectionDivider('📚 学習をすすめる'),
-          _buildReviewCard(),            // にがて問題追加
-          _buildTodayThemeCard(),
-          _buildEncyclopediaSection(),
-          _buildStageListSection(),
-          _buildCollectionAndTestSection(),
-
-          _sectionDivider('✨ もっと理科をたのしむ'),
-          _buildDailyMysteryBadge(),
-          _buildInnovationFeatures(),
-          const SizedBox(height: 24),
+          const HomeSectionDiscover(),    // ✨ もっと理科をたのしむ
         ],
       ),
     );
   }
 
-  // ── セクション見出し（ホーム画面の各グループを視覚的に区切る） ──────
-  Widget _sectionDivider(String title) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 20, 16, 4),
-      child: Text(
-        title,
-        style: TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
-          letterSpacing: 0.5,
-          color: isDark ? Colors.grey[400] : AppColors.textGray,
+  /// セクション4: 学習をすすめる（段階的リファクタリング中）
+  Widget _buildSectionLearning() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 20, 16, 4),
+          child: Text(
+            '📚 学習をすすめる',
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 0.5,
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.grey[400]
+                  : AppColors.textGray,
+            ),
+          ),
         ),
-      ),
+        // 既存のセクション4 コンテンツ
+        _buildReviewCard(),            // にがて問題追加
+        _buildTodayThemeCard(),
+        _buildEncyclopediaSection(),
+        _buildStageListSection(),
+        _buildCollectionAndTestSection(),
+      ],
     );
   }
 
