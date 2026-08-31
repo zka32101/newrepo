@@ -1,0 +1,95 @@
+name: Auto Release and Build
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.trigger-release'
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  auto-release:
+    name: Auto Create Release and Build APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get version from trigger file
+        id: version
+        run: |
+          VERSION=$(cat .trigger-release 2>/dev/null || echo "v1.0.0")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "📌 Release version: $VERSION"
+
+      - name: Delete old release if exists
+        continue-on-error: true
+        run: |
+          VERSION=${{ steps.version.outputs.version }}
+          echo "🗑️ Checking for existing release: $VERSION"
+
+          # Get release using gh cli
+          RELEASE_ID=$(gh release list --limit 100 --json id,tagName --jq ".[] | select(.tagName==\"$VERSION\") | .id" || echo "")
+
+          if [ -n "$RELEASE_ID" ]; then
+            echo "🗑️ Found release ID: $RELEASE_ID"
+            gh release delete "$VERSION" --yes --cleanup-tag || true
+            echo "✅ Deleted release and tag: $VERSION"
+          else
+            echo "ℹ️ No existing release found"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create new release with tag
+        run: |
+          VERSION=${{ steps.version.outputs.version }}
+          COMMIT_SHA=$(git rev-parse HEAD)
+          COMMIT_SHORT=$(git rev-parse --short HEAD)
+
+          echo "📝 Creating release: $VERSION (commit: $COMMIT_SHORT)"
+
+          gh release create "$VERSION" \
+            --title "小学コレ！理科 $VERSION" \
+            --target main \
+            --notes "## Release $VERSION
+
+**Commit**: $COMMIT_SHA
+
+### ✅ What's New
+- Fixed GitHub Actions workflow (upload-artifact@v3 → v4)
+- APK build automation enhanced
+- Production release ready
+
+### 📦 Build Details
+- Flutter 3.16.0
+- Release Build (Optimized & Obfuscated)
+- Split-per-ABI APK generation
+- App Bundle for Google Play
+
+### 🚀 Build Status
+Building APK automatically...
+$(date -u '+%Y-%m-%d %H:%M:%S UTC')" \
+            2>&1 | tee release.log
+
+          echo "✅ Release created: $VERSION"
+
+          # Display release URL
+          RELEASE_URL="https://github.com/zka32101/newrepo/releases/tag/$VERSION"
+          echo "📍 Release URL: $RELEASE_URL"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Wait for APK build workflow
+        run: |
+          VERSION=${{ steps.version.outputs.version }}
+          echo "⏳ APK build workflow should start automatically..."
+          echo "📊 View all workflows: https://github.com/zka32101/newrepo/actions"
+          echo "📝 View this release: https://github.com/zka32101/newrepo/releases/tag/$VERSION"
