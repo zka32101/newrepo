@@ -1,0 +1,105 @@
+name: Auto Fix Release and Build APK
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., v1.0.0)'
+        required: true
+        type: string
+        default: 'v1.0.0'
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  fix-and-release:
+    name: Fix Release and Trigger Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Delete old release if exists
+        continue-on-error: true
+        run: |
+          VERSION=${{ github.event.inputs.version }}
+          echo "🗑️ Checking for existing release: $VERSION"
+
+          # Get release ID by tag
+          RELEASE_ID=$(gh release list --limit 100 | grep "$VERSION" | awk '{print $NF}' || echo "")
+
+          if [ -n "$RELEASE_ID" ]; then
+            echo "🗑️ Found release ID: $RELEASE_ID"
+            gh release delete "$VERSION" --yes --cleanup-tag || true
+            echo "✅ Deleted release and tag: $VERSION"
+          else
+            echo "ℹ️ No existing release found"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Delete git tag locally
+        continue-on-error: true
+        run: |
+          VERSION=${{ github.event.inputs.version }}
+          git tag -d "$VERSION" 2>/dev/null || true
+          echo "✅ Deleted local tag: $VERSION"
+
+      - name: Create new release with tag
+        run: |
+          VERSION=${{ github.event.inputs.version }}
+
+          echo "📝 Creating release: $VERSION"
+          gh release create "$VERSION" \
+            --title "小学コレ！理科 $VERSION" \
+            --notes "## Release $VERSION
+
+### ✅ Changes
+- Fixed GitHub Actions workflow (upload-artifact@v3 → v4)
+- APK build automation enabled
+- Production release ready
+
+### 📦 Build Details
+- Flutter 3.16.0
+- Release (Optimized)
+- Obfuscated & split-per-ABI
+- App Bundle for Google Play
+
+### 🚀 Build Status
+Building APK automatically..." \
+            --target main
+
+          echo "✅ Release created: $VERSION"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Wait for Build Release APK workflow
+        run: |
+          echo "⏳ Waiting for APK build to start..."
+          sleep 5
+
+          WORKFLOW_NAME="Build Release APK"
+          VERSION=${{ github.event.inputs.version }}
+
+          # Check workflow runs
+          gh run list --workflow build-release-apk.yml --limit 5 --json status,conclusion,createdAt
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Summary
+        run: |
+          VERSION=${{ github.event.inputs.version }}
+          echo "✅ Release workflow completed"
+          echo ""
+          echo "📊 Summary:"
+          echo "  Release: $VERSION"
+          echo "  Status: Created"
+          echo "  Action: APK build workflow should start automatically"
+          echo ""
+          echo "📍 Check build status:"
+          echo "  https://github.com/zka32101/newrepo/actions/workflows/build-release-apk.yml"
