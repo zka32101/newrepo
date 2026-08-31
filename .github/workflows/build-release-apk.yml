@@ -57,18 +57,6 @@ jobs:
             --obfuscate \
             --split-debug-info=build/app/outputs/symbols
 
-      - name: Build App Bundle (for Google Play)
-        env:
-          STORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-          STORE_FILE: ${{ secrets.KEYSTORE_FILE }}
-        run: |
-          flutter build appbundle \
-            --release \
-            --obfuscate \
-            --split-debug-info=build/app/outputs/symbols
-
       - name: Upload APK artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -76,19 +64,12 @@ jobs:
           path: build/app/outputs/apk/release/*.apk
           retention-days: 30
 
-      - name: Upload App Bundle artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: release-bundle
-          path: build/app/outputs/bundle/release/app-release.aab
-          retention-days: 30
-
       - name: Create Release Notes
         id: release_notes
         run: |
           VERSION=${{ github.ref_name || github.event.inputs.app_version }}
           echo "version=${VERSION#v}" >> $GITHUB_OUTPUT
-          echo "Created APK and App Bundle for version ${VERSION#v}"
+          echo "Created APK for version ${VERSION#v}"
 
       - name: Create GitHub Release
         if: startsWith(github.ref, 'refs/tags/v')
@@ -99,47 +80,43 @@ jobs:
           prerelease: false
           files: |
             build/app/outputs/apk/release/*.apk
-            build/app/outputs/bundle/release/app-release.aab
           body: |
             # Release ${{ steps.release_notes.outputs.version }}
 
             ## Build Information
             - **Build Date**: ${{ github.event.head_commit.timestamp }}
-            - **Flutter Version**: 3.16.0
-            - **Build Type**: Release (Optimized)
+            - **Flutter Version**: 3.24.0
+            - **Build Type**: Release (Optimized & Obfuscated)
+            - **APK Format**: Split-per-ABI
 
             ## APK Files
-            - `app-arm64-v8a-release.apk` - For modern devices (64-bit)
-            - `app-armeabi-v7a-release.apk` - For older devices (32-bit)
+            - `app-arm64-v8a-release.apk` - For modern devices (64-bit ARM)
+            - `app-armeabi-v7a-release.apk` - For older devices (32-bit ARM)
             - `app-x86-release.apk` - For x86 devices
-            - `app-x86_64-release.apk` - For x86_64 devices
-            - `app-release.aab` - App Bundle (Google Play)
+            - `app-x86_64-release.apk` - For x86-64 devices
 
-            ## Next Steps
-            1. Review the APK files
-            2. Test on target devices
-            3. Upload to Google Play Console
-            4. Publish to production
+            ## Installation
+            1. Download the APK file matching your device architecture
+            2. Enable "Unknown Sources" in your device settings
+            3. Run the APK file to install
 
             For detailed build information, see [BUILD_RELEASE_APK.md](BUILD_RELEASE_APK.md)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload to Google Play (optional)
-        if: contains(github.event.head_commit.message, '[deploy]')
+      - name: Build Info
         run: |
-          echo "📱 App Bundle is ready for Google Play upload"
-          echo "📍 File: build/app/outputs/bundle/release/app-release.aab"
-          echo "ℹ️ Manual upload via Google Play Console required"
-          echo "ℹ️ Or use fastlane for automated deployment"
+          echo "ℹ️ APK Build Completed"
+          echo "📱 Direct distribution ready"
+          echo "📍 Files available in GitHub Release"
+          echo "ℹ️ For Google Play Store, consider using App Bundle""
 
       - name: Build Summary
         run: |
           echo "✅ Build Completed Successfully"
           echo ""
-          echo "📊 Build Artifacts:"
+          echo "📊 APK Artifacts:"
           ls -lh build/app/outputs/apk/release/
-          ls -lh build/app/outputs/bundle/release/
           echo ""
           echo "📦 Total Size:"
-          du -sh build/app/outputs/
+          du -sh build/app/outputs/apk/release/
