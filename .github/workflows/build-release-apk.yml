@@ -4,6 +4,10 @@ on:
   push:
     tags:
       - 'v*'
+  release:
+    types:
+      - published
+      - created
   workflow_dispatch:
     inputs:
       app_version:
