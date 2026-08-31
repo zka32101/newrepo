@@ -2,12 +2,6 @@ name: Build Release APK
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - '.build-apk'
-      - '.release-trigger'
-  push:
     tags:
       - 'v*'
   release:
