@@ -1,0 +1,55 @@
+name: Release and Build APK
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.release-trigger'
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  release:
+    name: Create Release and Build APK
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get version from trigger file
+        id: version
+        run: |
+          VERSION=$(cat .release-trigger 2>/dev/null || echo "v1.0.0")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Release version: $VERSION"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          name: 小学コレ！理科 ${{ steps.version.outputs.version }}
+          body: |
+            # Release ${{ steps.version.outputs.version }}
+
+            ## ✅ What's New
+            - Fixed GitHub Actions workflow (upload-artifact@v3 → v4)
+            - APK build automation enabled
+            - Production release ready
+
+            ## 📦 Build Details
+            - Flutter 3.16.0
+            - Release Build (Optimized & Obfuscated)
+            - Split-per-ABI APK generation
+            - App Bundle for Google Play
+
+            ## 🚀 Status
+            Building APK automatically...
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
