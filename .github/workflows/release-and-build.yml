@@ -42,7 +42,7 @@ jobs:
             - Production release ready
 
             ## 📦 Build Details
-            - Flutter 3.16.0
+            - Flutter 3.24.0
             - Release Build (Optimized & Obfuscated)
             - Split-per-ABI APK generation
             - App Bundle for Google Play
