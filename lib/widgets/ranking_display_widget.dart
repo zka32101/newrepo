@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/ranking_model.dart';
 import '../shared/theme/app_theme.dart';
 import '../shared/animations/page_transitions.dart';
+import '../shared/utils/responsive.dart';
 
 /// ランキング一覧ウィジェット
 class RankingListWidget extends StatelessWidget {
@@ -104,9 +105,14 @@ class RankingEntryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = AppColors.isDark(context);
     final colors = AppColors.of(context);
+    final responsivePadding = Responsive.getPadding(context);
+    final isMobile = Responsive.isMobile(context);
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      margin: EdgeInsets.symmetric(
+        horizontal: isMobile ? 12 : 16,
+        vertical: isMobile ? 6 : 8,
+      ),
       decoration: BoxDecoration(
         border: Border.all(
           color: entry.isCurrentUser
@@ -128,7 +134,7 @@ class RankingEntryWidget extends StatelessWidget {
             : null,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(12),
+        padding: EdgeInsets.all(isMobile ? 12 : 14),
         child: Row(
           children: [
             // ランク表示
@@ -339,9 +345,12 @@ class TopThreeWidget extends ConsumerWidget {
       );
     }
 
+    final isMobile = Responsive.isMobile(context);
+    final verticalPadding = isMobile ? 12.0 : 16.0;
+
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        padding: EdgeInsets.symmetric(vertical: verticalPadding),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -349,7 +358,7 @@ class TopThreeWidget extends ConsumerWidget {
             topThree.length,
             (index) {
               final entry = topThree[index];
-              return _buildMedalColumn(entry);
+              return _buildMedalColumn(entry, context);
             },
           ),
         ),
@@ -357,13 +366,18 @@ class TopThreeWidget extends ConsumerWidget {
     );
   }
 
-  Widget _buildMedalColumn(RankingEntry entry) {
+  Widget _buildMedalColumn(RankingEntry entry, BuildContext context) {
+    final isMobile = Responsive.isMobile(context);
+    final medalWidth = isMobile ? 60.0 : 80.0;
+    final userCardWidth = isMobile ? 70.0 : 90.0;
+    final spacing = isMobile ? 8.0 : 12.0;
+
     return Column(
       children: [
         // メダルバッジ
         Container(
-          width: 80,
-          height: _getHeightForRank(entry.rank),
+          width: medalWidth,
+          height: _getHeightForRank(entry.rank) * (isMobile ? 0.8 : 1.0),
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
@@ -384,13 +398,13 @@ class TopThreeWidget extends ConsumerWidget {
             children: [
               Text(
                 _getMedalEmoji(entry.rank),
-                style: const TextStyle(fontSize: 48),
+                style: TextStyle(fontSize: isMobile ? 36 : 48),
               ),
-              const SizedBox(height: 8),
+              SizedBox(height: spacing * 0.67),
               Text(
                 '${entry.rank}位',
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: isMobile ? 12 : 14,
                   fontWeight: FontWeight.bold,
                   color: _getMedalColor(entry.rank),
                 ),
@@ -398,11 +412,11 @@ class TopThreeWidget extends ConsumerWidget {
             ],
           ),
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: spacing),
         // ユーザー情報
         Container(
-          width: 90,
-          padding: const EdgeInsets.all(8),
+          width: userCardWidth,
+          padding: EdgeInsets.all(isMobile ? 6 : 8),
           decoration: BoxDecoration(
             color: Colors.grey.shade100,
             borderRadius: BorderRadius.circular(8),
@@ -431,20 +445,20 @@ class TopThreeWidget extends ConsumerWidget {
                   ),
                   child: const Icon(Icons.person, size: 20),
                 ),
-              const SizedBox(height: 4),
+              SizedBox(height: isMobile ? 2 : 4),
               Text(
                 entry.userName,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontSize: 11,
+                style: TextStyle(
+                  fontSize: isMobile ? 9 : 11,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
                 '${entry.score}点',
                 style: TextStyle(
-                  fontSize: 12,
+                  fontSize: isMobile ? 10 : 12,
                   fontWeight: FontWeight.bold,
                   color: _getMedalColor(entry.rank),
                 ),
@@ -481,8 +495,10 @@ class UserRankWidget extends ConsumerWidget {
       );
     }
 
+    final responsivePadding = Responsive.getPadding(context);
+
     return Card(
-      margin: const EdgeInsets.all(12),
+      margin: EdgeInsets.all(Responsive.isMobile(context) ? 12 : responsivePadding.left),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Container(
         decoration: BoxDecoration(
@@ -496,7 +512,7 @@ class UserRankWidget extends ConsumerWidget {
             ],
           ),
         ),
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(Responsive.isMobile(context) ? 16 : 20),
         child: Column(
           children: [
             Text(
@@ -673,9 +689,12 @@ class RankChangeIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = Responsive.isMobile(context);
+    final responsivePadding = Responsive.getPadding(context);
+
     return Container(
-      margin: const EdgeInsets.all(12),
-      padding: const EdgeInsets.all(16),
+      margin: EdgeInsets.all(isMobile ? 12 : responsivePadding.left),
+      padding: EdgeInsets.all(isMobile ? 14 : 16),
       decoration: BoxDecoration(
         border: Border.all(color: _getDirectionColor()),
         borderRadius: BorderRadius.circular(12),

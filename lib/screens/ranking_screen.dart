@@ -91,6 +91,7 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
 
   Widget _buildTopThreeSection(RankingPeriod period) {
     final topThreeAsync = ref.watch(topThreeProvider(period));
+    final responsivePadding = Responsive.getPadding(context);
 
     return topThreeAsync.when(
       data: (topThree) {
@@ -98,7 +99,7 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(responsivePadding.left),
               child: Text(
                 '🏆 入賞者',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -110,7 +111,7 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
               topThree: topThree,
               isLoading: false,
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: responsivePadding.top),
           ],
         );
       },
@@ -118,7 +119,7 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
         return Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(responsivePadding.left),
               child: Text(
                 '🏆 入賞者',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -130,13 +131,13 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
               topThree: const [],
               isLoading: true,
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: responsivePadding.top),
           ],
         );
       },
       error: (error, stack) {
         return Padding(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(responsivePadding.left),
           child: Text(
             'エラー: $error',
             style: const TextStyle(color: Colors.red),
@@ -148,6 +149,7 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
 
   Widget _buildUserStatsSection(RankingPeriod period) {
     final statsAsync = ref.watch(userStatsProvider(period));
+    final responsivePadding = Responsive.getPadding(context);
 
     return statsAsync.when(
       data: (stats) {
@@ -164,7 +166,7 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
       },
       error: (error, stack) {
         return Padding(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(responsivePadding.left),
           child: Text(
             'ユーザー統計読み込み失敗: $error',
             style: const TextStyle(color: Colors.red),
@@ -176,6 +178,7 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
 
   Widget _buildRankingListSection(RankingPeriod period) {
     final rankingAsync = ref.watch(rankingProvider(period));
+    final responsivePadding = Responsive.getPadding(context);
 
     return rankingAsync.when(
       data: (ranking) {
@@ -183,7 +186,7 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(responsivePadding.left),
               child: Text(
                 '📊 全ランキング',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -201,7 +204,7 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
                 },
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: responsivePadding.top),
           ],
         );
       },
@@ -210,7 +213,7 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(responsivePadding.left),
               child: Text(
                 '📊 全ランキング',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -225,13 +228,13 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
                 isLoading: true,
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: responsivePadding.top),
           ],
         );
       },
       error: (error, stack) {
         return Padding(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(responsivePadding.left),
           child: Text(
             'ランキング読み込み失敗: $error',
             style: const TextStyle(color: Colors.red),
@@ -262,8 +265,9 @@ class RankingStatsScreen extends ConsumerWidget {
       ),
       body: statsAsync.when(
         data: (stats) {
+          final responsivePadding = Responsive.getPadding(context);
           return SingleChildScrollView(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(responsivePadding.left),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -272,7 +276,7 @@ class RankingStatsScreen extends ConsumerWidget {
                   stats: stats,
                   isLoading: false,
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: responsivePadding.top + 8),
                 // 詳細統計
                 _buildStatsDetails(context, stats),
               ],
@@ -297,10 +301,11 @@ class RankingStatsScreen extends ConsumerWidget {
   }
 
   Widget _buildStatsDetails(BuildContext context, RankingStats stats) {
+    final responsivePadding = Responsive.getPadding(context);
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(responsivePadding.left),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -310,7 +315,7 @@ class RankingStatsScreen extends ConsumerWidget {
                     fontWeight: FontWeight.bold,
                   ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: responsivePadding.top),
             _buildStatRow(
               '1位のスコア',
               '${stats.topScore}',

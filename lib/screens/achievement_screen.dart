@@ -32,15 +32,16 @@ class AchievementScreen extends ConsumerWidget {
 
               return statsAsync.when(
                 data: (stats) {
+                  final responsivePadding = Responsive.getPadding(context);
                   return SingleChildScrollView(
                     child: Column(
                       children: [
                         // 統計情報
                         AchievementStatsWidget(stats: stats),
-                        const SizedBox(height: 16),
+                        SizedBox(height: responsivePadding.top),
                         // アチーブメント一覧
                         Padding(
-                          padding: const EdgeInsets.all(12),
+                          padding: EdgeInsets.all(responsivePadding.left),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -53,7 +54,7 @@ class AchievementScreen extends ConsumerWidget {
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
-                              const SizedBox(height: 12),
+                              SizedBox(height: responsivePadding.left * 0.67),
                               SizedBox(
                                 height:
                                     allAchievements.length > 6 ? 600 : 400,
@@ -66,7 +67,7 @@ class AchievementScreen extends ConsumerWidget {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 24),
+                        SizedBox(height: responsivePadding.top + 8),
                       ],
                     ),
                   );
@@ -149,29 +150,31 @@ class AchievementDetailScreen extends ConsumerWidget {
             data: (userAchievements) {
               final isUnlocked =
                   userAchievements.any((a) => a.achievementId == achievementId);
+              final responsivePadding = Responsive.getPadding(context);
+              final isMobile = Responsive.isMobile(context);
 
               return SingleChildScrollView(
-                padding: const EdgeInsets.all(16),
+                padding: EdgeInsets.all(responsivePadding.left),
                 child: Column(
                   children: [
                     Text(
                       achievement.emoji,
-                      style: const TextStyle(fontSize: 96),
+                      style: TextStyle(fontSize: isMobile ? 72 : 96),
                     ),
-                    const SizedBox(height: 24),
+                    SizedBox(height: responsivePadding.top + 8),
                     Text(
                       achievement.title,
-                      style: const TextStyle(
-                        fontSize: 28,
+                      style: TextStyle(
+                        fontSize: isMobile ? 24 : 28,
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: responsivePadding.left * 0.67),
                     Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: isMobile ? 12 : 16,
+                        vertical: isMobile ? 6 : 8,
                       ),
                       decoration: BoxDecoration(
                         color: Colors.blue.withOpacity(0.1),
@@ -179,30 +182,30 @@ class AchievementDetailScreen extends ConsumerWidget {
                       ),
                       child: Text(
                         achievement.category.label,
-                        style: const TextStyle(
-                          fontSize: 14,
+                        style: TextStyle(
+                          fontSize: isMobile ? 12 : 14,
                           fontWeight: FontWeight.bold,
                           color: Colors.blue,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: responsivePadding.left),
                     Text(
                       achievement.description,
-                      style: const TextStyle(
-                        fontSize: 16,
+                      style: TextStyle(
+                        fontSize: isMobile ? 14 : 16,
                         color: Colors.black87,
                         height: 1.6,
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: 32),
+                    SizedBox(height: responsivePadding.top + 8),
                     Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding: EdgeInsets.all(isMobile ? 16 : 20),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
