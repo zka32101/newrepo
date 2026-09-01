@@ -4,6 +4,67 @@ import 'package:shokollen_science/models/ranking_model.dart';
 import 'package:shokollen_science/models/privacy_settings_model.dart';
 import 'package:shokollen_science/providers/privacy_settings_provider.dart';
 
+/// プライバシー保護対応ランキング一覧ウィジェット
+///
+/// 複数のランキングエントリを表示し、プライバシー設定に基づいて名前を匿名化
+class PrivacyRankingListWidget extends StatelessWidget {
+  final List<RankingEntry> entries;
+  final bool isLoading;
+  final VoidCallback? onRefresh;
+
+  const PrivacyRankingListWidget({
+    Key? key,
+    required this.entries,
+    this.isLoading = false,
+    this.onRefresh,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (isLoading) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+
+    if (entries.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.leaderboard_outlined,
+              size: 64,
+              color: Colors.grey.shade400,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'ランキングがまだありません',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: Colors.grey.shade600,
+                  ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    return RefreshIndicator(
+      onRefresh: () async => onRefresh?.call(),
+      child: ListView.builder(
+        itemCount: entries.length,
+        itemBuilder: (context, index) {
+          final entry = entries[index];
+          return PrivacyRankingEntryWidget(
+            entry: entry,
+            isCurrentUser: entry.isCurrentUser,
+          );
+        },
+      ),
+    );
+  }
+}
+
 /// プライバシー保護対応ランキング表示ウィジェット
 ///
 /// ユーザーのプライバシー設定に基づいて、名前を匿名化して表示します
