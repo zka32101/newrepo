@@ -230,25 +230,52 @@ lib/features/battle/data/prediction_battle_data.dart
 
 ---
 
-## API連携準備（Phase 4 用）
+## Phase 4 実装完了状況（2026-09-01）
 
-以下の実装は Sonnet が次のセッションで対応：
+### ✅ 完成済み
 
-### ② Claude API 本実装用に
+#### ② AIはかせチャット
+- [x] `claude_service.dart` の`askHaiku()`メソッド本実装（Claude Haiku モデル統合）
+- [x] `monthly_usage_provider.dart`作成（5call/月制限ロジック）
+- [x] `ai_chat_screen.dart` UI実装（チャットインターフェース、クイック質問ボタン）
+- [x] ルーター統合（`/ai-chat`）
+- [x] ホーム画面ナビゲーション統合（home_section_discover.dart）
 
-- [ ] `claude_service.dart` の `askHaiku()` メソッド本実装（モック差し替え）
-- [ ] `monthly_usage_provider.dart` 作成（月制限ロジック）
-- [ ] `ai_chat_widget.dart` 拡張
+#### ③ おうちラボ
+- [x] `home_lab_screen.dart` 完全UI実装
+- [x] `home_lab_provider.dart` 状態管理実装（SharedPreferences）
+- [x] `home_lab_data.dart` 20ミッション定義完成（3-6年生各5個）
+- [x] ルーター統合（`/home-lab`）
+- [x] ホーム画面ナビゲーション統合
 
-### ④ OpenWeatherMap API 用に
+#### ④ 今夜の空
+- [x] `tonight_sky_screen.dart` 完全UI実装
+- [x] `sky_events_data.dart` 24天体イベント + 月相計算ロジック実装
+- [x] ルーター統合（`/tonight-sky`）
+- [x] ホーム画面ナビゲーション統合
+- [x] 月齢計算・月相判定機能実装
 
-- [ ] `sky_provider.dart` 作成（API呼び出し）
-- [ ] `today_sky_widget.dart` 作成（表示UI）
+#### 今週のチャレンジ
+- [x] `weekly_challenge_screen.dart` UI実装
+- [x] `weekly_challenge_provider.dart` 状態管理実装
 
-### ⑤ Claude Vision 連携用に
+#### ⑤ いきものカメラ（Claude Vision）
+- [x] `creature_identification_service.dart` 実装（Vision API連携）
+- [x] `creature_camera_screen.dart` 実装（カメラUI）
+- [x] `creature_collection_provider.dart` 実装（状態管理）
+- [x] `creature_result_screen.dart` 実装（結果表示）
+- [x] `creature_collection_screen.dart` 実装（図鑑表示）
+- [x] ルーター統合（`/creature-camera`, `/creature-collection`）
+- [x] ホーム画面ナビゲーション統合
 
-- [ ] `creature_identification_service.dart` 作成
-- [ ] `creature_collection_provider.dart` 作成
+### ⏳ 次フェーズ対象
+
+#### ⑧ タイムトラベル拡張
+- [ ] 科学者ストーリーコンテンツ追加
+- [ ] タイムトラベルUI拡張
+
+#### ⑩ 教科横断バッジ
+- [ ] `shared_core`側でバッジ定義追加（別セッション対応済）
 
 ---
 
@@ -266,9 +293,24 @@ A: `ProfileService.checkBadges()` でアプリ起動時/実験完了時に全バ
 ---
 
 **作成日**: 2026-06-10  
-**対象**: Sonnet による Phase 3.5 統合実装  
-**進捗**: ✅ Phase 3.5.1 実装完成（2026-09-01）
+**対象**: Sonnet による Phase 3.5/4 統合実装  
+**進捗**: ✅ Phase 3.5 + Phase 4.1 実装完成（2026-09-01）
+
+### Phase 3.5 完成
   - ✅ ① よそうラボ: Step 4 (予想データ) 完成
   - ✅ ⑦ 季節シンクロ配信: 全タスク完成
   - ✅ ⑨ 親子バトル化: 全タスク完成
+  - ✅ ⑥ 失敗ラボ推理: 100問データ完成
+
+### Phase 4.1 完成
+  - ✅ ② AIはかせチャット: Claude API 全実装完成
+  - ✅ ③ おうちラボ: 20ミッション + UI 全実装完成
+  - ✅ ④ 今夜の空: 24天体イベント + 月相計算 全実装完成
+  - ✅ ⑤ いきものカメラ: Claude Vision API 全実装完成
+  - ✅ 今週のチャレンジ: UI + 状態管理 完成
   - ⏳ バッジシステム統合: shared_core 側で実施中（別セッション）
+
+### 次フェーズ対象
+  - ⏳ ⑤ いきものカメラ: Claude Vision 連携（次セッション）
+  - ⏳ ⑧ タイムトラベル拡張: ストーリーコンテンツ（次セッション）
+  - ⏳ ⑩ 教科横断バッジ: shared_core バッジシステム（別セッション）
