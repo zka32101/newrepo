@@ -85,7 +85,7 @@ dependencies:
   share_plus: ^10.0.0
 
   # ============== 解説画面強化 ==============
-  youtube_player_iframe: ^4.0.0   # YouTube インライン再生
+  youtube_player_iframe: ^6.0.2   # YouTube インライン再生
   url_launcher: ^6.2.0             # 外部リンク・YouTube 外部起動
   flutter_tts: ^4.2.0                  # 音声読み上げ
   flutter_markdown: ^0.7.3         # マークダウンレンダリング
