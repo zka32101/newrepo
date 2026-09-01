@@ -15,6 +15,7 @@ import 'features/settings/providers/theme_provider.dart';
 import 'providers/character_provider.dart';
 import 'services/firebase_service.dart';
 import 'services/notification_service.dart';
+import 'services/streak_service.dart';
 import 'features/progress/services/daily_mystery_notification_service.dart';
 
 void main() async {
@@ -31,6 +32,13 @@ void main() async {
     await NotificationService.instance.requestPermissionAndGetToken();
   } catch (e) {
     // 通知権限拒否・端末の通知機能未対応などでも起動は継続する
+  }
+
+  // ストリークサービス初期化
+  try {
+    await StreakService.instance.initialize();
+  } catch (e) {
+    // エラーでも起動は継続
   }
 
   try {
