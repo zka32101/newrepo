@@ -259,12 +259,16 @@ lib/features/battle/data/prediction_battle_data.dart
 - [x] `weekly_challenge_screen.dart` UI実装
 - [x] `weekly_challenge_provider.dart` 状態管理実装
 
-### ⏳ 次フェーズ対象
-
 #### ⑤ いきものカメラ（Claude Vision）
-- [ ] `creature_identification_service.dart` 作成（Vision API連携）
-- [ ] `camera_screen.dart` 作成（カメラUI）
-- [ ] `creature_collection_provider.dart` 作成
+- [x] `creature_identification_service.dart` 実装（Vision API連携）
+- [x] `creature_camera_screen.dart` 実装（カメラUI）
+- [x] `creature_collection_provider.dart` 実装（状態管理）
+- [x] `creature_result_screen.dart` 実装（結果表示）
+- [x] `creature_collection_screen.dart` 実装（図鑑表示）
+- [x] ルーター統合（`/creature-camera`, `/creature-collection`）
+- [x] ホーム画面ナビゲーション統合
+
+### ⏳ 次フェーズ対象
 
 #### ⑧ タイムトラベル拡張
 - [ ] 科学者ストーリーコンテンツ追加
@@ -302,6 +306,7 @@ A: `ProfileService.checkBadges()` でアプリ起動時/実験完了時に全バ
   - ✅ ② AIはかせチャット: Claude API 全実装完成
   - ✅ ③ おうちラボ: 20ミッション + UI 全実装完成
   - ✅ ④ 今夜の空: 24天体イベント + 月相計算 全実装完成
+  - ✅ ⑤ いきものカメラ: Claude Vision API 全実装完成
   - ✅ 今週のチャレンジ: UI + 状態管理 完成
   - ⏳ バッジシステム統合: shared_core 側で実施中（別セッション）
 
