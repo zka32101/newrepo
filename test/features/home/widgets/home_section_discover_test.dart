@@ -35,7 +35,7 @@ void main() {
       expect(find.textContaining('特別チャレンジ'), findsWidgets);
     });
 
-    testWidgets('displays all 6 feature cards', (WidgetTester tester) async {
+    testWidgets('displays all 8 feature cards', (WidgetTester tester) async {
       await tester.pumpWidget(
         const ProviderScope(
           child: MaterialApp(
@@ -46,13 +46,15 @@ void main() {
         ),
       );
 
-      // 6つの機能カード（予想ラボ、りかハカセ、失敗ラボ、親子バトル、おうちラボ、今夜の空）
+      // 8つの機能カード
       expect(find.textContaining('よそうラボ'), findsWidgets);
       expect(find.textContaining('りかハカセ'), findsWidgets);
       expect(find.textContaining('失敗ラボ'), findsWidgets);
       expect(find.textContaining('親子バトル'), findsWidgets);
       expect(find.textContaining('おうちラボ'), findsWidgets);
       expect(find.textContaining('今夜の空'), findsWidgets);
+      expect(find.textContaining('いきものカメラ'), findsWidgets);
+      expect(find.textContaining('タイムトラベル'), findsWidgets);
     });
 
     testWidgets('has sparkle emoji in section header',
