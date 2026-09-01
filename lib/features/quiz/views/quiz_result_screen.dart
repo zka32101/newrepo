@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'dart:developer' as developer;
 import '../../../shared/constants/app_colors.dart';
 import '../../../shared/widgets/furigana_text.dart';
 import '../providers/quiz_provider.dart';
@@ -12,6 +13,7 @@ import '../../progress/models/incorrect_monster.dart';
 import '../../progress/providers/incorrect_monster_provider.dart';
 import '../../progress/views/widgets/monster_dialogs.dart';
 import '../../progress/providers/review_time_capsule_provider.dart';
+import '../../../providers/ranking_provider.dart';
 
 class QuizResultScreen extends ConsumerStatefulWidget {
   const QuizResultScreen({super.key});
@@ -138,6 +140,18 @@ class _QuizResultScreenState extends ConsumerState<QuizResultScreen> {
 
     if (mounted) {
       setState(() => _coinsEarned = result.coinsEarned);
+    }
+
+    // 🎯 ランキングにスコアを記録
+    try {
+      await ref.read(updateScoreProvider({
+        'score': quiz.earnedPoints,
+        'correctAnswers': quiz.correctCount,
+        'totalQuestions': quiz.totalQuestions,
+      }).future);
+    } catch (e) {
+      // エラーログを出力するが、ユーザー体験を阻害しない
+      developer.log('Error updating ranking score: $e', error: e);
     }
 
     // 全問正解: 親ほめ待ちリストに登録
