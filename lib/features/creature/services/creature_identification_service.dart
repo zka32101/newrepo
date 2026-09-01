@@ -155,17 +155,38 @@ confidence は 0.0-1.0 の数値で信頼度を表現してください。''';
       }
 
       // レスポンスパース
-      final data = jsonDecode(response.body);
-      final content = data['content'][0]['text'] as String?;
-
-      if (content == null) {
+      final data = jsonDecode(response.body) as Map<String, dynamic>?;
+      if (data == null) {
         throw Exception('API応答が不正です');
       }
 
+      final content = data['content'] as List?;
+      if (content == null || content.isEmpty) {
+        throw Exception('API応答にコンテンツがありません');
+      }
+
+      final firstContent = content[0] as Map<String, dynamic>?;
+      if (firstContent == null) {
+        throw Exception('API応答のコンテンツが不正です');
+      }
+
+      final text = firstContent['text'] as String?;
+      if (text == null || text.isEmpty) {
+        throw Exception('API応答テキストが空です');
+      }
+
       // JSON抽出（Markdownコードブロックから抽出）
-      final jsonMatch = RegExp(r'```json\n([\s\S]*?)\n```').firstMatch(content);
-      final jsonStr = jsonMatch?.group(1) ?? content;
-      final parsed = jsonDecode(jsonStr) as Map<String, dynamic>;
+      final jsonMatch = RegExp(r'```json\n([\s\S]*?)\n```').firstMatch(text);
+      final jsonStr = jsonMatch?.group(1) ?? text;
+
+      if (jsonStr == null || jsonStr.isEmpty) {
+        throw Exception('JSONを抽出できません');
+      }
+
+      final parsed = jsonDecode(jsonStr) as Map<String, dynamic>?;
+      if (parsed == null) {
+        throw Exception('JSONのパースに失敗しました');
+      }
 
       return CreatureIdentificationResult.fromJson(parsed);
     } on http.ClientException catch (e) {

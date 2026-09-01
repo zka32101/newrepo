@@ -18,6 +18,8 @@ class _AiChatScreenState extends ConsumerState<AiChatScreen> {
   bool _isLoading = false;
   final _claudeService = ClaudeService();
 
+  // メモリリーク防止: 最大200メッセージに制限
+  static const int _maxMessages = 200;
   static const List<String> _quickQuestions = [
     '🧲 磁石はなぜくっつくの？',
     '🌱 植物はどうして緑なの？',
@@ -336,6 +338,10 @@ class _AiChatScreenState extends ConsumerState<AiChatScreen> {
     setState(() {
       _messages.add(_ChatMessage(text: text, isUser: true));
       _isLoading = true;
+      // メモリリーク防止: 古いメッセージを削除
+      if (_messages.length > _maxMessages) {
+        _messages.removeRange(0, _messages.length - _maxMessages);
+      }
     });
     _scrollToBottom();
 

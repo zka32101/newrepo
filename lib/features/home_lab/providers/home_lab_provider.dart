@@ -32,13 +32,27 @@ class HomeLabNotifier extends StateNotifier<HomeLabState> {
     final prefs = await SharedPreferences.getInstance();
     final keys = prefs.getKeys().where((k) => k.startsWith('home_lab_report_'));
     final reports = keys.map((k) {
-      final parts = (prefs.getString(k) ?? '').split('|');
-      if (parts.length < 2) return null;
-      return HomeLabReport(
-        missionId: k.replaceFirst('home_lab_report_', ''),
-        submittedAt: DateTime.tryParse(parts[0]) ?? DateTime.now(),
-        result: parts.skip(1).join('|'),
-      );
+      try {
+        final value = prefs.getString(k);
+        if (value == null || value.isEmpty) return null;
+
+        final parts = value.split('|');
+        if (parts.length < 2) return null;
+
+        final timestamp = parts[0];
+        final result = parts.skip(1).join('|');
+
+        if (timestamp.isEmpty || result.isEmpty) return null;
+
+        return HomeLabReport(
+          missionId: k.replaceFirst('home_lab_report_', ''),
+          submittedAt: DateTime.tryParse(timestamp) ?? DateTime.now(),
+          result: result,
+        );
+      } catch (e) {
+        // 破損したデータはスキップ
+        return null;
+      }
     }).whereType<HomeLabReport>().toList();
     state = HomeLabState(reports: reports);
   }

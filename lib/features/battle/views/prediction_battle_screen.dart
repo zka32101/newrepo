@@ -211,6 +211,9 @@ class _PredictionBattleScreenState extends State<PredictionBattleScreen> {
 
   Widget _buildRoundReveal() {
     final q = _currentQuestion!;
+    if (_currentRound >= _rounds.length) {
+      return const Scaffold(body: Center(child: Text('エラー: ラウンドデータが見つかりません')));
+    }
     final round = _rounds[_currentRound];
 
     return Scaffold(
