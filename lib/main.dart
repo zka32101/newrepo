@@ -13,6 +13,7 @@ import 'features/progress/providers/incorrect_monster_provider.dart';
 import 'features/progress/providers/review_time_capsule_provider.dart';
 import 'features/settings/providers/theme_provider.dart';
 import 'providers/character_provider.dart';
+import 'providers/locale_provider.dart';
 import 'services/firebase_service.dart';
 import 'services/notification_service.dart';
 import 'services/streak_service.dart';
@@ -20,12 +21,16 @@ import 'services/ranking_service.dart';
 import 'services/achievement_service.dart';
 import 'features/progress/services/daily_mystery_notification_service.dart';
 import 'shared/theme/app_theme.dart';
+import 'shared/localization/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FirebaseService.initialize(); // google-services.json 未配置時はローカルモードで継続
 
   final prefs = await SharedPreferences.getInstance();
+
+  // 保存されたロケール設定を読み込み
+  final savedLocale = await LocaleNotifier.loadSavedLocale();
 
   tz.initializeTimeZones();
 
@@ -75,6 +80,10 @@ void main() async {
             .overrideWithValue(IncorrectMonsterRepositoryImpl(prefs)),
         reviewTimeCapsuleRepositoryProvider
             .overrideWithValue(ReviewTimeCapsuleRepositoryImpl(prefs)),
+        // 保存されたロケール設定を注入
+        localeProvider.overrideWithValue(
+          StateNotifierProvider((ref) => LocaleNotifier(savedLocale)),
+        ),
       ],
       child: const MyApp(),
     ),
@@ -87,11 +96,24 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final themeMode = ref.watch(themeProvider);
+    final locale = ref.watch(localeProvider);
+
     return MaterialApp.router(
       title: '小学コレ！理科',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: themeMode,
+      locale: locale,
+      localizationsDelegates: const [
+        AppLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('ja'),
+        Locale('en'),
+      ],
       routerConfig: AppRouter.router,
       debugShowCheckedModeBanner: false,
     );
