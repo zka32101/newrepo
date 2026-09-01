@@ -4,6 +4,7 @@ import '../models/ranking_model.dart';
 import '../providers/ranking_provider.dart';
 import '../widgets/ranking_display_widget.dart';
 import '../shared/theme/app_theme.dart';
+import '../shared/utils/responsive.dart';
 
 /// ランキング画面
 class RankingScreen extends ConsumerStatefulWidget {

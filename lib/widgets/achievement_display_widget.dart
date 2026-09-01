@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/achievement_model.dart';
 import '../shared/theme/app_theme.dart';
 import '../shared/animations/page_transitions.dart';
+import '../shared/utils/responsive.dart';
 
 /// アチーブメント一覧ウィジェット
 class AchievementListWidget extends StatelessWidget {
@@ -47,11 +48,14 @@ class AchievementListWidget extends StatelessWidget {
       );
     }
 
+    final crossAxisCount = Responsive.getGridColumns(context);
+    final spacing = Responsive.isMobile(context) ? 8.0 : 12.0;
+
     return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 8,
-        mainAxisSpacing: 8,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: crossAxisCount,
+        crossAxisSpacing: spacing,
+        mainAxisSpacing: spacing,
         childAspectRatio: 0.85,
       ),
       itemCount: achievements.length,
