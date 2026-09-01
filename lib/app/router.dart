@@ -29,6 +29,7 @@ import '../features/home_lab/views/home_lab_screen.dart';
 import '../features/sky/views/tonight_sky_screen.dart';
 import '../features/weekly_challenge/views/weekly_challenge_screen.dart';
 import '../features/progress/views/daily_mystery_omikuji_screen.dart';
+import '../screens/privacy_settings_screen.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -277,6 +278,13 @@ class AppRouter {
           final stageName = extra['stageName'] as String? ?? stageId;
           return PraiseSendScreen(stageId: stageId, stageName: stageName);
         },
+      ),
+
+      // プライバシー設定
+      GoRoute(
+        path: '/privacy-settings',
+        name: 'privacy-settings',
+        builder: (_, __) => const PrivacySettingsScreen(),
       ),
     ],
   );
