@@ -27,6 +27,8 @@ import '../features/battle/views/prediction_battle_screen.dart';
 import '../features/ai_chat/views/ai_chat_screen.dart';
 import '../features/home_lab/views/home_lab_screen.dart';
 import '../features/sky/views/tonight_sky_screen.dart';
+import '../features/creature/views/creature_camera_screen.dart';
+import '../features/creature/views/creature_collection_screen.dart';
 import '../features/weekly_challenge/views/weekly_challenge_screen.dart';
 import '../features/progress/views/daily_mystery_omikuji_screen.dart';
 import '../screens/privacy_settings_screen.dart';
@@ -252,6 +254,20 @@ class AppRouter {
         path: '/tonight-sky',
         name: 'tonight-sky',
         builder: (_, __) => const TonightSkyScreen(),
+      ),
+
+      // ⑤ いきものカメラ
+      GoRoute(
+        path: '/creature-camera',
+        name: 'creature-camera',
+        builder: (_, __) => const CreatureCameraScreen(),
+      ),
+
+      // いきもの図鑑
+      GoRoute(
+        path: '/creature-collection',
+        name: 'creature-collection',
+        builder: (_, __) => const CreatureCollectionScreen(),
       ),
 
       // 今週のチャレンジ
