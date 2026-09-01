@@ -29,6 +29,8 @@ import '../features/home_lab/views/home_lab_screen.dart';
 import '../features/sky/views/tonight_sky_screen.dart';
 import '../features/creature/views/creature_camera_screen.dart';
 import '../features/creature/views/creature_collection_screen.dart';
+import '../features/time_travel/views/scientist_story_screen.dart';
+import '../features/time_travel/views/scientist_collection_screen.dart';
 import '../features/weekly_challenge/views/weekly_challenge_screen.dart';
 import '../features/progress/views/daily_mystery_omikuji_screen.dart';
 import '../screens/privacy_settings_screen.dart';
@@ -268,6 +270,24 @@ class AppRouter {
         path: '/creature-collection',
         name: 'creature-collection',
         builder: (_, __) => const CreatureCollectionScreen(),
+      ),
+
+      // ⑧ タイムトラベル拡張 - 科学者ストーリー
+      GoRoute(
+        path: '/scientist-story/:scientistId',
+        name: 'scientist-story',
+        builder: (_, state) {
+          final scientistId =
+              state.pathParameters['scientistId'] ?? 'scientist_001';
+          return ScientistStoryScreen(scientistId: scientistId);
+        },
+      ),
+
+      // 科学者図書館
+      GoRoute(
+        path: '/scientist-collection',
+        name: 'scientist-collection',
+        builder: (_, __) => const ScientistCollectionScreen(),
       ),
 
       // 今週のチャレンジ
