@@ -166,6 +166,30 @@ class _HomeLabScreenState extends ConsumerState<HomeLabScreen> {
               height: 1.5,
             ),
           ),
+          // Phase 1: Home lab intro image integration
+          const SizedBox(height: 12),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Image.asset(
+              'lib/assets/images/features/home_lab/home_lab_intro.svg',
+              width: double.infinity,
+              height: 140,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                  width: double.infinity,
+                  height: 140,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.15),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Center(
+                    child: Text('🔬 実験ガイド', style: TextStyle(color: Colors.white70)),
+                  ),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
@@ -398,6 +422,30 @@ class _HomeLabScreenState extends ConsumerState<HomeLabScreen> {
           Text(
             '報告内容: ${report.result}',
             style: const TextStyle(fontSize: 13, height: 1.4),
+          ),
+          // Phase 1: Result success image integration
+          const SizedBox(height: 12),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.asset(
+              'lib/assets/images/features/home_lab/result_success.svg',
+              width: double.infinity,
+              height: 100,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                  width: double.infinity,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    color: Colors.green.shade100,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Center(
+                    child: Text('🎉 成功！', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  ),
+                );
+              },
+            ),
           ),
         ],
       ),

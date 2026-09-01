@@ -135,6 +135,11 @@ flutter:
     - assets/icon/
     - assets/illustrations/stage_3/
     - assets/images/monsters/
+    - lib/assets/images/features/ai_chat/
+    - lib/assets/images/features/tonight_sky/
+    - lib/assets/images/features/creature_camera/
+    - lib/assets/images/features/battle/
+    - lib/assets/images/features/home_lab/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
