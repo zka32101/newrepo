@@ -268,11 +268,15 @@ lib/features/battle/data/prediction_battle_data.dart
 - [x] ルーター統合（`/creature-camera`, `/creature-collection`）
 - [x] ホーム画面ナビゲーション統合
 
-### ⏳ 次フェーズ対象
+#### ⑧ タイムトラベル拡張（科学者ストーリー）
+- [x] `scientist_stories_data.dart` 実装（9人の科学者、学年別）
+- [x] `scientist_provider.dart` 実装（閲覧履歴追跡）
+- [x] `scientist_story_screen.dart` 実装（ストーリー詳細表示）
+- [x] `scientist_collection_screen.dart` 実装（図書館/ギャラリー）
+- [x] ルーター統合（`/scientist-story/:id`, `/scientist-collection`）
+- [x] ホーム画面ナビゲーション統合
 
-#### ⑧ タイムトラベル拡張
-- [ ] 科学者ストーリーコンテンツ追加
-- [ ] タイムトラベルUI拡張
+### ⏳ 次フェーズ対象
 
 #### ⑩ 教科横断バッジ
 - [ ] `shared_core`側でバッジ定義追加（別セッション対応済）
