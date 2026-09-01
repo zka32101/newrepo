@@ -171,9 +171,18 @@ class _CreatureCameraScreenState extends ConsumerState<CreatureCameraScreen> {
                       : Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text(
-                              '📷',
-                              style: TextStyle(fontSize: 64),
+                            // Phase 1: Camera guide image integration
+                            Image.asset(
+                              'lib/assets/images/features/creature_camera/camera_guide.svg',
+                              width: 120,
+                              height: 120,
+                              fit: BoxFit.contain,
+                              errorBuilder: (context, error, stackTrace) {
+                                return const Text(
+                                  '📷',
+                                  style: TextStyle(fontSize: 64),
+                                );
+                              },
                             ),
                             const SizedBox(height: 12),
                             Text(

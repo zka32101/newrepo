@@ -56,11 +56,23 @@ class _AiChatScreenState extends ConsumerState<AiChatScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFF0F4FF),
       appBar: AppBar(
-        title: const Row(
+        title: Row(
           children: [
-            Text('🔬', style: TextStyle(fontSize: 22)),
-            SizedBox(width: 8),
-            Text('りかハカセ'),
+            // Phase 1: Claude mascot image integration
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                'lib/assets/images/features/ai_chat/claude_mascot.svg',
+                width: 36,
+                height: 36,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return const Text('🔬', style: TextStyle(fontSize: 22));
+                },
+              ),
+            ),
+            const SizedBox(width: 8),
+            const Text('りかハカセ'),
           ],
         ),
         backgroundColor: const Color(0xFF5C6BC0),

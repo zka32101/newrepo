@@ -61,54 +61,86 @@ class TonightSkyScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: Colors.blue.shade900, width: 1),
       ),
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
+          Row(
             children: [
-              Text(
-                phaseName.split(' ').first,
-                style: const TextStyle(fontSize: 56),
+              Column(
+                children: [
+                  Text(
+                    phaseName.split(' ').first,
+                    style: const TextStyle(fontSize: 56),
+                  ),
+                  Text(
+                    '月齢 ${(phase * 29.5).toStringAsFixed(1)}',
+                    style: TextStyle(
+                      color: Colors.blue.shade200,
+                      fontSize: 11,
+                    ),
+                  ),
+                ],
               ),
-              Text(
-                '月齢 ${(phase * 29.5).toStringAsFixed(1)}',
-                style: TextStyle(
-                  color: Colors.blue.shade200,
-                  fontSize: 11,
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${now.month}月${now.day}日の月',
+                      style: TextStyle(
+                        color: Colors.blue.shade200,
+                        fontSize: 12,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      phaseName,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      phaseDesc,
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.8),
+                        fontSize: 12,
+                        height: 1.5,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '${now.month}月${now.day}日の月',
-                  style: TextStyle(
-                    color: Colors.blue.shade200,
-                    fontSize: 12,
+          // Phase 1: Moon phases diagram image integration
+          const SizedBox(height: 16),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Image.asset(
+              'lib/assets/images/features/tonight_sky/moon_phases.svg',
+              width: double.infinity,
+              height: 120,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                  width: double.infinity,
+                  height: 120,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  phaseName,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                  child: const Center(
+                    child: Text(
+                      '🌙 月相の図解',
+                      style: TextStyle(color: Colors.white54),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  phaseDesc,
-                  style: TextStyle(
-                    color: Colors.white.withOpacity(0.8),
-                    fontSize: 12,
-                    height: 1.5,
-                  ),
-                ),
-              ],
+                );
+              },
             ),
           ),
         ],
