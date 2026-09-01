@@ -57,11 +57,30 @@ jobs:
             --obfuscate \
             --split-debug-info=build/app/outputs/symbols
 
+      - name: Build App Bundle (for Google Play)
+        env:
+          STORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          STORE_FILE: ${{ secrets.KEYSTORE_FILE }}
+        run: |
+          flutter build appbundle \
+            --release \
+            --obfuscate \
+            --split-debug-info=build/app/outputs/symbols
+
       - name: Upload APK artifacts
         uses: actions/upload-artifact@v4
         with:
           name: release-apk
           path: build/app/outputs/apk/release/*.apk
+          retention-days: 30
+
+      - name: Upload App Bundle artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-bundle
+          path: build/app/outputs/bundle/release/app-release.aab
           retention-days: 30
 
       - name: Create Release Notes
@@ -80,6 +99,7 @@ jobs:
           prerelease: false
           files: |
             build/app/outputs/apk/release/*.apk
+            build/app/outputs/bundle/release/app-release.aab
           body: |
             # Release ${{ steps.release_notes.outputs.version }}
 
@@ -89,16 +109,18 @@ jobs:
             - **Build Type**: Release (Optimized & Obfuscated)
             - **APK Format**: Split-per-ABI
 
-            ## APK Files
+            ## APK Files (Direct Distribution)
             - `app-arm64-v8a-release.apk` - For modern devices (64-bit ARM)
             - `app-armeabi-v7a-release.apk` - For older devices (32-bit ARM)
             - `app-x86-release.apk` - For x86 devices
             - `app-x86_64-release.apk` - For x86-64 devices
 
+            ## App Bundle (Google Play Store)
+            - `app-release.aab` - For Google Play Store submission
+
             ## Installation
-            1. Download the APK file matching your device architecture
-            2. Enable "Unknown Sources" in your device settings
-            3. Run the APK file to install
+            **APK**: Download the APK file matching your device, enable "Unknown Sources", and install directly
+            **AAB**: Upload to Google Play Console for automated device-specific APK delivery
 
             For detailed build information, see [BUILD_RELEASE_APK.md](BUILD_RELEASE_APK.md)
         env:
@@ -118,5 +140,8 @@ jobs:
           echo "📊 APK Artifacts:"
           ls -lh build/app/outputs/apk/release/
           echo ""
+          echo "📱 App Bundle:"
+          ls -lh build/app/outputs/bundle/release/
+          echo ""
           echo "📦 Total Size:"
-          du -sh build/app/outputs/apk/release/
+          du -sh build/app/outputs/

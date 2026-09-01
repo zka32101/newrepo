@@ -46,7 +46,8 @@ jobs:
             - Flutter 3.24.0
             - Release Build (Optimized & Obfuscated)
             - Split-per-ABI APK generation
-            - Direct APK distribution
+            - App Bundle (Google Play)
+            - Direct APK + AAB distribution
 
             ## 🚀 Status
             Building APK automatically...
