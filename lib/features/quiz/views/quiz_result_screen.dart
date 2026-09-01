@@ -14,6 +14,8 @@ import '../../progress/providers/incorrect_monster_provider.dart';
 import '../../progress/views/widgets/monster_dialogs.dart';
 import '../../progress/providers/review_time_capsule_provider.dart';
 import '../../../providers/ranking_provider.dart';
+import '../../../providers/achievement_provider.dart';
+import '../../../models/achievement_model.dart';
 
 class QuizResultScreen extends ConsumerStatefulWidget {
   const QuizResultScreen({super.key});
@@ -152,6 +154,34 @@ class _QuizResultScreenState extends ConsumerState<QuizResultScreen> {
     } catch (e) {
       // エラーログを出力するが、ユーザー体験を阻害しない
       developer.log('Error updating ranking score: $e', error: e);
+    }
+
+    // 🎯 アチーブメントを確認・記録
+    try {
+      final achievementNotifications = await ref.read(
+        checkQuizAchievementsProvider({
+          'totalQuizzes': result.totalStagesCompleted,
+          'correctCount': quiz.correctCount,
+          'totalQuestions': quiz.totalQuestions,
+        }).future,
+      );
+
+      // 達成したアチーブメントがあればダイアログを表示
+      for (final notification in achievementNotifications) {
+        if (!mounted) break;
+        await Future.delayed(const Duration(milliseconds: 500));
+        if (mounted) {
+          await showDialog<void>(
+            context: context,
+            barrierDismissible: true,
+            builder: (_) => _AchievementUnlockedDialog(
+              notification: notification,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      developer.log('Error checking achievements: $e', error: e);
     }
 
     // 全問正解: 親ほめ待ちリストに登録
@@ -940,6 +970,169 @@ class _QuestionResultRow extends ConsumerWidget {
             child: const Text('閉じる'),
           ),
         ],
+      ),
+    );
+  }
+}
+
+// ── アチーブメント獲得ダイアログ ──────────────────────────
+class _AchievementUnlockedDialog extends StatefulWidget {
+  final dynamic notification; // AchievementUnlockedNotification
+
+  const _AchievementUnlockedDialog({
+    required this.notification,
+  });
+
+  @override
+  State<_AchievementUnlockedDialog> createState() =>
+      _AchievementUnlockedDialogState();
+}
+
+class _AchievementUnlockedDialogState
+    extends State<_AchievementUnlockedDialog>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _scaleAnimation;
+  late Animation<double> _fadeAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 600),
+      vsync: this,
+    );
+
+    _scaleAnimation = Tween<double>(begin: 0.5, end: 1.0).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.elasticOut),
+    );
+
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
+    );
+
+    _animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final achievement = widget.notification.achievement;
+    final message = widget.notification.message;
+
+    Color getRarityColor() {
+      switch (achievement.rarity) {
+        case 0: // common
+          return Colors.grey;
+        case 1: // uncommon
+          return Colors.blue;
+        case 2: // rare
+          return Colors.green;
+        case 3: // epic
+          return Colors.purple;
+        case 4: // legendary
+          return Colors.orange;
+        default:
+          return Colors.grey;
+      }
+    }
+
+    return ScaleTransition(
+      scale: _scaleAnimation,
+      child: FadeTransition(
+        opacity: _fadeAnimation,
+        child: Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  getRarityColor().withOpacity(0.2),
+                  getRarityColor().withOpacity(0.05),
+                ],
+              ),
+            ),
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  achievement.emoji,
+                  style: const TextStyle(fontSize: 72),
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  'アチーブメント獲得！',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: getRarityColor(),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  achievement.title,
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  message,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: getRarityColor(),
+                    fontWeight: FontWeight.w500,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  achievement.description,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey.shade600,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 24),
+                SizedBox(
+                  width: double.infinity,
+                  height: 48,
+                  child: ElevatedButton(
+                    onPressed: () => Navigator.pop(context),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: getRarityColor(),
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: const Text(
+                      'すごい！',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
