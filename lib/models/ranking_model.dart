@@ -39,6 +39,11 @@ class RankingEntry with _$RankingEntry {
 
     /// このユーザーが現在のユーザー自身かどうか
     @Default(false) bool isCurrentUser,
+
+    /// ランキングに名前を公表するかどうか
+    /// false の場合、ランキングに名前を表示するかわりに匿名IDを表示
+    /// true の場合、実名を表示
+    @Default(false) bool showNameInRanking,
   }) = _RankingEntry;
 
   factory RankingEntry.fromJson(Map<String, dynamic> json) =>

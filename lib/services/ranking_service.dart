@@ -42,30 +42,48 @@ class RankingService {
           .limit(limit);
 
       final snapshot = await query.get();
-      final entries = snapshot.docs
-          .asMap()
-          .entries
-          .map((e) {
-            final rank = e.key + 1;
-            final data = e.value.data();
-            return RankingEntry(
-              userId: e.value.id,
-              userName: data['userName'] as String? ?? '匿名ユーザー',
-              avatarUrl: data['avatarUrl'] as String?,
-              score: data['score'] as int? ?? 0,
-              rank: rank,
-              correctAnswers: data['correctAnswers'] as int? ?? 0,
-              totalQuestions: data['totalQuestions'] as int? ?? 0,
-              correctRate:
-                  (data['correctRate'] as num?)?.toDouble() ?? 0.0,
-              streak: data['streak'] as int? ?? 0,
-              lastScoreDate: (data['lastScoreDate'] as Timestamp?)
-                      ?.toDate() ??
+      final entries = <RankingEntry>[];
+
+      for (final doc in snapshot.docs) {
+        final rank = snapshot.docs.indexOf(doc) + 1;
+        final data = doc.data();
+        final userId = doc.id;
+
+        // プライバシー設定を取得
+        bool showNameInRanking = false;
+        try {
+          final privacyDoc = await _firestore
+              .collection('users')
+              .doc(userId)
+              .collection('settings')
+              .doc('privacy')
+              .get();
+          if (privacyDoc.exists) {
+            showNameInRanking =
+                privacyDoc.data()?['showNameInRanking'] as bool? ?? false;
+          }
+        } catch (e) {
+          developer.log('Error fetching privacy settings for $userId: $e');
+          showNameInRanking = false; // デフォルトで非公表
+        }
+
+        entries.add(RankingEntry(
+          userId: userId,
+          userName: data['userName'] as String? ?? '匿名ユーザー',
+          avatarUrl: data['avatarUrl'] as String?,
+          score: data['score'] as int? ?? 0,
+          rank: rank,
+          correctAnswers: data['correctAnswers'] as int? ?? 0,
+          totalQuestions: data['totalQuestions'] as int? ?? 0,
+          correctRate: (data['correctRate'] as num?)?.toDouble() ?? 0.0,
+          streak: data['streak'] as int? ?? 0,
+          lastScoreDate:
+              (data['lastScoreDate'] as Timestamp?)?.toDate() ??
                   DateTime.now(),
-              isCurrentUser: e.value.id == _auth.currentUser?.uid,
-            );
-          })
-          .toList();
+          isCurrentUser: userId == _auth.currentUser?.uid,
+          showNameInRanking: showNameInRanking,
+        ));
+      }
 
       return RankingList(
         period: period,

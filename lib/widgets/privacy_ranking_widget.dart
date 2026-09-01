@@ -50,15 +50,11 @@ class PrivacyRankingEntryWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // 他のユーザーのプライバシー設定を読み込み
-    // TODO: 実装では、ランキングエントリに privacy フラグを含める必要があります
-    // 一時的に、デフォルトプライバシー（名前非公表）を仮定
-    final displayShowNameInRanking = false; // TODO: entry から取得
-
+    // ランキングエントリから プライバシー設定を取得
     final displayName = PrivacyUtils.getDisplayName(
       entry.userId,
       entry.userName,
-      displayShowNameInRanking,
+      entry.showNameInRanking,
       isCurrentUser,
     );
 
@@ -311,12 +307,11 @@ class PrivacyTopThreeWidget extends ConsumerWidget {
   }
 
   Widget _buildMedalColumn(RankingEntry entry) {
-    // TODO: エントリにプライバシー情報を含める場合は、ここで使用
-    final displayShowNameInRanking = false; // デフォルトで非公表
+    // エントリからプライバシー設定を取得して表示名を決定
     final displayName = PrivacyUtils.getDisplayName(
       entry.userId,
       entry.userName,
-      displayShowNameInRanking,
+      entry.showNameInRanking,
       false, // トップ3は常に他のユーザー
     );
 
