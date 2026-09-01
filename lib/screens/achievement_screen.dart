@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/achievement_model.dart';
 import '../providers/achievement_provider.dart';
 import '../widgets/achievement_display_widget.dart';
+import '../shared/theme/app_theme.dart';
 
 /// アチーブメント画面
 class AchievementScreen extends ConsumerWidget {

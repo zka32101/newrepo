@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/ranking_model.dart';
+import '../shared/theme/app_theme.dart';
+import '../shared/animations/page_transitions.dart';
 
 /// ランキング一覧ウィジェット
 class RankingListWidget extends StatelessWidget {
@@ -17,6 +19,8 @@ class RankingListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = AppColors.isDark(context);
+
     if (isLoading) {
       return const Center(
         child: CircularProgressIndicator(),
@@ -31,13 +35,13 @@ class RankingListWidget extends StatelessWidget {
             Icon(
               Icons.leaderboard_outlined,
               size: 64,
-              color: Colors.grey.shade400,
+              color: isDark ? Colors.grey.shade600 : Colors.grey.shade400,
             ),
             const SizedBox(height: 16),
             Text(
               'ランキングがまだありません',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: Colors.grey.shade600,
+                    color: isDark ? Colors.grey.shade400 : Colors.grey.shade600,
                   ),
             ),
           ],
@@ -51,7 +55,10 @@ class RankingListWidget extends StatelessWidget {
         itemCount: entries.length,
         itemBuilder: (context, index) {
           final entry = entries[index];
-          return RankingEntryWidget(entry: entry);
+          return SlideInFadeAnimation(
+            duration: Duration(milliseconds: 300 + (index * 50)),
+            child: RankingEntryWidget(entry: entry),
+          );
         },
       ),
     );
@@ -95,21 +102,26 @@ class RankingEntryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = AppColors.isDark(context);
+    final colors = AppColors.of(context);
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
         border: Border.all(
-          color: entry.isCurrentUser ? Colors.blue : Colors.grey.shade300,
+          color: entry.isCurrentUser
+              ? colors.primary
+              : (isDark ? Colors.grey.shade700 : Colors.grey.shade300),
           width: entry.isCurrentUser ? 2 : 1,
         ),
         borderRadius: BorderRadius.circular(12),
         color: entry.isCurrentUser
-            ? Colors.blue.shade50
-            : Colors.grey.shade50,
+            ? colors.primary.withOpacity(isDark ? 0.15 : 0.08)
+            : (isDark ? Colors.grey.shade900 : Colors.grey.shade50),
         boxShadow: entry.isCurrentUser
             ? [
                 BoxShadow(
-                  color: Colors.blue.withOpacity(0.2),
+                  color: colors.primary.withOpacity(0.2),
                   blurRadius: 8,
                 )
               ]

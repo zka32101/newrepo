@@ -16,7 +16,10 @@ import 'providers/character_provider.dart';
 import 'services/firebase_service.dart';
 import 'services/notification_service.dart';
 import 'services/streak_service.dart';
+import 'services/ranking_service.dart';
+import 'services/achievement_service.dart';
 import 'features/progress/services/daily_mystery_notification_service.dart';
+import 'shared/theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,6 +40,20 @@ void main() async {
   // ストリークサービス初期化
   try {
     await StreakService.instance.initialize();
+  } catch (e) {
+    // エラーでも起動は継続
+  }
+
+  // ランキングサービス初期化
+  try {
+    await RankingService.instance.initialize();
+  } catch (e) {
+    // エラーでも起動は継続
+  }
+
+  // アチーブメントサービス初期化
+  try {
+    await AchievementService.instance.initialize();
   } catch (e) {
     // エラーでも起動は継続
   }

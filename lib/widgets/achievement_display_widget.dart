@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/achievement_model.dart';
+import '../shared/theme/app_theme.dart';
+import '../shared/animations/page_transitions.dart';
 
 /// アチーブメント一覧ウィジェット
 class AchievementListWidget extends StatelessWidget {
@@ -56,9 +58,12 @@ class AchievementListWidget extends StatelessWidget {
       itemBuilder: (context, index) {
         final achievement = achievements[index];
         final isUnlocked = unlockedIds.contains(achievement.id);
-        return AchievementCard(
-          achievement: achievement,
-          isUnlocked: isUnlocked,
+        return ScaleFadeTransition(
+          duration: Duration(milliseconds: 300 + (index * 30)),
+          child: AchievementCard(
+            achievement: achievement,
+            isUnlocked: isUnlocked,
+          ),
         );
       },
     );
@@ -93,6 +98,8 @@ class AchievementCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isDark = AppColors.isDark(context);
+
     return GestureDetector(
       onTap: () {
         showDialog(
@@ -111,8 +118,8 @@ class AchievementCard extends ConsumerWidget {
           ),
           borderRadius: BorderRadius.circular(12),
           color: isUnlocked
-              ? _getRarityColor().withOpacity(0.1)
-              : Colors.grey.shade200,
+              ? _getRarityColor().withOpacity(isDark ? 0.15 : 0.1)
+              : (isDark ? Colors.grey.shade800 : Colors.grey.shade200),
           boxShadow: isUnlocked
               ? [
                   BoxShadow(
