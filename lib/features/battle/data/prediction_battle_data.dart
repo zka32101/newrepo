@@ -27,7 +27,7 @@ final predictionBattleQuestions = [
   PredictionBattleQuestion(
     id: 'pb_001',
     round: 1,
-    experimentId: 'exp_001',
+    experimentId: 'exp_magnet_001',
     title: '磁石と鉄',
     predictionQuestion: 'くぎは磁石につくかな？',
     choices: ['つく', 'つかない', 'わからない'],
@@ -38,29 +38,29 @@ final predictionBattleQuestions = [
   PredictionBattleQuestion(
     id: 'pb_002',
     round: 2,
-    experimentId: 'exp_002',
-    title: '光と影',
-    predictionQuestion: '太陽が動くと、影はどうなるかな？',
-    choices: ['影も一緒に動く', '影は動かない', 'わからない'],
-    correctAnswer: '影も一緒に動く',
+    experimentId: 'exp_metal_heat_001',
+    title: 'ガラス管の色水の動き',
+    predictionQuestion: '温度が変わると、ガラス管の色水はどう動く？',
+    choices: ['上がる', '下がる', 'わからない'],
+    correctAnswer: '上がる',
     explanation:
-        '光の方向が変わると、影の向きと長さも変わるんだね。',
+        '温度が高くなると、物質が膨張するから、色水は上に上がるんだよ。',
   ),
   PredictionBattleQuestion(
     id: 'pb_003',
     round: 3,
-    experimentId: 'exp_003',
-    title: '音の振動',
-    predictionQuestion: 'スピーカーの前に砂をまくと、砂はどうなるかな？',
-    choices: ['砂が動く', '砂は動かない', 'わからない'],
-    correctAnswer: '砂が動く',
+    experimentId: 'exp_electromagnet_001',
+    title: '電磁石の力',
+    predictionQuestion: 'コイルの巻数を増やすと、電磁石の力はどうなる？',
+    choices: ['強くなる', '弱くなる', 'わからない'],
+    correctAnswer: '強くなる',
     explanation:
-        '音は振動。その振動が砂を揺らして、砂が跳ねるんだよ。',
+        'コイルの巻数が多いほど、磁力が強くなるんだよ。',
   ),
   PredictionBattleQuestion(
     id: 'pb_004',
     round: 4,
-    experimentId: 'exp_004',
+    experimentId: 'exp_lever_001',
     title: '力のはたらき',
     predictionQuestion: 'てこで重い石を持ち上げるには、どこに支点を置く？',
     choices: [
@@ -75,17 +75,17 @@ final predictionBattleQuestions = [
   PredictionBattleQuestion(
     id: 'pb_005',
     round: 5,
-    experimentId: 'exp_005',
-    title: '水の性質',
-    predictionQuestion: '水に塩を入れると、水は？',
+    experimentId: 'exp_ph_001',
+    title: '水溶液の性質',
+    predictionQuestion: 'お酢は何性かな？',
     choices: [
-      'へんな色になる',
-      '塩が溶けて、塩辛くなる',
+      '酸性',
+      'アルカリ性',
       'わからない',
     ],
-    correctAnswer: '塩が溶けて、塩辛くなる',
+    correctAnswer: '酸性',
     explanation:
-        '水に塩を入れると、塩の粒が細かくなって、塩水になるんだよ。',
+        'お酢には酸っぱい成分が含まれているから、酸性なんだよ。',
   ),
 
   // ========== 以降もスケール追加（5問のセットを複数用意）
@@ -94,7 +94,7 @@ final predictionBattleQuestions = [
   PredictionBattleQuestion(
     id: 'pb_006',
     round: 1,
-    experimentId: 'exp_006',
+    experimentId: 'exp_circuit_001',
     title: '電気と回路',
     predictionQuestion: '豆電球を二つつなぐと、電気はどうなるかな？',
     choices: [
@@ -109,17 +109,17 @@ final predictionBattleQuestions = [
   PredictionBattleQuestion(
     id: 'pb_007',
     round: 2,
-    experimentId: 'exp_007',
-    title: '水溶液の性質',
-    predictionQuestion: 'あたたかい水と冷たい水、砂糖はどちらが速く溶ける？',
+    experimentId: 'exp_metal_heat_001',
+    title: '物体の膨張',
+    predictionQuestion: 'あたたかくなると、物体は？',
     choices: [
-      'あたたかい水',
-      '冷たい水',
+      '膨張する',
+      '縮む',
       'わからない',
     ],
-    correctAnswer: 'あたたかい水',
+    correctAnswer: '膨張する',
     explanation:
-        'あたたかいほど、砂糖の粒が動きやすくなって、速く溶けるんだよ。',
+        'あたたかいほど、物質の粒子が動きやすくなって、物体が膨張するんだよ。',
   ),
 ];
 

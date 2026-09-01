@@ -24,10 +24,10 @@ class TroubleshootQuestion {
 final troubleshootQuestions = [
   // ========== 3年生 実験 ==========
 
-  // exp_001: 磁石と鉄
+  // exp_magnet_001: 磁石と鉄
   TroubleshootQuestion(
     id: 'ts_001_01',
-    experimentId: 'exp_001',
+    experimentId: 'exp_magnet_001',
     difficulty: 1,
     scenario: '磁石でくぎを持ち上げようとしたけど、くぎが落ちちゃった。なぜ？',
     choices: [
@@ -40,7 +40,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_001_02',
-    experimentId: 'exp_001',
+    experimentId: 'exp_magnet_001',
     difficulty: 2,
     scenario: 'アルミホイルを磁石に近づけたけど、くっつかない。なぜ？',
     choices: [
@@ -53,7 +53,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_001_03',
-    experimentId: 'exp_001',
+    experimentId: 'exp_magnet_001',
     difficulty: 2,
     scenario: 'きのう磁石がいっぱいくぎを持ち上げたのに、きょうは1個だけ。なぜ？',
     choices: [
@@ -67,7 +67,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_001_04',
-    experimentId: 'exp_001',
+    experimentId: 'exp_magnet_001',
     difficulty: 3,
     scenario: 'S極とN極を逆に重ねたら、磁石同士が反発した。これって磁石が壊れた？',
     choices: [
@@ -80,7 +80,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_001_05',
-    experimentId: 'exp_001',
+    experimentId: 'exp_magnet_001',
     difficulty: 3,
     scenario: '磁石を水に入れたら、くぎへの力が半分になった。なぜ？',
     choices: [
@@ -96,7 +96,7 @@ final troubleshootQuestions = [
   // exp_002: 光と影
   TroubleshootQuestion(
     id: 'ts_002_01',
-    experimentId: 'exp_002',
+    experimentId: 'exp_balloon_001',
     difficulty: 1,
     scenario: 'グラウンドで午前中に影の実験をしたけど、午後もやったら影の長さが違った。',
     choices: [
@@ -109,7 +109,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_002_02',
-    experimentId: 'exp_002',
+    experimentId: 'exp_balloon_001',
     difficulty: 2,
     scenario: '懐中電灯で影を作ったけど、影がぼやけてて線がくっきり出ない。',
     choices: [
@@ -122,7 +122,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_002_03',
-    experimentId: 'exp_002',
+    experimentId: 'exp_balloon_001',
     difficulty: 2,
     scenario: '鏡で光をはね返してかべに当てたら、思っていた場所とは違う場所に光が当たった。',
     choices: [
@@ -135,7 +135,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_002_04',
-    experimentId: 'exp_002',
+    experimentId: 'exp_balloon_001',
     difficulty: 3,
     scenario: '虫めがねで日光を集めて紙を焦がそうとしたけど、なかなか焦げない。',
     choices: [
@@ -148,7 +148,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_002_05',
-    experimentId: 'exp_002',
+    experimentId: 'exp_balloon_001',
     difficulty: 3,
     scenario: '同じ場所で午前と正午に自分の影の長さを比べたら、正午の方が短かった。なぜ？',
     choices: [
@@ -163,7 +163,7 @@ final troubleshootQuestions = [
   // exp_003: 音の振動
   TroubleshootQuestion(
     id: 'ts_003_01',
-    experimentId: 'exp_003',
+    experimentId: 'exp_metal_heat_001',
     difficulty: 1,
     scenario: 'スピーカーから出た音が聞こえなくなった。なぜ？',
     choices: [
@@ -176,7 +176,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_003_02',
-    experimentId: 'exp_003',
+    experimentId: 'exp_metal_heat_001',
     difficulty: 2,
     scenario: 'ボール紙に砂をのせてスピーカーに置いたけど、砂が動かない。',
     choices: [
@@ -189,7 +189,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_003_03',
-    experimentId: 'exp_003',
+    experimentId: 'exp_metal_heat_001',
     difficulty: 2,
     scenario: '糸電話を作ったけど、糸がたるんでいて相手の声が聞こえない。',
     choices: [
@@ -202,7 +202,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_003_04',
-    experimentId: 'exp_003',
+    experimentId: 'exp_metal_heat_001',
     difficulty: 3,
     scenario: '太鼓を強くたたいたときと弱くたたいたとき、音の大きさは変わったけど高さは変わらなかった。なぜ？',
     choices: [
@@ -215,7 +215,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_003_05',
-    experimentId: 'exp_003',
+    experimentId: 'exp_metal_heat_001',
     difficulty: 3,
     scenario: '輪ゴムを強く張って弾いたら、ゆるく張ったときより高い音が出た。なぜ？',
     choices: [
@@ -230,7 +230,7 @@ final troubleshootQuestions = [
   // exp_004: 力のはたらき
   TroubleshootQuestion(
     id: 'ts_004_01',
-    experimentId: 'exp_004',
+    experimentId: 'exp_circuit_001',
     difficulty: 1,
     scenario: 'てこで重い石を持ち上げられなかった。なぜ？',
     choices: [
@@ -244,7 +244,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_004_02',
-    experimentId: 'exp_004',
+    experimentId: 'exp_circuit_001',
     difficulty: 2,
     scenario: 'ゴムを強く伸ばして手を放したのに、車が思ったより進まなかった。',
     choices: [
@@ -258,7 +258,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_004_03',
-    experimentId: 'exp_004',
+    experimentId: 'exp_circuit_001',
     difficulty: 2,
     scenario: 'ばねばかりで同じ重さのおもりを2回はかったら、少し違う数字が出た。',
     choices: [
@@ -271,7 +271,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_004_04',
-    experimentId: 'exp_004',
+    experimentId: 'exp_circuit_001',
     difficulty: 3,
     scenario: '風で車を走らせる実験で、うちわであおいでも思ったより進まなかった。',
     choices: [
@@ -284,7 +284,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_004_05',
-    experimentId: 'exp_004',
+    experimentId: 'exp_circuit_001',
     difficulty: 3,
     scenario: '同じ強さで打ったのに、かたいゆかの上とじゅうたんの上でボールのはずみ方が違った。',
     choices: [
@@ -299,7 +299,7 @@ final troubleshootQuestions = [
   // exp_005: 水の性質
   TroubleshootQuestion(
     id: 'ts_005_01',
-    experimentId: 'exp_005',
+    experimentId: 'exp_germination_001',
     difficulty: 1,
     scenario: 'ビーカーにこぼした水が床を濡らした。なぜ水は広がるの？',
     choices: [
@@ -312,7 +312,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_005_02',
-    experimentId: 'exp_005',
+    experimentId: 'exp_germination_001',
     difficulty: 2,
     scenario: '入れ物の形を変えて水を移しかえたのに、水の体積は変わらなかった。',
     choices: [
@@ -325,7 +325,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_005_03',
-    experimentId: 'exp_005',
+    experimentId: 'exp_germination_001',
     difficulty: 2,
     scenario: 'コップにいっぱい水を入れたら、ふちより盛り上がって少しこぼれなかった。',
     choices: [
@@ -338,7 +338,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_005_04',
-    experimentId: 'exp_005',
+    experimentId: 'exp_germination_001',
     difficulty: 3,
     scenario: '氷が水にうかんだが、石は水にしずんだ。なぜ？',
     choices: [
@@ -351,7 +351,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_005_05',
-    experimentId: 'exp_005',
+    experimentId: 'exp_germination_001',
     difficulty: 3,
     scenario: '同じ量の水を広い皿と細長いコップに入れて外に置いたら、皿の水の方が早くなくなった。',
     choices: [
@@ -368,7 +368,7 @@ final troubleshootQuestions = [
   // exp_006: 電気と回路
   TroubleshootQuestion(
     id: 'ts_006_01',
-    experimentId: 'exp_006',
+    experimentId: 'exp_pendulum_001',
     difficulty: 1,
     scenario: '豆電球の回路を作ったけど、豆電球がつかない。なぜ？',
     choices: [
@@ -383,7 +383,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_006_02',
-    experimentId: 'exp_006',
+    experimentId: 'exp_pendulum_001',
     difficulty: 2,
     scenario: '電池を2個直列につないだら、豆電球が明るくなりすぎてすぐに切れてしまった。',
     choices: [
@@ -396,7 +396,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_006_03',
-    experimentId: 'exp_006',
+    experimentId: 'exp_pendulum_001',
     difficulty: 2,
     scenario: 'モーターに電池をつないだが、あまり速く回らなかった。',
     choices: [
@@ -409,7 +409,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_006_04',
-    experimentId: 'exp_006',
+    experimentId: 'exp_pendulum_001',
     difficulty: 3,
     scenario: '2個の豆電球を並列につないだ回路と直列につないだ回路で、明るさが違った。',
     choices: [
@@ -422,7 +422,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_006_05',
-    experimentId: 'exp_006',
+    experimentId: 'exp_pendulum_001',
     difficulty: 3,
     scenario: '検流計をつないで電流の向きを調べたら、はりが逆にふれた。',
     choices: [
@@ -437,7 +437,7 @@ final troubleshootQuestions = [
   // exp_007: 水溶液の性質
   TroubleshootQuestion(
     id: 'ts_007_01',
-    experimentId: 'exp_007',
+    experimentId: 'exp_electromagnet_001',
     difficulty: 2,
     scenario: '砂糖を水に入れたけど、全く溶けない。なぜ？',
     choices: [
@@ -450,7 +450,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_007_02',
-    experimentId: 'exp_007',
+    experimentId: 'exp_electromagnet_001',
     difficulty: 2,
     scenario: '食塩水をじょう発させたら、白いつぶが出てきた。水はどこへ行ったの？',
     choices: [
@@ -463,7 +463,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_007_03',
-    experimentId: 'exp_007',
+    experimentId: 'exp_electromagnet_001',
     difficulty: 2,
     scenario: 'かき混ぜてもミョウバンが底に残ったままだった。',
     choices: [
@@ -476,7 +476,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_007_04',
-    experimentId: 'exp_007',
+    experimentId: 'exp_electromagnet_001',
     difficulty: 3,
     scenario: '同じ量の水にとかしたミョウバンが、冷めたら底につぶになって出てきた。',
     choices: [
@@ -489,7 +489,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_007_05',
-    experimentId: 'exp_007',
+    experimentId: 'exp_electromagnet_001',
     difficulty: 3,
     scenario: '2つのビーカーで同じ量の水に同じ重さの食塩とミョウバンを入れたら、とけ方が違った。',
     choices: [
@@ -504,7 +504,7 @@ final troubleshootQuestions = [
   // exp_008: とじこめた空気と水（4年）
   TroubleshootQuestion(
     id: 'ts_008_01',
-    experimentId: 'exp_008',
+    experimentId: 'exp_ph_001',
     difficulty: 1,
     scenario: '空気でっぽうの後ろの玉を強く押したのに、前の玉があまり飛ばなかった。',
     choices: [
@@ -517,7 +517,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_008_02',
-    experimentId: 'exp_008',
+    experimentId: 'exp_ph_001',
     difficulty: 2,
     scenario: '注射器に空気を閉じ込めて押したら縮んだが、水を閉じ込めて押しても縮まなかった。',
     choices: [
@@ -530,7 +530,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_008_03',
-    experimentId: 'exp_008',
+    experimentId: 'exp_ph_001',
     difficulty: 2,
     scenario: '空気でっぽうを強く押すほど、玉が勢いよく飛び出した。なぜ？',
     choices: [
@@ -543,7 +543,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_008_04',
-    experimentId: 'exp_008',
+    experimentId: 'exp_ph_001',
     difficulty: 3,
     scenario: 'ペットボトルロケットに水を少しだけ入れて飛ばしたら、あまり高く飛ばなかった。',
     choices: [
@@ -556,7 +556,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_008_05',
-    experimentId: 'exp_008',
+    experimentId: 'exp_ph_001',
     difficulty: 3,
     scenario: '水を満タンに入れた注射器の先を指でふさいで押したが、ほとんど動かなかった。',
     choices: [
@@ -571,7 +571,7 @@ final troubleshootQuestions = [
   // exp_009: もののあたたまり方（4年）
   TroubleshootQuestion(
     id: 'ts_009_01',
-    experimentId: 'exp_009',
+    experimentId: 'exp_lever_001',
     difficulty: 1,
     scenario: '金属の棒の先をあたためたら、はしの方までだんだんあたたかくなった。',
     choices: [
@@ -584,7 +584,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_009_02',
-    experimentId: 'exp_009',
+    experimentId: 'exp_lever_001',
     difficulty: 2,
     scenario: 'ビーカーの水を下からあたためたら、下の水だけでなく全体があたたまった。',
     choices: [
@@ -597,7 +597,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_009_03',
-    experimentId: 'exp_009',
+    experimentId: 'exp_lever_001',
     difficulty: 2,
     scenario: '部屋の中で、エアコンから出たあたたかい空気がすぐに天じょう付近に集まった。',
     choices: [
@@ -610,7 +610,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_009_04',
-    experimentId: 'exp_009',
+    experimentId: 'exp_lever_001',
     difficulty: 3,
     scenario: '金属・木・プラスチックの板を同時にあたためたら、金属だけ先に熱く感じた。',
     choices: [
@@ -623,7 +623,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_009_05',
-    experimentId: 'exp_009',
+    experimentId: 'exp_lever_001',
     difficulty: 3,
     scenario: '示温インクを入れた水を熱したら、色の変化が下から上へと動いていった。',
     choices: [
@@ -638,7 +638,7 @@ final troubleshootQuestions = [
   // exp_010: 季節と生き物（4年）
   TroubleshootQuestion(
     id: 'ts_010_01',
-    experimentId: 'exp_010',
+    experimentId: 'exp_combustion_001',
     difficulty: 1,
     scenario: '春に見つけたツバメの巣が、冬になったら見当たらなくなった。',
     choices: [
@@ -651,7 +651,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_010_02',
-    experimentId: 'exp_010',
+    experimentId: 'exp_combustion_001',
     difficulty: 2,
     scenario: '夏に元気だったヘチマが、秋になると葉が茶色くなり枯れてきた。',
     choices: [
@@ -664,7 +664,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_010_03',
-    experimentId: 'exp_010',
+    experimentId: 'exp_combustion_001',
     difficulty: 2,
     scenario: '冬になったら、庭にいたカエルが急に見当たらなくなった。',
     choices: [
@@ -677,7 +677,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_010_04',
-    experimentId: 'exp_010',
+    experimentId: 'exp_combustion_001',
     difficulty: 3,
     scenario: '同じ木を1年間観察したら、季節ごとに葉の色や量が大きく変わった。',
     choices: [
@@ -690,7 +690,7 @@ final troubleshootQuestions = [
   ),
   TroubleshootQuestion(
     id: 'ts_010_05',
-    experimentId: 'exp_010',
+    experimentId: 'exp_combustion_001',
     difficulty: 3,
     scenario: '秋にたくさん見られたオオカマキリの卵のうを、冬から春にかけて観察していたら中から幼虫が出てきた。',
     choices: [

@@ -4,7 +4,7 @@ import '../features/home/views/home_screen.dart';
 import '../features/quiz/views/quiz_screen.dart';
 import '../features/quiz/views/quiz_result_screen.dart';
 import '../features/learn/views/learn_screen.dart';
-import '../features/experiment/views/experiment_detail_screen.dart';
+import '../features/experiments/views/experiment_detail_screen.dart';
 import '../features/profile/views/profile_select_screen.dart';
 import '../features/profile/views/profile_create_screen.dart';
 import '../features/daily/views/daily_challenge_screen.dart';

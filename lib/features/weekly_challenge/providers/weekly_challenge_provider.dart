@@ -181,7 +181,24 @@ class WeeklyChallengeNotifier extends AsyncNotifier<WeeklyChallengeState> {
   }) async {
     await completeMission('quiz_3');
     if (isPerfect) await completeMission('perfect');
-    // grade_mix: 異なる学年チェックは簡略化（TODO: 実際には2学年記録して比較）
+
+    // grade_mix: 異なる学年チェック - 2つ異なる学年でクイズをクリア
+    final current = state.valueOrNull;
+    if (current != null && !current.missions.firstWhere((m) => m.id == 'grade_mix', orElse: () => WeeklyMission(id: '', emoji: '', title: '', description: '', coinReward: 0)).completed) {
+      final prefs = await SharedPreferences.getInstance();
+      final gradeKey = 'weekly_challenge_grades_${current.weekKey}';
+      final completedGrades = (jsonDecode(prefs.getString(gradeKey) ?? '[]') as List).cast<String>();
+
+      if (!completedGrades.contains(grade)) {
+        completedGrades.add(grade);
+        await prefs.setString(gradeKey, jsonEncode(completedGrades));
+
+        // 2つ以上の異なる学年でクリアしたら達成
+        if (completedGrades.length >= 2) {
+          await completeMission('grade_mix');
+        }
+      }
+    }
   }
 
   Future<void> onLearnComplete() async => completeMission('learn_2');

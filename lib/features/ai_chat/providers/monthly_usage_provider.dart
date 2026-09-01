@@ -48,17 +48,29 @@ class MonthlyUsageNotifier extends StateNotifier<MonthlyUsageState> {
   }
 
   /// 実際にAIから応答を得られたときにだけ呼び、利用回数を1消費する。
+  /// 同時実行の競合を避けるため、読み込み後すぐに書き込む。
   Future<bool> recordUsage() async {
     await _loadFuture;
     if (state.isLimitReached) return false;
 
-    final prefs = await SharedPreferences.getInstance();
-    final ym = _currentYearMonth();
-    final key = 'ai_chat_usage_$ym';
-    final newCount = (prefs.getInt(key) ?? 0) + 1;
-    await prefs.setInt(key, newCount);
-    state = MonthlyUsageState(usedCount: newCount, yearMonth: ym);
-    return true;
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final ym = _currentYearMonth();
+      final key = 'ai_chat_usage_$ym';
+
+      // 現在の状態から計算（SharedPreferencesを再度読むのではなく）
+      final newCount = state.usedCount + 1;
+      if (newCount > kFreeMonthlyLimit) {
+        return false;
+      }
+
+      await prefs.setInt(key, newCount);
+      state = MonthlyUsageState(usedCount: newCount, yearMonth: ym);
+      return true;
+    } catch (e) {
+      // SharedPreferences エラー時は失敗を返す
+      return false;
+    }
   }
 }
 

@@ -66,8 +66,27 @@ class ClaudeService {
           .timeout(const Duration(seconds: 15));
 
       if (response.statusCode == 200) {
-        final data = jsonDecode(utf8.decode(response.bodyBytes));
-        return data['content'][0]['text'] as String;
+        final data = jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>?;
+        if (data == null) {
+          throw ClaudeServiceException('APIレスポンスが不正です');
+        }
+
+        final content = data['content'] as List?;
+        if (content == null || content.isEmpty) {
+          throw ClaudeServiceException('APIレスポンスにコンテンツがありません');
+        }
+
+        final firstContent = content[0] as Map<String, dynamic>?;
+        if (firstContent == null) {
+          throw ClaudeServiceException('APIコンテンツが不正です');
+        }
+
+        final text = firstContent['text'] as String?;
+        if (text == null || text.isEmpty) {
+          throw ClaudeServiceException('AIからの応答がありません');
+        }
+
+        return text;
       } else if (response.statusCode == 429) {
         throw ClaudeServiceException(
           'ただいまりかハカセはとても混んでいます。少し待ってからもう一度聞いてね！',
