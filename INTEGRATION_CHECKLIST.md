@@ -56,6 +56,8 @@ lib/features/battle/data/prediction_battle_data.dart
 
 ### Step 5: バッジシステム連動
 
+> **注**: バッジ定義は本リポジトリではなく `shared_core`（別リポジトリ、git dependency）側にあり、本リポジトリの作業だけでは追加できません。`shared_core` を対象にした別セッション／PRで対応してください。
+
 - [ ] `lib/data/models/badge_definition.dart` に "よそう名人" バッジ追加
   ```dart
   BadgeDefinition(
@@ -117,10 +119,7 @@ lib/features/battle/data/prediction_battle_data.dart
 
 ### Step 2: troubleshoot_data.dart を完成させる
 
-- [ ] **今は代表例のみ** → 20実験 × 5問 = 100問を全て埋める
-- [ ] 例: `exp_002` (光と影) の 5問
-- [ ] 例: `exp_003` (音の振動) の 5問
-- [ ] ...以降全実験
+- [x] 20実験（exp_001〜exp_020） × 5問 = 100問を全て埋める（完了）
 
 ### Step 3: 結果画面に「ラボたんてい」バッジ表示
 
