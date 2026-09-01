@@ -14,6 +14,7 @@ import 'features/progress/providers/review_time_capsule_provider.dart';
 import 'features/settings/providers/theme_provider.dart';
 import 'providers/character_provider.dart';
 import 'services/firebase_service.dart';
+import 'services/notification_service.dart';
 import 'features/progress/services/daily_mystery_notification_service.dart';
 
 void main() async {
@@ -23,6 +24,14 @@ void main() async {
   final prefs = await SharedPreferences.getInstance();
 
   tz.initializeTimeZones();
+
+  // プッシュ通知サービス初期化
+  try {
+    await NotificationService.instance.initialize();
+    await NotificationService.instance.requestPermissionAndGetToken();
+  } catch (e) {
+    // 通知権限拒否・端末の通知機能未対応などでも起動は継続する
+  }
 
   try {
     await DailyMysteryNotificationService.initialize();
