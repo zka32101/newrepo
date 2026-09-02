@@ -1954,12 +1954,234 @@ final stage5_009_images = [
   ),
 ];
 
+// Stage 6_001: 光と鏡
+final stage6_001_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_001_q1',
+    imageKeyword: 'light_straight_line_propagation',
+    imageType: 'diagram',
+    imageDescription: '光の直進：光は真っすぐに進む。影ができるしくみ。光の直進を矢印で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_001_q2',
+    imageKeyword: 'law_of_reflection_mirror',
+    imageType: 'diagram',
+    imageDescription: '反射の法則：入射角=反射角。鏡での光の反射を詳しく図示。角度測定の表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_001_q3',
+    imageKeyword: 'mirror_image_left_right_reversal',
+    imageType: 'diagram',
+    imageDescription: '鏡の像：左右が逆になる理由。人物や矢印で左右反転を明確に示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_001_q4',
+    imageKeyword: 'lens_magnification_reduction',
+    imageType: 'diagram',
+    imageDescription: 'レンズの働き：凸レンズで拡大、凹レンズで縮小。焦点と実像の関係を図示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_001_q5',
+    imageKeyword: 'color_light_wavelength',
+    imageType: 'diagram',
+    imageDescription: '色と光の波長：可視光スペクトラム。各色の波長を数値で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_001_q6',
+    imageKeyword: 'reflection_refraction_simultaneous',
+    imageType: 'diagram',
+    imageDescription: '反射と屈折：同時に起こる現象。水鏡の例。角度と屈折率の関係。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_001_q7',
+    imageKeyword: 'combined_mirrors_lenses',
+    imageType: 'diagram',
+    imageDescription: '鏡とレンズの組み合わせ：望遠鏡やカメラの仕組み。複合光学系。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_001_q8',
+    imageKeyword: 'light_diffraction_phenomenon',
+    imageType: 'diagram',
+    imageDescription: '光の回折：光が障害物を曲がる。スリットと回折パターン。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_001_q9',
+    imageKeyword: 'optical_surface_cleanliness',
+    imageType: 'diagram',
+    imageDescription: '光学面の清潔さ：汚れが光の伝播に与える影響。クリーニングの重要性。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_001_q10',
+    imageKeyword: 'optical_technology_applications',
+    imageType: 'diagram',
+    imageDescription: '光学技術の応用：眼鏡、カメラ、望遠鏡、顕微鏡、光ファイバー。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 6_002: 音の伝わり方
+final stage6_002_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_002_q1',
+    imageKeyword: 'sound_transmission_media_vibration',
+    imageType: 'diagram',
+    imageDescription: '音の伝わり方：空気や水の振動。波として伝播。音波の様子を図示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_002_q2',
+    imageKeyword: 'volume_amplitude_decibel',
+    imageType: 'chart',
+    imageDescription: '音の大きさ：振幅とデシベル。様々な音のデシベル値を比較グラフで表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_002_q3',
+    imageKeyword: 'pitch_frequency_hertz',
+    imageType: 'diagram',
+    imageDescription: '音の高さ：周波数とヘルツ。高い音と低い音の波長の違い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_002_q4',
+    imageKeyword: 'reflection_echo_reverberation',
+    imageType: 'diagram',
+    imageDescription: '反射音と残響：音が壁に反射。音の反射の様子と時間差を表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_002_q5',
+    imageKeyword: 'doppler_effect_sound',
+    imageType: 'diagram',
+    imageDescription: 'ドップラー効果：動く音源の周波数の変化。救急車の例。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_002_q6',
+    imageKeyword: 'sound_speed_different_media',
+    imageType: 'chart',
+    imageDescription: '媒質による音速：空気、水、鉄での音速の違い。表でデータ表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_002_q7',
+    imageKeyword: 'resonant_frequency_physics',
+    imageType: 'diagram',
+    imageDescription: '共鳴周波数：固有周波数と外部周波数の一致。共鳴現象の例。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_002_q8',
+    imageKeyword: 'noise_hearing_damage',
+    imageType: 'chart',
+    imageDescription: '騒音と聴覚被害：デシベルと聴覚ダメージの関係。危険レベルの表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_002_q9',
+    imageKeyword: 'resonance_destruction_bridge',
+    imageType: 'diagram',
+    imageDescription: '共鳴による破壊：タコマ橋の例。共鳴で構造物が破壊される仕組み。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_002_q10',
+    imageKeyword: 'audio_application_technology',
+    imageType: 'diagram',
+    imageDescription: '音の応用：超音波、スピーカー、マイク、音響設計の例。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 6_003: 物の燃え方と化学変化
+final stage6_003_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_003_q1',
+    imageKeyword: 'combustion_chemical_change_triangle',
+    imageType: 'diagram',
+    imageDescription: '燃焼と化学変化：3つの要素（可燃物、酸素、加熱）。燃焼三角形で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_003_q2',
+    imageKeyword: 'oxygen_fire_extinguishing',
+    imageType: 'diagram',
+    imageDescription: '酸素の役割：燃焼に必要。消火方法との関係。酸素遮断の仕組み。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_003_q3',
+    imageKeyword: 'chemical_vs_physical_change',
+    imageType: 'diagram',
+    imageDescription: '化学変化と物理変化：燃焼は化学変化。各種例を比較表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_003_q4',
+    imageKeyword: 'ash_mass_conservation',
+    imageType: 'diagram',
+    imageDescription: '灰と質量保存則：燃焼前後の質量。質量が保存される仕組み。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_003_q5',
+    imageKeyword: 'wood_carbonization_heating',
+    imageType: 'diagram',
+    imageDescription: '木の炭化：加熱による分解。炭、タール、木酢液の生成。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_003_q6',
+    imageKeyword: 'explosion_rapid_combustion',
+    imageType: 'diagram',
+    imageDescription: '爆発：急速な燃焼。通常の燃焼との速度の違い。エネルギー解放。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_003_q7',
+    imageKeyword: 'co2_emissions_climate_change',
+    imageType: 'chart',
+    imageDescription: 'CO₂排出と地球温暖化：燃焼によるCO₂発生。グラフで排出量表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_003_q8',
+    imageKeyword: 'flame_temperature_variations',
+    imageType: 'diagram',
+    imageDescription: '炎の温度：異なる物質の炎色の違い。温度による色変化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_003_q9',
+    imageKeyword: 'matches_lighters_mechanism',
+    imageType: 'diagram',
+    imageDescription: 'マッチとライターの仕組み：摩擦熱と化学反応。着火のメカニズム。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_003_q10',
+    imageKeyword: 'combustion_sustainability_energy',
+    imageType: 'diagram',
+    imageDescription: '燃焼と持続可能性：再生可能エネルギーとの関連。将来のエネルギー。',
+    requiresAiGeneration: true,
+  ),
+];
+
 // ===============================
 // 他のステージの画像メタデータもここに追加
 // Stage 3_009 〜 3_012
 // Stage 4_010 〜 4_011
 // Stage 5_010 〜 5_012
-// Stage 6_001 〜 6_012
+// Stage 6_004 〜 6_012
 // ===============================
 
 /// 画像メタデータを全ステージから検索するヘルパー関数
@@ -2047,6 +2269,17 @@ Map<String, QuizImageMetadata> getQuizImageMetadata() {
     allImages[img.questionId] = img;
   }
   for (final img in stage5_009_images) {
+    allImages[img.questionId] = img;
+  }
+
+  // 6年生
+  for (final img in stage6_001_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_002_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_003_images) {
     allImages[img.questionId] = img;
   }
 
