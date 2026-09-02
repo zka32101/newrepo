@@ -2472,80 +2472,6 @@ final stage6_007_images = [
   ),
 ];
 
-// Stage 6_008: 物質の変化
-final stage6_008_images = [
-  QuizImageMetadata(
-    questionId: 'stage_6_008_q1',
-    imageKeyword: 'melting_ice_to_water',
-    imageType: 'diagram',
-    imageDescription: '融解：氷が水に変わる。融解点0℃での分子構造変化。',
-    requiresAiGeneration: true,
-  ),
-  QuizImageMetadata(
-    questionId: 'stage_6_008_q2',
-    imageKeyword: 'freezing_water_to_ice',
-    imageType: 'diagram',
-    imageDescription: '凝固：水が氷に固まる。凝固点での結晶化過程。',
-    requiresAiGeneration: true,
-  ),
-  QuizImageMetadata(
-    questionId: 'stage_6_008_q3',
-    imageKeyword: 'evaporation_liquid_to_gas',
-    imageType: 'diagram',
-    imageDescription: '蒸発：液体の表面から気体へ。温度による分子運動の変化。',
-    requiresAiGeneration: true,
-  ),
-  QuizImageMetadata(
-    questionId: 'stage_6_008_q4',
-    imageKeyword: 'condensation_gas_to_liquid',
-    imageType: 'diagram',
-    imageDescription: '凝結：気体が液体に。結露と雲の形成原理。',
-    requiresAiGeneration: true,
-  ),
-  QuizImageMetadata(
-    questionId: 'stage_6_008_q5',
-    imageKeyword: 'sublimation_dry_ice',
-    imageType: 'diagram',
-    imageDescription: '昇華：固体が気体に直接変わる。ドライアイスと防虫剤。',
-    requiresAiGeneration: true,
-  ),
-  QuizImageMetadata(
-    questionId: 'stage_6_008_q6',
-    imageKeyword: 'density_temperature_water',
-    imageType: 'chart',
-    imageDescription: '密度：温度による体積変化。水の異常膨張（0℃～4℃）。',
-    requiresAiGeneration: true,
-  ),
-  QuizImageMetadata(
-    questionId: 'stage_6_008_q7',
-    imageKeyword: 'boiling_phase_change_constant_temp',
-    imageType: 'diagram',
-    imageDescription: '沸騰：100℃での相転移。気圧による沸点変化。',
-    requiresAiGeneration: true,
-  ),
-  QuizImageMetadata(
-    questionId: 'stage_6_008_q8',
-    imageKeyword: 'molecular_motion_temperature',
-    imageType: 'diagram',
-    imageDescription: '分子運動：温度の本質。分子の激しさが温度を決定。',
-    requiresAiGeneration: true,
-  ),
-  QuizImageMetadata(
-    questionId: 'stage_6_008_q9',
-    imageKeyword: 'thermal_expansion_contraction',
-    imageType: 'diagram',
-    imageDescription: '熱膨張：温度上昇で体積増加。橋・線路の伸縮継手。',
-    requiresAiGeneration: true,
-  ),
-  QuizImageMetadata(
-    questionId: 'stage_6_008_q10',
-    imageKeyword: 'phase_change_nature_applications',
-    imageType: 'photo',
-    imageDescription: '物質変化の応用：水の循環、天気予報、食品保存、エネルギー利用。',
-    requiresAiGeneration: true,
-  ),
-];
-
 // Stage 6_009: 力と運動
 final stage6_009_images = [
   QuizImageMetadata(
@@ -3286,11 +3212,234 @@ final stage5_010_images = [
   ),
 ];
 
+// Stage 5_011: 人と環境
+final stage5_011_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_011_q1',
+    imageKeyword: 'environmental_pollution_sources_factories_vehicles',
+    imageType: 'diagram',
+    imageDescription: '環境汚染の原因：工場排気、自動車排ガス、生活排水。人間活動による汚染。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_011_q2',
+    imageKeyword: 'species_decline_pollution_ecosystem_response',
+    imageType: 'chart',
+    imageDescription: '汚染による生物減少：環境変化に対する生物の敏感な反応。個体数減少。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_011_q3',
+    imageKeyword: 'food_chain_disruption_pollution_impact',
+    imageType: 'diagram',
+    imageDescription: '食物連鎖の破壊：汚染による生産者から消費者への連鎖の分断。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_011_q4',
+    imageKeyword: 'overharvesting_resource_depletion_whales_tuna',
+    imageType: 'chart',
+    imageDescription: '乱獲による資源枯渇：クジラ、マグロなどの海産資源の過度な採取。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_011_q5',
+    imageKeyword: 'climate_change_greenhouse_gas_emissions',
+    imageType: 'diagram',
+    imageDescription: '気候変動：温室効果ガス増加による地球温暖化。CO2、メタンの大気濃度上昇。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_011_q6',
+    imageKeyword: 'natural_conservation_biodiversity_protection',
+    imageType: 'photo',
+    imageDescription: '自然保護：生物多様性を守りながら資源を管理する。保護区の設置。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_011_q7',
+    imageKeyword: 'global_pollution_acid_rain_ocean_waste_microplastics',
+    imageType: 'diagram',
+    imageDescription: '地球規模の汚染：酸性雨、海ゴミ、マイクロプラスチックの拡散。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_011_q8',
+    imageKeyword: 'sustainable_development_sdgs_environmental_goals',
+    imageType: 'chart',
+    imageDescription: '持続可能な開発：環境と経済のバランス。SDGsの17の目標。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_011_q9',
+    imageKeyword: 'recycling_circular_economy_3r_waste_reduction',
+    imageType: 'diagram',
+    imageDescription: 'リサイクルと循環型社会：3R（削減・再利用・再生）による廃棄物削減。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_011_q10',
+    imageKeyword: 'environmental_action_individual_societal_change',
+    imageType: 'chart',
+    imageDescription: '環境保全：個人の行動と社会全体の取り組みの両方が必要。市民参加。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 5_012: 生命のつながり
+final stage5_012_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_012_q1',
+    imageKeyword: 'food_chain_plants_herbivores_carnivores',
+    imageType: 'diagram',
+    imageDescription: '食物連鎖：生産者（植物）→消費者（動物）→分解者。生命のつながり。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_012_q2',
+    imageKeyword: 'decomposers_bacteria_fungi_nutrient_cycling',
+    imageType: 'diagram',
+    imageDescription: '分解者：バクテリア、キノコが遺骸を分解し栄養を土に戻す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_012_q3',
+    imageKeyword: 'different_ecosystems_climate_terrain_biodiversity',
+    imageType: 'photo',
+    imageDescription: '異なる生態系：気候と地形で異なる生物が適応。多様な環境。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_012_q4',
+    imageKeyword: 'adaptation_evolution_environmental_selection',
+    imageType: 'diagram',
+    imageDescription: '適応と進化：長い時間で生物が環境に進化。世代を通じた変化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_012_q5',
+    imageKeyword: 'predator_prey_population_dynamics_cycle',
+    imageType: 'chart',
+    imageDescription: '捕食者と被捕食者：個体数が周期的に変動。バランスで生態系安定。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_012_q6',
+    imageKeyword: 'symbiosis_mutualism_commensalism_parasitism',
+    imageType: 'diagram',
+    imageDescription: '共生：相利共生（両者得）、片利共生（片方得）、寄生（片方損）。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_012_q7',
+    imageKeyword: 'invasive_species_ecological_damage_native_species',
+    imageType: 'photo',
+    imageDescription: '外来種の被害：導入された種が在来生物を圧倒。生態系大きく変化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_012_q8',
+    imageKeyword: 'biodiversity_stability_ecosystem_resilience',
+    imageType: 'chart',
+    imageDescription: '生物多様性と安定性：種が多いほど生態系は環境変動に強い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_012_q9',
+    imageKeyword: 'humans_ecosystem_services_water_food_oxygen',
+    imageType: 'diagram',
+    imageDescription: '人間と生態系：生態系サービスに依存。水、食料、酸素の供給。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_012_q10',
+    imageKeyword: 'life_connections_ecological_understanding_systems',
+    imageType: 'chart',
+    imageDescription: '生命のつながり理解：物質循環、進化、共生のシステム統合的理解。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 6_008: エネルギーと利用
+final stage6_008_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q1',
+    imageKeyword: 'energy_definition_types_kinetic_potential_heat',
+    imageType: 'diagram',
+    imageDescription: 'エネルギーの種類：運動エネルギー、位置エネルギー、熱エネルギー、電気エネルギー。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q2',
+    imageKeyword: 'energy_conservation_law_form_transformation',
+    imageType: 'diagram',
+    imageDescription: 'エネルギー保存法則：エネルギーは失われず形が変わる。位置→運動→熱。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q3',
+    imageKeyword: 'electrical_energy_power_generation_methods',
+    imageType: 'diagram',
+    imageDescription: '電気エネルギー：火力・水力・風力・太陽光による発電方法の違い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q4',
+    imageKeyword: 'fossil_fuels_coal_oil_natural_gas_ancient_energy',
+    imageType: 'diagram',
+    imageDescription: '化石燃料：古代の生物由来。太陽エネルギーを化学エネルギーとして蓄えたもの。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q5',
+    imageKeyword: 'nuclear_power_controlled_fission_radiation',
+    imageType: 'diagram',
+    imageDescription: '原子力：核分裂のエネルギー利用。放射線と放射性物質の管理が重要。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q6',
+    imageKeyword: 'renewable_energy_solar_wind_hydro_geothermal',
+    imageType: 'photo',
+    imageDescription: '再生可能エネルギー：太陽光、風力、水力、地熱。尽きることのないエネルギー源。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q7',
+    imageKeyword: 'energy_efficiency_led_lighting_smart_buildings',
+    imageType: 'diagram',
+    imageDescription: '省エネルギー：LED照明、高効率エアコン。同じ機能でより効率的に。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q8',
+    imageKeyword: 'peak_power_demand_smart_grid_battery_storage',
+    imageType: 'chart',
+    imageDescription: 'ピーク電力：日中の最大需要管理。蓄電池とスマートグリッド技術。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q9',
+    imageKeyword: 'hydrogen_energy_carrier_fuel_cells_clean',
+    imageType: 'diagram',
+    imageDescription: '水素エネルギー：燃料電池での発電。排出物は水のみ。次世代エネルギー。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q10',
+    imageKeyword: 'sustainable_energy_society_carbon_neutral_sdgs',
+    imageType: 'chart',
+    imageDescription: '持続可能なエネルギー社会：カーボンニュートラル、SDGs目標7、再生可能化。',
+    requiresAiGeneration: true,
+  ),
+];
+
 // ===============================
-// 他のステージの画像メタデータもここに追加
+// 他のステージの画像メタデータ
 // Stage 3_009 〜 3_012
 // Stage 4_012
-// Stage 5_011 〜 5_012
+// Stage 5_011 〜 5_012 ✅ 完成
+// Stage 6_008 ✅ 完成
 // ===============================
 
 /// 画像メタデータを全ステージから検索するヘルパー関数
@@ -3396,6 +3545,12 @@ Map<String, QuizImageMetadata> getQuizImageMetadata() {
     allImages[img.questionId] = img;
   }
   for (final img in stage5_010_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_011_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_012_images) {
     allImages[img.questionId] = img;
   }
 
