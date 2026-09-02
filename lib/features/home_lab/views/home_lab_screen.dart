@@ -30,6 +30,11 @@ class _HomeLabScreenState extends ConsumerState<HomeLabScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFF1F8E9),
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new),
+          onPressed: () => Navigator.pop(context),
+          tooltip: '戻る',
+        ),
         title: const Text('おうちラボ 🏡'),
         backgroundColor: const Color(0xFF2E7D32),
         foregroundColor: Colors.white,
