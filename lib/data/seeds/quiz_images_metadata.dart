@@ -546,9 +546,83 @@ final stage3007_images = [
   ),
 ];
 
+// Stage 3_008: むし（昆虫）・くもの特徴と行動
+final stage3008_images = [
+  QuizImageMetadata(
+    questionId: 'stage_3_008_q1',
+    imageKeyword: 'insect_body_three_parts_head_thorax_abdomen',
+    imageType: 'diagram',
+    imageDescription: '昆虫の体の3つの部分（頭・胸・腹）をカラフルに表示。複数の昆虫例（バッタ・トンボ）を横に並べて構造を比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_008_q2',
+    imageKeyword: 'spider_vs_insect_body_legs_comparison',
+    imageType: 'diagram',
+    imageDescription: 'クモと昆虫の体の構造と脚の本数を比較する図。クモ8本、昆虫6本を色分けして明確に区別。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_008_q3',
+    imageKeyword: 'insect_compound_eye_structure_ommatidia',
+    imageType: 'diagram',
+    imageDescription: '昆虫の複眼の拡大図。多くの小さなレンズ（個眼）が集まった構造を示す。単眼との違いも表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_008_q4',
+    imageKeyword: 'insect_antenna_sensory_organ',
+    imageType: 'diagram',
+    imageDescription: '昆虫の触角の役割を示す図。におい・空気の流れ・振動を感じるセンサーとしての機能を矢印で表現。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_008_q5',
+    imageKeyword: 'pollination_insect_flower_symbiosis',
+    imageType: 'diagram',
+    imageDescription: '昆虫が花を訪れて花粉を運ぶプロセス。蜜を吸う→花粉が体に付く→別の花へ移動という流れを矢印で示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_008_q6',
+    imageKeyword: 'insect_hunting_defense_behavior',
+    imageType: 'photo',
+    imageDescription: 'カマキリやテントウムシなど、狩りや防御行動を示す昆虫の写真。捕食者と被食者の関係を視覚的に表現。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_008_q7',
+    imageKeyword: 'seasonal_insect_behavior_cycles',
+    imageType: 'diagram',
+    imageDescription: '季節による昆虫の行動変化。春の活発な活動→夏の繁殖→秋の準備→冬の休眠というサイクルを時系列で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_008_q8',
+    imageKeyword: 'spider_web_structure_silk_properties',
+    imageType: 'photo',
+    imageDescription: 'クモの巣の複雑な構造と几何学的な美しさ。シルクの強度と伸縮性を示す写真と図解。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_008_q9',
+    imageKeyword: 'insect_metamorphosis_lifecycle_stages',
+    imageType: 'diagram',
+    imageDescription: '昆虫の完全変態（卵→幼虫→蛹→成虫）の4段階を図で表示。段階ごとの特徴を色分けして示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_008_q10',
+    imageKeyword: 'insect_behavior_instinct_learning',
+    imageType: 'diagram',
+    imageDescription: '昆虫の本能的行動と学習による行動の違いを示す比較図。例：蜜蜂の集団行動と学習。',
+    requiresAiGeneration: true,
+  ),
+];
+
 // ===============================
 // 他のステージの画像メタデータもここに追加
-// Stage 3_008 〜 3_012
+// Stage 3_009 〜 3_012
 // Stage 4_001 〜 4_011
 // Stage 5_001 〜 5_012
 // Stage 6_001 〜 6_012
@@ -578,6 +652,9 @@ Map<String, QuizImageMetadata> getQuizImageMetadata() {
     allImages[img.questionId] = img;
   }
   for (final img in stage3_007_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage3_008_images) {
     allImages[img.questionId] = img;
   }
 
