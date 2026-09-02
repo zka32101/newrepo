@@ -620,10 +620,232 @@ final stage3008_images = [
   ),
 ];
 
+// Stage 4_001: 骨と筋肉
+final stage4001_images = [
+  QuizImageMetadata(
+    questionId: 'stage_4_001_q1',
+    imageKeyword: 'bone_structure_support_function',
+    imageType: 'diagram',
+    imageDescription: '骨の基本構造（皮質骨・海綿骨・骨髄）と支持機能を示す図。複数の骨の例を並べて比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_001_q2',
+    imageKeyword: 'muscle_contraction_types',
+    imageType: 'diagram',
+    imageDescription: '筋肉の伸縮（収縮・弛緩）のプロセス。随意筋と不随意筋の違いを図で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_001_q3',
+    imageKeyword: 'joint_types_movement',
+    imageType: 'diagram',
+    imageDescription: '関節の種類（ヒンジ関節・球関節など）と可動域を示す図。各関節タイプの動き例。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_001_q4',
+    imageKeyword: 'tendon_muscle_bone_connection',
+    imageType: 'diagram',
+    imageDescription: '腱が筋肉と骨をつなぐ構造。伸縮時の変化を矢印で表現。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_001_q5',
+    imageKeyword: 'bone_growth_plate_development',
+    imageType: 'diagram',
+    imageDescription: '成長期の骨の成長板と成長プロセス。子どもと大人の骨の違い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_001_q6',
+    imageKeyword: 'vertebral_column_structure',
+    imageType: 'diagram',
+    imageDescription: '脊椎骨の構造と配列。各部位の名称と機能を色分けして表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_001_q7',
+    imageKeyword: 'rib_cage_protection_breathing',
+    imageType: 'diagram',
+    imageDescription: '肋骨かごの構造と呼吸時の動き。保護機能を矢印で表現。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_001_q8',
+    imageKeyword: 'brain_nerve_muscle_coordination',
+    imageType: 'diagram',
+    imageDescription: '脳→神経→筋肉という信号伝達のプロセス。情報経路を視覚的に示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_001_q9',
+    imageKeyword: 'nutrition_bone_muscle_health',
+    imageType: 'diagram',
+    imageDescription: 'カルシウム・タンパク質など骨と筋肉に必要な栄養素。食べ物の例を示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_001_q10',
+    imageKeyword: 'bone_muscle_injury_prevention',
+    imageType: 'photo',
+    imageDescription: '骨折予防・筋肉損傷予防の実践例。運動時の正しい姿勢と装具の使用。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 4_002: 電気（豆電球・乾電池）
+final stage4002_images = [
+  QuizImageMetadata(
+    questionId: 'stage_4_002_q1',
+    imageKeyword: 'electric_current_electron_flow',
+    imageType: 'diagram',
+    imageDescription: '電流は電子の流れを示す図。導体内の電子の動きを矢印で表現。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_002_q2',
+    imageKeyword: 'circuit_open_closed_path',
+    imageType: 'diagram',
+    imageDescription: '開いた回路と閉じた回路の違い。閉じた回路での電流の流れを矢印で示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_002_q3',
+    imageKeyword: 'conductor_insulator_materials',
+    imageType: 'diagram',
+    imageDescription: '導体と絶縁体の物質例。銅・鉄などの導体とゴム・プラスチックの絶縁体を色分けして表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_002_q4',
+    imageKeyword: 'voltage_current_ohm_law',
+    imageType: 'diagram',
+    imageDescription: '電圧・電流・抵抗の関係式（オームの法則）と具体例。グラフで視覚化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_002_q5',
+    imageKeyword: 'series_circuit_configuration',
+    imageType: 'diagram',
+    imageDescription: '直列回路の構成図。豆電球が順番に配置され、1つ切れると全部消えることを示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_002_q6',
+    imageKeyword: 'parallel_circuit_configuration',
+    imageType: 'diagram',
+    imageDescription: '並列回路の構成図。豆電球が並んで配置され、1つ切れても他が点灯することを示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_002_q7',
+    imageKeyword: 'switch_circuit_control',
+    imageType: 'diagram',
+    imageDescription: 'スイッチが開く・閉じるときの回路の状態変化。接点と切断を矢印で表現。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_002_q8',
+    imageKeyword: 'electrical_resistance_heat_generation',
+    imageType: 'diagram',
+    imageDescription: '抵抗が電気エネルギーを熱に変える仕組み。ニクロム線の例。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_002_q9',
+    imageKeyword: 'short_circuit_hazard_prevention',
+    imageType: 'diagram',
+    imageDescription: '短絡（ショート）の危険性を示す図。正しい接続と危険な接続を比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_002_q10',
+    imageKeyword: 'energy_conversion_electricity',
+    imageType: 'diagram',
+    imageDescription: '電気エネルギーから他のエネルギーへの変換。光・熱・音などの例。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 4_003: 空気（温度・空気の膨張）
+final stage4003_images = [
+  QuizImageMetadata(
+    questionId: 'stage_4_003_q1',
+    imageKeyword: 'air_composition_properties',
+    imageType: 'diagram',
+    imageDescription: '空気の組成（窒素・酸素・その他）を円グラフで表示。各成分の役割を説明。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_003_q2',
+    imageKeyword: 'temperature_measurement_scale',
+    imageType: 'diagram',
+    imageDescription: '温度計の読み方と摂氏スケール。様々な温度計（液体温度計・デジタル）の使い方。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_003_q3',
+    imageKeyword: 'air_thermal_expansion_volume',
+    imageType: 'diagram',
+    imageDescription: '気体の熱膨張。温めた空気が膨張し、冷めると縮む過程を矢印で示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_003_q4',
+    imageKeyword: 'gas_molecular_motion_theory',
+    imageType: 'diagram',
+    imageDescription: 'ボイル・シャルルの法則。分子の動きと温度・圧力の関係を微視的に表現。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_003_q5',
+    imageKeyword: 'atmospheric_pressure_altitude',
+    imageType: 'diagram',
+    imageDescription: '大気圧が高度によって変わることを示すグラフ。気圧計での測定例。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_003_q6',
+    imageKeyword: 'convection_circulation_patterns',
+    imageType: 'diagram',
+    imageDescription: '対流のプロセス。温かい空気が上昇し、冷たい空気が降下する循環を矢印で表現。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_003_q7',
+    imageKeyword: 'condensation_dew_point_formation',
+    imageType: 'diagram',
+    imageDescription: '結露のメカニズム。空気中の水蒸気が液体の水に変わるプロセス。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_003_q8',
+    imageKeyword: 'humidity_water_vapor_measurement',
+    imageType: 'diagram',
+    imageDescription: '湿度と絶対湿度の概念。湿度計での測定方法を図で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_003_q9',
+    imageKeyword: 'wind_formation_pressure_difference',
+    imageType: 'diagram',
+    imageDescription: '風の発生原因。気圧差による空気の流れを等圧線図で表現。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_003_q10',
+    imageKeyword: 'air_atmosphere_life_environment',
+    imageType: 'diagram',
+    imageDescription: '大気が生命を支える役割。温度調節・保護機能・呼吸などを示す。',
+    requiresAiGeneration: true,
+  ),
+];
+
 // ===============================
 // 他のステージの画像メタデータもここに追加
 // Stage 3_009 〜 3_012
-// Stage 4_001 〜 4_011
+// Stage 4_004 〜 4_011
 // Stage 5_001 〜 5_012
 // Stage 6_001 〜 6_012
 // ===============================
@@ -655,6 +877,17 @@ Map<String, QuizImageMetadata> getQuizImageMetadata() {
     allImages[img.questionId] = img;
   }
   for (final img in stage3_008_images) {
+    allImages[img.questionId] = img;
+  }
+
+  // 4年生
+  for (final img in stage4001_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage4002_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage4003_images) {
     allImages[img.questionId] = img;
   }
 
