@@ -842,10 +842,232 @@ final stage4003_images = [
   ),
 ];
 
+// Stage 4_004: 食べたものの移動と変化 (Food Digestion and Movement)
+final stage4004_images = [
+  QuizImageMetadata(
+    questionId: 'stage_4_004_q1',
+    imageKeyword: 'digestive_system_overview_organs',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_004_q2',
+    imageKeyword: 'teeth_types_cutting_molars_grinding',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_004_q3',
+    imageKeyword: 'saliva_enzyme_amylase_action',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_004_q4',
+    imageKeyword: 'esophageal_peristalsis_muscle_wave',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_004_q5',
+    imageKeyword: 'stomach_food_churning_gastric_juice',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_004_q6',
+    imageKeyword: 'gastric_acid_protein_breakdown_hcl',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_004_q7',
+    imageKeyword: 'small_intestine_villi_nutrient_absorption',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_004_q8',
+    imageKeyword: 'large_intestine_water_reabsorption_stool',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_004_q9',
+    imageKeyword: 'liver_pancreas_enzyme_bile_secretion',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_004_q10',
+    imageKeyword: 'food_digestion_timeline_complete_journey',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 4_005: 金属，水，空気と温度 (Metals, Water, Air and Temperature)
+final stage4005_images = [
+  QuizImageMetadata(
+    questionId: 'stage_4_005_q1',
+    imageKeyword: 'hot_metal_pot_handle_steam',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_005_q2',
+    imageKeyword: 'metal_railway_tracks_expansion_gap',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_005_q3',
+    imageKeyword: 'thermal_expansion_metal_ball_ring',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_005_q4',
+    imageKeyword: 'water_convection_currents_pot_boiling',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_005_q5',
+    imageKeyword: 'ice_cube_melting_to_liquid_water',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_005_q6',
+    imageKeyword: 'hot_air_balloon_lifting_off_clouds',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_005_q7',
+    imageKeyword: 'car_tire_pressure_gauge_heat',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_005_q8',
+    imageKeyword: 'pressure_cooker_steam_cooking',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_005_q9',
+    imageKeyword: 'thermometer_temperature_reading_liquid',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_005_q10',
+    imageKeyword: 'building_expansion_joint_flexibility',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 4_006: 月と星 (Moon and Stars)
+final stage4006_images = [
+  QuizImageMetadata(
+    questionId: 'stage_4_006_q1',
+    imageKeyword: 'moon_phases_cycle_lunar_calendar',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_006_q2',
+    imageKeyword: 'earth_moon_sun_geometry_orbit',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_006_q3',
+    imageKeyword: 'moon_surface_craters_maria_highlands',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_006_q4',
+    imageKeyword: 'full_moon_night_sky_bright_silver',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_006_q5',
+    imageKeyword: 'lunar_cycle_29_days_waxing_waning',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_006_q6',
+    imageKeyword: 'stars_constellations_orion_big_dipper',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_006_q7',
+    imageKeyword: 'moon_tides_ocean_gravity_effect',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_006_q8',
+    imageKeyword: 'star_colors_temperature_blue_red_yellow',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_006_q9',
+    imageKeyword: 'earth_rotation_night_sky_stars_movement',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_006_q10',
+    imageKeyword: 'moon_crescent_phases_shadow_geometry',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+];
+
 // ===============================
 // 他のステージの画像メタデータもここに追加
 // Stage 3_009 〜 3_012
-// Stage 4_004 〜 4_011
+// Stage 4_007 〜 4_011
 // Stage 5_001 〜 5_012
 // Stage 6_001 〜 6_012
 // ===============================
@@ -888,6 +1110,15 @@ Map<String, QuizImageMetadata> getQuizImageMetadata() {
     allImages[img.questionId] = img;
   }
   for (final img in stage4003_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage4004_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage4005_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage4006_images) {
     allImages[img.questionId] = img;
   }
 
