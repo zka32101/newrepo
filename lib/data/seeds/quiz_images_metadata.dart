@@ -2398,12 +2398,234 @@ final stage6_006_images = [
   ),
 ];
 
+// Stage 6_007: 電気とエネルギー
+final stage6_007_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_007_q1',
+    imageKeyword: 'electric_circuit_diagram',
+    imageType: 'diagram',
+    imageDescription: '電気回路：電源・導線・スイッチ・電球が完全につながる。電流の流れを矢印で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_007_q2',
+    imageKeyword: 'electrical_resistance_heat',
+    imageType: 'diagram',
+    imageDescription: '抵抗と発熱：細い導線の高い抵抗で電流が熱と光に変わる。ニクロム線の応用例。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_007_q3',
+    imageKeyword: 'series_parallel_circuits',
+    imageType: 'diagram',
+    imageDescription: '直列と並列回路の比較。電球の明るさ、電流の流れ経路の違いを図解。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_007_q4',
+    imageKeyword: 'power_generation_transmission',
+    imageType: 'diagram',
+    imageDescription: '発電所から送電へ：タービン回転 → 発電機 → 昇圧変圧器 → 送電線。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_007_q5',
+    imageKeyword: 'electromagnet_coil_current',
+    imageType: 'diagram',
+    imageDescription: '電磁石：コイルに電流を流すと磁場発生。巻き数と電流で磁力変化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_007_q6',
+    imageKeyword: 'solar_wind_renewable_energy',
+    imageType: 'photo',
+    imageDescription: '再生可能エネルギー：太陽光パネル、風力発電機。持続可能な電力供給。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_007_q7',
+    imageKeyword: 'energy_conversion_transformations',
+    imageType: 'diagram',
+    imageDescription: '電気エネルギーの変換：光・熱・機械運動・音への変換過程。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_007_q8',
+    imageKeyword: 'electrical_safety_grounding',
+    imageType: 'diagram',
+    imageDescription: '電気安全：アース接地、漏電遮断器、感電防止対策の図解。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_007_q9',
+    imageKeyword: 'static_electricity_discharge',
+    imageType: 'diagram',
+    imageDescription: '静電気：物体間の電子移動と放電現象。冬の乾燥による発生。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_007_q10',
+    imageKeyword: 'complex_circuit_kirchhoff_laws',
+    imageType: 'diagram',
+    imageDescription: '複雑な回路：複数電源と抵抗の組み合わせ。キルヒホッフの法則適用。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 6_008: 物質の変化
+final stage6_008_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q1',
+    imageKeyword: 'melting_ice_to_water',
+    imageType: 'diagram',
+    imageDescription: '融解：氷が水に変わる。融解点0℃での分子構造変化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q2',
+    imageKeyword: 'freezing_water_to_ice',
+    imageType: 'diagram',
+    imageDescription: '凝固：水が氷に固まる。凝固点での結晶化過程。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q3',
+    imageKeyword: 'evaporation_liquid_to_gas',
+    imageType: 'diagram',
+    imageDescription: '蒸発：液体の表面から気体へ。温度による分子運動の変化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q4',
+    imageKeyword: 'condensation_gas_to_liquid',
+    imageType: 'diagram',
+    imageDescription: '凝結：気体が液体に。結露と雲の形成原理。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q5',
+    imageKeyword: 'sublimation_dry_ice',
+    imageType: 'diagram',
+    imageDescription: '昇華：固体が気体に直接変わる。ドライアイスと防虫剤。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q6',
+    imageKeyword: 'density_temperature_water',
+    imageType: 'chart',
+    imageDescription: '密度：温度による体積変化。水の異常膨張（0℃～4℃）。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q7',
+    imageKeyword: 'boiling_phase_change_constant_temp',
+    imageType: 'diagram',
+    imageDescription: '沸騰：100℃での相転移。気圧による沸点変化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q8',
+    imageKeyword: 'molecular_motion_temperature',
+    imageType: 'diagram',
+    imageDescription: '分子運動：温度の本質。分子の激しさが温度を決定。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q9',
+    imageKeyword: 'thermal_expansion_contraction',
+    imageType: 'diagram',
+    imageDescription: '熱膨張：温度上昇で体積増加。橋・線路の伸縮継手。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q10',
+    imageKeyword: 'phase_change_nature_applications',
+    imageType: 'photo',
+    imageDescription: '物質変化の応用：水の循環、天気予報、食品保存、エネルギー利用。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 6_009: 力と運動
+final stage6_009_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_009_q1',
+    imageKeyword: 'force_definition_vectors',
+    imageType: 'diagram',
+    imageDescription: '力の基本：大きさと方向を持つベクト量。複数の力の合力。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_009_q2',
+    imageKeyword: 'inertia_newtons_first_law',
+    imageType: 'diagram',
+    imageDescription: '慣性の法則：外力がないと物体は等速運動を続ける。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_009_q3',
+    imageKeyword: 'newtons_second_law_fma',
+    imageType: 'diagram',
+    imageDescription: 'F=ma：力、質量、加速度の関係。運動方程式の基礎。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_009_q4',
+    imageKeyword: 'action_reaction_law',
+    imageType: 'diagram',
+    imageDescription: '作用反作用：等大で反対向きの力ペア。異なる物体に作用。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_009_q5',
+    imageKeyword: 'friction_forces',
+    imageType: 'diagram',
+    imageDescription: '摩擦力：動摩擦と静摩擦。垂直抗力との関係。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_009_q6',
+    imageKeyword: 'gravity_weight_mass',
+    imageType: 'diagram',
+    imageDescription: '重力と重さ：質量と重力の違い。重力加速度9.8m/s²。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_009_q7',
+    imageKeyword: 'air_resistance_terminal_velocity',
+    imageType: 'diagram',
+    imageDescription: '空気抵抗：終末速度。パラシュートの降下速度変化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_009_q8',
+    imageKeyword: 'velocity_speed_vector_scalar',
+    imageType: 'diagram',
+    imageDescription: '速度と速さ：方向付き（ベクトル）と方向なし（スカラー）。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_009_q9',
+    imageKeyword: 'acceleration_velocity_change',
+    imageType: 'diagram',
+    imageDescription: '加速度：速度変化率。正と負の加速度。加速と減速。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_009_q10',
+    imageKeyword: 'simple_machines_mechanical_advantage',
+    imageType: 'photo',
+    imageDescription: 'テコ・滑車・斜面：単純機械と機械的利得。仕事量の関係。',
+    requiresAiGeneration: true,
+  ),
+];
+
 // ===============================
 // 他のステージの画像メタデータもここに追加
 // Stage 3_009 〜 3_012
 // Stage 4_010 〜 4_011
 // Stage 5_010 〜 5_012
-// Stage 6_007 〜 6_012
+// Stage 6_010 〜 6_012
 // ===============================
 
 /// 画像メタデータを全ステージから検索するヘルパー関数
@@ -2511,6 +2733,15 @@ Map<String, QuizImageMetadata> getQuizImageMetadata() {
     allImages[img.questionId] = img;
   }
   for (final img in stage6_006_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_007_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_008_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_009_images) {
     allImages[img.questionId] = img;
   }
 
