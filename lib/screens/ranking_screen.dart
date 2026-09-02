@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/ranking_model.dart';
 import '../providers/ranking_provider.dart';
 import '../widgets/ranking_display_widget.dart';
+import '../widgets/tier_selector_widget.dart';
+import '../widgets/composite_filter_widget.dart';
+import '../widgets/tier_stats_widget.dart';
 import '../shared/theme/app_theme.dart';
 import '../shared/utils/responsive.dart';
 
@@ -23,10 +26,18 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
     RankingPeriod.monthly,
   ];
 
+  // ティア選択状態
+  late RankingTier _selectedTier = RankingTier.allTime;
+  late GradeLevel? _gradeFilter;
+  late SchoolYear? _monthFilter;
+  late bool _applyBothFilters = false;
+
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: periods.length, vsync: this);
+    _gradeFilter = null;
+    _monthFilter = null;
   }
 
   @override
@@ -62,12 +73,43 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
             ],
           ),
         ),
-        body: TabBarView(
-          controller: _tabController,
+        body: Column(
           children: [
-            _buildPeriodView(periods[0]),
-            _buildPeriodView(periods[1]),
-            _buildPeriodView(periods[2]),
+            // ティア選択セクション
+            TierSelectorWidget(
+              selectedTier: _selectedTier,
+              onTierChanged: (tier) {
+                setState(() => _selectedTier = tier);
+              },
+            ),
+
+            // 複合フィルターセクション（複合ティア選択時のみ表示）
+            if (_selectedTier == RankingTier.composite)
+              CompositeFilterWidget(
+                selectedGrade: _gradeFilter,
+                selectedMonth: _monthFilter,
+                applyBothFilters: _applyBothFilters,
+                onFilterChanged: (grade, month, both) {
+                  setState(() {
+                    _gradeFilter = grade;
+                    _monthFilter = month;
+                    _applyBothFilters = both;
+                  });
+                },
+                displayMode: FilterDisplayMode.simple,
+              ),
+
+            // ランキングビュー
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  _buildPeriodView(periods[0]),
+                  _buildPeriodView(periods[1]),
+                  _buildPeriodView(periods[2]),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -78,14 +120,84 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
     return SingleChildScrollView(
       child: Column(
         children: [
-          // トップ3表示
-          _buildTopThreeSection(period),
-          // ユーザー統計
-          _buildUserStatsSection(period),
+          // ティア統計情報（複合ティア以外）
+          if (_selectedTier != RankingTier.allTime) ...[
+            _buildTierStatsSection(period),
+          ],
+
+          // トップ3表示（全体ティアのみ）
+          if (_selectedTier == RankingTier.allTime) ...[
+            _buildTopThreeSection(period),
+            // ユーザー統計
+            _buildUserStatsSection(period),
+          ],
+
           // 全ランキング
           _buildRankingListSection(period),
         ],
       ),
+    );
+  }
+
+  /// 選択されたティアに基づいて適切なランキングプロバイダーを返す
+  AsyncValue<RankingList> _getRankingAsync(RankingPeriod period) {
+    return switch (_selectedTier) {
+      RankingTier.allTime => ref.watch(rankingProvider(period)),
+      RankingTier.byGrade => ref.watch(rankingByGradeProvider((
+        period: period,
+        grade: _gradeFilter ?? GradeLevel.grade3,
+      ))),
+      RankingTier.byStartMonth => ref.watch(rankingByStartMonthProvider((
+        period: period,
+        startMonth: _monthFilter ?? SchoolYear.april,
+      ))),
+      RankingTier.composite => ref.watch(rankingCompositeProvider((
+        period: period,
+        gradeFilter: _gradeFilter,
+        startMonthFilter: _monthFilter,
+        applyBothFilters: _applyBothFilters,
+      ))),
+    };
+  }
+
+  Widget _buildTierStatsSection(RankingPeriod period) {
+    final rankingAsync = _getRankingAsync(period);
+
+    return rankingAsync.when(
+      data: (ranking) {
+        if (ranking.userTierInfo == null) {
+          return const SizedBox.shrink();
+        }
+        return TierStatsWidget(
+          tierInfo: ranking.userTierInfo!,
+          isLoading: false,
+        );
+      },
+      loading: () {
+        return const TierStatsWidget(
+          tierInfo: TierRankingInfo(
+            tier: RankingTier.allTime,
+            tierDescription: 'Loading...',
+            totalParticipants: 0,
+            userRankInTier: 0,
+            correctRateRank: 0,
+            tierAverageScore: 0,
+            tierTopScore: 0,
+            isActiveTier: true,
+          ),
+          isLoading: true,
+        );
+      },
+      error: (error, stack) {
+        final responsivePadding = Responsive.getPadding(context);
+        return Padding(
+          padding: EdgeInsets.all(responsivePadding.left),
+          child: Text(
+            'ティア情報読み込み失敗: $error',
+            style: const TextStyle(color: Colors.red),
+          ),
+        );
+      },
     );
   }
 
@@ -177,7 +289,7 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
   }
 
   Widget _buildRankingListSection(RankingPeriod period) {
-    final rankingAsync = ref.watch(rankingProvider(period));
+    final rankingAsync = _getRankingAsync(period);
     final responsivePadding = Responsive.getPadding(context);
 
     return rankingAsync.when(
