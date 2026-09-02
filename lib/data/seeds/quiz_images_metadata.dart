@@ -2620,6 +2620,228 @@ final stage6_009_images = [
   ),
 ];
 
+// Stage 3_009: 小さな生き物と微生物
+final stage3_009_images = [
+  QuizImageMetadata(
+    questionId: 'stage_3_009_q1',
+    imageKeyword: 'bacteria_basics_yogurt',
+    imageType: 'diagram',
+    imageDescription: 'バクテリアの大きさと働き。目に見えない微生物がヨーグルトを作る過程。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_009_q2',
+    imageKeyword: 'beneficial_harmful_bacteria',
+    imageType: 'diagram',
+    imageDescription: '良いバクテリアと悪いバクテリアの違い。腸内細菌と病原菌。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_009_q3',
+    imageKeyword: 'microscope_observation',
+    imageType: 'diagram',
+    imageDescription: '顕微鏡の使い方と倍率。バクテリアが見えるまでの過程。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_009_q4',
+    imageKeyword: 'water_microorganisms_pond',
+    imageType: 'photo',
+    imageDescription: '池の水の中の小さな生き物。ミジンコとバクテリアの食物連鎖。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_009_q5',
+    imageKeyword: 'mold_fungi_kingdom',
+    imageType: 'diagram',
+    imageDescription: 'カビとキノコの構造。菌類の特徴。胞子の放出。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_009_q6',
+    imageKeyword: 'decomposers_ecosystem',
+    imageType: 'diagram',
+    imageDescription: '分解者の役割。落ち葉がなくなる過程。生態系の循環。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_009_q7',
+    imageKeyword: 'soil_microorganisms',
+    imageType: 'diagram',
+    imageDescription: '土の中の生き物。バクテリア、カビ、ミミズ。栄養豊富な土の構造。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_009_q8',
+    imageKeyword: 'fermented_foods_process',
+    imageType: 'photo',
+    imageDescription: '発酵食品。味噌、納豆、ヨーグルト。微生物による食べ物の変化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_009_q9',
+    imageKeyword: 'disease_prevention_hygiene',
+    imageType: 'diagram',
+    imageDescription: '病気予防。手洗い、加熱、清潔さ。病原菌から身を守る方法。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_009_q10',
+    imageKeyword: 'microscopic_food_chain',
+    imageType: 'diagram',
+    imageDescription: '顕微鏡の世界の食物連鎖。バクテリア→ミジンコ→大きな生き物。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 3_010: 岩石と土
+final stage3_010_images = [
+  QuizImageMetadata(
+    questionId: 'stage_3_010_q1',
+    imageKeyword: 'three_rock_types',
+    imageType: 'diagram',
+    imageDescription: '3つの岩の種類。火成岩、堆積岩、変成岩の特徴。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_010_q2',
+    imageKeyword: 'igneous_rocks_magma',
+    imageType: 'diagram',
+    imageDescription: '火成岩の形成。溶けたマグマが冷えて固まる過程。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_010_q3',
+    imageKeyword: 'sedimentary_rocks_layers',
+    imageType: 'diagram',
+    imageDescription: '堆積岩。砂や泥が積み重なって岩になる過程。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_010_q4',
+    imageKeyword: 'rock_weathering_process',
+    imageType: 'photo',
+    imageDescription: '岩の風化。雨水と温度変化で岩が壊れ、砂になっていく。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_010_q5',
+    imageKeyword: 'soil_composition',
+    imageType: 'diagram',
+    imageDescription: '土の成分。鉱物粒、有機物、水、空気の混合物。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_010_q6',
+    imageKeyword: 'soil_formation_time',
+    imageType: 'diagram',
+    imageDescription: '土ができるまでの時間。風化→砂→分解→有機物混合。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_010_q7',
+    imageKeyword: 'soil_types_particles',
+    imageType: 'chart',
+    imageDescription: '土の種類。砂土、粘土、ローム土。粒の大きさと特性。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_010_q8',
+    imageKeyword: 'fossils_ancient_life',
+    imageType: 'photo',
+    imageDescription: '化石。古代の生き物の痕跡。貝の化石と虫の琥珀。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_010_q9',
+    imageKeyword: 'geological_layers_strata',
+    imageType: 'diagram',
+    imageDescription: '地層。砂や泥が積み重なった層状構造。時間の経過を示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_010_q10',
+    imageKeyword: 'rock_identification_method',
+    imageType: 'diagram',
+    imageDescription: '岩の見分け方。色、硬さ、粒の大きさ、光沢を観察。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 3_011: 自然現象
+final stage3_011_images = [
+  QuizImageMetadata(
+    questionId: 'stage_3_011_q1',
+    imageKeyword: 'wind_temperature_difference',
+    imageType: 'diagram',
+    imageDescription: '風の発生。温かい空気と冷たい空気の動き。海風と陸風。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_011_q2',
+    imageKeyword: 'dew_morning_condensation',
+    imageType: 'photo',
+    imageDescription: '朝露。夜間に冷えた空気から水蒸気が水に変わる。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_011_q3',
+    imageKeyword: 'water_cycle_evaporation',
+    imageType: 'diagram',
+    imageDescription: '水の循環。蒸発→凝結→降水。太陽と水の無限の旅。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_011_q4',
+    imageKeyword: 'cloud_types_shapes',
+    imageType: 'photo',
+    imageDescription: '雲の種類。積雲、層雲、巻雲。高さと形による分類。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_011_q5',
+    imageKeyword: 'atmospheric_pressure_weather',
+    imageType: 'chart',
+    imageDescription: '気圧と天気。高気圧＝晴れ、低気圧＝雨。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_011_q6',
+    imageKeyword: 'daily_temperature_change',
+    imageType: 'chart',
+    imageDescription: '気温の変化。朝低い→昼高い→夜低い。太陽の高さの影響。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_011_q7',
+    imageKeyword: 'earth_tilt_seasons',
+    imageType: 'diagram',
+    imageDescription: '地軸の傾き。春夏秋冬の季節変化。太陽の光の角度。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_011_q8',
+    imageKeyword: 'seasonal_phenomena',
+    imageType: 'photo',
+    imageDescription: '季節現象。桜、セミ、紅葉、冬眠。自然界の周期。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_011_q9',
+    imageKeyword: 'weather_forecast_prediction',
+    imageType: 'diagram',
+    imageDescription: '天気予報。気象衛星、気象レーダー、コンピュータ計算。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_011_q10',
+    imageKeyword: 'natural_cycles_earth',
+    imageType: 'diagram',
+    imageDescription: '自然の周期。昼夜（24h）、月の周期（29.5日）、年（365日）。',
+    requiresAiGeneration: true,
+  ),
+];
+
 // Stage 6_010: 仕事と単純機械
 final stage6_010_images = [
   QuizImageMetadata(
@@ -2876,6 +3098,15 @@ Map<String, QuizImageMetadata> getQuizImageMetadata() {
     allImages[img.questionId] = img;
   }
   for (final img in stage3_008_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage3_009_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage3_010_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage3_011_images) {
     allImages[img.questionId] = img;
   }
 
