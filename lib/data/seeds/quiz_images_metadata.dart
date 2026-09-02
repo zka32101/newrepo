@@ -2176,12 +2176,234 @@ final stage6_003_images = [
   ),
 ];
 
+// Stage 6_004: 天体の動き
+final stage6_004_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_004_q1',
+    imageKeyword: 'daily_celestial_motion',
+    imageType: 'diagram',
+    imageDescription: '地球の自転による日周運動：東から西へ移動する太陽と星。地球が回転していることを示す図。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_004_q2',
+    imageKeyword: 'star_apparent_motion',
+    imageType: 'diagram',
+    imageDescription: '夜空の星が時間とともに動く様子。北極星を中心に回転する星々の軌跡。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_004_q3',
+    imageKeyword: 'moon_phases_cycle',
+    imageType: 'diagram',
+    imageDescription: '月の満ち欠けの周期。新月から満月までの約29.5日の変化を示す図。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_004_q4',
+    imageKeyword: 'moon_tidal_locking',
+    imageType: 'diagram',
+    imageDescription: '月が常に同じ面を地球に向ける理由。潮汐固定の仕組みを示す図。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_004_q5',
+    imageKeyword: 'solar_eclipse_diagram',
+    imageType: 'diagram',
+    imageDescription: '日食：月が太陽と地球の間に入る現象。本影と半影を表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_004_q6',
+    imageKeyword: 'lunar_eclipse_diagram',
+    imageType: 'diagram',
+    imageDescription: '月食：地球の影に月が入る現象。月が赤く見える理由を示す図。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_004_q7',
+    imageKeyword: 'earth_axial_tilt_seasons',
+    imageType: 'diagram',
+    imageDescription: '地軸の傾き（23.5度）による季節変化。夏至と冬至での太陽高度の違い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_004_q8',
+    imageKeyword: 'earth_orbit_constellations',
+    imageType: 'diagram',
+    imageDescription: '地球の公転と季節の星座変化。地球の位置によって見える星座が変わる。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_004_q9',
+    imageKeyword: 'seasonal_constellation_changes',
+    imageType: 'diagram',
+    imageDescription: '季節ごとに見える星座。春・夏・秋・冬の代表的な星座を表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_004_q10',
+    imageKeyword: 'celestial_observation_seasonal',
+    imageType: 'photo',
+    imageDescription: '夜間の天体観測風景と季節による星空の変化。プラネタリウムのドーム。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 6_005: 生物と環境
+final stage6_005_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_005_q1',
+    imageKeyword: 'food_chain_energy_flow',
+    imageType: 'diagram',
+    imageDescription: '食物連鎖とエネルギーの流れ。植物→草食動物→肉食動物。10%の法則を示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_005_q2',
+    imageKeyword: 'ecosystem_balance_components',
+    imageType: 'diagram',
+    imageDescription: '生態系：生産者・消費者・分解者と非生物成分。システム全体のバランス。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_005_q3',
+    imageKeyword: 'predator_prey_population_cycles',
+    imageType: 'chart',
+    imageDescription: '被食者と捕食者の個体数変動。周期的な上下の関係。ロトカ・ボルテラ図。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_005_q4',
+    imageKeyword: 'adaptation_natural_selection',
+    imageType: 'diagram',
+    imageDescription: '適応と自然選択。環境に合った形質が選ばれる過程。色の異なるモンシロチョウの例。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_005_q5',
+    imageKeyword: 'biodiversity_ecosystem_resilience',
+    imageType: 'diagram',
+    imageDescription: '生物多様性と生態系の安定性。多様な種ほど環境変化に強い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_005_q6',
+    imageKeyword: 'nitrogen_cycle_fixation',
+    imageType: 'diagram',
+    imageDescription: '窒素循環：窒素固定菌と豆科植物の共生。大気から土壌へ。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_005_q7',
+    imageKeyword: 'carbon_cycle_global_warming',
+    imageType: 'diagram',
+    imageDescription: '炭素循環とCO₂。光合成・呼吸・燃焼による大気中のCO₂変動。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_005_q8',
+    imageKeyword: 'symbiosis_mutualism',
+    imageType: 'diagram',
+    imageDescription: '共生関係：珊瑚と褐虫藻、地衣類など。相利共生の例。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_005_q9',
+    imageKeyword: 'extinction_conservation',
+    imageType: 'photo',
+    imageDescription: '絶滅危機の生物と保護活動。野生トラ、マウンテンゴリラなどの例。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_005_q10',
+    imageKeyword: 'sustainable_development_circular_economy',
+    imageType: 'diagram',
+    imageDescription: '持続可能な開発と循環経済。資源の循環利用と環境保護のバランス。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 6_006: 大地と地形
+final stage6_006_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_006_q1',
+    imageKeyword: 'rock_classification_types',
+    imageType: 'diagram',
+    imageDescription: '岩石の3分類：火成岩・堆積岩・変成岩。各々の形成過程を示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_006_q2',
+    imageKeyword: 'weathering_erosion_processes',
+    imageType: 'diagram',
+    imageDescription: '風化と侵食の違い。風化による粒子化と侵食による運搬を段階的に表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_006_q3',
+    imageKeyword: 'plate_tectonics_continents',
+    imageType: 'diagram',
+    imageDescription: 'プレートテクトニクス：南米とアフリカの大陸形状の一致。プレート境界。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_006_q4',
+    imageKeyword: 'mountain_formation_folding',
+    imageType: 'diagram',
+    imageDescription: '山地の形成：褶曲山脈（アルプス）と火山性山脈。プレート衝突の図。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_006_q5',
+    imageKeyword: 'volcanic_activity_magma',
+    imageType: 'diagram',
+    imageDescription: '火山活動：マグマの上昇、マグマ溜り、異なる噴火様式の比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_006_q6',
+    imageKeyword: 'earthquake_seismic_waves',
+    imageType: 'diagram',
+    imageDescription: '地震：P波とS波の伝播。震源の深さと震度。マグニチュード。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_006_q7',
+    imageKeyword: 'geological_timescale_dating',
+    imageType: 'chart',
+    imageDescription: '地質年代測定：放射性同位体の半減期。ウラン-鉛法、カリウム-アルゴン法。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_006_q8',
+    imageKeyword: 'mineral_crystal_structure',
+    imageType: 'diagram',
+    imageDescription: '鉱物：石英・長石・鉄鉱物の結晶構造と化学組成。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_006_q9',
+    imageKeyword: 'soil_formation_development',
+    imageType: 'diagram',
+    imageDescription: '土壌の発達：風化した岩石片と有機物。土壌断面図。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_006_q10',
+    imageKeyword: 'groundwater_aquifer_flow',
+    imageType: 'diagram',
+    imageDescription: '地下水：帯水層への浸透、流動、井戸汲み上げ。ダルシーの法則。',
+    requiresAiGeneration: true,
+  ),
+];
+
 // ===============================
 // 他のステージの画像メタデータもここに追加
 // Stage 3_009 〜 3_012
 // Stage 4_010 〜 4_011
 // Stage 5_010 〜 5_012
-// Stage 6_004 〜 6_012
+// Stage 6_007 〜 6_012
 // ===============================
 
 /// 画像メタデータを全ステージから検索するヘルパー関数
@@ -2280,6 +2502,15 @@ Map<String, QuizImageMetadata> getQuizImageMetadata() {
     allImages[img.questionId] = img;
   }
   for (final img in stage6_003_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_004_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_005_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_006_images) {
     allImages[img.questionId] = img;
   }
 
