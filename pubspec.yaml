@@ -61,8 +61,6 @@ dependencies:
   image_picker: ^1.0.0
   flutter_local_notifications: ^17.0.0
   timezone: ^0.9.0
-  share_plus: ^7.2.0
-  url_launcher: ^6.2.0
 
   # ============== Data Models ==============
   freezed_annotation: ^2.4.1
@@ -88,7 +86,6 @@ dependencies:
 
   # ============== 解説画面強化 ==============
   youtube_player_iframe: ^4.0.0   # YouTube インライン再生
-  url_launcher: ^6.2.0             # 外部リンク・YouTube 外部起動
   flutter_tts: ^4.2.0                  # 音声読み上げ
   flutter_markdown: ^0.7.3         # マークダウンレンダリング
   shimmer: ^3.0.0                  # ローディングシマー効果
