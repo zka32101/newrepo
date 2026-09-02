@@ -1510,11 +1510,233 @@ final stage5_003_images = [
   ),
 ];
 
+// Stage 5_004: 川の水の様子
+final stage5_004_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_004_q1',
+    imageKeyword: 'river_upstream_characteristics',
+    imageType: 'diagram',
+    imageDescription: '上流域の川の特徴：狭い幅、急な勾配、速い流れ、透明な水、大きな石を示す図。V字谷の形状。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_004_q2',
+    imageKeyword: 'river_middle_course_features',
+    imageType: 'diagram',
+    imageDescription: '中流域の川：幅が広がり、勾配が緩くなり、流速は減少。砂利床が見られる。蛇行し始める様子。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_004_q3',
+    imageKeyword: 'river_lower_course_delta',
+    imageType: 'diagram',
+    imageDescription: '下流域の川：広い幅、緩い勾配、遅い流速、濁った水。三角州の形成。河口への流れ。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_004_q4',
+    imageKeyword: 'river_organisms_adaptation',
+    imageType: 'diagram',
+    imageDescription: '川に住む生き物の適応：上流（トビケラ、カワゲラ）から下流（ハマシジミ）までの生物分布。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_004_q5',
+    imageKeyword: 'stream_organisms_zones',
+    imageType: 'chart',
+    imageDescription: '流速と生き物の関係：速い流速に適応した生き物と遅い流速に適応した生き物の違い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_004_q6',
+    imageKeyword: 'flow_velocity_erosion_power',
+    imageType: 'chart',
+    imageDescription: '流速と侵食力の関係：流速が2倍になると侵食力は4倍（二乗則）。グラフで表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_004_q7',
+    imageKeyword: 'slow_flow_deposition',
+    imageType: 'diagram',
+    imageDescription: '流速が遅いときの堆積：砂や泥が底に落ちて積もる。下流域での平原形成を示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_004_q8',
+    imageKeyword: 'sediment_particle_settling',
+    imageType: 'diagram',
+    imageDescription: '粒の大きさと沈むスピード：大きい粒は早く沈み、小さい粒はゆっくり沈む。ストークスの法則。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_004_q9',
+    imageKeyword: 'grain_size_downstream',
+    imageType: 'chart',
+    imageDescription: '下流に向かての粒のサイズ変化：上流の大きな石から中流の砂利、下流の砂へ。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_004_q10',
+    imageKeyword: 'river_system_integration',
+    imageType: 'diagram',
+    imageDescription: '川全体の統合的理解：侵食、運搬、堆積の3つのプロセスが上流から下流へ連続的に起こる。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 5_005: 流水のはたらき
+final stage5_005_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_005_q1',
+    imageKeyword: 'water_erosion_velocity_relationship',
+    imageType: 'diagram',
+    imageDescription: '川の水による侵食：流速が速いほど侵食力が強い。崖の侵食、地面の削られる様子。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_005_q2',
+    imageKeyword: 'water_transport_sediment',
+    imageType: 'diagram',
+    imageDescription: '川による運搬：岩石片や砂、泥が水に流されて下流へ運ばれる過程。濁流の形成。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_005_q3',
+    imageKeyword: 'sediment_deposition_process',
+    imageType: 'diagram',
+    imageDescription: '堆積：流速が落ちると砂や泥が底に沈んで積もる。氾濫原での土壌形成。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_005_q4',
+    imageKeyword: 'v_shaped_valley_erosion',
+    imageType: 'diagram',
+    imageDescription: 'V字谷の形成：上流域の急流が両岸を削って、V字形の谷を作る過程。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_005_q5',
+    imageKeyword: 'river_delta_formation',
+    imageType: 'diagram',
+    imageDescription: '三角州の形成：下流で流速が落ちると、粒子が積もって平らな土地ができる。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_005_q6',
+    imageKeyword: 'flow_velocity_erosion_power_law',
+    imageType: 'chart',
+    imageDescription: '流速の二乗則：流速が2倍になると侵食力は4倍。エネルギー効率の関係。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_005_q7',
+    imageKeyword: 'deposition_low_velocity',
+    imageType: 'diagram',
+    imageDescription: '低流速での堆積：流速が遅い下流域で、細かい粒（砂・泥）が沈みやすい。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_005_q8',
+    imageKeyword: 'stokes_law_settling_speed',
+    imageType: 'diagram',
+    imageDescription: 'ストークスの法則：粒の大きさと落ちる速度の関係。直径が小さいほど遅くなる。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_005_q9',
+    imageKeyword: 'downstream_grain_reduction',
+    imageType: 'chart',
+    imageDescription: '下流への粒のサイズ減少：上流の巨礫から下流の砂泥へ段階的に変化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_005_q10',
+    imageKeyword: 'three_processes_integration',
+    imageType: 'diagram',
+    imageDescription: '3つのはたらきの統合：侵食・運搬・堆積が上流から下流へ連続して起こる景観。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 5_006: 物の燃え方
+final stage5_006_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_006_q1',
+    imageKeyword: 'combustion_three_conditions',
+    imageType: 'diagram',
+    imageDescription: '燃焼の3つの条件：燃えるもの（可燃物）、酸素、加熱。3つ全て揃う必要。ベン図で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_006_q2',
+    imageKeyword: 'flammable_materials_examples',
+    imageType: 'diagram',
+    imageDescription: '燃えるもの（可燃物）の例：ろうそく、木、紙、石油、ガスなど。状態による違い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_006_q3',
+    imageKeyword: 'oxygen_role_combustion',
+    imageType: 'diagram',
+    imageDescription: '酸素の役割：燃焼に必要な酸素。空気中の酸素（約21%）が燃焼を支える。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_006_q4',
+    imageKeyword: 'ignition_temperature_point',
+    imageType: 'chart',
+    imageDescription: '着火点（点火温度）：物質ごとに異なる。ろうの着火点、木の着火点、ガスの着火点。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_006_q5',
+    imageKeyword: 'combustion_products_ash',
+    imageType: 'diagram',
+    imageDescription: '燃焼の生成物：灰、二酸化炭素、水蒸気。完全燃焼と不完全燃焼の違い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_006_q6',
+    imageKeyword: 'carbon_dioxide_emission',
+    imageType: 'diagram',
+    imageDescription: 'CO₂の発生：燃料が燃えると二酸化炭素が生成される。温暖化への影響。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_006_q7',
+    imageKeyword: 'chemical_vs_physical_change',
+    imageType: 'diagram',
+    imageDescription: '化学変化：燃焼は化学変化。物質の成分が変わり、元に戻らない。物理変化との違い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_006_q8',
+    imageKeyword: 'combustion_reaction_principle',
+    imageType: 'diagram',
+    imageDescription: '燃焼の化学反応：可燃物＋酸素→熱＋灰＋ガス。エネルギー放出の化学反応。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_006_q9',
+    imageKeyword: 'fire_extinguishing_methods',
+    imageType: 'diagram',
+    imageDescription: '消火方法：燃焼の3条件のいずれかを取り除く。冷却、酸素遮断、可燃物除去。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_006_q10',
+    imageKeyword: 'combustion_environmental_impact',
+    imageType: 'diagram',
+    imageDescription: '燃焼と環境：化石燃料の燃焼によるCO₂増加と地球温暖化。持続可能なエネルギーの必要性。',
+    requiresAiGeneration: true,
+  ),
+];
+
 // ===============================
 // 他のステージの画像メタデータもここに追加
 // Stage 3_009 〜 3_012
 // Stage 4_010 〜 4_011
-// Stage 5_004 〜 5_012
+// Stage 5_007 〜 5_012
 // Stage 6_001 〜 6_012
 // ===============================
 
@@ -1585,6 +1807,15 @@ Map<String, QuizImageMetadata> getQuizImageMetadata() {
     allImages[img.questionId] = img;
   }
   for (final img in stage5_003_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_004_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_005_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_006_images) {
     allImages[img.questionId] = img;
   }
 
