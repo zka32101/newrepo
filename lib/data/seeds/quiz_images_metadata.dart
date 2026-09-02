@@ -1286,11 +1286,235 @@ final stage4009_images = [
   ),
 ];
 
+/// 5年生（Grade 5）の画像メタデータ
+
+// Stage 5_001: 花から実へ
+final stage5_001_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_001_q1',
+    imageKeyword: 'flower_parts_stamen_pistil',
+    imageType: 'diagram',
+    imageDescription: '花の構造：おしべ（雄性器官）とめしべ（雌性器官）を詳しく示す図。花粉の形成と子房の位置を色分けして表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_001_q2',
+    imageKeyword: 'pollination_stigma_process',
+    imageType: 'diagram',
+    imageDescription: '受粉のプロセス：花粉が柱頭に付着する様子。虫と風による受粉の2つのパターンを比較表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_001_q3',
+    imageKeyword: 'fruit_development_ovary',
+    imageType: 'diagram',
+    imageDescription: '受粉後から実への変化。子房が膨らんで実になる過程を時系列で表示。果皮の形成も示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_001_q4',
+    imageKeyword: 'seed_embryo_structure',
+    imageType: 'diagram',
+    imageDescription: '種の内部構造：種皮、胚、胚乳を示す断面図。受精した胚珠が種になる過程。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_001_q5',
+    imageKeyword: 'seed_reproduction_genetics',
+    imageType: 'diagram',
+    imageDescription: '種ができる意義：受精による遺伝情報の組み合わせ。親の特性が子に継承されることを矢印で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_001_q6',
+    imageKeyword: 'flower_pollination_strategies',
+    imageType: 'diagram',
+    imageDescription: '花の特性と受粉方法の関係。虫を引き寄せる花（色・香り・蜜）vs 風による受粉の花を比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_001_q7',
+    imageKeyword: 'pollination_methods_insect_wind',
+    imageType: 'diagram',
+    imageDescription: '虫による受粉と風による受粉のメカニズム。虫が蜜を吸う時の花粉付着と風での花粉運搬を対比。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_001_q8',
+    imageKeyword: 'fruit_structure_layers',
+    imageType: 'diagram',
+    imageDescription: '実の構造：果皮（外側）・果肉（中身）・種を層状に表示。様々な果実の例（スイカ、モモ、豆）を並べて比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_001_q9',
+    imageKeyword: 'seed_dispersal_methods',
+    imageType: 'diagram',
+    imageDescription: '種の散布方法：風で運ばれる種（羽毛）、動物が食べて運ぶ種、水に浮かぶ種、粘着性で付着する種を図示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_001_q10',
+    imageKeyword: 'seed_dispersal_adaptation',
+    imageType: 'diagram',
+    imageDescription: '種の形態と散布方法の適応。各種の形状（タンポポの羽毛、ココナッツの繊維など）と環境への最適化を示す。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 5_002: 植物の発芽と成長
+final stage5_002_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_002_q1',
+    imageKeyword: 'seed_germination_conditions',
+    imageType: 'diagram',
+    imageDescription: '種の発芽に必要な条件（水・温度・空気）を3つのグループに分けて表示。各条件が揃わない場合との比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_002_q2',
+    imageKeyword: 'germination_root_shoot',
+    imageType: 'diagram',
+    imageDescription: '発芽の過程：種から根と芽が出る様子。根が下へ、芽が上へ向かう性質（地性弾性・光性）を矢印で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_002_q3',
+    imageKeyword: 'root_shoot_development',
+    imageType: 'diagram',
+    imageDescription: '根と芽の成長：根が地中で伸び、根毛から水と栄養を吸収。茎が上に伸び、葉が展開する過程を時系列で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_002_q4',
+    imageKeyword: 'photosynthesis_leaf_process',
+    imageType: 'diagram',
+    imageDescription: '光合成の仕組み：葉が太陽光を受けて、水と二酸化炭素から栄養（デンプン）を作る過程を示す図。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_002_q5',
+    imageKeyword: 'chlorophyll_green_leaf',
+    imageType: 'diagram',
+    imageDescription: '葉の緑色と光合成の関係。クロロフィル（葉緑体）が光を吸収する仕組み。様々な色の葉（黄、赤）との比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_002_q6',
+    imageKeyword: 'plant_nutrition_water_minerals',
+    imageType: 'diagram',
+    imageDescription: '植物の栄養：根から吸収する水と無機塩類。光合成で作られた栄養との違いを示す流れ図。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_002_q7',
+    imageKeyword: 'root_hair_absorption',
+    imageType: 'diagram',
+    imageDescription: '根毛による水と栄養の吸収：根毛の構造と吸収のメカニズム。土の中の水が根毛から吸い上げられる様子。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_002_q8',
+    imageKeyword: 'phototropism_geotropism',
+    imageType: 'diagram',
+    imageDescription: '光性と地性：茎が光に向かう光性、根が土に向かう地性を示す。植物の生長の方向性を矢印で表現。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_002_q9',
+    imageKeyword: 'plant_growth_stages_time',
+    imageType: 'chart',
+    imageDescription: '植物の成長段階：発芽 → 本葉展開 → 成長 → 開花 → 結実を時間軸で表示。季節ごとの成長の変化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_002_q10',
+    imageKeyword: 'plant_life_cycle_seasons',
+    imageType: 'diagram',
+    imageDescription: '植物のライフサイクル：種の休眠から発芽、成長、開花、種の形成、再び休眠までの完全な周期。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 5_003: メダカの育ち方
+final stage5_003_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_003_q1',
+    imageKeyword: 'medaka_egg_laying_structure',
+    imageType: 'diagram',
+    imageDescription: 'メダカの卵：水草に産み付けられた卵。卵の大きさ（3-5mm）、透明性、粘着糸の構造を詳しく示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_003_q2',
+    imageKeyword: 'egg_structure_internal',
+    imageType: 'diagram',
+    imageDescription: 'メダカの卵の内部構造：卵黄、胚、卵殻膜を示す断面図。受精卵の発育段階の違いを3段階で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_003_q3',
+    imageKeyword: 'egg_hatching_temperature',
+    imageType: 'chart',
+    imageDescription: '孵化までの時間と温度の関係。25℃で約10-14日、20℃で約3週間など、温度による孵化期間の変化をグラフ表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_003_q4',
+    imageKeyword: 'fry_development_stages',
+    imageType: 'diagram',
+    imageDescription: '稚魚の発育段階：孵化直後（3-4mm）のヨークサック付き稚魚から、ヨークサック消失、鰭の発達までの時系列。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_003_q5',
+    imageKeyword: 'medaka_sex_differences_fin',
+    imageType: 'diagram',
+    imageDescription: 'メダカのオスとメスの識別：背鰭と肛門周辺の違い。オスは背鰭が尖り、メスは丸い形状を図示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_003_q6',
+    imageKeyword: 'fish_growth_juvenile_adult',
+    imageType: 'diagram',
+    imageDescription: '幼魚から成魚への成長：体長の増加（稚魚3mm → 幼魚1cm → 成魚3-4cm）と体形の変化を時系列で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_003_q7',
+    imageKeyword: 'medaka_spawning_season',
+    imageType: 'chart',
+    imageDescription: 'メダカの産卵時期：5月〜7月の産卵期間。水温25℃前後と日中の光周期（昼間時間の長さ）が産卵を促すことを図示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_003_q8',
+    imageKeyword: 'failed_hatching_causes',
+    imageType: 'diagram',
+    imageDescription: '孵化に失敗する原因：未受精卵、低温、カビ感染、酸素不足。各原因による卵の状態（変色、分解など）の違い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_003_q9',
+    imageKeyword: 'fish_lifespan_aging',
+    imageType: 'chart',
+    imageDescription: 'メダカの寿命と年齢による変化：1〜3年の寿命。体色の変化、活動量の減少、エネルギー消費量を時系列で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_003_q10',
+    imageKeyword: 'medaka_lifecycle_complete',
+    imageType: 'diagram',
+    imageDescription: 'メダカの完全なライフサイクル：卵 → 孵化 → 稚魚 → 幼魚 → 成魚 → 産卵 → 老化 → 死亡。環状の図で示す。',
+    requiresAiGeneration: true,
+  ),
+];
+
 // ===============================
 // 他のステージの画像メタデータもここに追加
 // Stage 3_009 〜 3_012
 // Stage 4_010 〜 4_011
-// Stage 5_001 〜 5_012
+// Stage 5_004 〜 5_012
 // Stage 6_001 〜 6_012
 // ===============================
 
@@ -1350,6 +1574,17 @@ Map<String, QuizImageMetadata> getQuizImageMetadata() {
     allImages[img.questionId] = img;
   }
   for (final img in stage4009_images) {
+    allImages[img.questionId] = img;
+  }
+
+  // 5年生
+  for (final img in stage5_001_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_002_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_003_images) {
     allImages[img.questionId] = img;
   }
 
