@@ -176,9 +176,379 @@ final stage3_005_images = [
   ),
 ];
 
+// Stage 3_002: 植物の育ち（種の発芽・成長）
+final stage3002_images = [
+  QuizImageMetadata(
+    questionId: 'stage_3_002_q1',
+    imageKeyword: 'seed_germination_three_conditions',
+    imageType: 'diagram',
+    imageDescription: '種が発芽するために必要な3つの条件（水・空気・温度）を示す図。各条件の役割を矢印と色で分かりやすく表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_002_q2',
+    imageKeyword: 'plant_growth_three_elements',
+    imageType: 'diagram',
+    imageDescription: '植物の成長に必要な3つの要素（水・光・養分）と、それぞれが植物のどの部分に吸収されるかを示す図。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_002_q3',
+    imageKeyword: 'water_management_seed_germination',
+    imageType: 'experiment',
+    imageDescription: '種に与える水の量を比較する実験。十分な水、少量の水、水なしの3つの条件で種を発芽させた結果を並べて表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_002_q4',
+    imageKeyword: 'temperature_seed_germination',
+    imageType: 'diagram',
+    imageDescription: '温度が種の発芽に与える影響。温度計付きで暖かい環境・常温・冷たい環境での発芽速度の違いを示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_002_q5',
+    imageKeyword: 'root_gravitropism_downward_growth',
+    imageType: 'experiment',
+    imageDescription: '根が常に下へ向かって成長する特性（重力屈性）を示す実験。横に置いた種の根が曲がって下へ向かう様子。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_002_q6',
+    imageKeyword: 'seed_germination_without_light',
+    imageType: 'experiment',
+    imageDescription: '暗い場所と明るい場所で種を発芽させた比較。暗い場所でも発芽することを示す実験結果。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_002_q7',
+    imageKeyword: 'plant_growth_light_requirement',
+    imageType: 'diagram',
+    imageDescription: '植物の成長段階と光の必要性。発芽時は光不要、その後の成長には光が必須という流れを示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_002_q8',
+    imageKeyword: 'cotyledon_vs_true_leaves',
+    imageType: 'diagram',
+    imageDescription: 'タネの中に入っているの葉（子葉）と、その後出てくる本当の葉（本葉）の形と構造の違いを比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_002_q9',
+    imageKeyword: 'germination_light_darkness',
+    imageType: 'experiment',
+    imageDescription: '発芽の速度が光と関係なく、温度と水が重要であることを示す実験。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_002_q10',
+    imageKeyword: 'root_geotropism_water_tropism',
+    imageType: 'experiment',
+    imageDescription: '根が下へ向かい（重力屈性）、水のある方へ向かう（水屈性）性質を示す実験。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 3_003: チョウの育ち・完全変態
+final stage3003_images = [
+  QuizImageMetadata(
+    questionId: 'stage_3_003_q1',
+    imageKeyword: 'butterfly_complete_metamorphosis_stages',
+    imageType: 'diagram',
+    imageDescription: 'チョウの完全変態の4段階（卵→幼虫→蛹→成虫）を図で表示。時間経過を矢印で示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_003_q2',
+    imageKeyword: 'butterfly_eggs_observation',
+    imageType: 'photo',
+    imageDescription: 'チョウの卵の写真。非常に小さく、複雑な模様のある形を詳しく表示。葉の上に産み付けられた卵の配置。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_003_q3',
+    imageKeyword: 'butterfly_caterpillar_feeding_growth',
+    imageType: 'photo',
+    imageDescription: 'チョウの幼虫（毛虫）が葉を食べている様子。幼虫が徐々に大きくなる過程（脱皮）を示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_003_q4',
+    imageKeyword: 'butterfly_pupa_metamorphosis_inside',
+    imageType: 'diagram',
+    imageDescription: '蛹の中で起こっている変態の様子。器官が再構成されるプロセスを内部図で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_003_q5',
+    imageKeyword: 'butterfly_eclosion_wing_drying',
+    imageType: 'photo',
+    imageDescription: '蛹から羽化したばかりのチョウ。羽がまだ湿った状態から、翅が開いて乾く過程を段階的に表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_003_q6',
+    imageKeyword: 'insect_metamorphosis_complete_incomplete',
+    imageType: 'diagram',
+    imageDescription: 'チョウ（完全変態）とバッタ（不完全変態）の違いを比較する図。段階数の違いを視覚的に示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_003_q7',
+    imageKeyword: 'butterfly_adult_proboscis_nectar_feeding',
+    imageType: 'photo',
+    imageDescription: 'チョウの成虫が花の蜜を吸う様子。丸まった口（口吻）の構造を詳しく表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_003_q8',
+    imageKeyword: 'butterfly_pupa_internal_transformation',
+    imageType: 'diagram',
+    imageDescription: '蛹の内部での組織再編成を示す。幼虫時代の器官が成虫の器官に変わるプロセス。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_003_q9',
+    imageKeyword: 'monarch_caterpillar_host_plant_selection',
+    imageType: 'photo',
+    imageDescription: 'オオカバマダラの幼虫がトウワタの葉を食べる様子。チョウの幼虫が特定の食草を選ぶ習性。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_003_q10',
+    imageKeyword: 'butterfly_wing_scales_microscopic_structure',
+    imageType: 'diagram',
+    imageDescription: 'チョウの翅の構造。微小な鱗粉（りんぷん）が並んでいる様子を拡大図で表示。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 3_004: 物と重さ
+final stage3004_images = [
+  QuizImageMetadata(
+    questionId: 'stage_3_004_q1',
+    imageKeyword: 'balance_scale_weighing_method',
+    imageType: 'experiment',
+    imageDescription: 'はかりを使った物の重さ測定方法。砂や水、金属など異なる材質の物をはかりで測定。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_004_q2',
+    imageKeyword: 'metal_density_comparison',
+    imageType: 'photo',
+    imageDescription: '同じ大きさの鉄と銅の重さを比較。密度の違いを視覚的に理解させる。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_004_q3',
+    imageKeyword: 'mass_conservation_law_clay',
+    imageType: 'experiment',
+    imageDescription: '粘土をいろいろな形に変えても、重さは変わらないことを示す実験。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_004_q4',
+    imageKeyword: 'accurate_measurement_balance_scale',
+    imageType: 'diagram',
+    imageDescription: 'はかりの正確な読み方。デジタルはかりと上皿はかりの使い方を示す図。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_004_q5',
+    imageKeyword: 'mass_volume_distinction_cotton_iron',
+    imageType: 'diagram',
+    imageDescription: '同じ重さの綿と鉄の体積の違い。密度の概念を視覚的に表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_004_q6',
+    imageKeyword: 'iron_aluminum_density_comparison',
+    imageType: 'photo',
+    imageDescription: '同じ体積の鉄とアルミニウム。重さの違いから密度の違いを理解する。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_004_q7',
+    imageKeyword: 'mass_conservation_clay_shapes',
+    imageType: 'experiment',
+    imageDescription: 'いろいろな形に変形した粘土。形がどう変わっても質量は変わらないこと。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_004_q8',
+    imageKeyword: 'mass_conservation_pulverization',
+    imageType: 'experiment',
+    imageDescription: '固い物を砕いた場合。粉々にしても全体の重さは変わらないことを実証。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_004_q9',
+    imageKeyword: 'spider_insect_leg_count_comparison',
+    imageType: 'diagram',
+    imageDescription: 'クモ（8本）と昆虫（6本）の脚の本数比較。図解で分かりやすく表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_004_q10',
+    imageKeyword: 'mass_conservation_law_fundamental',
+    imageType: 'diagram',
+    imageDescription: '物質の質量は変わらないという原理を示す。加熱・混合・分割など様々な変化を例に。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 3_006: ゴムや風の力
+final stage3006_images = [
+  QuizImageMetadata(
+    questionId: 'stage_3_006_q1',
+    imageKeyword: 'rubber_band_elastic_force_distance',
+    imageType: 'experiment',
+    imageDescription: 'ゴム紐を引き伸ばす距離と、それに伴う弾む力（弾性力）の関係を示す。距離が長いほど力が大きい。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_006_q2',
+    imageKeyword: 'wind_power_sail_force',
+    imageType: 'experiment',
+    imageDescription: '帆に当たる風の力を感じさせる実験。同じ風でも帆の面積が大きいほど力が強くなる。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_006_q3',
+    imageKeyword: 'compressed_air_elastic_force_projectile',
+    imageType: 'experiment',
+    imageDescription: '圧縮した空気が放つ力。ストローや吹き矢で物を飛ばす実験。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_006_q4',
+    imageKeyword: 'wind_force_sail_utilization',
+    imageType: 'diagram',
+    imageDescription: '風の力を帆で受けて、物や乗り物を動かす応用例。帆船やウィンドサーフィン、風車。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_006_q5',
+    imageKeyword: 'elasticity_elastic_force_springs',
+    imageType: 'diagram',
+    imageDescription: 'ゴムやバネのような弾性力の性質。引き伸ばしたり圧縮したりするとエネルギーが蓄積される。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_006_q6',
+    imageKeyword: 'rubber_band_car_distance_relationship',
+    imageType: 'experiment',
+    imageDescription: 'ゴム動力の車。ゴムを巻く回数（距離）と車が走る距離の関係を実測。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_006_q7',
+    imageKeyword: 'wind_power_force_application',
+    imageType: 'photo',
+    imageDescription: '風の力を利用した実例。凧、帆、風車など日常の応用例を写真で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_006_q8',
+    imageKeyword: 'compressed_air_pressure_force',
+    imageType: 'diagram',
+    imageDescription: '空気を圧縮したときの圧力と力の関係。圧縮の度合いと力の大きさの比例関係。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_006_q9',
+    imageKeyword: 'elasticity_elastic_vs_plastic_deformation',
+    imageType: 'diagram',
+    imageDescription: 'ゴムのような弾性変形と、粘土のような塑性変形の違いを示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_006_q10',
+    imageKeyword: 'wind_power_generation_turbine',
+    imageType: 'photo',
+    imageDescription: '風力発電の風車。風の力を電気エネルギーに変える仕組みを示す。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 3_007: 太陽と地面の様子
+final stage3007_images = [
+  QuizImageMetadata(
+    questionId: 'stage_3_007_q1',
+    imageKeyword: 'sun_movement_east_west_earth_rotation',
+    imageType: 'diagram',
+    imageDescription: '太陽が東から西へ移動して見える理由。地球の自転によるものであることを示す図。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_007_q2',
+    imageKeyword: 'day_night_length_seasonal_variation',
+    imageType: 'diagram',
+    imageDescription: '季節による昼と夜の長さの変化。春分・夏至・秋分・冬至での日中の長さの違い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_007_q3',
+    imageKeyword: 'shadow_length_sun_angle_position',
+    imageType: 'experiment',
+    imageDescription: '影の長さと太陽の高さの関係。朝・昼・夕方で影の長さが変わる実験。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_007_q4',
+    imageKeyword: 'shadow_direction_opposite_sun',
+    imageType: 'diagram',
+    imageDescription: '影が太陽と反対方向にできることを示す図。太陽の位置と影の方向の関係。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_007_q5',
+    imageKeyword: 'solar_radiation_ground_heating_air',
+    imageType: 'diagram',
+    imageDescription: '太陽の熱放射が地面を温める→地面から熱が放射される→空気が温まるプロセス。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_007_q6',
+    imageKeyword: 'angle_of_incidence_solar_heating',
+    imageType: 'diagram',
+    imageDescription: '太陽の入射角と地面の加熱効率の関係。垂直に当たるほど効率的に加熱される。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_007_q7',
+    imageKeyword: 'winter_sun_low_angle_short_daylight',
+    imageType: 'diagram',
+    imageDescription: '冬の太陽が低い角度にあることで、昼が短く、地面を効率的に温められないことを示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_007_q8',
+    imageKeyword: 'daytime_nighttime_temperature_solar_energy',
+    imageType: 'diagram',
+    imageDescription: '太陽が照っている間は地面が温まり、夜間は冷える温度変化。エネルギー源が太陽であることを示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_007_q9',
+    imageKeyword: 'sand_surface_temperature_absorption',
+    imageType: 'photo',
+    imageDescription: '砂と石の表面温度の違い。砂が石より温まりやすく冷めやすい性質を比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_007_q10',
+    imageKeyword: 'stone_heat_retention_thermal_capacity',
+    imageType: 'photo',
+    imageDescription: '石が砂より冷めにくい性質。熱容量の違いを示す実験。',
+    requiresAiGeneration: true,
+  ),
+];
+
 // ===============================
 // 他のステージの画像メタデータもここに追加
-// Stage 3_002 〜 3_012
+// Stage 3_008 〜 3_012
 // Stage 4_001 〜 4_011
 // Stage 5_001 〜 5_012
 // Stage 6_001 〜 6_012
@@ -192,7 +562,22 @@ Map<String, QuizImageMetadata> getQuizImageMetadata() {
   for (final img in stage3_001_images) {
     allImages[img.questionId] = img;
   }
+  for (final img in stage3_002_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage3_003_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage3_004_images) {
+    allImages[img.questionId] = img;
+  }
   for (final img in stage3_005_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage3_006_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage3_007_images) {
     allImages[img.questionId] = img;
   }
 
