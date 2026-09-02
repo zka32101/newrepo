@@ -79,17 +79,32 @@ class _GradeTestScreenState extends ConsumerState<GradeTestScreen> {
           gradient: AppColors.scienceGradient,
         ),
         child: SafeArea(
-          child: Center(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.science,
-                    color: Colors.white,
-                    size: 64,
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8, top: 8),
+                  child: IconButton(
+                    icon: const Icon(Icons.arrow_back_ios_new,
+                        color: Colors.white),
+                    onPressed: () => Navigator.pop(context),
+                    tooltip: '戻る',
                   ),
+                ),
+              ),
+              Expanded(
+                child: Center(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.science,
+                          color: Colors.white,
+                          size: 64,
+                        ),
                   const SizedBox(height: 16),
                   const Text(
                     '学年末まとめテスト',
@@ -195,9 +210,12 @@ class _GradeTestScreenState extends ConsumerState<GradeTestScreen> {
                       ),
                     ),
                   ),
-                ],
+                      ],
+                    ),
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),

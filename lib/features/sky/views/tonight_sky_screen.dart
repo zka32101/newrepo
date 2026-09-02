@@ -18,6 +18,11 @@ class TonightSkyScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFF0A0A1A),
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new),
+          onPressed: () => Navigator.pop(context),
+          tooltip: '戻る',
+        ),
         title: const Text('今夜の空 🌌'),
         backgroundColor: const Color(0xFF0D1B4B),
         foregroundColor: Colors.white,

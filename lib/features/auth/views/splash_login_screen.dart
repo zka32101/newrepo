@@ -49,13 +49,25 @@ class _SplashLoginScreenState extends ConsumerState<SplashLoginScreen>
       return;
     }
 
-    final profileState = ref.read(profileProvider).value;
-    if (profileState == null || !profileState.hasProfiles) {
-      // プロフィール未作成 → 作成画面へ
-      context.go('/profile-create');
-    } else {
-      // プロフィール作成済み → ホームへ直遷移（profile-select をスキップ）
-      context.go('/home');
+    // AsyncNotifierのロード完了を待つため、ref.read().valueではなくfutureを待つ
+    try {
+      final profileFuture = ref.read(profileProvider.future);
+      final profileState = await profileFuture;
+
+      if (!mounted) return;
+
+      if (!profileState.hasProfiles) {
+        // プロフィール未作成 → 作成画面へ
+        context.go('/profile-create');
+      } else {
+        // プロフィール作成済み → ホームへ直遷移（profile-select をスキップ）
+        context.go('/home');
+      }
+    } catch (e) {
+      // エラーが発生した場合はプロフィール作成画面へ
+      if (mounted) {
+        context.go('/profile-create');
+      }
     }
   }
 
@@ -69,7 +81,7 @@ class _SplashLoginScreenState extends ConsumerState<SplashLoginScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(gradient: AppColors.scienceGradient),
+        decoration: const BoxDecoration(gradient: AppColors.warmLiteratureGradient),
         child: SafeArea(
           child: Center(
             child: FadeTransition(
@@ -79,23 +91,23 @@ class _SplashLoginScreenState extends ConsumerState<SplashLoginScreen>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // アイコン（ビーカーアニメーション）
+                    // アイコン（ペンと本）
                     Container(
                       width: 120,
                       height: 120,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Colors.white.withValues(alpha: 0.9),
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.15),
-                            blurRadius: 24,
-                            offset: const Offset(0, 8),
+                            color: Colors.black.withValues(alpha: 0.2),
+                            blurRadius: 20,
+                            offset: const Offset(0, 6),
                           ),
                         ],
                       ),
                       child: const Center(
-                        child: Text('🔬', style: TextStyle(fontSize: 60)),
+                        child: Text('📚', style: TextStyle(fontSize: 60)),
                       ),
                     ),
                     const SizedBox(height: 32),
@@ -104,23 +116,47 @@ class _SplashLoginScreenState extends ConsumerState<SplashLoginScreen>
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.white70,
-                        letterSpacing: 4,
+                        letterSpacing: 3,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     const SizedBox(height: 6),
-                    const Text(
-                      '理科',
-                      style: TextStyle(
-                        fontSize: 48,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        letterSpacing: 4,
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Colors.white.withValues(alpha: 0.6),
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      child: const Text(
+                        '国語',
+                        style: TextStyle(
+                          fontSize: 48,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          letterSpacing: 4,
+                          shadows: [
+                            Shadow(
+                              color: Colors.black12,
+                              offset: Offset(2, 2),
+                              blurRadius: 4,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(height: 16),
                     const Text(
-                      'たのしく　まなぼう！',
-                      style: TextStyle(fontSize: 16, color: Colors.white70),
+                      'ことばの世界へようこそ',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.white70,
+                        fontStyle: FontStyle.italic,
+                        letterSpacing: 1,
+                      ),
                     ),
                     const SizedBox(height: 64),
                     // ローディングドット

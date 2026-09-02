@@ -79,6 +79,11 @@ class _CreatureCameraScreenState extends ConsumerState<CreatureCameraScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFF0F4C3B),
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new),
+          onPressed: () => Navigator.pop(context),
+          tooltip: '戻る',
+        ),
         title: const Text('いきものカメラ 📷'),
         backgroundColor: const Color(0xFF0D3D2E),
         foregroundColor: Colors.white,

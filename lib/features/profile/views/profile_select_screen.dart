@@ -38,7 +38,19 @@ class _ProfileSelectView extends ConsumerWidget {
         child: SafeArea(
           child: Column(
             children: [
-              const SizedBox(height: 32),
+              // バックボタン
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8, top: 8, bottom: 16),
+                  child: IconButton(
+                    icon: const Icon(Icons.arrow_back_ios_new,
+                        color: Colors.white),
+                    onPressed: () => Navigator.pop(context),
+                    tooltip: '戻る',
+                  ),
+                ),
+              ),
               // タイトル
               const Text(
                 'だれがあそぶ？',
