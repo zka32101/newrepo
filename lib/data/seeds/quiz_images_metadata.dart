@@ -3064,11 +3064,233 @@ final stage6_012_images = [
   ),
 ];
 
+// Stage 4_010: 月の形の変わり方
+final stage4_010_images = [
+  QuizImageMetadata(
+    questionId: 'stage_4_010_q1',
+    imageKeyword: 'moon_phases_lunar_cycle_new_full',
+    imageType: 'diagram',
+    imageDescription: '月の形の変わり方：新月から満月まで。月が地球の周りを回る動き。29.5日の周期。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_010_q2',
+    imageKeyword: 'moon_sunlight_reflection',
+    imageType: 'diagram',
+    imageDescription: '月は太陽の光を反射する天体。地球から見える月の照らされた部分は太陽の位置に依存。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_010_q3',
+    imageKeyword: 'moon_earth_sun_positions_geometry',
+    imageType: 'diagram',
+    imageDescription: '月・地球・太陽の位置関係。月が地球の周りを回る軌道と照らされ方の変化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_010_q4',
+    imageKeyword: 'new_moon_crescent_moon_visibility',
+    imageType: 'diagram',
+    imageDescription: '新月と三日月：地球から見える月の部分。新月は太陽とほぼ同じ方向。三日月は夕方に見える。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_010_q5',
+    imageKeyword: 'quarter_moon_half_illuminated',
+    imageType: 'diagram',
+    imageDescription: '上弦の月と下弦の月：月が四半分に照らされた状態。上弦は真夜中に見える。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_010_q6',
+    imageKeyword: 'full_moon_completely_illuminated',
+    imageType: 'diagram',
+    imageDescription: '満月：月全体が太陽に照らされる。地球の反対側の夜空に見える。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_010_q7',
+    imageKeyword: 'lunar_cycle_periodicity_29_5_days',
+    imageType: 'chart',
+    imageDescription: '月の満ち欠けの周期：新月から新月までが29.5日。毎晩少しずつ形が変わる。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_010_q8',
+    imageKeyword: 'moon_visibility_times_appearance',
+    imageType: 'diagram',
+    imageDescription: '月が見える時間帯の変化：新月は昼間、満月は夜中。観測時刻の関係。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_010_q9',
+    imageKeyword: 'moon_shadow_terminator_line',
+    imageType: 'diagram',
+    imageDescription: '月の光と影の境界線（終止線）。太陽光が斜めに当たるため凹凸がはっきり見える。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_010_q10',
+    imageKeyword: 'moon_observation_patterns_recording',
+    imageType: 'chart',
+    imageDescription: '月の観察記録：毎日の形と見える時間帯を記録。規則性を発見する。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 4_011: 天気と情報
+final stage4_011_images = [
+  QuizImageMetadata(
+    questionId: 'stage_4_011_q1',
+    imageKeyword: 'atmospheric_pressure_high_low',
+    imageType: 'diagram',
+    imageDescription: '気圧：高気圧と低気圧。空気の重さと天気の関係。高気圧は晴れ、低気圧は雨。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_011_q2',
+    imageKeyword: 'temperature_measurement_instrument_shelter',
+    imageType: 'photo',
+    imageDescription: '百葉箱：温度計を直射日光から守り、通風させ正確に測定する白い箱。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_011_q3',
+    imageKeyword: 'barometer_air_pressure_measurement',
+    imageType: 'photo',
+    imageDescription: 'バロメーター：気圧を測る道具。気圧の高い・低いで天気が予測できる。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_011_q4',
+    imageKeyword: 'anemometer_wind_speed_direction',
+    imageType: 'photo',
+    imageDescription: '風速計と風向計：風の速さと方向を測定する気象観測機器。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_011_q5',
+    imageKeyword: 'humidity_moisture_air_measurement',
+    imageType: 'diagram',
+    imageDescription: '湿度：空気に含まれる水蒸気の量。100%に近いほど雨が降りやすい。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_011_q6',
+    imageKeyword: 'weather_map_isobars_pressure_lines',
+    imageType: 'diagram',
+    imageDescription: '天気図：等圧線で気圧配置を表示。高気圧と低気圧の位置が天気を決める。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_011_q7',
+    imageKeyword: 'weather_fronts_warm_cold_system',
+    imageType: 'diagram',
+    imageDescription: '前線：温暖前線と寒冷前線。気団の衝突で雨や天気変化が起こる。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_011_q8',
+    imageKeyword: 'weather_data_interpretation_analysis',
+    imageType: 'chart',
+    imageDescription: 'データ解釈：気圧・気温・湿度などのデータから天気を推測する方法。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_011_q9',
+    imageKeyword: 'weather_forecasting_methods_prediction',
+    imageType: 'diagram',
+    imageDescription: '天気予報の仕組み：気象データをコンピュータで分析して数日先を予測。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_011_q10',
+    imageKeyword: 'weather_observation_network_stations',
+    imageType: 'photo',
+    imageDescription: '気象観測所：全国各地で気象データを24時間測定・報告。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 5_010: 物の溶け方
+final stage5_010_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_010_q1',
+    imageKeyword: 'dissolution_process_molecular_level',
+    imageType: 'diagram',
+    imageDescription: '溶ける仕組み：固体が液体に分散して分子レベルで混ざる。見た目は均一な液体。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_010_q2',
+    imageKeyword: 'solubility_temperature_effects',
+    imageType: 'chart',
+    imageDescription: '溶解度と温度：温度が高いほど多くの物質が水に溶ける。物質によって曲線が異なる。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_010_q3',
+    imageKeyword: 'saturation_solution_maximum_dissolved',
+    imageType: 'diagram',
+    imageDescription: '飽和溶液：水に溶けきった状態。これ以上溶けない最大値。温度低下で結晶が析出。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_010_q4',
+    imageKeyword: 'cooling_crystallization_cooling_curve',
+    imageType: 'chart',
+    imageDescription: '冷却と結晶化：熱した飽和溶液を冷まし、溶けきれなくなった物質が結晶として固体化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_010_q5',
+    imageKeyword: 'salt_unique_properties_solubility',
+    imageType: 'diagram',
+    imageDescription: '食塩の特異性：温度による溶解度の変化が小さい。水に容易に溶けるが逆温度効果。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_010_q6',
+    imageKeyword: 'evaporation_water_removal_concentration',
+    imageType: 'diagram',
+    imageDescription: '蒸発：水を熱して蒸発させ、溶けた物質だけが残る。塩を取り出す方法の一つ。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_010_q7',
+    imageKeyword: 'filtration_separation_insoluble',
+    imageType: 'diagram',
+    imageDescription: 'ろ過：溶けない固体と液体を分ける方法。ろ紙を使い小さな粒子も除去。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_010_q8',
+    imageKeyword: 'solution_vs_suspension_transparency',
+    imageType: 'diagram',
+    imageDescription: '溶液と懸濁液：溶液は透明で均一。懸濁液は濁り、時間で沈殿する。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_010_q9',
+    imageKeyword: 'color_transparency_dissolved_dye',
+    imageType: 'diagram',
+    imageDescription: '色と透明性：溶けた物質による着色。分子分散で光を透す（透明）。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_010_q10',
+    imageKeyword: 'polar_nonpolar_solvent_solubility',
+    imageType: 'diagram',
+    imageDescription: '極性と溶解性：水は極性溶媒で塩を溶かす。油は非極性で塩を溶かさない。',
+    requiresAiGeneration: true,
+  ),
+];
+
 // ===============================
 // 他のステージの画像メタデータもここに追加
 // Stage 3_009 〜 3_012
-// Stage 4_010 〜 4_011
-// Stage 5_010 〜 5_012
+// Stage 4_012
+// Stage 5_011 〜 5_012
 // ===============================
 
 /// 画像メタデータを全ステージから検索するヘルパー関数
@@ -3138,6 +3360,12 @@ Map<String, QuizImageMetadata> getQuizImageMetadata() {
   for (final img in stage4009_images) {
     allImages[img.questionId] = img;
   }
+  for (final img in stage4_010_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage4_011_images) {
+    allImages[img.questionId] = img;
+  }
 
   // 5年生
   for (final img in stage5_001_images) {
@@ -3165,6 +3393,9 @@ Map<String, QuizImageMetadata> getQuizImageMetadata() {
     allImages[img.questionId] = img;
   }
   for (final img in stage5_009_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_010_images) {
     allImages[img.questionId] = img;
   }
 
