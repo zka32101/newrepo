@@ -1064,10 +1064,232 @@ final stage4006_images = [
   ),
 ];
 
+// Stage 4_007: 天気と季節 (Weather and Seasons)
+final stage4007_images = [
+  QuizImageMetadata(
+    questionId: 'stage_4_007_q1',
+    imageKeyword: 'temperature_thermometer_four_seasons_gradual_change',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_007_q2',
+    imageKeyword: 'sunrise_sunset_sun_path_angle_seasonal_variation',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_007_q3',
+    imageKeyword: 'cumulus_stratus_cirrus_cloud_types_sky',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_007_q4',
+    imageKeyword: 'rain_formation_water_cycle_precipitation_drops',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_007_q5',
+    imageKeyword: 'wind_formation_air_pressure_temperature_gradient',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_007_q6',
+    imageKeyword: 'monsoon_seasonal_wind_patterns_weather_arrows',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_007_q7',
+    imageKeyword: 'humidity_dew_condensation_water_vapor_droplets',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_007_q8',
+    imageKeyword: 'animal_migration_hibernation_seasonal_behavior_nature',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_007_q9',
+    imageKeyword: 'weather_map_high_pressure_low_pressure_symbols',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_007_q10',
+    imageKeyword: 'spring_summer_autumn_winter_seasonal_landscape_changes',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 4_008: 物の動きと力 (Motion and Force)
+final stage4008_images = [
+  QuizImageMetadata(
+    questionId: 'stage_4_008_q1',
+    imageKeyword: 'force_push_pull_action_examples',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_008_q2',
+    imageKeyword: 'object_motion_velocity_direction_change',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_008_q3',
+    imageKeyword: 'friction_surface_resistance_brake_force',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_008_q4',
+    imageKeyword: 'weight_mass_scale_measurement_gravity',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_008_q5',
+    imageKeyword: 'gravity_falling_object_earth_attraction',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_008_q6',
+    imageKeyword: 'speed_velocity_speedometer_direction_vector',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_008_q7',
+    imageKeyword: 'motion_acceleration_car_turning_elevator',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_008_q8',
+    imageKeyword: 'lever_principle_seesaw_mechanical_advantage',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_008_q9',
+    imageKeyword: 'pulley_system_rope_mechanical_load',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_008_q10',
+    imageKeyword: 'collision_impact_momentum_ball_crash',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 4_009: 光 (Light)
+final stage4009_images = [
+  QuizImageMetadata(
+    questionId: 'stage_4_009_q1',
+    imageKeyword: 'light_source_sun_fire_bulb_emission',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_009_q2',
+    imageKeyword: 'light_travel_straight_line_path_rays',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_009_q3',
+    imageKeyword: 'shadow_formation_light_blocking_object',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_009_q4',
+    imageKeyword: 'shadow_length_change_sun_angle_time',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_009_q5',
+    imageKeyword: 'mirror_reflection_plane_surface_angle',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_009_q6',
+    imageKeyword: 'light_refraction_lens_bending_angle',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_009_q7',
+    imageKeyword: 'lens_converging_diverging_focus_image',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_009_q8',
+    imageKeyword: 'color_spectrum_prism_wavelength_visible',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_009_q9',
+    imageKeyword: 'transparent_translucent_opaque_materials_light',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_009_q10',
+    imageKeyword: 'eye_vision_light_pupil_retina_image',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+];
+
 // ===============================
 // 他のステージの画像メタデータもここに追加
 // Stage 3_009 〜 3_012
-// Stage 4_007 〜 4_011
+// Stage 4_010 〜 4_011
 // Stage 5_001 〜 5_012
 // Stage 6_001 〜 6_012
 // ===============================
@@ -1119,6 +1341,15 @@ Map<String, QuizImageMetadata> getQuizImageMetadata() {
     allImages[img.questionId] = img;
   }
   for (final img in stage4006_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage4007_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage4008_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage4009_images) {
     allImages[img.questionId] = img;
   }
 
