@@ -1732,11 +1732,233 @@ final stage5_006_images = [
   ),
 ];
 
+// Stage 5_007: 電流と磁石
+final stage5_007_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_007_q1',
+    imageKeyword: 'electromagnet_vs_permanent',
+    imageType: 'diagram',
+    imageDescription: '電磁石と常温磁石の違い：電池がある電磁石は電源で操作でき、常温磁石は電気なしで常に磁力を持つ。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_007_q2',
+    imageKeyword: 'strengthen_electromagnet',
+    imageType: 'diagram',
+    imageDescription: '電磁石を強くする方法：電流を増やす、コイルの巻き数を増やす、鉄芯を使う。比較図で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_007_q3',
+    imageKeyword: 'electromagnet_applications',
+    imageType: 'diagram',
+    imageDescription: '電磁石の使われ方：スクラップクレーン、MRI機器、リニアモーターカー、電子レンジ。実例を図示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_007_q4',
+    imageKeyword: 'magnetic_switches_circuits',
+    imageType: 'diagram',
+    imageDescription: '磁石の利用：スイッチ、制御回路。改札機、自動販売機、洗濯機での使用例。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_007_q5',
+    imageKeyword: 'magnetic_field_visualization',
+    imageType: 'diagram',
+    imageDescription: '磁場の見える化：MRI、地磁気観測、スピーカーの磁場。磁力線図で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_007_q6',
+    imageKeyword: 'current_magnetic_force',
+    imageType: 'diagram',
+    imageDescription: '電流と磁力の関係：調光スイッチ、モーター制御、電動工具での応用。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_007_q7',
+    imageKeyword: 'coil_systems_applications',
+    imageType: 'diagram',
+    imageDescription: '複数コイルの利用：変圧器、電動モーター、IH調理器。相互誘導の原理。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_007_q8',
+    imageKeyword: 'dc_vs_ac_current',
+    imageType: 'diagram',
+    imageDescription: '直流と交流の違い：懐中電灯（直流）とコンセント（交流）。波形と用途の比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_007_q9',
+    imageKeyword: 'radio_waves_electromagnets',
+    imageType: 'diagram',
+    imageDescription: 'ラジオと電磁波：ラジオ、テレビ、携帯電話、Wi-Fi。電磁波の種類と周波数。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_007_q10',
+    imageKeyword: 'modern_technology_applications',
+    imageType: 'diagram',
+    imageDescription: '現代の応用：MRI、ICカード、ハイブリッド車、リニアモーターカー。電磁気技術の未来。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 5_008: 電流と磁石（実験）
+final stage5_008_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_008_q1',
+    imageKeyword: 'circuit_basic_components',
+    imageType: 'diagram',
+    imageDescription: '基本的な電気回路：電池、導線、豆球、スイッチの接続。電流が流れる様子。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_008_q2',
+    imageKeyword: 'series_vs_parallel_circuits',
+    imageType: 'diagram',
+    imageDescription: '直列と並列の違い：直列で豆球の明るさ、並列での分流。各接続方法の比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_008_q3',
+    imageKeyword: 'conductor_insulator_materials',
+    imageType: 'diagram',
+    imageDescription: '導体と不導体：銅、アルミニウム（導体）とゴム、プラスチック（不導体）の分類。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_008_q4',
+    imageKeyword: 'switch_mechanism_control',
+    imageType: 'diagram',
+    imageDescription: 'スイッチの仕組み：接点の開閉で電流の流れを制御。照明スイッチの構造。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_008_q5',
+    imageKeyword: 'electric_resistance_heat',
+    imageType: 'diagram',
+    imageDescription: '電気抵抗と熱：抵抗の大きさと発熱量の関係。電熱線の赤熱を示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_008_q6',
+    imageKeyword: 'circuit_power_consumption',
+    imageType: 'diagram',
+    imageDescription: '電力消費量：W = V × I。異なる機器の消費電力を比較表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_008_q7',
+    imageKeyword: 'battery_types_specifications',
+    imageType: 'chart',
+    imageDescription: '電池の種類：アルカリ電池、充電電池。電圧と容量の違いを表で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_008_q8',
+    imageKeyword: 'safety_circuit_protection',
+    imageType: 'diagram',
+    imageDescription: '安全な電気：漏電遮断器、ヒューズ、アース。過電流保護の仕組み。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_008_q9',
+    imageKeyword: 'electromagnetic_force_motor',
+    imageType: 'diagram',
+    imageDescription: '電磁力の利用：モーター、リレー、ベルの動作。電流と磁力の相互作用。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_008_q10',
+    imageKeyword: 'circuit_design_problem_solving',
+    imageType: 'diagram',
+    imageDescription: '回路設計：条件に合わせた直列/並列の選択。実践的な問題解決。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 5_009: 熱による変化
+final stage5_009_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_009_q1',
+    imageKeyword: 'thermal_expansion_principle',
+    imageType: 'diagram',
+    imageDescription: '熱による膨張：原子の振動が増え、物体が膨張する。温度と体積の関係。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_009_q2',
+    imageKeyword: 'thermometer_operation',
+    imageType: 'diagram',
+    imageDescription: '温度計の仕組み：液体（水銀またはアルコール）の熱膨張を目盛りで表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_009_q3',
+    imageKeyword: 'solid_material_expansion',
+    imageType: 'diagram',
+    imageDescription: '固体の膨張：鉄道のレール、建物の継ぎ目。膨張に備えた隙間。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_009_q4',
+    imageKeyword: 'material_expansion_rates',
+    imageType: 'chart',
+    imageDescription: '材料による膨張率の違い：アルミニウム > 鉄 > ガラス。膨張係数の比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_009_q5',
+    imageKeyword: 'cooling_contraction',
+    imageType: 'diagram',
+    imageDescription: '冷却と収縮：温度が下がるとき、物体は縮む。水の異常膨張の例外。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_009_q6',
+    imageKeyword: 'bimetallic_strip_application',
+    imageType: 'diagram',
+    imageDescription: '二重金属片：膨張率の異なる2つの金属を貼り合わせた温度センサー。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_009_q7',
+    imageKeyword: 'density_temperature_change',
+    imageType: 'diagram',
+    imageDescription: '密度の変化：温度が上がると同じ質量で体積が増え、密度が減少。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_009_q8',
+    imageKeyword: 'thermal_stress_deformation',
+    imageType: 'diagram',
+    imageDescription: '熱応力による変形：制限された膨張が応力を生む。破裂や亀裂の例。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_009_q9',
+    imageKeyword: 'water_anomalous_expansion',
+    imageType: 'diagram',
+    imageDescription: '水の異常膨張：4℃で最小密度。氷が浮く理由。生態系への影響。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_009_q10',
+    imageKeyword: 'thermal_engineering_applications',
+    imageType: 'diagram',
+    imageDescription: '熱工学への応用：橋の伸縮継ぎ目、パイプラインの設計、精密機器。',
+    requiresAiGeneration: true,
+  ),
+];
+
 // ===============================
 // 他のステージの画像メタデータもここに追加
 // Stage 3_009 〜 3_012
 // Stage 4_010 〜 4_011
-// Stage 5_007 〜 5_012
+// Stage 5_010 〜 5_012
 // Stage 6_001 〜 6_012
 // ===============================
 
@@ -1816,6 +2038,15 @@ Map<String, QuizImageMetadata> getQuizImageMetadata() {
     allImages[img.questionId] = img;
   }
   for (final img in stage5_006_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_007_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_008_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_009_images) {
     allImages[img.questionId] = img;
   }
 
