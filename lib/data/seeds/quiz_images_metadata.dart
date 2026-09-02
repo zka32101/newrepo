@@ -2620,12 +2620,233 @@ final stage6_009_images = [
   ),
 ];
 
+// Stage 6_010: 仕事と単純機械
+final stage6_010_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_010_q1',
+    imageKeyword: 'work_force_distance_product',
+    imageType: 'diagram',
+    imageDescription: '仕事の定義：力と距離の積。力×距離＝仕事。異なる力と距離の組み合わせ。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_010_q2',
+    imageKeyword: 'work_calculation_joules',
+    imageType: 'diagram',
+    imageDescription: '仕事の計算：ニュートン×メートル＝ジュール。実例：エレベータで人が上昇する場合。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_010_q3',
+    imageKeyword: 'lever_fulcrum_mechanical_advantage',
+    imageType: 'diagram',
+    imageDescription: 'てこの原理：支点から遠いほど少ない力で持ち上げられる。複数の事例（シーソー、バール）。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_010_q4',
+    imageKeyword: 'pulley_systems_fixed_movable',
+    imageType: 'diagram',
+    imageDescription: '滑車：定滑車（方向変更）と動滑車（力を減らす）。複合滑車系。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_010_q5',
+    imageKeyword: 'inclined_plane_angle_slope',
+    imageType: 'diagram',
+    imageDescription: '斜面：急さと必要な力の関係。垂直上昇と斜面での仕事量比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_010_q6',
+    imageKeyword: 'wheel_axle_torque_rotation',
+    imageType: 'diagram',
+    imageDescription: '車輪と軸：半径の比で回転力が変わる。ドアノブ、ハンドル、時計。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_010_q7',
+    imageKeyword: 'screw_helix_pitch_force',
+    imageType: 'diagram',
+    imageDescription: 'ねじ：斜面の応用。ピッチと回転力の関係。ドライバーの柄の効果。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_010_q8',
+    imageKeyword: 'mechanical_advantage_ratio',
+    imageType: 'diagram',
+    imageDescription: '機械的有利：出力÷入力。力と距離のトレードオフ。仕事の原理。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_010_q9',
+    imageKeyword: 'energy_efficiency_percentage',
+    imageType: 'chart',
+    imageDescription: 'エネルギー効率：有用な出力÷入力エネルギー×100%。摩擦による損失。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_010_q10',
+    imageKeyword: 'compound_machinery_bicycle_elevator',
+    imageType: 'photo',
+    imageDescription: '複合機械：複数の単純機械の組み合わせ。自転車、エレベーター、ドリル。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 6_011: 人体と健康
+final stage6_011_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_011_q1',
+    imageKeyword: 'digestive_system_organs',
+    imageType: 'diagram',
+    imageDescription: '消化管：口→食道→胃→小腸→大腸。各器官の長さと役割。栄養吸収プロセス。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_011_q2',
+    imageKeyword: 'small_intestine_villi_absorption',
+    imageType: 'diagram',
+    imageDescription: '小腸の絨毛：栄養吸収の主要な場所。絨毛の断面図と毛細血管。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_011_q3',
+    imageKeyword: 'skeletal_system_bones',
+    imageType: 'diagram',
+    imageDescription: '骨格：成人206本の骨。カルシウムとコラーゲンのハイブリッド構造。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_011_q4',
+    imageKeyword: 'muscle_bone_tendon_contraction',
+    imageType: 'diagram',
+    imageDescription: '筋肉と骨：腱で接続。筋肉の収縮で骨が動く。二頭筋と三頭筋の相互作用。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_011_q5',
+    imageKeyword: 'circulatory_system_heart_blood_vessels',
+    imageType: 'diagram',
+    imageDescription: '循環系：心臓から動脈で酸素豊富な血液が送られ、静脈で戻る。一方通行の循環。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_011_q6',
+    imageKeyword: 'heart_chambers_valves',
+    imageType: 'diagram',
+    imageDescription: '心臓の構造：左右の心房と心室。4つの部屋と弁。血液の流れ。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_011_q7',
+    imageKeyword: 'respiratory_system_alveoli',
+    imageType: 'diagram',
+    imageDescription: '呼吸系：鼻→気管支→肺胞。数億個の肺胞でのガス交換。横隔膜の動き。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_011_q8',
+    imageKeyword: 'gas_exchange_oxygen_carbon_dioxide',
+    imageType: 'diagram',
+    imageDescription: 'ガス交換：肺胞と毛細血管で拡散。酸素は濃度高い肺胞から血液へ。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_011_q9',
+    imageKeyword: 'immune_system_white_blood_cells',
+    imageType: 'diagram',
+    imageDescription: '免疫系：白血球の種類（マクロファージ、リンパ球）。病原体との戦い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_011_q10',
+    imageKeyword: 'healthy_lifestyle_four_elements',
+    imageType: 'chart',
+    imageDescription: '健康な生活：栄養・運動・睡眠・ストレス管理。4要素のバランスと相互作用。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 6_012: 環境と人間
+final stage6_012_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_012_q1',
+    imageKeyword: 'water_pollution_eutrophication',
+    imageType: 'diagram',
+    imageDescription: '水質汚濁：工場排水と生活排水。富栄養化で藻が繁殖。酸素不足で魚が死ぬ。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_012_q2',
+    imageKeyword: 'air_pollution_acid_rain',
+    imageType: 'diagram',
+    imageDescription: '大気汚染と酸性雨：排気ガスと工場の煙。建物や森への影響。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_012_q3',
+    imageKeyword: 'greenhouse_effect_carbon_dioxide',
+    imageType: 'diagram',
+    imageDescription: '温室効果：大気中のCO2とメタンが太陽熱を地表に閉じ込める。気温上昇。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_012_q4',
+    imageKeyword: 'climate_change_evidence_ice_cores',
+    imageType: 'diagram',
+    imageDescription: '気候変動の証拠：年輪、氷のコア、珊瑚。100年で急速な気温上昇。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_012_q5',
+    imageKeyword: 'renewable_energy_solar_wind_hydro',
+    imageType: 'photo',
+    imageDescription: '再生可能エネルギー：太陽光、風力、水力。使っても減らないエネルギー。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_012_q6',
+    imageKeyword: 'waste_management_3r_reduce_reuse_recycle',
+    imageType: 'diagram',
+    imageDescription: '廃棄物管理：3R（減らす・再利用・リサイクル）。発生を減らすことが最重要。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_012_q7',
+    imageKeyword: 'recycling_process_material_loop',
+    imageType: 'diagram',
+    imageDescription: 'リサイクルの原理：物質循環。アルミ缶の95%エネルギー削減。素材の品質低下。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_012_q8',
+    imageKeyword: 'endangered_species_extinction_risk',
+    imageType: 'photo',
+    imageDescription: '絶滅危惧種：生息地喪失、乱獲、汚染。トキ、ツシマヤマネコ。保護区。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_012_q9',
+    imageKeyword: 'ecosystem_conservation_food_chain',
+    imageType: 'diagram',
+    imageDescription: '生態系保全：食物連鎖と水循環。里山の管理。トロフィックカスケード。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_012_q10',
+    imageKeyword: 'sustainable_development_goals_sdgs',
+    imageType: 'chart',
+    imageDescription: '持続可能な開発（SDGs）：経済成長と環境保全の両立。サーキュラーエコノミー。',
+    requiresAiGeneration: true,
+  ),
+];
+
 // ===============================
 // 他のステージの画像メタデータもここに追加
 // Stage 3_009 〜 3_012
 // Stage 4_010 〜 4_011
 // Stage 5_010 〜 5_012
-// Stage 6_010 〜 6_012
 // ===============================
 
 /// 画像メタデータを全ステージから検索するヘルパー関数
@@ -2742,6 +2963,15 @@ Map<String, QuizImageMetadata> getQuizImageMetadata() {
     allImages[img.questionId] = img;
   }
   for (final img in stage6_009_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_010_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_011_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_012_images) {
     allImages[img.questionId] = img;
   }
 
