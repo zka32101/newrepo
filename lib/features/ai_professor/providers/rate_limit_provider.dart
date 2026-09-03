@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/api_response_model.dart';
-import 'chat_provider.dart';
 
 /// レート制限情報を管理するプロバイダー
 final rateLimitProvider =

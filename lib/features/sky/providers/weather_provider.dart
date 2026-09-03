@@ -2,8 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/weather_model.dart';
 import '../models/location_model.dart';
-import '../../services/api_clients/weather_astronomy_client.dart';
-import '../../services/api_clients/api_config.dart';
+import '../../../services/api_clients/weather_astronomy_client.dart';
+import '../../../services/api_clients/api_config.dart';
 
 /// 現在の位置情報の天気プロバイダー
 final currentWeatherProvider =

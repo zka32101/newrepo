@@ -2,8 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
 import '../models/chat_message_model.dart';
 import '../models/chat_session_model.dart';
-import '../../services/api_clients/claude_api_client.dart';
-import '../../services/api_clients/api_config.dart';
+import '../../../services/api_clients/claude_api_client.dart';
+import '../../../services/api_clients/api_config.dart';
 
 /// 現在のチャットセッションのプロバイダー
 final currentChatSessionProvider =

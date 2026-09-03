@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/astronomy_model.dart';
 import '../models/location_model.dart';
 import '../models/weather_model.dart';
-import '../../services/api_clients/weather_astronomy_client.dart';
+import '../../../services/api_clients/weather_astronomy_client.dart';
 import 'weather_provider.dart';
 
 /// 月の位相情報プロバイダー
