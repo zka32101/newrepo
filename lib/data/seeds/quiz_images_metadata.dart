@@ -1064,12 +1064,2382 @@ final stage4006_images = [
   ),
 ];
 
+// Stage 4_007: 天気と季節 (Weather and Seasons)
+final stage4007_images = [
+  QuizImageMetadata(
+    questionId: 'stage_4_007_q1',
+    imageKeyword: 'temperature_thermometer_four_seasons_gradual_change',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_007_q2',
+    imageKeyword: 'sunrise_sunset_sun_path_angle_seasonal_variation',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_007_q3',
+    imageKeyword: 'cumulus_stratus_cirrus_cloud_types_sky',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_007_q4',
+    imageKeyword: 'rain_formation_water_cycle_precipitation_drops',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_007_q5',
+    imageKeyword: 'wind_formation_air_pressure_temperature_gradient',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_007_q6',
+    imageKeyword: 'monsoon_seasonal_wind_patterns_weather_arrows',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_007_q7',
+    imageKeyword: 'humidity_dew_condensation_water_vapor_droplets',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_007_q8',
+    imageKeyword: 'animal_migration_hibernation_seasonal_behavior_nature',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_007_q9',
+    imageKeyword: 'weather_map_high_pressure_low_pressure_symbols',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_007_q10',
+    imageKeyword: 'spring_summer_autumn_winter_seasonal_landscape_changes',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 4_008: 物の動きと力 (Motion and Force)
+final stage4008_images = [
+  QuizImageMetadata(
+    questionId: 'stage_4_008_q1',
+    imageKeyword: 'force_push_pull_action_examples',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_008_q2',
+    imageKeyword: 'object_motion_velocity_direction_change',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_008_q3',
+    imageKeyword: 'friction_surface_resistance_brake_force',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_008_q4',
+    imageKeyword: 'weight_mass_scale_measurement_gravity',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_008_q5',
+    imageKeyword: 'gravity_falling_object_earth_attraction',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_008_q6',
+    imageKeyword: 'speed_velocity_speedometer_direction_vector',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_008_q7',
+    imageKeyword: 'motion_acceleration_car_turning_elevator',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_008_q8',
+    imageKeyword: 'lever_principle_seesaw_mechanical_advantage',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_008_q9',
+    imageKeyword: 'pulley_system_rope_mechanical_load',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_008_q10',
+    imageKeyword: 'collision_impact_momentum_ball_crash',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 4_009: 光 (Light)
+final stage4009_images = [
+  QuizImageMetadata(
+    questionId: 'stage_4_009_q1',
+    imageKeyword: 'light_source_sun_fire_bulb_emission',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_009_q2',
+    imageKeyword: 'light_travel_straight_line_path_rays',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_009_q3',
+    imageKeyword: 'shadow_formation_light_blocking_object',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_009_q4',
+    imageKeyword: 'shadow_length_change_sun_angle_time',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_009_q5',
+    imageKeyword: 'mirror_reflection_plane_surface_angle',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_009_q6',
+    imageKeyword: 'light_refraction_lens_bending_angle',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_009_q7',
+    imageKeyword: 'lens_converging_diverging_focus_image',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_009_q8',
+    imageKeyword: 'color_spectrum_prism_wavelength_visible',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_009_q9',
+    imageKeyword: 'transparent_translucent_opaque_materials_light',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_009_q10',
+    imageKeyword: 'eye_vision_light_pupil_retina_image',
+    imageType: 'diagram',
+    imageDescription: '',
+    requiresAiGeneration: true,
+  ),
+];
+
+/// 5年生（Grade 5）の画像メタデータ
+
+// Stage 5_001: 花から実へ
+final stage5_001_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_001_q1',
+    imageKeyword: 'flower_parts_stamen_pistil',
+    imageType: 'diagram',
+    imageDescription: '花の構造：おしべ（雄性器官）とめしべ（雌性器官）を詳しく示す図。花粉の形成と子房の位置を色分けして表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_001_q2',
+    imageKeyword: 'pollination_stigma_process',
+    imageType: 'diagram',
+    imageDescription: '受粉のプロセス：花粉が柱頭に付着する様子。虫と風による受粉の2つのパターンを比較表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_001_q3',
+    imageKeyword: 'fruit_development_ovary',
+    imageType: 'diagram',
+    imageDescription: '受粉後から実への変化。子房が膨らんで実になる過程を時系列で表示。果皮の形成も示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_001_q4',
+    imageKeyword: 'seed_embryo_structure',
+    imageType: 'diagram',
+    imageDescription: '種の内部構造：種皮、胚、胚乳を示す断面図。受精した胚珠が種になる過程。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_001_q5',
+    imageKeyword: 'seed_reproduction_genetics',
+    imageType: 'diagram',
+    imageDescription: '種ができる意義：受精による遺伝情報の組み合わせ。親の特性が子に継承されることを矢印で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_001_q6',
+    imageKeyword: 'flower_pollination_strategies',
+    imageType: 'diagram',
+    imageDescription: '花の特性と受粉方法の関係。虫を引き寄せる花（色・香り・蜜）vs 風による受粉の花を比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_001_q7',
+    imageKeyword: 'pollination_methods_insect_wind',
+    imageType: 'diagram',
+    imageDescription: '虫による受粉と風による受粉のメカニズム。虫が蜜を吸う時の花粉付着と風での花粉運搬を対比。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_001_q8',
+    imageKeyword: 'fruit_structure_layers',
+    imageType: 'diagram',
+    imageDescription: '実の構造：果皮（外側）・果肉（中身）・種を層状に表示。様々な果実の例（スイカ、モモ、豆）を並べて比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_001_q9',
+    imageKeyword: 'seed_dispersal_methods',
+    imageType: 'diagram',
+    imageDescription: '種の散布方法：風で運ばれる種（羽毛）、動物が食べて運ぶ種、水に浮かぶ種、粘着性で付着する種を図示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_001_q10',
+    imageKeyword: 'seed_dispersal_adaptation',
+    imageType: 'diagram',
+    imageDescription: '種の形態と散布方法の適応。各種の形状（タンポポの羽毛、ココナッツの繊維など）と環境への最適化を示す。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 5_002: 植物の発芽と成長
+final stage5_002_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_002_q1',
+    imageKeyword: 'seed_germination_conditions',
+    imageType: 'diagram',
+    imageDescription: '種の発芽に必要な条件（水・温度・空気）を3つのグループに分けて表示。各条件が揃わない場合との比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_002_q2',
+    imageKeyword: 'germination_root_shoot',
+    imageType: 'diagram',
+    imageDescription: '発芽の過程：種から根と芽が出る様子。根が下へ、芽が上へ向かう性質（地性弾性・光性）を矢印で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_002_q3',
+    imageKeyword: 'root_shoot_development',
+    imageType: 'diagram',
+    imageDescription: '根と芽の成長：根が地中で伸び、根毛から水と栄養を吸収。茎が上に伸び、葉が展開する過程を時系列で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_002_q4',
+    imageKeyword: 'photosynthesis_leaf_process',
+    imageType: 'diagram',
+    imageDescription: '光合成の仕組み：葉が太陽光を受けて、水と二酸化炭素から栄養（デンプン）を作る過程を示す図。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_002_q5',
+    imageKeyword: 'chlorophyll_green_leaf',
+    imageType: 'diagram',
+    imageDescription: '葉の緑色と光合成の関係。クロロフィル（葉緑体）が光を吸収する仕組み。様々な色の葉（黄、赤）との比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_002_q6',
+    imageKeyword: 'plant_nutrition_water_minerals',
+    imageType: 'diagram',
+    imageDescription: '植物の栄養：根から吸収する水と無機塩類。光合成で作られた栄養との違いを示す流れ図。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_002_q7',
+    imageKeyword: 'root_hair_absorption',
+    imageType: 'diagram',
+    imageDescription: '根毛による水と栄養の吸収：根毛の構造と吸収のメカニズム。土の中の水が根毛から吸い上げられる様子。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_002_q8',
+    imageKeyword: 'phototropism_geotropism',
+    imageType: 'diagram',
+    imageDescription: '光性と地性：茎が光に向かう光性、根が土に向かう地性を示す。植物の生長の方向性を矢印で表現。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_002_q9',
+    imageKeyword: 'plant_growth_stages_time',
+    imageType: 'chart',
+    imageDescription: '植物の成長段階：発芽 → 本葉展開 → 成長 → 開花 → 結実を時間軸で表示。季節ごとの成長の変化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_002_q10',
+    imageKeyword: 'plant_life_cycle_seasons',
+    imageType: 'diagram',
+    imageDescription: '植物のライフサイクル：種の休眠から発芽、成長、開花、種の形成、再び休眠までの完全な周期。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 5_003: メダカの育ち方
+final stage5_003_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_003_q1',
+    imageKeyword: 'medaka_egg_laying_structure',
+    imageType: 'diagram',
+    imageDescription: 'メダカの卵：水草に産み付けられた卵。卵の大きさ（3-5mm）、透明性、粘着糸の構造を詳しく示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_003_q2',
+    imageKeyword: 'egg_structure_internal',
+    imageType: 'diagram',
+    imageDescription: 'メダカの卵の内部構造：卵黄、胚、卵殻膜を示す断面図。受精卵の発育段階の違いを3段階で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_003_q3',
+    imageKeyword: 'egg_hatching_temperature',
+    imageType: 'chart',
+    imageDescription: '孵化までの時間と温度の関係。25℃で約10-14日、20℃で約3週間など、温度による孵化期間の変化をグラフ表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_003_q4',
+    imageKeyword: 'fry_development_stages',
+    imageType: 'diagram',
+    imageDescription: '稚魚の発育段階：孵化直後（3-4mm）のヨークサック付き稚魚から、ヨークサック消失、鰭の発達までの時系列。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_003_q5',
+    imageKeyword: 'medaka_sex_differences_fin',
+    imageType: 'diagram',
+    imageDescription: 'メダカのオスとメスの識別：背鰭と肛門周辺の違い。オスは背鰭が尖り、メスは丸い形状を図示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_003_q6',
+    imageKeyword: 'fish_growth_juvenile_adult',
+    imageType: 'diagram',
+    imageDescription: '幼魚から成魚への成長：体長の増加（稚魚3mm → 幼魚1cm → 成魚3-4cm）と体形の変化を時系列で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_003_q7',
+    imageKeyword: 'medaka_spawning_season',
+    imageType: 'chart',
+    imageDescription: 'メダカの産卵時期：5月〜7月の産卵期間。水温25℃前後と日中の光周期（昼間時間の長さ）が産卵を促すことを図示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_003_q8',
+    imageKeyword: 'failed_hatching_causes',
+    imageType: 'diagram',
+    imageDescription: '孵化に失敗する原因：未受精卵、低温、カビ感染、酸素不足。各原因による卵の状態（変色、分解など）の違い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_003_q9',
+    imageKeyword: 'fish_lifespan_aging',
+    imageType: 'chart',
+    imageDescription: 'メダカの寿命と年齢による変化：1〜3年の寿命。体色の変化、活動量の減少、エネルギー消費量を時系列で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_003_q10',
+    imageKeyword: 'medaka_lifecycle_complete',
+    imageType: 'diagram',
+    imageDescription: 'メダカの完全なライフサイクル：卵 → 孵化 → 稚魚 → 幼魚 → 成魚 → 産卵 → 老化 → 死亡。環状の図で示す。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 5_004: 川の水の様子
+final stage5_004_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_004_q1',
+    imageKeyword: 'river_upstream_characteristics',
+    imageType: 'diagram',
+    imageDescription: '上流域の川の特徴：狭い幅、急な勾配、速い流れ、透明な水、大きな石を示す図。V字谷の形状。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_004_q2',
+    imageKeyword: 'river_middle_course_features',
+    imageType: 'diagram',
+    imageDescription: '中流域の川：幅が広がり、勾配が緩くなり、流速は減少。砂利床が見られる。蛇行し始める様子。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_004_q3',
+    imageKeyword: 'river_lower_course_delta',
+    imageType: 'diagram',
+    imageDescription: '下流域の川：広い幅、緩い勾配、遅い流速、濁った水。三角州の形成。河口への流れ。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_004_q4',
+    imageKeyword: 'river_organisms_adaptation',
+    imageType: 'diagram',
+    imageDescription: '川に住む生き物の適応：上流（トビケラ、カワゲラ）から下流（ハマシジミ）までの生物分布。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_004_q5',
+    imageKeyword: 'stream_organisms_zones',
+    imageType: 'chart',
+    imageDescription: '流速と生き物の関係：速い流速に適応した生き物と遅い流速に適応した生き物の違い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_004_q6',
+    imageKeyword: 'flow_velocity_erosion_power',
+    imageType: 'chart',
+    imageDescription: '流速と侵食力の関係：流速が2倍になると侵食力は4倍（二乗則）。グラフで表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_004_q7',
+    imageKeyword: 'slow_flow_deposition',
+    imageType: 'diagram',
+    imageDescription: '流速が遅いときの堆積：砂や泥が底に落ちて積もる。下流域での平原形成を示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_004_q8',
+    imageKeyword: 'sediment_particle_settling',
+    imageType: 'diagram',
+    imageDescription: '粒の大きさと沈むスピード：大きい粒は早く沈み、小さい粒はゆっくり沈む。ストークスの法則。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_004_q9',
+    imageKeyword: 'grain_size_downstream',
+    imageType: 'chart',
+    imageDescription: '下流に向かての粒のサイズ変化：上流の大きな石から中流の砂利、下流の砂へ。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_004_q10',
+    imageKeyword: 'river_system_integration',
+    imageType: 'diagram',
+    imageDescription: '川全体の統合的理解：侵食、運搬、堆積の3つのプロセスが上流から下流へ連続的に起こる。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 5_005: 流水のはたらき
+final stage5_005_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_005_q1',
+    imageKeyword: 'water_erosion_velocity_relationship',
+    imageType: 'diagram',
+    imageDescription: '川の水による侵食：流速が速いほど侵食力が強い。崖の侵食、地面の削られる様子。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_005_q2',
+    imageKeyword: 'water_transport_sediment',
+    imageType: 'diagram',
+    imageDescription: '川による運搬：岩石片や砂、泥が水に流されて下流へ運ばれる過程。濁流の形成。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_005_q3',
+    imageKeyword: 'sediment_deposition_process',
+    imageType: 'diagram',
+    imageDescription: '堆積：流速が落ちると砂や泥が底に沈んで積もる。氾濫原での土壌形成。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_005_q4',
+    imageKeyword: 'v_shaped_valley_erosion',
+    imageType: 'diagram',
+    imageDescription: 'V字谷の形成：上流域の急流が両岸を削って、V字形の谷を作る過程。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_005_q5',
+    imageKeyword: 'river_delta_formation',
+    imageType: 'diagram',
+    imageDescription: '三角州の形成：下流で流速が落ちると、粒子が積もって平らな土地ができる。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_005_q6',
+    imageKeyword: 'flow_velocity_erosion_power_law',
+    imageType: 'chart',
+    imageDescription: '流速の二乗則：流速が2倍になると侵食力は4倍。エネルギー効率の関係。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_005_q7',
+    imageKeyword: 'deposition_low_velocity',
+    imageType: 'diagram',
+    imageDescription: '低流速での堆積：流速が遅い下流域で、細かい粒（砂・泥）が沈みやすい。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_005_q8',
+    imageKeyword: 'stokes_law_settling_speed',
+    imageType: 'diagram',
+    imageDescription: 'ストークスの法則：粒の大きさと落ちる速度の関係。直径が小さいほど遅くなる。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_005_q9',
+    imageKeyword: 'downstream_grain_reduction',
+    imageType: 'chart',
+    imageDescription: '下流への粒のサイズ減少：上流の巨礫から下流の砂泥へ段階的に変化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_005_q10',
+    imageKeyword: 'three_processes_integration',
+    imageType: 'diagram',
+    imageDescription: '3つのはたらきの統合：侵食・運搬・堆積が上流から下流へ連続して起こる景観。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 5_006: 物の燃え方
+final stage5_006_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_006_q1',
+    imageKeyword: 'combustion_three_conditions',
+    imageType: 'diagram',
+    imageDescription: '燃焼の3つの条件：燃えるもの（可燃物）、酸素、加熱。3つ全て揃う必要。ベン図で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_006_q2',
+    imageKeyword: 'flammable_materials_examples',
+    imageType: 'diagram',
+    imageDescription: '燃えるもの（可燃物）の例：ろうそく、木、紙、石油、ガスなど。状態による違い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_006_q3',
+    imageKeyword: 'oxygen_role_combustion',
+    imageType: 'diagram',
+    imageDescription: '酸素の役割：燃焼に必要な酸素。空気中の酸素（約21%）が燃焼を支える。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_006_q4',
+    imageKeyword: 'ignition_temperature_point',
+    imageType: 'chart',
+    imageDescription: '着火点（点火温度）：物質ごとに異なる。ろうの着火点、木の着火点、ガスの着火点。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_006_q5',
+    imageKeyword: 'combustion_products_ash',
+    imageType: 'diagram',
+    imageDescription: '燃焼の生成物：灰、二酸化炭素、水蒸気。完全燃焼と不完全燃焼の違い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_006_q6',
+    imageKeyword: 'carbon_dioxide_emission',
+    imageType: 'diagram',
+    imageDescription: 'CO₂の発生：燃料が燃えると二酸化炭素が生成される。温暖化への影響。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_006_q7',
+    imageKeyword: 'chemical_vs_physical_change',
+    imageType: 'diagram',
+    imageDescription: '化学変化：燃焼は化学変化。物質の成分が変わり、元に戻らない。物理変化との違い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_006_q8',
+    imageKeyword: 'combustion_reaction_principle',
+    imageType: 'diagram',
+    imageDescription: '燃焼の化学反応：可燃物＋酸素→熱＋灰＋ガス。エネルギー放出の化学反応。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_006_q9',
+    imageKeyword: 'fire_extinguishing_methods',
+    imageType: 'diagram',
+    imageDescription: '消火方法：燃焼の3条件のいずれかを取り除く。冷却、酸素遮断、可燃物除去。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_006_q10',
+    imageKeyword: 'combustion_environmental_impact',
+    imageType: 'diagram',
+    imageDescription: '燃焼と環境：化石燃料の燃焼によるCO₂増加と地球温暖化。持続可能なエネルギーの必要性。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 5_007: 電流と磁石
+final stage5_007_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_007_q1',
+    imageKeyword: 'electromagnet_vs_permanent',
+    imageType: 'diagram',
+    imageDescription: '電磁石と常温磁石の違い：電池がある電磁石は電源で操作でき、常温磁石は電気なしで常に磁力を持つ。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_007_q2',
+    imageKeyword: 'strengthen_electromagnet',
+    imageType: 'diagram',
+    imageDescription: '電磁石を強くする方法：電流を増やす、コイルの巻き数を増やす、鉄芯を使う。比較図で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_007_q3',
+    imageKeyword: 'electromagnet_applications',
+    imageType: 'diagram',
+    imageDescription: '電磁石の使われ方：スクラップクレーン、MRI機器、リニアモーターカー、電子レンジ。実例を図示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_007_q4',
+    imageKeyword: 'magnetic_switches_circuits',
+    imageType: 'diagram',
+    imageDescription: '磁石の利用：スイッチ、制御回路。改札機、自動販売機、洗濯機での使用例。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_007_q5',
+    imageKeyword: 'magnetic_field_visualization',
+    imageType: 'diagram',
+    imageDescription: '磁場の見える化：MRI、地磁気観測、スピーカーの磁場。磁力線図で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_007_q6',
+    imageKeyword: 'current_magnetic_force',
+    imageType: 'diagram',
+    imageDescription: '電流と磁力の関係：調光スイッチ、モーター制御、電動工具での応用。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_007_q7',
+    imageKeyword: 'coil_systems_applications',
+    imageType: 'diagram',
+    imageDescription: '複数コイルの利用：変圧器、電動モーター、IH調理器。相互誘導の原理。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_007_q8',
+    imageKeyword: 'dc_vs_ac_current',
+    imageType: 'diagram',
+    imageDescription: '直流と交流の違い：懐中電灯（直流）とコンセント（交流）。波形と用途の比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_007_q9',
+    imageKeyword: 'radio_waves_electromagnets',
+    imageType: 'diagram',
+    imageDescription: 'ラジオと電磁波：ラジオ、テレビ、携帯電話、Wi-Fi。電磁波の種類と周波数。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_007_q10',
+    imageKeyword: 'modern_technology_applications',
+    imageType: 'diagram',
+    imageDescription: '現代の応用：MRI、ICカード、ハイブリッド車、リニアモーターカー。電磁気技術の未来。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 5_008: 電流と磁石（実験）
+final stage5_008_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_008_q1',
+    imageKeyword: 'circuit_basic_components',
+    imageType: 'diagram',
+    imageDescription: '基本的な電気回路：電池、導線、豆球、スイッチの接続。電流が流れる様子。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_008_q2',
+    imageKeyword: 'series_vs_parallel_circuits',
+    imageType: 'diagram',
+    imageDescription: '直列と並列の違い：直列で豆球の明るさ、並列での分流。各接続方法の比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_008_q3',
+    imageKeyword: 'conductor_insulator_materials',
+    imageType: 'diagram',
+    imageDescription: '導体と不導体：銅、アルミニウム（導体）とゴム、プラスチック（不導体）の分類。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_008_q4',
+    imageKeyword: 'switch_mechanism_control',
+    imageType: 'diagram',
+    imageDescription: 'スイッチの仕組み：接点の開閉で電流の流れを制御。照明スイッチの構造。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_008_q5',
+    imageKeyword: 'electric_resistance_heat',
+    imageType: 'diagram',
+    imageDescription: '電気抵抗と熱：抵抗の大きさと発熱量の関係。電熱線の赤熱を示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_008_q6',
+    imageKeyword: 'circuit_power_consumption',
+    imageType: 'diagram',
+    imageDescription: '電力消費量：W = V × I。異なる機器の消費電力を比較表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_008_q7',
+    imageKeyword: 'battery_types_specifications',
+    imageType: 'chart',
+    imageDescription: '電池の種類：アルカリ電池、充電電池。電圧と容量の違いを表で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_008_q8',
+    imageKeyword: 'safety_circuit_protection',
+    imageType: 'diagram',
+    imageDescription: '安全な電気：漏電遮断器、ヒューズ、アース。過電流保護の仕組み。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_008_q9',
+    imageKeyword: 'electromagnetic_force_motor',
+    imageType: 'diagram',
+    imageDescription: '電磁力の利用：モーター、リレー、ベルの動作。電流と磁力の相互作用。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_008_q10',
+    imageKeyword: 'circuit_design_problem_solving',
+    imageType: 'diagram',
+    imageDescription: '回路設計：条件に合わせた直列/並列の選択。実践的な問題解決。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 5_009: 熱による変化
+final stage5_009_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_009_q1',
+    imageKeyword: 'thermal_expansion_principle',
+    imageType: 'diagram',
+    imageDescription: '熱による膨張：原子の振動が増え、物体が膨張する。温度と体積の関係。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_009_q2',
+    imageKeyword: 'thermometer_operation',
+    imageType: 'diagram',
+    imageDescription: '温度計の仕組み：液体（水銀またはアルコール）の熱膨張を目盛りで表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_009_q3',
+    imageKeyword: 'solid_material_expansion',
+    imageType: 'diagram',
+    imageDescription: '固体の膨張：鉄道のレール、建物の継ぎ目。膨張に備えた隙間。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_009_q4',
+    imageKeyword: 'material_expansion_rates',
+    imageType: 'chart',
+    imageDescription: '材料による膨張率の違い：アルミニウム > 鉄 > ガラス。膨張係数の比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_009_q5',
+    imageKeyword: 'cooling_contraction',
+    imageType: 'diagram',
+    imageDescription: '冷却と収縮：温度が下がるとき、物体は縮む。水の異常膨張の例外。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_009_q6',
+    imageKeyword: 'bimetallic_strip_application',
+    imageType: 'diagram',
+    imageDescription: '二重金属片：膨張率の異なる2つの金属を貼り合わせた温度センサー。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_009_q7',
+    imageKeyword: 'density_temperature_change',
+    imageType: 'diagram',
+    imageDescription: '密度の変化：温度が上がると同じ質量で体積が増え、密度が減少。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_009_q8',
+    imageKeyword: 'thermal_stress_deformation',
+    imageType: 'diagram',
+    imageDescription: '熱応力による変形：制限された膨張が応力を生む。破裂や亀裂の例。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_009_q9',
+    imageKeyword: 'water_anomalous_expansion',
+    imageType: 'diagram',
+    imageDescription: '水の異常膨張：4℃で最小密度。氷が浮く理由。生態系への影響。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_009_q10',
+    imageKeyword: 'thermal_engineering_applications',
+    imageType: 'diagram',
+    imageDescription: '熱工学への応用：橋の伸縮継ぎ目、パイプラインの設計、精密機器。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 6_001: 光と鏡
+final stage6_001_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_001_q1',
+    imageKeyword: 'light_straight_line_propagation',
+    imageType: 'diagram',
+    imageDescription: '光の直進：光は真っすぐに進む。影ができるしくみ。光の直進を矢印で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_001_q2',
+    imageKeyword: 'law_of_reflection_mirror',
+    imageType: 'diagram',
+    imageDescription: '反射の法則：入射角=反射角。鏡での光の反射を詳しく図示。角度測定の表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_001_q3',
+    imageKeyword: 'mirror_image_left_right_reversal',
+    imageType: 'diagram',
+    imageDescription: '鏡の像：左右が逆になる理由。人物や矢印で左右反転を明確に示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_001_q4',
+    imageKeyword: 'lens_magnification_reduction',
+    imageType: 'diagram',
+    imageDescription: 'レンズの働き：凸レンズで拡大、凹レンズで縮小。焦点と実像の関係を図示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_001_q5',
+    imageKeyword: 'color_light_wavelength',
+    imageType: 'diagram',
+    imageDescription: '色と光の波長：可視光スペクトラム。各色の波長を数値で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_001_q6',
+    imageKeyword: 'reflection_refraction_simultaneous',
+    imageType: 'diagram',
+    imageDescription: '反射と屈折：同時に起こる現象。水鏡の例。角度と屈折率の関係。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_001_q7',
+    imageKeyword: 'combined_mirrors_lenses',
+    imageType: 'diagram',
+    imageDescription: '鏡とレンズの組み合わせ：望遠鏡やカメラの仕組み。複合光学系。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_001_q8',
+    imageKeyword: 'light_diffraction_phenomenon',
+    imageType: 'diagram',
+    imageDescription: '光の回折：光が障害物を曲がる。スリットと回折パターン。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_001_q9',
+    imageKeyword: 'optical_surface_cleanliness',
+    imageType: 'diagram',
+    imageDescription: '光学面の清潔さ：汚れが光の伝播に与える影響。クリーニングの重要性。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_001_q10',
+    imageKeyword: 'optical_technology_applications',
+    imageType: 'diagram',
+    imageDescription: '光学技術の応用：眼鏡、カメラ、望遠鏡、顕微鏡、光ファイバー。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 6_002: 音の伝わり方
+final stage6_002_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_002_q1',
+    imageKeyword: 'sound_transmission_media_vibration',
+    imageType: 'diagram',
+    imageDescription: '音の伝わり方：空気や水の振動。波として伝播。音波の様子を図示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_002_q2',
+    imageKeyword: 'volume_amplitude_decibel',
+    imageType: 'chart',
+    imageDescription: '音の大きさ：振幅とデシベル。様々な音のデシベル値を比較グラフで表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_002_q3',
+    imageKeyword: 'pitch_frequency_hertz',
+    imageType: 'diagram',
+    imageDescription: '音の高さ：周波数とヘルツ。高い音と低い音の波長の違い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_002_q4',
+    imageKeyword: 'reflection_echo_reverberation',
+    imageType: 'diagram',
+    imageDescription: '反射音と残響：音が壁に反射。音の反射の様子と時間差を表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_002_q5',
+    imageKeyword: 'doppler_effect_sound',
+    imageType: 'diagram',
+    imageDescription: 'ドップラー効果：動く音源の周波数の変化。救急車の例。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_002_q6',
+    imageKeyword: 'sound_speed_different_media',
+    imageType: 'chart',
+    imageDescription: '媒質による音速：空気、水、鉄での音速の違い。表でデータ表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_002_q7',
+    imageKeyword: 'resonant_frequency_physics',
+    imageType: 'diagram',
+    imageDescription: '共鳴周波数：固有周波数と外部周波数の一致。共鳴現象の例。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_002_q8',
+    imageKeyword: 'noise_hearing_damage',
+    imageType: 'chart',
+    imageDescription: '騒音と聴覚被害：デシベルと聴覚ダメージの関係。危険レベルの表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_002_q9',
+    imageKeyword: 'resonance_destruction_bridge',
+    imageType: 'diagram',
+    imageDescription: '共鳴による破壊：タコマ橋の例。共鳴で構造物が破壊される仕組み。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_002_q10',
+    imageKeyword: 'audio_application_technology',
+    imageType: 'diagram',
+    imageDescription: '音の応用：超音波、スピーカー、マイク、音響設計の例。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 6_003: 物の燃え方と化学変化
+final stage6_003_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_003_q1',
+    imageKeyword: 'combustion_chemical_change_triangle',
+    imageType: 'diagram',
+    imageDescription: '燃焼と化学変化：3つの要素（可燃物、酸素、加熱）。燃焼三角形で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_003_q2',
+    imageKeyword: 'oxygen_fire_extinguishing',
+    imageType: 'diagram',
+    imageDescription: '酸素の役割：燃焼に必要。消火方法との関係。酸素遮断の仕組み。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_003_q3',
+    imageKeyword: 'chemical_vs_physical_change',
+    imageType: 'diagram',
+    imageDescription: '化学変化と物理変化：燃焼は化学変化。各種例を比較表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_003_q4',
+    imageKeyword: 'ash_mass_conservation',
+    imageType: 'diagram',
+    imageDescription: '灰と質量保存則：燃焼前後の質量。質量が保存される仕組み。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_003_q5',
+    imageKeyword: 'wood_carbonization_heating',
+    imageType: 'diagram',
+    imageDescription: '木の炭化：加熱による分解。炭、タール、木酢液の生成。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_003_q6',
+    imageKeyword: 'explosion_rapid_combustion',
+    imageType: 'diagram',
+    imageDescription: '爆発：急速な燃焼。通常の燃焼との速度の違い。エネルギー解放。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_003_q7',
+    imageKeyword: 'co2_emissions_climate_change',
+    imageType: 'chart',
+    imageDescription: 'CO₂排出と地球温暖化：燃焼によるCO₂発生。グラフで排出量表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_003_q8',
+    imageKeyword: 'flame_temperature_variations',
+    imageType: 'diagram',
+    imageDescription: '炎の温度：異なる物質の炎色の違い。温度による色変化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_003_q9',
+    imageKeyword: 'matches_lighters_mechanism',
+    imageType: 'diagram',
+    imageDescription: 'マッチとライターの仕組み：摩擦熱と化学反応。着火のメカニズム。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_003_q10',
+    imageKeyword: 'combustion_sustainability_energy',
+    imageType: 'diagram',
+    imageDescription: '燃焼と持続可能性：再生可能エネルギーとの関連。将来のエネルギー。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 6_004: 天体の動き
+final stage6_004_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_004_q1',
+    imageKeyword: 'daily_celestial_motion',
+    imageType: 'diagram',
+    imageDescription: '地球の自転による日周運動：東から西へ移動する太陽と星。地球が回転していることを示す図。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_004_q2',
+    imageKeyword: 'star_apparent_motion',
+    imageType: 'diagram',
+    imageDescription: '夜空の星が時間とともに動く様子。北極星を中心に回転する星々の軌跡。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_004_q3',
+    imageKeyword: 'moon_phases_cycle',
+    imageType: 'diagram',
+    imageDescription: '月の満ち欠けの周期。新月から満月までの約29.5日の変化を示す図。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_004_q4',
+    imageKeyword: 'moon_tidal_locking',
+    imageType: 'diagram',
+    imageDescription: '月が常に同じ面を地球に向ける理由。潮汐固定の仕組みを示す図。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_004_q5',
+    imageKeyword: 'solar_eclipse_diagram',
+    imageType: 'diagram',
+    imageDescription: '日食：月が太陽と地球の間に入る現象。本影と半影を表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_004_q6',
+    imageKeyword: 'lunar_eclipse_diagram',
+    imageType: 'diagram',
+    imageDescription: '月食：地球の影に月が入る現象。月が赤く見える理由を示す図。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_004_q7',
+    imageKeyword: 'earth_axial_tilt_seasons',
+    imageType: 'diagram',
+    imageDescription: '地軸の傾き（23.5度）による季節変化。夏至と冬至での太陽高度の違い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_004_q8',
+    imageKeyword: 'earth_orbit_constellations',
+    imageType: 'diagram',
+    imageDescription: '地球の公転と季節の星座変化。地球の位置によって見える星座が変わる。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_004_q9',
+    imageKeyword: 'seasonal_constellation_changes',
+    imageType: 'diagram',
+    imageDescription: '季節ごとに見える星座。春・夏・秋・冬の代表的な星座を表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_004_q10',
+    imageKeyword: 'celestial_observation_seasonal',
+    imageType: 'photo',
+    imageDescription: '夜間の天体観測風景と季節による星空の変化。プラネタリウムのドーム。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 6_005: 生物と環境
+final stage6_005_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_005_q1',
+    imageKeyword: 'food_chain_energy_flow',
+    imageType: 'diagram',
+    imageDescription: '食物連鎖とエネルギーの流れ。植物→草食動物→肉食動物。10%の法則を示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_005_q2',
+    imageKeyword: 'ecosystem_balance_components',
+    imageType: 'diagram',
+    imageDescription: '生態系：生産者・消費者・分解者と非生物成分。システム全体のバランス。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_005_q3',
+    imageKeyword: 'predator_prey_population_cycles',
+    imageType: 'chart',
+    imageDescription: '被食者と捕食者の個体数変動。周期的な上下の関係。ロトカ・ボルテラ図。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_005_q4',
+    imageKeyword: 'adaptation_natural_selection',
+    imageType: 'diagram',
+    imageDescription: '適応と自然選択。環境に合った形質が選ばれる過程。色の異なるモンシロチョウの例。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_005_q5',
+    imageKeyword: 'biodiversity_ecosystem_resilience',
+    imageType: 'diagram',
+    imageDescription: '生物多様性と生態系の安定性。多様な種ほど環境変化に強い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_005_q6',
+    imageKeyword: 'nitrogen_cycle_fixation',
+    imageType: 'diagram',
+    imageDescription: '窒素循環：窒素固定菌と豆科植物の共生。大気から土壌へ。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_005_q7',
+    imageKeyword: 'carbon_cycle_global_warming',
+    imageType: 'diagram',
+    imageDescription: '炭素循環とCO₂。光合成・呼吸・燃焼による大気中のCO₂変動。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_005_q8',
+    imageKeyword: 'symbiosis_mutualism',
+    imageType: 'diagram',
+    imageDescription: '共生関係：珊瑚と褐虫藻、地衣類など。相利共生の例。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_005_q9',
+    imageKeyword: 'extinction_conservation',
+    imageType: 'photo',
+    imageDescription: '絶滅危機の生物と保護活動。野生トラ、マウンテンゴリラなどの例。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_005_q10',
+    imageKeyword: 'sustainable_development_circular_economy',
+    imageType: 'diagram',
+    imageDescription: '持続可能な開発と循環経済。資源の循環利用と環境保護のバランス。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 6_006: 大地と地形
+final stage6_006_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_006_q1',
+    imageKeyword: 'rock_classification_types',
+    imageType: 'diagram',
+    imageDescription: '岩石の3分類：火成岩・堆積岩・変成岩。各々の形成過程を示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_006_q2',
+    imageKeyword: 'weathering_erosion_processes',
+    imageType: 'diagram',
+    imageDescription: '風化と侵食の違い。風化による粒子化と侵食による運搬を段階的に表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_006_q3',
+    imageKeyword: 'plate_tectonics_continents',
+    imageType: 'diagram',
+    imageDescription: 'プレートテクトニクス：南米とアフリカの大陸形状の一致。プレート境界。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_006_q4',
+    imageKeyword: 'mountain_formation_folding',
+    imageType: 'diagram',
+    imageDescription: '山地の形成：褶曲山脈（アルプス）と火山性山脈。プレート衝突の図。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_006_q5',
+    imageKeyword: 'volcanic_activity_magma',
+    imageType: 'diagram',
+    imageDescription: '火山活動：マグマの上昇、マグマ溜り、異なる噴火様式の比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_006_q6',
+    imageKeyword: 'earthquake_seismic_waves',
+    imageType: 'diagram',
+    imageDescription: '地震：P波とS波の伝播。震源の深さと震度。マグニチュード。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_006_q7',
+    imageKeyword: 'geological_timescale_dating',
+    imageType: 'chart',
+    imageDescription: '地質年代測定：放射性同位体の半減期。ウラン-鉛法、カリウム-アルゴン法。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_006_q8',
+    imageKeyword: 'mineral_crystal_structure',
+    imageType: 'diagram',
+    imageDescription: '鉱物：石英・長石・鉄鉱物の結晶構造と化学組成。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_006_q9',
+    imageKeyword: 'soil_formation_development',
+    imageType: 'diagram',
+    imageDescription: '土壌の発達：風化した岩石片と有機物。土壌断面図。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_006_q10',
+    imageKeyword: 'groundwater_aquifer_flow',
+    imageType: 'diagram',
+    imageDescription: '地下水：帯水層への浸透、流動、井戸汲み上げ。ダルシーの法則。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 6_007: 電気とエネルギー
+final stage6_007_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_007_q1',
+    imageKeyword: 'electric_circuit_diagram',
+    imageType: 'diagram',
+    imageDescription: '電気回路：電源・導線・スイッチ・電球が完全につながる。電流の流れを矢印で表示。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_007_q2',
+    imageKeyword: 'electrical_resistance_heat',
+    imageType: 'diagram',
+    imageDescription: '抵抗と発熱：細い導線の高い抵抗で電流が熱と光に変わる。ニクロム線の応用例。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_007_q3',
+    imageKeyword: 'series_parallel_circuits',
+    imageType: 'diagram',
+    imageDescription: '直列と並列回路の比較。電球の明るさ、電流の流れ経路の違いを図解。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_007_q4',
+    imageKeyword: 'power_generation_transmission',
+    imageType: 'diagram',
+    imageDescription: '発電所から送電へ：タービン回転 → 発電機 → 昇圧変圧器 → 送電線。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_007_q5',
+    imageKeyword: 'electromagnet_coil_current',
+    imageType: 'diagram',
+    imageDescription: '電磁石：コイルに電流を流すと磁場発生。巻き数と電流で磁力変化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_007_q6',
+    imageKeyword: 'solar_wind_renewable_energy',
+    imageType: 'photo',
+    imageDescription: '再生可能エネルギー：太陽光パネル、風力発電機。持続可能な電力供給。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_007_q7',
+    imageKeyword: 'energy_conversion_transformations',
+    imageType: 'diagram',
+    imageDescription: '電気エネルギーの変換：光・熱・機械運動・音への変換過程。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_007_q8',
+    imageKeyword: 'electrical_safety_grounding',
+    imageType: 'diagram',
+    imageDescription: '電気安全：アース接地、漏電遮断器、感電防止対策の図解。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_007_q9',
+    imageKeyword: 'static_electricity_discharge',
+    imageType: 'diagram',
+    imageDescription: '静電気：物体間の電子移動と放電現象。冬の乾燥による発生。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_007_q10',
+    imageKeyword: 'complex_circuit_kirchhoff_laws',
+    imageType: 'diagram',
+    imageDescription: '複雑な回路：複数電源と抵抗の組み合わせ。キルヒホッフの法則適用。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 6_009: 力と運動
+final stage6_009_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_009_q1',
+    imageKeyword: 'force_definition_vectors',
+    imageType: 'diagram',
+    imageDescription: '力の基本：大きさと方向を持つベクト量。複数の力の合力。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_009_q2',
+    imageKeyword: 'inertia_newtons_first_law',
+    imageType: 'diagram',
+    imageDescription: '慣性の法則：外力がないと物体は等速運動を続ける。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_009_q3',
+    imageKeyword: 'newtons_second_law_fma',
+    imageType: 'diagram',
+    imageDescription: 'F=ma：力、質量、加速度の関係。運動方程式の基礎。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_009_q4',
+    imageKeyword: 'action_reaction_law',
+    imageType: 'diagram',
+    imageDescription: '作用反作用：等大で反対向きの力ペア。異なる物体に作用。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_009_q5',
+    imageKeyword: 'friction_forces',
+    imageType: 'diagram',
+    imageDescription: '摩擦力：動摩擦と静摩擦。垂直抗力との関係。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_009_q6',
+    imageKeyword: 'gravity_weight_mass',
+    imageType: 'diagram',
+    imageDescription: '重力と重さ：質量と重力の違い。重力加速度9.8m/s²。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_009_q7',
+    imageKeyword: 'air_resistance_terminal_velocity',
+    imageType: 'diagram',
+    imageDescription: '空気抵抗：終末速度。パラシュートの降下速度変化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_009_q8',
+    imageKeyword: 'velocity_speed_vector_scalar',
+    imageType: 'diagram',
+    imageDescription: '速度と速さ：方向付き（ベクトル）と方向なし（スカラー）。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_009_q9',
+    imageKeyword: 'acceleration_velocity_change',
+    imageType: 'diagram',
+    imageDescription: '加速度：速度変化率。正と負の加速度。加速と減速。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_009_q10',
+    imageKeyword: 'simple_machines_mechanical_advantage',
+    imageType: 'photo',
+    imageDescription: 'テコ・滑車・斜面：単純機械と機械的利得。仕事量の関係。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 3_009: 小さな生き物と微生物
+final stage3_009_images = [
+  QuizImageMetadata(
+    questionId: 'stage_3_009_q1',
+    imageKeyword: 'bacteria_basics_yogurt',
+    imageType: 'diagram',
+    imageDescription: 'バクテリアの大きさと働き。目に見えない微生物がヨーグルトを作る過程。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_009_q2',
+    imageKeyword: 'beneficial_harmful_bacteria',
+    imageType: 'diagram',
+    imageDescription: '良いバクテリアと悪いバクテリアの違い。腸内細菌と病原菌。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_009_q3',
+    imageKeyword: 'microscope_observation',
+    imageType: 'diagram',
+    imageDescription: '顕微鏡の使い方と倍率。バクテリアが見えるまでの過程。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_009_q4',
+    imageKeyword: 'water_microorganisms_pond',
+    imageType: 'photo',
+    imageDescription: '池の水の中の小さな生き物。ミジンコとバクテリアの食物連鎖。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_009_q5',
+    imageKeyword: 'mold_fungi_kingdom',
+    imageType: 'diagram',
+    imageDescription: 'カビとキノコの構造。菌類の特徴。胞子の放出。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_009_q6',
+    imageKeyword: 'decomposers_ecosystem',
+    imageType: 'diagram',
+    imageDescription: '分解者の役割。落ち葉がなくなる過程。生態系の循環。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_009_q7',
+    imageKeyword: 'soil_microorganisms',
+    imageType: 'diagram',
+    imageDescription: '土の中の生き物。バクテリア、カビ、ミミズ。栄養豊富な土の構造。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_009_q8',
+    imageKeyword: 'fermented_foods_process',
+    imageType: 'photo',
+    imageDescription: '発酵食品。味噌、納豆、ヨーグルト。微生物による食べ物の変化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_009_q9',
+    imageKeyword: 'disease_prevention_hygiene',
+    imageType: 'diagram',
+    imageDescription: '病気予防。手洗い、加熱、清潔さ。病原菌から身を守る方法。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_009_q10',
+    imageKeyword: 'microscopic_food_chain',
+    imageType: 'diagram',
+    imageDescription: '顕微鏡の世界の食物連鎖。バクテリア→ミジンコ→大きな生き物。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 3_010: 岩石と土
+final stage3_010_images = [
+  QuizImageMetadata(
+    questionId: 'stage_3_010_q1',
+    imageKeyword: 'three_rock_types',
+    imageType: 'diagram',
+    imageDescription: '3つの岩の種類。火成岩、堆積岩、変成岩の特徴。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_010_q2',
+    imageKeyword: 'igneous_rocks_magma',
+    imageType: 'diagram',
+    imageDescription: '火成岩の形成。溶けたマグマが冷えて固まる過程。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_010_q3',
+    imageKeyword: 'sedimentary_rocks_layers',
+    imageType: 'diagram',
+    imageDescription: '堆積岩。砂や泥が積み重なって岩になる過程。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_010_q4',
+    imageKeyword: 'rock_weathering_process',
+    imageType: 'photo',
+    imageDescription: '岩の風化。雨水と温度変化で岩が壊れ、砂になっていく。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_010_q5',
+    imageKeyword: 'soil_composition',
+    imageType: 'diagram',
+    imageDescription: '土の成分。鉱物粒、有機物、水、空気の混合物。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_010_q6',
+    imageKeyword: 'soil_formation_time',
+    imageType: 'diagram',
+    imageDescription: '土ができるまでの時間。風化→砂→分解→有機物混合。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_010_q7',
+    imageKeyword: 'soil_types_particles',
+    imageType: 'chart',
+    imageDescription: '土の種類。砂土、粘土、ローム土。粒の大きさと特性。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_010_q8',
+    imageKeyword: 'fossils_ancient_life',
+    imageType: 'photo',
+    imageDescription: '化石。古代の生き物の痕跡。貝の化石と虫の琥珀。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_010_q9',
+    imageKeyword: 'geological_layers_strata',
+    imageType: 'diagram',
+    imageDescription: '地層。砂や泥が積み重なった層状構造。時間の経過を示す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_010_q10',
+    imageKeyword: 'rock_identification_method',
+    imageType: 'diagram',
+    imageDescription: '岩の見分け方。色、硬さ、粒の大きさ、光沢を観察。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 3_011: 自然現象
+final stage3_011_images = [
+  QuizImageMetadata(
+    questionId: 'stage_3_011_q1',
+    imageKeyword: 'wind_temperature_difference',
+    imageType: 'diagram',
+    imageDescription: '風の発生。温かい空気と冷たい空気の動き。海風と陸風。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_011_q2',
+    imageKeyword: 'dew_morning_condensation',
+    imageType: 'photo',
+    imageDescription: '朝露。夜間に冷えた空気から水蒸気が水に変わる。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_011_q3',
+    imageKeyword: 'water_cycle_evaporation',
+    imageType: 'diagram',
+    imageDescription: '水の循環。蒸発→凝結→降水。太陽と水の無限の旅。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_011_q4',
+    imageKeyword: 'cloud_types_shapes',
+    imageType: 'photo',
+    imageDescription: '雲の種類。積雲、層雲、巻雲。高さと形による分類。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_011_q5',
+    imageKeyword: 'atmospheric_pressure_weather',
+    imageType: 'chart',
+    imageDescription: '気圧と天気。高気圧＝晴れ、低気圧＝雨。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_011_q6',
+    imageKeyword: 'daily_temperature_change',
+    imageType: 'chart',
+    imageDescription: '気温の変化。朝低い→昼高い→夜低い。太陽の高さの影響。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_011_q7',
+    imageKeyword: 'earth_tilt_seasons',
+    imageType: 'diagram',
+    imageDescription: '地軸の傾き。春夏秋冬の季節変化。太陽の光の角度。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_011_q8',
+    imageKeyword: 'seasonal_phenomena',
+    imageType: 'photo',
+    imageDescription: '季節現象。桜、セミ、紅葉、冬眠。自然界の周期。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_011_q9',
+    imageKeyword: 'weather_forecast_prediction',
+    imageType: 'diagram',
+    imageDescription: '天気予報。気象衛星、気象レーダー、コンピュータ計算。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_3_011_q10',
+    imageKeyword: 'natural_cycles_earth',
+    imageType: 'diagram',
+    imageDescription: '自然の周期。昼夜（24h）、月の周期（29.5日）、年（365日）。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 6_010: 仕事と単純機械
+final stage6_010_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_010_q1',
+    imageKeyword: 'work_force_distance_product',
+    imageType: 'diagram',
+    imageDescription: '仕事の定義：力と距離の積。力×距離＝仕事。異なる力と距離の組み合わせ。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_010_q2',
+    imageKeyword: 'work_calculation_joules',
+    imageType: 'diagram',
+    imageDescription: '仕事の計算：ニュートン×メートル＝ジュール。実例：エレベータで人が上昇する場合。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_010_q3',
+    imageKeyword: 'lever_fulcrum_mechanical_advantage',
+    imageType: 'diagram',
+    imageDescription: 'てこの原理：支点から遠いほど少ない力で持ち上げられる。複数の事例（シーソー、バール）。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_010_q4',
+    imageKeyword: 'pulley_systems_fixed_movable',
+    imageType: 'diagram',
+    imageDescription: '滑車：定滑車（方向変更）と動滑車（力を減らす）。複合滑車系。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_010_q5',
+    imageKeyword: 'inclined_plane_angle_slope',
+    imageType: 'diagram',
+    imageDescription: '斜面：急さと必要な力の関係。垂直上昇と斜面での仕事量比較。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_010_q6',
+    imageKeyword: 'wheel_axle_torque_rotation',
+    imageType: 'diagram',
+    imageDescription: '車輪と軸：半径の比で回転力が変わる。ドアノブ、ハンドル、時計。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_010_q7',
+    imageKeyword: 'screw_helix_pitch_force',
+    imageType: 'diagram',
+    imageDescription: 'ねじ：斜面の応用。ピッチと回転力の関係。ドライバーの柄の効果。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_010_q8',
+    imageKeyword: 'mechanical_advantage_ratio',
+    imageType: 'diagram',
+    imageDescription: '機械的有利：出力÷入力。力と距離のトレードオフ。仕事の原理。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_010_q9',
+    imageKeyword: 'energy_efficiency_percentage',
+    imageType: 'chart',
+    imageDescription: 'エネルギー効率：有用な出力÷入力エネルギー×100%。摩擦による損失。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_010_q10',
+    imageKeyword: 'compound_machinery_bicycle_elevator',
+    imageType: 'photo',
+    imageDescription: '複合機械：複数の単純機械の組み合わせ。自転車、エレベーター、ドリル。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 6_011: 人体と健康
+final stage6_011_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_011_q1',
+    imageKeyword: 'digestive_system_organs',
+    imageType: 'diagram',
+    imageDescription: '消化管：口→食道→胃→小腸→大腸。各器官の長さと役割。栄養吸収プロセス。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_011_q2',
+    imageKeyword: 'small_intestine_villi_absorption',
+    imageType: 'diagram',
+    imageDescription: '小腸の絨毛：栄養吸収の主要な場所。絨毛の断面図と毛細血管。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_011_q3',
+    imageKeyword: 'skeletal_system_bones',
+    imageType: 'diagram',
+    imageDescription: '骨格：成人206本の骨。カルシウムとコラーゲンのハイブリッド構造。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_011_q4',
+    imageKeyword: 'muscle_bone_tendon_contraction',
+    imageType: 'diagram',
+    imageDescription: '筋肉と骨：腱で接続。筋肉の収縮で骨が動く。二頭筋と三頭筋の相互作用。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_011_q5',
+    imageKeyword: 'circulatory_system_heart_blood_vessels',
+    imageType: 'diagram',
+    imageDescription: '循環系：心臓から動脈で酸素豊富な血液が送られ、静脈で戻る。一方通行の循環。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_011_q6',
+    imageKeyword: 'heart_chambers_valves',
+    imageType: 'diagram',
+    imageDescription: '心臓の構造：左右の心房と心室。4つの部屋と弁。血液の流れ。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_011_q7',
+    imageKeyword: 'respiratory_system_alveoli',
+    imageType: 'diagram',
+    imageDescription: '呼吸系：鼻→気管支→肺胞。数億個の肺胞でのガス交換。横隔膜の動き。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_011_q8',
+    imageKeyword: 'gas_exchange_oxygen_carbon_dioxide',
+    imageType: 'diagram',
+    imageDescription: 'ガス交換：肺胞と毛細血管で拡散。酸素は濃度高い肺胞から血液へ。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_011_q9',
+    imageKeyword: 'immune_system_white_blood_cells',
+    imageType: 'diagram',
+    imageDescription: '免疫系：白血球の種類（マクロファージ、リンパ球）。病原体との戦い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_011_q10',
+    imageKeyword: 'healthy_lifestyle_four_elements',
+    imageType: 'chart',
+    imageDescription: '健康な生活：栄養・運動・睡眠・ストレス管理。4要素のバランスと相互作用。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 6_012: 環境と人間
+final stage6_012_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_012_q1',
+    imageKeyword: 'water_pollution_eutrophication',
+    imageType: 'diagram',
+    imageDescription: '水質汚濁：工場排水と生活排水。富栄養化で藻が繁殖。酸素不足で魚が死ぬ。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_012_q2',
+    imageKeyword: 'air_pollution_acid_rain',
+    imageType: 'diagram',
+    imageDescription: '大気汚染と酸性雨：排気ガスと工場の煙。建物や森への影響。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_012_q3',
+    imageKeyword: 'greenhouse_effect_carbon_dioxide',
+    imageType: 'diagram',
+    imageDescription: '温室効果：大気中のCO2とメタンが太陽熱を地表に閉じ込める。気温上昇。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_012_q4',
+    imageKeyword: 'climate_change_evidence_ice_cores',
+    imageType: 'diagram',
+    imageDescription: '気候変動の証拠：年輪、氷のコア、珊瑚。100年で急速な気温上昇。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_012_q5',
+    imageKeyword: 'renewable_energy_solar_wind_hydro',
+    imageType: 'photo',
+    imageDescription: '再生可能エネルギー：太陽光、風力、水力。使っても減らないエネルギー。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_012_q6',
+    imageKeyword: 'waste_management_3r_reduce_reuse_recycle',
+    imageType: 'diagram',
+    imageDescription: '廃棄物管理：3R（減らす・再利用・リサイクル）。発生を減らすことが最重要。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_012_q7',
+    imageKeyword: 'recycling_process_material_loop',
+    imageType: 'diagram',
+    imageDescription: 'リサイクルの原理：物質循環。アルミ缶の95%エネルギー削減。素材の品質低下。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_012_q8',
+    imageKeyword: 'endangered_species_extinction_risk',
+    imageType: 'photo',
+    imageDescription: '絶滅危惧種：生息地喪失、乱獲、汚染。トキ、ツシマヤマネコ。保護区。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_012_q9',
+    imageKeyword: 'ecosystem_conservation_food_chain',
+    imageType: 'diagram',
+    imageDescription: '生態系保全：食物連鎖と水循環。里山の管理。トロフィックカスケード。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_012_q10',
+    imageKeyword: 'sustainable_development_goals_sdgs',
+    imageType: 'chart',
+    imageDescription: '持続可能な開発（SDGs）：経済成長と環境保全の両立。サーキュラーエコノミー。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 4_010: 月の形の変わり方
+final stage4_010_images = [
+  QuizImageMetadata(
+    questionId: 'stage_4_010_q1',
+    imageKeyword: 'moon_phases_lunar_cycle_new_full',
+    imageType: 'diagram',
+    imageDescription: '月の形の変わり方：新月から満月まで。月が地球の周りを回る動き。29.5日の周期。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_010_q2',
+    imageKeyword: 'moon_sunlight_reflection',
+    imageType: 'diagram',
+    imageDescription: '月は太陽の光を反射する天体。地球から見える月の照らされた部分は太陽の位置に依存。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_010_q3',
+    imageKeyword: 'moon_earth_sun_positions_geometry',
+    imageType: 'diagram',
+    imageDescription: '月・地球・太陽の位置関係。月が地球の周りを回る軌道と照らされ方の変化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_010_q4',
+    imageKeyword: 'new_moon_crescent_moon_visibility',
+    imageType: 'diagram',
+    imageDescription: '新月と三日月：地球から見える月の部分。新月は太陽とほぼ同じ方向。三日月は夕方に見える。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_010_q5',
+    imageKeyword: 'quarter_moon_half_illuminated',
+    imageType: 'diagram',
+    imageDescription: '上弦の月と下弦の月：月が四半分に照らされた状態。上弦は真夜中に見える。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_010_q6',
+    imageKeyword: 'full_moon_completely_illuminated',
+    imageType: 'diagram',
+    imageDescription: '満月：月全体が太陽に照らされる。地球の反対側の夜空に見える。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_010_q7',
+    imageKeyword: 'lunar_cycle_periodicity_29_5_days',
+    imageType: 'chart',
+    imageDescription: '月の満ち欠けの周期：新月から新月までが29.5日。毎晩少しずつ形が変わる。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_010_q8',
+    imageKeyword: 'moon_visibility_times_appearance',
+    imageType: 'diagram',
+    imageDescription: '月が見える時間帯の変化：新月は昼間、満月は夜中。観測時刻の関係。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_010_q9',
+    imageKeyword: 'moon_shadow_terminator_line',
+    imageType: 'diagram',
+    imageDescription: '月の光と影の境界線（終止線）。太陽光が斜めに当たるため凹凸がはっきり見える。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_010_q10',
+    imageKeyword: 'moon_observation_patterns_recording',
+    imageType: 'chart',
+    imageDescription: '月の観察記録：毎日の形と見える時間帯を記録。規則性を発見する。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 4_011: 天気と情報
+final stage4_011_images = [
+  QuizImageMetadata(
+    questionId: 'stage_4_011_q1',
+    imageKeyword: 'atmospheric_pressure_high_low',
+    imageType: 'diagram',
+    imageDescription: '気圧：高気圧と低気圧。空気の重さと天気の関係。高気圧は晴れ、低気圧は雨。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_011_q2',
+    imageKeyword: 'temperature_measurement_instrument_shelter',
+    imageType: 'photo',
+    imageDescription: '百葉箱：温度計を直射日光から守り、通風させ正確に測定する白い箱。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_011_q3',
+    imageKeyword: 'barometer_air_pressure_measurement',
+    imageType: 'photo',
+    imageDescription: 'バロメーター：気圧を測る道具。気圧の高い・低いで天気が予測できる。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_011_q4',
+    imageKeyword: 'anemometer_wind_speed_direction',
+    imageType: 'photo',
+    imageDescription: '風速計と風向計：風の速さと方向を測定する気象観測機器。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_011_q5',
+    imageKeyword: 'humidity_moisture_air_measurement',
+    imageType: 'diagram',
+    imageDescription: '湿度：空気に含まれる水蒸気の量。100%に近いほど雨が降りやすい。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_011_q6',
+    imageKeyword: 'weather_map_isobars_pressure_lines',
+    imageType: 'diagram',
+    imageDescription: '天気図：等圧線で気圧配置を表示。高気圧と低気圧の位置が天気を決める。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_011_q7',
+    imageKeyword: 'weather_fronts_warm_cold_system',
+    imageType: 'diagram',
+    imageDescription: '前線：温暖前線と寒冷前線。気団の衝突で雨や天気変化が起こる。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_011_q8',
+    imageKeyword: 'weather_data_interpretation_analysis',
+    imageType: 'chart',
+    imageDescription: 'データ解釈：気圧・気温・湿度などのデータから天気を推測する方法。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_011_q9',
+    imageKeyword: 'weather_forecasting_methods_prediction',
+    imageType: 'diagram',
+    imageDescription: '天気予報の仕組み：気象データをコンピュータで分析して数日先を予測。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_4_011_q10',
+    imageKeyword: 'weather_observation_network_stations',
+    imageType: 'photo',
+    imageDescription: '気象観測所：全国各地で気象データを24時間測定・報告。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 5_010: 物の溶け方
+final stage5_010_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_010_q1',
+    imageKeyword: 'dissolution_process_molecular_level',
+    imageType: 'diagram',
+    imageDescription: '溶ける仕組み：固体が液体に分散して分子レベルで混ざる。見た目は均一な液体。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_010_q2',
+    imageKeyword: 'solubility_temperature_effects',
+    imageType: 'chart',
+    imageDescription: '溶解度と温度：温度が高いほど多くの物質が水に溶ける。物質によって曲線が異なる。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_010_q3',
+    imageKeyword: 'saturation_solution_maximum_dissolved',
+    imageType: 'diagram',
+    imageDescription: '飽和溶液：水に溶けきった状態。これ以上溶けない最大値。温度低下で結晶が析出。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_010_q4',
+    imageKeyword: 'cooling_crystallization_cooling_curve',
+    imageType: 'chart',
+    imageDescription: '冷却と結晶化：熱した飽和溶液を冷まし、溶けきれなくなった物質が結晶として固体化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_010_q5',
+    imageKeyword: 'salt_unique_properties_solubility',
+    imageType: 'diagram',
+    imageDescription: '食塩の特異性：温度による溶解度の変化が小さい。水に容易に溶けるが逆温度効果。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_010_q6',
+    imageKeyword: 'evaporation_water_removal_concentration',
+    imageType: 'diagram',
+    imageDescription: '蒸発：水を熱して蒸発させ、溶けた物質だけが残る。塩を取り出す方法の一つ。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_010_q7',
+    imageKeyword: 'filtration_separation_insoluble',
+    imageType: 'diagram',
+    imageDescription: 'ろ過：溶けない固体と液体を分ける方法。ろ紙を使い小さな粒子も除去。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_010_q8',
+    imageKeyword: 'solution_vs_suspension_transparency',
+    imageType: 'diagram',
+    imageDescription: '溶液と懸濁液：溶液は透明で均一。懸濁液は濁り、時間で沈殿する。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_010_q9',
+    imageKeyword: 'color_transparency_dissolved_dye',
+    imageType: 'diagram',
+    imageDescription: '色と透明性：溶けた物質による着色。分子分散で光を透す（透明）。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_010_q10',
+    imageKeyword: 'polar_nonpolar_solvent_solubility',
+    imageType: 'diagram',
+    imageDescription: '極性と溶解性：水は極性溶媒で塩を溶かす。油は非極性で塩を溶かさない。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 5_011: 人と環境
+final stage5_011_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_011_q1',
+    imageKeyword: 'environmental_pollution_sources_factories_vehicles',
+    imageType: 'diagram',
+    imageDescription: '環境汚染の原因：工場排気、自動車排ガス、生活排水。人間活動による汚染。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_011_q2',
+    imageKeyword: 'species_decline_pollution_ecosystem_response',
+    imageType: 'chart',
+    imageDescription: '汚染による生物減少：環境変化に対する生物の敏感な反応。個体数減少。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_011_q3',
+    imageKeyword: 'food_chain_disruption_pollution_impact',
+    imageType: 'diagram',
+    imageDescription: '食物連鎖の破壊：汚染による生産者から消費者への連鎖の分断。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_011_q4',
+    imageKeyword: 'overharvesting_resource_depletion_whales_tuna',
+    imageType: 'chart',
+    imageDescription: '乱獲による資源枯渇：クジラ、マグロなどの海産資源の過度な採取。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_011_q5',
+    imageKeyword: 'climate_change_greenhouse_gas_emissions',
+    imageType: 'diagram',
+    imageDescription: '気候変動：温室効果ガス増加による地球温暖化。CO2、メタンの大気濃度上昇。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_011_q6',
+    imageKeyword: 'natural_conservation_biodiversity_protection',
+    imageType: 'photo',
+    imageDescription: '自然保護：生物多様性を守りながら資源を管理する。保護区の設置。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_011_q7',
+    imageKeyword: 'global_pollution_acid_rain_ocean_waste_microplastics',
+    imageType: 'diagram',
+    imageDescription: '地球規模の汚染：酸性雨、海ゴミ、マイクロプラスチックの拡散。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_011_q8',
+    imageKeyword: 'sustainable_development_sdgs_environmental_goals',
+    imageType: 'chart',
+    imageDescription: '持続可能な開発：環境と経済のバランス。SDGsの17の目標。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_011_q9',
+    imageKeyword: 'recycling_circular_economy_3r_waste_reduction',
+    imageType: 'diagram',
+    imageDescription: 'リサイクルと循環型社会：3R（削減・再利用・再生）による廃棄物削減。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_011_q10',
+    imageKeyword: 'environmental_action_individual_societal_change',
+    imageType: 'chart',
+    imageDescription: '環境保全：個人の行動と社会全体の取り組みの両方が必要。市民参加。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 5_012: 生命のつながり
+final stage5_012_images = [
+  QuizImageMetadata(
+    questionId: 'stage_5_012_q1',
+    imageKeyword: 'food_chain_plants_herbivores_carnivores',
+    imageType: 'diagram',
+    imageDescription: '食物連鎖：生産者（植物）→消費者（動物）→分解者。生命のつながり。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_012_q2',
+    imageKeyword: 'decomposers_bacteria_fungi_nutrient_cycling',
+    imageType: 'diagram',
+    imageDescription: '分解者：バクテリア、キノコが遺骸を分解し栄養を土に戻す。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_012_q3',
+    imageKeyword: 'different_ecosystems_climate_terrain_biodiversity',
+    imageType: 'photo',
+    imageDescription: '異なる生態系：気候と地形で異なる生物が適応。多様な環境。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_012_q4',
+    imageKeyword: 'adaptation_evolution_environmental_selection',
+    imageType: 'diagram',
+    imageDescription: '適応と進化：長い時間で生物が環境に進化。世代を通じた変化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_012_q5',
+    imageKeyword: 'predator_prey_population_dynamics_cycle',
+    imageType: 'chart',
+    imageDescription: '捕食者と被捕食者：個体数が周期的に変動。バランスで生態系安定。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_012_q6',
+    imageKeyword: 'symbiosis_mutualism_commensalism_parasitism',
+    imageType: 'diagram',
+    imageDescription: '共生：相利共生（両者得）、片利共生（片方得）、寄生（片方損）。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_012_q7',
+    imageKeyword: 'invasive_species_ecological_damage_native_species',
+    imageType: 'photo',
+    imageDescription: '外来種の被害：導入された種が在来生物を圧倒。生態系大きく変化。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_012_q8',
+    imageKeyword: 'biodiversity_stability_ecosystem_resilience',
+    imageType: 'chart',
+    imageDescription: '生物多様性と安定性：種が多いほど生態系は環境変動に強い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_012_q9',
+    imageKeyword: 'humans_ecosystem_services_water_food_oxygen',
+    imageType: 'diagram',
+    imageDescription: '人間と生態系：生態系サービスに依存。水、食料、酸素の供給。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_5_012_q10',
+    imageKeyword: 'life_connections_ecological_understanding_systems',
+    imageType: 'chart',
+    imageDescription: '生命のつながり理解：物質循環、進化、共生のシステム統合的理解。',
+    requiresAiGeneration: true,
+  ),
+];
+
+// Stage 6_008: エネルギーと利用
+final stage6_008_images = [
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q1',
+    imageKeyword: 'energy_definition_types_kinetic_potential_heat',
+    imageType: 'diagram',
+    imageDescription: 'エネルギーの種類：運動エネルギー、位置エネルギー、熱エネルギー、電気エネルギー。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q2',
+    imageKeyword: 'energy_conservation_law_form_transformation',
+    imageType: 'diagram',
+    imageDescription: 'エネルギー保存法則：エネルギーは失われず形が変わる。位置→運動→熱。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q3',
+    imageKeyword: 'electrical_energy_power_generation_methods',
+    imageType: 'diagram',
+    imageDescription: '電気エネルギー：火力・水力・風力・太陽光による発電方法の違い。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q4',
+    imageKeyword: 'fossil_fuels_coal_oil_natural_gas_ancient_energy',
+    imageType: 'diagram',
+    imageDescription: '化石燃料：古代の生物由来。太陽エネルギーを化学エネルギーとして蓄えたもの。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q5',
+    imageKeyword: 'nuclear_power_controlled_fission_radiation',
+    imageType: 'diagram',
+    imageDescription: '原子力：核分裂のエネルギー利用。放射線と放射性物質の管理が重要。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q6',
+    imageKeyword: 'renewable_energy_solar_wind_hydro_geothermal',
+    imageType: 'photo',
+    imageDescription: '再生可能エネルギー：太陽光、風力、水力、地熱。尽きることのないエネルギー源。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q7',
+    imageKeyword: 'energy_efficiency_led_lighting_smart_buildings',
+    imageType: 'diagram',
+    imageDescription: '省エネルギー：LED照明、高効率エアコン。同じ機能でより効率的に。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q8',
+    imageKeyword: 'peak_power_demand_smart_grid_battery_storage',
+    imageType: 'chart',
+    imageDescription: 'ピーク電力：日中の最大需要管理。蓄電池とスマートグリッド技術。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q9',
+    imageKeyword: 'hydrogen_energy_carrier_fuel_cells_clean',
+    imageType: 'diagram',
+    imageDescription: '水素エネルギー：燃料電池での発電。排出物は水のみ。次世代エネルギー。',
+    requiresAiGeneration: true,
+  ),
+  QuizImageMetadata(
+    questionId: 'stage_6_008_q10',
+    imageKeyword: 'sustainable_energy_society_carbon_neutral_sdgs',
+    imageType: 'chart',
+    imageDescription: '持続可能なエネルギー社会：カーボンニュートラル、SDGs目標7、再生可能化。',
+    requiresAiGeneration: true,
+  ),
+];
+
 // ===============================
-// 他のステージの画像メタデータもここに追加
+// 他のステージの画像メタデータ
 // Stage 3_009 〜 3_012
-// Stage 4_007 〜 4_011
-// Stage 5_001 〜 5_012
-// Stage 6_001 〜 6_012
+// Stage 4_012
+// Stage 5_011 〜 5_012 ✅ 完成
+// Stage 6_008 ✅ 完成
 // ===============================
 
 /// 画像メタデータを全ステージから検索するヘルパー関数
@@ -1101,6 +3471,15 @@ Map<String, QuizImageMetadata> getQuizImageMetadata() {
   for (final img in stage3_008_images) {
     allImages[img.questionId] = img;
   }
+  for (final img in stage3_009_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage3_010_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage3_011_images) {
+    allImages[img.questionId] = img;
+  }
 
   // 4年生
   for (final img in stage4001_images) {
@@ -1119,6 +3498,97 @@ Map<String, QuizImageMetadata> getQuizImageMetadata() {
     allImages[img.questionId] = img;
   }
   for (final img in stage4006_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage4007_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage4008_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage4009_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage4_010_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage4_011_images) {
+    allImages[img.questionId] = img;
+  }
+
+  // 5年生
+  for (final img in stage5_001_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_002_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_003_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_004_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_005_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_006_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_007_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_008_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_009_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_010_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_011_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage5_012_images) {
+    allImages[img.questionId] = img;
+  }
+
+  // 6年生
+  for (final img in stage6_001_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_002_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_003_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_004_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_005_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_006_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_007_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_008_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_009_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_010_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_011_images) {
+    allImages[img.questionId] = img;
+  }
+  for (final img in stage6_012_images) {
     allImages[img.questionId] = img;
   }
 
