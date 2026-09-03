@@ -5,6 +5,7 @@ import 'package:shared_core/shared_core.dart'
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'app/router.dart';
 import 'app/theme.dart';
 import 'features/progress/data/repositories/incorrect_monster_repository.dart';
@@ -26,6 +27,14 @@ import 'shared/localization/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // 環境変数を読み込む
+  try {
+    await dotenv.load(fileName: '.env');
+  } catch (e) {
+    // .env ファイルが見つからない場合はスキップ（開発環境により異なる）
+  }
+
   await FirebaseService.initialize(); // google-services.json 未配置時はローカルモードで継続
 
   final prefs = await SharedPreferences.getInstance();
