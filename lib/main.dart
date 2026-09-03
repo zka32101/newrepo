@@ -14,6 +14,7 @@ import 'features/progress/providers/review_time_capsule_provider.dart';
 import 'features/settings/providers/theme_provider.dart';
 import 'providers/character_provider.dart';
 import 'providers/locale_provider.dart';
+import 'features/experiments/providers/prediction_provider.dart';
 import 'services/firebase_service.dart';
 import 'services/notification_service.dart';
 import 'services/streak_service.dart';
@@ -83,6 +84,10 @@ void main() async {
         // 保存されたロケール設定を注入
         localeProvider.overrideWithValue(
           StateNotifierProvider((ref) => LocaleNotifier(savedLocale)),
+        ),
+        // Phase 3.5: 予想ラボ用プロバイダーを注入
+        predictionProvider.overrideWith(
+          (ref) => PredictionNotifier(),
         ),
       ],
       child: const MyApp(),
