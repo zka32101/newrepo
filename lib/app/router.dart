@@ -5,6 +5,7 @@ import '../features/quiz/views/quiz_screen.dart';
 import '../features/quiz/views/quiz_result_screen.dart';
 import '../features/learn/views/learn_screen.dart';
 import '../features/experiments/views/experiment_detail_screen.dart';
+import '../features/experiments/views/experiment_tab_screen.dart';
 import '../features/profile/views/profile_select_screen.dart';
 import '../features/profile/views/profile_create_screen.dart';
 import '../features/daily/views/daily_challenge_screen.dart';
@@ -90,6 +91,49 @@ class AppRouter {
           final experimentId =
               state.pathParameters['experimentId'] ?? 'exp_magnet_001';
           return ExperimentDetailScreen(experimentId: experimentId);
+        },
+      ),
+
+      // 実験タブ
+      GoRoute(
+        path: '/experiments',
+        name: 'experiments',
+        builder: (_, __) => const ExperimentTabScreen(),
+      ),
+
+      // 予想クイズ
+      GoRoute(
+        path: '/prediction-quiz/:experimentId',
+        name: 'prediction-quiz',
+        builder: (_, state) {
+          final experimentId = state.pathParameters['experimentId'] ?? 'pred_001';
+          return PredictionQuizScreen(experimentId: experimentId);
+        },
+      ),
+
+      // トラブルシューティング
+      GoRoute(
+        path: '/troubleshoot/:troubleshootId',
+        name: 'troubleshoot',
+        builder: (_, state) {
+          final troubleshootId = state.pathParameters['troubleshootId'] ?? 'ts_001';
+          return TroubleshootScreen(troubleshootId: troubleshootId);
+        },
+      ),
+
+      // 親子バトル
+      GoRoute(
+        path: '/battle',
+        name: 'battle',
+        builder: (_, __) => const PredictionBattleScreen(),
+      ),
+
+      GoRoute(
+        path: '/battle/:battleId',
+        name: 'battle-detail',
+        builder: (_, state) {
+          final battleId = state.pathParameters['battleId'] ?? 'battle_001';
+          return PredictionBattleScreen(battleId: battleId);
         },
       ),
 

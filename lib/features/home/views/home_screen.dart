@@ -26,6 +26,7 @@ import '../widgets/home_section_recommend.dart';
 import '../widgets/home_section_records.dart';
 import '../widgets/home_section_learning.dart';
 import '../widgets/home_section_discover.dart';
+import '../../experiments/views/experiment_tab_screen.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -54,6 +55,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             const LearnTabScreen(),
             const EncyclopediaScreen(),
             const ShopScreen(),
+            const ExperimentTabScreen(),
             const ProgressScreen(),
           ],
         ),
@@ -343,6 +345,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             icon: Icon(Icons.storefront_outlined),
             activeIcon: Icon(Icons.storefront_rounded),
             label: 'ショップ',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.science_outlined),
+            activeIcon: Icon(Icons.science_rounded),
+            label: 'じっけん',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.emoji_events_outlined),
