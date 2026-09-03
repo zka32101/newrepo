@@ -12,7 +12,13 @@ class SeasonalRecommendationWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final month = DateTime.now().month;
     final rec = _getRecommendation(month);
-    final colors = _getColors(month);
+    final rec_colors = _getColors(month);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    // Dark theme gradient adjustment
+    final colors = isDark
+        ? [rec_colors[0].withOpacity(0.7), rec_colors[1].withOpacity(0.7)]
+        : rec_colors;
 
     return GestureDetector(
       onTap: () => onTap(rec.stageId),
@@ -28,7 +34,7 @@ class SeasonalRecommendationWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: colors[0].withOpacity(0.35),
+              color: colors[0].withOpacity(isDark ? 0.5 : 0.35),
               blurRadius: 12,
               offset: const Offset(0, 4),
             ),
