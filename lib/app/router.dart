@@ -25,9 +25,9 @@ import '../features/character/views/character_screen.dart';
 import '../features/experiments/views/prediction_quiz_screen.dart';
 import '../features/experiments/views/troubleshoot_screen.dart';
 import '../features/battle/views/prediction_battle_screen.dart';
-import '../features/ai_chat/views/ai_chat_screen.dart';
+import '../features/ai_professor/views/ai_chat_screen.dart';
 import '../features/home_lab/views/home_lab_screen.dart';
-import '../features/sky/views/tonight_sky_screen.dart';
+import '../features/sky/views/night_sky_screen.dart' as sky_views;
 import '../features/creature/views/creature_camera_screen.dart';
 import '../features/creature/views/creature_collection_screen.dart';
 import '../features/time_travel/views/scientist_story_screen.dart';
@@ -299,7 +299,7 @@ class AppRouter {
       GoRoute(
         path: '/tonight-sky',
         name: 'tonight-sky',
-        builder: (_, __) => const TonightSkyScreen(),
+        builder: (_, __) => const sky_views.NightSkyScreen(),
       ),
 
       // ⑤ いきものカメラ
