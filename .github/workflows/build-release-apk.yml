@@ -34,26 +34,50 @@ jobs:
           flutter-version: '3.13.0'
           channel: 'stable'
 
+      - name: Patch shared_core SDK constraint
+        run: |
+          # Clone shared_core and patch its SDK constraint
+          echo "Cloning shared_core to patch SDK constraint..."
+          git clone https://github.com/org-zka32101/shared_core.git /tmp/shared_core_patched
+
+          # Patch the SDK constraint: ^3.11.5 -> ^3.1.5 (Dart 3.11 doesn't exist, 3.1.5 is intended)
+          sed -i 's/sdk: \^3\.11\.5/sdk: ^3.1.5/' /tmp/shared_core_patched/pubspec.yaml
+
+          # Verify the patch
+          echo "=== Patched pubspec.yaml (environment section) ==="
+          grep -A 2 "^environment:" /tmp/shared_core_patched/pubspec.yaml
+
+      - name: Update pubspec.yaml to use local shared_core
+        run: |
+          # Backup original
+          cp pubspec.yaml pubspec.yaml.bak
+
+          # Replace git dependency with path dependency using multi-line sed
+          # Find the shared_core git block and replace it
+          python3 << 'PYTHON_EOF'
+          import re
+
+          with open('pubspec.yaml', 'r') as f:
+            content = f.read()
+
+          # Replace shared_core git dependency with path dependency
+          pattern = r'(\s+shared_core:\s*)\n\s+git:\s*\n\s+url:.*\n\s+ref:.*'
+          replacement = r'\1\n    path: /tmp/shared_core_patched'
+          content = re.sub(pattern, replacement, content, flags=re.MULTILINE)
+
+          with open('pubspec.yaml', 'w') as f:
+            f.write(content)
+
+          print("✅ Updated pubspec.yaml to use local shared_core")
+          PYTHON_EOF
+
+          # Verify the change
+          echo "=== Verifying shared_core section ==="
+          sed -n '/shared_core:/,/^  [a-z]/p' pubspec.yaml | head -5
+
       - name: Get Flutter dependencies
         run: |
-          # Patch shared_core's impossible SDK constraint (^3.11.5 -> ^3.1.5) on-the-fly
-          # by modifying pubspec.yaml before pub get runs
-          sed -i 's/^  sdk: \^3\.11\.5/  sdk: ^3.1.5/' pubspec.lock 2>/dev/null || true
-
-          # Run pub get with error handling
-          flutter pub get || {
-            # If pub get fails, try to patch the Dart cache and retry
-            CACHE_DIR=$(flutter pub cache dir)
-            if [ -d "$CACHE_DIR" ]; then
-              find "$CACHE_DIR" -name pubspec.yaml 2>/dev/null | while read -r pf; do
-                if grep -q "sdk: \^3\.11\.5" "$pf" 2>/dev/null; then
-                  sed -i 's/sdk: \^3\.11\.5/sdk: ^3.1.5/' "$pf"
-                fi
-              done
-            fi
-            flutter pub get
-          }
-
+          flutter pub get
           flutter pub global activate intl_utils
 
       - name: Setup Android build environment
