@@ -145,3 +145,12 @@ jobs:
           echo ""
           echo "📦 Total Size:"
           du -sh build/app/outputs/
+
+  upload-to-google-drive:
+    name: Upload to Google Drive
+    needs: build
+    uses: ./.github/workflows/google-drive-upload.yml
+    if: always()
+    secrets:
+      GOOGLE_DRIVE_FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
+      GOOGLE_DRIVE_SERVICE_ACCOUNT: ${{ secrets.GOOGLE_DRIVE_SERVICE_ACCOUNT }}
