@@ -49,29 +49,24 @@ jobs:
 
       - name: Update pubspec.yaml to use local shared_core
         run: |
-          # Backup original
-          cp pubspec.yaml pubspec.yaml.bak
+          # Replace git dependency with path dependency
+          # This is a three-step process:
+          # 1. Find the line with "shared_core:" and the next 3 lines
+          # 2. Replace them with just "shared_core:" + "path: /tmp/shared_core_patched"
 
-          # Replace git dependency with path dependency using multi-line sed
-          # Find the shared_core git block and replace it
-          python3 << 'PYTHON_EOF'
-          import re
+          awk '
+            /^\s+shared_core:/ {
+              print $0
+              getline  # skip "git:"
+              getline  # skip "url: ..."
+              getline  # skip "ref: ..."
+              print "    path: /tmp/shared_core_patched"
+              next
+            }
+            { print }
+          ' pubspec.yaml > pubspec.yaml.new && mv pubspec.yaml.new pubspec.yaml
 
-          with open('pubspec.yaml', 'r') as f:
-            content = f.read()
-
-          # Replace shared_core git dependency with path dependency
-          pattern = r'(\s+shared_core:\s*)\n\s+git:\s*\n\s+url:.*\n\s+ref:.*'
-          replacement = r'\1\n    path: /tmp/shared_core_patched'
-          content = re.sub(pattern, replacement, content, flags=re.MULTILINE)
-
-          with open('pubspec.yaml', 'w') as f:
-            f.write(content)
-
-          print("✅ Updated pubspec.yaml to use local shared_core")
-          PYTHON_EOF
-
-          # Verify the change
+          echo "✅ Updated pubspec.yaml to use local shared_core"
           echo "=== Verifying shared_core section ==="
           sed -n '/shared_core:/,/^  [a-z]/p' pubspec.yaml | head -5
 
