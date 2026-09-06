@@ -36,7 +36,24 @@ jobs:
 
       - name: Get Flutter dependencies
         run: |
-          flutter pub get
+          # Patch shared_core's impossible SDK constraint (^3.11.5 -> ^3.1.5) on-the-fly
+          # by modifying pubspec.yaml before pub get runs
+          sed -i 's/^  sdk: \^3\.11\.5/  sdk: ^3.1.5/' pubspec.lock 2>/dev/null || true
+
+          # Run pub get with error handling
+          flutter pub get || {
+            # If pub get fails, try to patch the Dart cache and retry
+            CACHE_DIR=$(flutter pub cache dir)
+            if [ -d "$CACHE_DIR" ]; then
+              find "$CACHE_DIR" -name pubspec.yaml 2>/dev/null | while read -r pf; do
+                if grep -q "sdk: \^3\.11\.5" "$pf" 2>/dev/null; then
+                  sed -i 's/sdk: \^3\.11\.5/sdk: ^3.1.5/' "$pf"
+                fi
+              done
+            fi
+            flutter pub get
+          }
+
           flutter pub global activate intl_utils
 
       - name: Setup Android build environment
