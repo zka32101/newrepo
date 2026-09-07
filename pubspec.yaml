@@ -73,10 +73,10 @@ dependencies:
   purchases_flutter: ^10.0.0
 
   # ============== Utility ==============
-  intl: ^0.19.0
+  intl: ^0.18.0
   uuid: ^4.0.0
-  http: ^1.2.0
-  share_plus: ^10.0.0
+  http: ^1.1.0
+  share_plus: ^7.2.0
 
   # ============== 解説画面強化 ==============
   youtube_player_iframe: ^3.0.0   # YouTube インライン再生 (Dart 3.1.0対応)
