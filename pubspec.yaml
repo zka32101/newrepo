@@ -69,9 +69,6 @@ dependencies:
   # ============== Charts ==============
   fl_chart: ^0.60.0
 
-  # ============== Monetization ==============
-  purchases_flutter: ^10.0.0
-
   # ============== Utility ==============
   intl: ^0.18.0
   uuid: ^4.0.0
