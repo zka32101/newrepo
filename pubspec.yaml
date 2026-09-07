@@ -67,7 +67,7 @@ dependencies:
   json_annotation: ^4.9.0
 
   # ============== Charts ==============
-  fl_chart: ^0.68.0
+  fl_chart: ^0.60.0
 
   # ============== Shared Core ==============
   # Fixed: Using zka32101/shared_core with corrected SDK constraint (^3.1.5)
