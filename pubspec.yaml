@@ -70,11 +70,10 @@ dependencies:
   fl_chart: ^0.68.0
 
   # ============== Shared Core ==============
-  # Note: shared_core has SDK constraint issue (^3.11.5 doesn't exist)
-  # Working around by using dependency_overrides
+  # Fixed: Using zka32101/shared_core with corrected SDK constraint (^3.1.5)
   shared_core:
     git:
-      url: https://github.com/org-zka32101/shared_core.git
+      url: https://github.com/zka32101/shared_core.git
       ref: main
 
   # ============== Monetization ==============
