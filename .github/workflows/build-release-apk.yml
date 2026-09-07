@@ -34,42 +34,6 @@ jobs:
           flutter-version: '3.13.0'
           channel: 'stable'
 
-      - name: Patch shared_core SDK constraint
-        run: |
-          # Clone shared_core and patch its SDK constraint
-          echo "Cloning shared_core to patch SDK constraint..."
-          git clone https://github.com/org-zka32101/shared_core.git /tmp/shared_core_patched
-
-          # Patch the SDK constraint: ^3.11.5 -> ^3.1.5 (Dart 3.11 doesn't exist, 3.1.5 is intended)
-          sed -i 's/sdk: \^3\.11\.5/sdk: ^3.1.5/' /tmp/shared_core_patched/pubspec.yaml
-
-          # Verify the patch
-          echo "=== Patched pubspec.yaml (environment section) ==="
-          grep -A 2 "^environment:" /tmp/shared_core_patched/pubspec.yaml
-
-      - name: Update pubspec.yaml to use local shared_core
-        run: |
-          # Replace git dependency with path dependency
-          # This is a three-step process:
-          # 1. Find the line with "shared_core:" and the next 3 lines
-          # 2. Replace them with just "shared_core:" + "path: /tmp/shared_core_patched"
-
-          awk '
-            /^\s+shared_core:/ {
-              print $0
-              getline  # skip "git:"
-              getline  # skip "url: ..."
-              getline  # skip "ref: ..."
-              print "    path: /tmp/shared_core_patched"
-              next
-            }
-            { print }
-          ' pubspec.yaml > pubspec.yaml.new && mv pubspec.yaml.new pubspec.yaml
-
-          echo "✅ Updated pubspec.yaml to use local shared_core"
-          echo "=== Verifying shared_core section ==="
-          sed -n '/shared_core:/,/^  [a-z]/p' pubspec.yaml | head -5
-
       - name: Get Flutter dependencies
         run: |
           flutter pub get
