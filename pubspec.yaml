@@ -79,10 +79,10 @@ dependencies:
   share_plus: ^10.0.0
 
   # ============== 解説画面強化 ==============
-  youtube_player_iframe: ^4.0.0   # YouTube インライン再生
-  flutter_tts: ^4.2.0                  # 音声読み上げ
+  youtube_player_iframe: ^3.2.0   # YouTube インライン再生 (Dart 3.1.0対応)
+  flutter_tts: ^3.8.0                  # 音声読み上げ (Dart 3.1.0対応)
   flutter_markdown: ^0.6.20            # マークダウンレンダリング (Dart 3.1.0対応)
-  shimmer: ^3.0.0                  # ローディングシマー効果
+  shimmer: ^2.1.0                  # ローディングシマー効果 (Dart 3.1.0対応)
 
 flutter_launcher_icons:
   android: true
