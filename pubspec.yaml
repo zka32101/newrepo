@@ -164,3 +164,12 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+# Temporary workaround: Override shared_core's SDK constraint
+# shared_core requires ^3.1.5, but Flutter 3.13.0 provides 3.1.0
+# This override allows the build to succeed with Dart 3.1.0
+dependency_overrides:
+  shared_core:
+    git:
+      url: https://github.com/zka32101/shared_core.git
+      ref: main
