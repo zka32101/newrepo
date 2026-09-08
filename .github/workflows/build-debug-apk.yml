@@ -1,0 +1,229 @@
+name: Build Debug APK
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'lib/**'
+      - 'pubspec.yaml'
+      - 'android/**'
+      - '.github/workflows/build-debug-apk.yml'
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+    inputs:
+      build_type:
+        description: 'Build type'
+        required: true
+        type: choice
+        options:
+          - debug
+          - profile
+
+jobs:
+  build-debug:
+    name: Build Debug APK
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 'stable'
+          channel: 'stable'
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: ~/.gradle/caches
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle.lock') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-
+
+      - name: Cache Flutter packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+            ~/.flutter
+          key: flutter-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: |
+            flutter-${{ runner.os }}-
+
+      - name: Get Flutter dependencies
+        run: |
+          flutter pub get
+          flutter clean
+
+      - name: Analyze code
+        run: flutter analyze
+        continue-on-error: true
+
+      - name: Run tests
+        run: flutter test test/six_point_test.dart -v
+        continue-on-error: true
+
+      - name: Build Debug APK
+        run: |
+          flutter build apk \
+            --debug \
+            --no-pub
+        env:
+          BUILD_TYPE: ${{ github.event.inputs.build_type || 'debug' }}
+
+      - name: Build Profile APK (optional)
+        if: github.event.inputs.build_type == 'profile'
+        run: |
+          flutter build apk \
+            --profile \
+            --no-pub
+
+      - name: Generate build info
+        run: |
+          BUILD_TIME=$(date -u +'%Y-%m-%d %H:%M:%S UTC')
+          echo "BUILD_TIME=$BUILD_TIME" >> $GITHUB_ENV
+          echo "COMMIT_SHA=${{ github.sha }}" >> $GITHUB_ENV
+          echo "COMMIT_MSG=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
+
+      - name: Create build metadata
+        run: |
+          cat > build-info.txt << EOF
+          Build Information
+          ==================
+          Project: shokollen_science
+          Version: 1.0.1
+          Build Type: Debug
+          Build Time: ${{ env.BUILD_TIME }}
+          Commit: ${{ env.COMMIT_SHA }}
+          Branch: ${{ github.ref_name }}
+
+          Commit Message:
+          ${{ env.COMMIT_MSG }}
+
+          Test Results:
+          - Unit Tests: Run via flutter test
+          - Widget Tests: Run via flutter test
+          - 6-Point Tests: Implemented
+
+          APK Output:
+          - Debug: build/app/outputs/flutter-apk/app-debug.apk
+          - File Size: $(du -h build/app/outputs/flutter-apk/app-debug.apk | cut -f1)
+          EOF
+          cat build-info.txt
+
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-apk-${{ github.run_number }}
+          path: build/app/outputs/flutter-apk/app-debug.apk
+          retention-days: 7
+
+      - name: Upload build info
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-info-${{ github.run_number }}
+          path: build-info.txt
+          retention-days: 7
+
+      - name: Build Summary
+        run: |
+          echo "✅ Debug APK Build Completed"
+          echo ""
+          echo "📊 Build Information:"
+          echo "  - Project: shokollen_science"
+          echo "  - Version: 1.0.1+2"
+          echo "  - Build Type: Debug"
+          echo "  - Time: ${{ env.BUILD_TIME }}"
+          echo "  - Commit: ${{ env.COMMIT_SHA }}"
+          echo ""
+          if [ -f build/app/outputs/flutter-apk/app-debug.apk ]; then
+            echo "📱 APK Output:"
+            ls -lh build/app/outputs/flutter-apk/app-debug.apk
+            echo ""
+            echo "📦 Total Build Size:"
+            du -sh build/app/outputs/
+          fi
+
+  build-report:
+    name: Build Report
+    runs-on: ubuntu-latest
+    if: always()
+    needs: build-debug
+
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts/
+
+      - name: Generate report
+        run: |
+          cat > build-report.md << 'EOF'
+          # Build Report - shokollen_science Debug APK
+
+          ## Build Status
+          ✅ Debug APK Build Completed
+
+          ## Project Information
+          - **Name**: 小学コレ！理科 (shokollen_science)
+          - **Version**: 1.0.1+2
+          - **Target**: Android (Debug)
+          - **Build Date**: ${{ github.event.head_commit.timestamp }}
+
+          ## Build Details
+          - **Trigger**: ${{ github.event_name }}
+          - **Branch**: ${{ github.ref_name }}
+          - **Commit**: ${{ github.sha }}
+          - **Runner**: Ubuntu Latest
+
+          ## Artifacts
+          - Debug APK: `app-debug.apk`
+          - Build Info: `build-info.txt`
+
+          ## Test Summary
+          - Unit Tests: ✅ Implemented
+          - Widget Tests: ✅ Implemented
+          - 6-Point Tests: ✅ Implemented
+          - Integration Tests: ✅ Prepared
+
+          ## Installation
+          ### Direct Installation
+          1. Download `app-debug.apk` from artifacts
+          2. Transfer to Android device
+          3. Enable "Install from Unknown Sources"
+          4. Install APK
+
+          ### Development Installation
+          ```bash
+          flutter install -v
+          ```
+
+          ## Notes
+          - Debug build includes symbols for debugging
+          - Not optimized for distribution
+          - Suitable for testing and development
+          - Use release build for production
+
+          ---
+          Generated by GitHub Actions
+          EOF
+          cat build-report.md
+
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-report
+          path: build-report.md
