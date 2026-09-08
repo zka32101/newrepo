@@ -44,12 +44,22 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y openjdk-17-jdk
 
+      - name: Decode release keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_FILE }}
+        run: |
+          if [ -z "$KEYSTORE_BASE64" ]; then
+            echo "::error::secrets.KEYSTORE_FILE (base64-encoded .jks) is not set. Add it in repo Settings > Secrets before running a release build."
+            exit 1
+          fi
+          echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release-keystore.jks"
+          echo "STORE_FILE=$RUNNER_TEMP/release-keystore.jks" >> "$GITHUB_ENV"
+
       - name: Build Release APK
         env:
           STORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-          STORE_FILE: ${{ secrets.KEYSTORE_FILE }}
         run: |
           flutter build apk \
             --split-per-abi \
@@ -62,7 +72,6 @@ jobs:
           STORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-          STORE_FILE: ${{ secrets.KEYSTORE_FILE }}
         run: |
           flutter build appbundle \
             --release \

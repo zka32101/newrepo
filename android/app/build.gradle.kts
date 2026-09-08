@@ -25,14 +25,25 @@ android {
 
     signingConfigs {
         create("release") {
-            val keystoreFile = file("keystore.jks")
-            val keystoreProperties = Properties()
-            keystoreProperties.load(file("../key.properties").inputStream())
-
-            keyAlias = keystoreProperties.getProperty("keyAlias")
-            keyPassword = keystoreProperties.getProperty("keyPassword")
-            storeFile = keystoreFile
-            storePassword = keystoreProperties.getProperty("storePassword")
+            // Local dev: android/key.properties (untracked, see key.properties.example).
+            // CI: STORE_FILE / STORE_PASSWORD / KEY_ALIAS / KEY_PASSWORD env vars.
+            val keystorePropertiesFile = rootProject.file("key.properties")
+            if (keystorePropertiesFile.exists()) {
+                val keystoreProperties = Properties()
+                keystoreProperties.load(keystorePropertiesFile.inputStream())
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+                storeFile = file(keystoreProperties.getProperty("storeFile") ?: "keystore.jks")
+                storePassword = keystoreProperties.getProperty("storePassword")
+            } else {
+                keyAlias = System.getenv("KEY_ALIAS")
+                keyPassword = System.getenv("KEY_PASSWORD")
+                val storeFilePath = System.getenv("STORE_FILE")
+                if (storeFilePath != null) {
+                    storeFile = file(storeFilePath)
+                }
+                storePassword = System.getenv("STORE_PASSWORD")
+            }
         }
     }
 
