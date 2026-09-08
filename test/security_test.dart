@@ -45,15 +45,19 @@ void main() {
       );
     });
 
-    test('署名用シークレットファイルがワーキングツリーに残っていない', () {
+    test('署名用シークレットファイルがgitで追跡されていない', () {
       // android/key.properties・keystore.jks は .gitignore 対象で
       // リポジトリに追跡されるべきではない（過去に誤ってコミットされた
-      // 実績があるため回帰検知として残す）。
+      // 実績があるため回帰検知として残す）。ローカル開発では
+      // key.properties.example に従いこれらのファイルをワーキング
+      // ツリーに置くこと自体は正しい運用なので、存在チェックではなく
+      // git の追跡状態そのものを確認する。
       for (final path in ['android/key.properties', 'android/keystore.jks']) {
+        final result = Process.runSync('git', ['ls-files', '--error-unmatch', path]);
         expect(
-          File(path).existsSync(),
-          isFalse,
-          reason: '$path が誤ってコミット/配置されている可能性があります',
+          result.exitCode,
+          isNot(0),
+          reason: '$path が git に追跡されています。誤ってコミットされている可能性があります',
         );
       }
     });

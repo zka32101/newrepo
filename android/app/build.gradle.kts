@@ -33,7 +33,7 @@ android {
                 keystoreProperties.load(keystorePropertiesFile.inputStream())
                 keyAlias = keystoreProperties.getProperty("keyAlias")
                 keyPassword = keystoreProperties.getProperty("keyPassword")
-                storeFile = file(keystoreProperties.getProperty("storeFile") ?: "keystore.jks")
+                storeFile = rootProject.file(keystoreProperties.getProperty("storeFile") ?: "keystore.jks")
                 storePassword = keystoreProperties.getProperty("storePassword")
             } else {
                 keyAlias = System.getenv("KEY_ALIAS")
