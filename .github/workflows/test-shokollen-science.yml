@@ -66,6 +66,7 @@ jobs:
   emulator-tests:
     name: Android Emulator Tests
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     strategy:
       matrix:
         api-level: [31, 34]
@@ -157,9 +158,10 @@ jobs:
 
       - name: Collect device logs
         if: always()
+        timeout-minutes: 2
         run: |
           mkdir -p test-results/api-${{ matrix.api-level }}
-          $ANDROID_SDK_ROOT/platform-tools/adb logcat -d > test-results/api-${{ matrix.api-level }}/logcat.log || true
+          timeout 30 $ANDROID_SDK_ROOT/platform-tools/adb logcat -d > test-results/api-${{ matrix.api-level }}/logcat.log || true
           cat /tmp/emulator.log > test-results/api-${{ matrix.api-level }}/emulator.log || true
 
       - name: Upload test artifacts
