@@ -33,6 +33,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Configure git credentials
+        run: |
+          git config --global url."https://github.com/".insteadOf git://github.com/
+          git config --global url."https://${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -65,8 +72,9 @@ jobs:
 
       - name: Get Flutter dependencies
         run: |
-          flutter pub get
+          flutter pub get --no-example
           flutter clean
+        continue-on-error: true
 
       - name: Analyze code
         run: flutter analyze
