@@ -1,192 +1,101 @@
 /// セキュリティテスト - shokollen_science
 ///
+/// 実装済みの機能に対してのみ、実際にアサーションで検証する。
+/// 本アプリには認証・DB・ディープリンクは存在しないため、それらを
+/// 装った「実装依存」「〜を想定」といった無検証テストは置かない
+/// （実体のない検証は誤った安心感を生むため）。
+///
 /// 検査項目：
-/// - 認証トークン管理
-/// - データ暗号化
-/// - 入力値検証
-/// - 権限チェック
+/// - lib/ 配下にハードコードされたAPIキー・シークレットがないか
+/// - 署名用シークレット（key.properties / keystore.jks）が
+///   誤ってコミットされていないか
+/// - 不正な入力値でアプリがクラッシュしないか
+/// - AndroidManifest.xml で不要なコンポーネントが export されていないか
 
+import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:shokollen_science/main.dart';
 
 void main() {
   group('セキュリティテスト', () {
+    test('lib/ にハードコードされたAPIキー・シークレットが存在しない', () {
+      final libDir = Directory('lib');
+      final secretPattern = RegExp(
+        r'sk-ant-[a-zA-Z0-9\-_]{10,}'
+        r'|sk-[a-zA-Z0-9]{20,}'
+        r'|AIza[0-9A-Za-z\-_]{35}'
+        r'''|["']?[Aa]pi[_-]?[Kk]ey["']?\s*[:=]\s*["'][A-Za-z0-9]{16,}["']''',
+      );
 
-    // ========== 認証トークン管理テスト ==========
-    testWidgets('認証トークンが安全に管理される', (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
+      final offenders = <String>[];
+      for (final entity in libDir.listSync(recursive: true)) {
+        if (entity is File && entity.path.endsWith('.dart')) {
+          final content = entity.readAsStringSync();
+          if (secretPattern.hasMatch(content)) {
+            offenders.add(entity.path);
+          }
+        }
+      }
 
-      // SharedPreferences にトークンが平文で保存されていないことを確認
-      // （実装に応じて、暗号化されていることを確認）
-
-      print('✅ トークン管理テスト: 認証情報が保護される想定');
+      expect(
+        offenders,
+        isEmpty,
+        reason: 'ハードコードされたシークレットの疑いがあるファイル: $offenders',
+      );
     });
 
-    // ========== 入力値検証テスト ==========
-    testWidgets('不正な入力値を拒否する', (WidgetTester tester) async {
+    test('署名用シークレットファイルがgitで追跡されていない', () {
+      // android/key.properties・keystore.jks は .gitignore 対象で
+      // リポジトリに追跡されるべきではない（過去に誤ってコミットされた
+      // 実績があるため回帰検知として残す）。ローカル開発では
+      // key.properties.example に従いこれらのファイルをワーキング
+      // ツリーに置くこと自体は正しい運用なので、存在チェックではなく
+      // git の追跡状態そのものを確認する。
+      for (final path in ['android/key.properties', 'android/keystore.jks']) {
+        final result = Process.runSync('git', ['ls-files', '--error-unmatch', path]);
+        expect(
+          result.exitCode,
+          isNot(0),
+          reason: '$path が git に追跡されています。誤ってコミットされている可能性があります',
+        );
+      }
+    });
+
+    testWidgets('不正な入力値でアプリがクラッシュしない', (WidgetTester tester) async {
       await tester.pumpWidget(const MyApp());
       await tester.pumpAndSettle(const Duration(seconds: 2));
 
-      // テキストフィールドを探す
       final textFieldFinder = find.byType(TextField);
-
       if (textFieldFinder.evaluate().isNotEmpty) {
-        // SQL インジェクション試行
-        await tester.enterText(
-          textFieldFinder.first,
+        for (final payload in [
           "'; DROP TABLE users; --",
-        );
-        await tester.pump();
-
-        // アプリがクラッシュしないことを確認
-        expect(find.byType(MaterialApp), findsWidgets);
-        print('✅ SQL インジェクション対策: 成功');
-
-        // XSS 試行
-        await tester.enterText(
-          textFieldFinder.first,
           '<script>alert("XSS")</script>',
-        );
-        await tester.pump();
+          '../../etc/passwd',
+        ]) {
+          await tester.enterText(textFieldFinder.first, payload);
+          await tester.pump();
 
-        expect(find.byType(MaterialApp), findsWidgets);
-        print('✅ XSS 対策: 成功');
-      }
-    });
-
-    // ========== 権限チェックテスト ==========
-    testWidgets('権限なしでは機能にアクセスできない', (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
-      await tester.pumpAndSettle(const Duration(seconds: 2));
-
-      // 管理者機能を探す（存在しない場合もテスト）
-      final adminButtonFinder = find.byTooltip('Admin Panel');
-
-      if (adminButtonFinder.evaluate().isNotEmpty) {
-        // 権限チェック：アクセス拒否を期待
-        await tester.tap(adminButtonFinder);
-        await tester.pumpAndSettle();
-
-        // エラーメッセージまたは別画面への遷移を確認
-        print('✅ 権限チェック: 成功');
-      } else {
-        print('✅ 権限チェック: 管理者機能が適切に保護されている');
-      }
-    });
-
-    // ========== セッションタイムアウトテスト ==========
-    testWidgets('セッションがタイムアウトする', (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
-      await tester.pumpAndSettle(const Duration(seconds: 2));
-
-      // 長時間の操作がない場合、セッションがタイムアウトすることを期待
-      // （実装に応じて調整）
-
-      print('✅ セッションタイムアウト: 実装依存');
-    });
-
-    // ========== HTTPS 通信テスト ==========
-    testWidgets('通信が暗号化されている', (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
-
-      // Firebase など、バックエンド通信が HTTPS を使用していることを確認
-      // （ネットワークログを監視して確認）
-
-      print('✅ HTTPS 通信: Firebase が暗号化通信を使用');
-    });
-
-    // ========== データ漏洩テスト ==========
-    testWidgets('機密データが適切に処理される', (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
-      await tester.pumpAndSettle(const Duration(seconds: 2));
-
-      // パスワード、API キーなどが画面に表示されていないことを確認
-      final passwordFieldFinder = find.byType(TextField);
-
-      if (passwordFieldFinder.evaluate().isNotEmpty) {
-        // パスワードフィールドは obscureText が true であることを確認
-        final textField = tester.widget<TextField>(passwordFieldFinder.first);
-
-        if (textField.obscureText) {
-          print('✅ パスワード保護: 成功（マスク表示）');
+          expect(tester.takeException(), isNull);
+          expect(find.byType(MaterialApp), findsWidgets);
         }
       }
     });
 
-    // ========== ローカルストレージセキュリティ ==========
-    testWidgets('ローカルストレージが安全である', (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
+    test('AndroidManifest.xml で不要なコンポーネントが export されていない', () {
+      final manifest =
+          File('android/app/src/main/AndroidManifest.xml').readAsStringSync();
 
-      // SharedPreferences に保存されるデータが暗号化されていることを確認
-      // （実装に応じて）
+      // MainActivity（ランチャー起動に必須）以外に
+      // android:exported="true" のコンポーネントがないことを確認する。
+      final exportedTrueCount =
+          RegExp('android:exported="true"').allMatches(manifest).length;
 
-      print('✅ ローカルストレージ: 安全な保存を想定');
+      expect(
+        exportedTrueCount,
+        lessThanOrEqualTo(1),
+        reason: 'MainActivity 以外に exported="true" のコンポーネントが見つかりました',
+      );
     });
-
-    // ========== ディープリンク検証テスト ==========
-    testWidgets('ディープリンクが検証される', (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
-
-      // 不正なディープリンク URL を処理
-      // （ルーティングが正しく検証することを確認）
-
-      print('✅ ディープリンク検証: 実装依存');
-    });
-
-    // ========== キャッシュセキュリティ ==========
-    testWidgets('キャッシュが安全に管理される', (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
-
-      // キャッシュされたデータが暗号化されていることを確認
-      // または、機密データがキャッシュされていないことを確認
-
-      print('✅ キャッシュセキュリティ: 暗号化キャッシュを想定');
-    });
-
-    // ========== バージョン互換性テスト ==========
-    testWidgets('セキュリティ脆弱性のあるバージョンが使用されていない',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
-
-      // 依存ライブラリのセキュリティ脆弱性をチェック
-      // pubspec.lock から脆弱性のあるバージョンを検出
-
-      print('✅ 依存ライブラリ: 最新バージョンの使用を推奨');
-    });
-
-    // ========== 外部インテント検証テスト ==========
-    testWidgets('外部インテント（Android）が検証される',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
-
-      // 不正な外部インテント URL を処理
-      // （アプリがクラッシュしないことを確認）
-
-      print('✅ 外部インテント検証: 実装依存');
-    });
-
-    // ========== デバッグ情報漏洩テスト ==========
-    testWidgets('デバッグ情報が本番で漏洩しない',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
-
-      // debug モードでのみスタックトレースが表示されることを確認
-      // release ビルドではデバッグ情報が削除されていることを確認
-
-      print('✅ デバッグ情報: Release ビルドで削除予定');
-    });
-
-    // ========== プリペアドステートメント使用テスト ==========
-    testWidgets('データベース クエリがインジェクション対策されている',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
-
-      // Firestore が使用されている場合、プリペアドステートメント相当の
-      // パラメータ化クエリが使用されていることを確認
-
-      print('✅ DB セキュリティ: Firestore が安全なクエリを使用');
-    });
-
   });
 }
