@@ -64,7 +64,7 @@ class PrivacySettingsNotifier extends StateNotifier<AsyncValue<void>> {
           .update({
         'showNameInRanking': value,
         'updatedAt': Timestamp.now(),
-      }).onError((error, stackTrace) async {
+      }).onError((Object error, StackTrace stackTrace) async {
         // ドキュメントが存在しない場合は作成
         if (error is FirebaseException && error.code == 'not-found') {
           await _firestore
@@ -108,7 +108,7 @@ class PrivacySettingsNotifier extends StateNotifier<AsyncValue<void>> {
           .update({
         'showProgressToParents': value,
         'updatedAt': Timestamp.now(),
-      }).onError((error, stackTrace) async {
+      }).onError((Object error, StackTrace stackTrace) async {
         if (error is FirebaseException && error.code == 'not-found') {
           await _firestore
               .collection('users')
@@ -151,7 +151,7 @@ class PrivacySettingsNotifier extends StateNotifier<AsyncValue<void>> {
           .update({
         'allowNotifications': value,
         'updatedAt': Timestamp.now(),
-      }).onError((error, stackTrace) async {
+      }).onError((Object error, StackTrace stackTrace) async {
         if (error is FirebaseException && error.code == 'not-found') {
           await _firestore
               .collection('users')
@@ -194,7 +194,7 @@ class PrivacySettingsNotifier extends StateNotifier<AsyncValue<void>> {
           .update({
         'allowMarketingNotifications': value,
         'updatedAt': Timestamp.now(),
-      }).onError((error, stackTrace) async {
+      }).onError((Object error, StackTrace stackTrace) async {
         if (error is FirebaseException && error.code == 'not-found') {
           await _firestore
               .collection('users')
@@ -237,7 +237,7 @@ class PrivacySettingsNotifier extends StateNotifier<AsyncValue<void>> {
           .update({
         'allowAnalytics': value,
         'updatedAt': Timestamp.now(),
-      }).onError((error, stackTrace) async {
+      }).onError((Object error, StackTrace stackTrace) async {
         if (error is FirebaseException && error.code == 'not-found') {
           await _firestore
               .collection('users')
