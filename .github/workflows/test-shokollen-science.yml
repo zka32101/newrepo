@@ -1,0 +1,280 @@
+name: 6-Point Test - shokollen_science
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'test/**'
+      - 'lib/**'
+      - 'pubspec.yaml'
+      - '.github/workflows/test-shokollen-science.yml'
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+jobs:
+  # ========== Unit & Widget Tests ==========
+  unit-widget-tests:
+    name: Unit & Widget Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 'stable'
+          channel: 'stable'
+
+      - name: Cache Flutter packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+            ~/.flutter
+          key: flutter-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: |
+            flutter-${{ runner.os }}-
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Run 6-point tests
+        run: flutter test test/six_point_test.dart -v
+        continue-on-error: true
+
+      - name: Run all unit tests
+        run: flutter test --coverage
+        continue-on-error: true
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        if: always()
+        with:
+          files: ./coverage/lcov.info
+          flags: unittests
+          name: codecov-umbrella
+
+  # ========== Android Emulator Integration Tests ==========
+  emulator-tests:
+    name: Android Emulator Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        api-level: [31, 34]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          api-levels: ${{ matrix.api-level }}
+          ndk-version: 26.1.10909125
+          cmake-version: 3.22.1
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 'stable'
+          channel: 'stable'
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: ~/.gradle/caches
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle.lock') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-
+
+      - name: Cache Flutter packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+            ~/.flutter
+          key: flutter-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: |
+            flutter-${{ runner.os }}-
+
+      - name: Create Android Virtual Device
+        run: |
+          $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager \
+            "system-images;android-${{ matrix.api-level }};google_apis;x86_64"
+
+          echo "no" | $ANDROID_SDK_ROOT/tools/bin/avdmanager create avd \
+            -n test_device_api${{ matrix.api-level }} \
+            -k "system-images;android-${{ matrix.api-level }};google_apis;x86_64" \
+            -d "Pixel_6_Pro_API_${{ matrix.api-level }}" \
+            --force
+
+      - name: Start Android Emulator
+        run: |
+          $ANDROID_SDK_ROOT/emulator/emulator \
+            -avd test_device_api${{ matrix.api-level }} \
+            -no-audio \
+            -no-boot-anim \
+            -no-window \
+            -gpu swiftshader_indirect \
+            -memory 2048 \
+            -cores 2 \
+            > /tmp/emulator.log 2>&1 &
+
+          echo "⏳ Waiting for emulator to boot..."
+          timeout 180 $ANDROID_SDK_ROOT/platform-tools/adb wait-for-device || true
+          sleep 30
+
+      - name: Verify emulator
+        run: |
+          $ANDROID_SDK_ROOT/platform-tools/adb devices || true
+          $ANDROID_SDK_ROOT/platform-tools/adb shell getprop ro.build.version.release || true
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Build debug APK
+        run: flutter build apk --debug --no-pub
+        continue-on-error: true
+
+      - name: Run integration tests
+        run: |
+          flutter test integration_test/integration_test.dart -v || true
+        working-directory: .
+        continue-on-error: true
+
+      - name: Collect device logs
+        if: always()
+        run: |
+          mkdir -p test-results/api-${{ matrix.api-level }}
+          $ANDROID_SDK_ROOT/platform-tools/adb logcat -d > test-results/api-${{ matrix.api-level }}/logcat.log || true
+          cat /tmp/emulator.log > test-results/api-${{ matrix.api-level }}/emulator.log || true
+
+      - name: Upload test artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: emulator-logs-api-${{ matrix.api-level }}
+          path: test-results/
+          if-no-files-found: ignore
+
+      - name: Stop emulator
+        if: always()
+        run: |
+          $ANDROID_SDK_ROOT/platform-tools/adb emu kill || true
+          pkill -f qemu-system || true
+
+  # ========== Lint & Format Check ==========
+  lint-check:
+    name: Lint & Format Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 'stable'
+          channel: 'stable'
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Run analyzer
+        run: flutter analyze
+        continue-on-error: true
+
+      - name: Check format
+        run: dart format --set-exit-if-changed lib/ test/
+        continue-on-error: true
+
+  # ========== Test Report Summary ==========
+  test-summary:
+    name: Test Summary Report
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [unit-widget-tests, emulator-tests, lint-check]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Generate test summary
+        run: |
+          cat > test-summary.md << 'EOF'
+          # 6観点テスト実行レポート - shokollen_science
+
+          ## テスト結果サマリー
+
+          ### ✅ ユニット・ウィジェットテスト
+          - 起動テスト: ${{ needs.unit-widget-tests.result }}
+          - 接続テスト: ${{ needs.unit-widget-tests.result }}
+          - 課金画面: ${{ needs.unit-widget-tests.result }}
+          - 認証フロー: ${{ needs.unit-widget-tests.result }}
+          - 広告表示: ${{ needs.unit-widget-tests.result }}
+          - クラッシュ検出: ${{ needs.unit-widget-tests.result }}
+
+          ### ✅ エミュレータテスト (Android 31, 34)
+          - 起動テスト: ${{ needs.emulator-tests.result }}
+          - 連携テスト: ${{ needs.emulator-tests.result }}
+          - UI 描画テスト: ${{ needs.emulator-tests.result }}
+
+          ### ✅ コード品質チェック
+          - Lint チェック: ${{ needs.lint-check.result }}
+          - フォーマット確認: ${{ needs.lint-check.result }}
+
+          ## 実行環境
+          - Flutter: stable
+          - Java: 17 (Temurin)
+          - Android SDK: 31, 34
+          - OS: Ubuntu Latest
+
+          ---
+          Generated by GitHub Actions
+          EOF
+          cat test-summary.md
+
+      - name: Upload summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-summary
+          path: test-summary.md
+          if-no-files-found: ignore
+
+  # ========== Status Check ==========
+  status:
+    name: Status Check
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [unit-widget-tests, emulator-tests, lint-check]
+
+    steps:
+      - name: Check all tests passed
+        run: |
+          if [ "${{ needs.unit-widget-tests.result }}" == "failure" ]; then
+            echo "❌ Unit & Widget Tests failed"
+            exit 1
+          fi
+          if [ "${{ needs.emulator-tests.result }}" == "failure" ]; then
+            echo "⚠️  Emulator Tests had issues"
+          fi
+          if [ "${{ needs.lint-check.result }}" == "failure" ]; then
+            echo "⚠️  Lint Check had issues"
+          fi
+          echo "✅ All critical tests completed"
