@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../services/notification_service.dart';
+import '../services/weekly_report_notification_service.dart';
 
 final notificationPreferencesProvider = FutureProvider<Map<String, dynamic>>((ref) async {
   return await NotificationService.instance.getNotificationPreferences();
@@ -20,6 +21,7 @@ class _NotificationSettingsScreenState
   late bool _streakWarningEnabled;
   late bool _achievementEnabled;
   late bool _rankingAlertEnabled;
+  bool _weeklyReportEnabled = true;
 
   late TimeOfDay _morningTime;
   late TimeOfDay _afternoonTime;
@@ -33,12 +35,15 @@ class _NotificationSettingsScreenState
 
   Future<void> _loadSettings() async {
     final prefs = await NotificationService.instance.getNotificationPreferences();
+    final weeklyReportEnabled =
+        await WeeklyReportNotificationService.instance.isEnabled();
     if (mounted) {
       setState(() {
         _dailyChallengeEnabled = prefs['dailyChallengeEnabled'] as bool? ?? true;
         _streakWarningEnabled = prefs['streakWarningEnabled'] as bool? ?? true;
         _achievementEnabled = prefs['achievementEnabled'] as bool? ?? true;
         _rankingAlertEnabled = prefs['rankingAlertEnabled'] as bool? ?? true;
+        _weeklyReportEnabled = weeklyReportEnabled;
 
         _morningTime = _parseTimeOfDay(prefs['morningTime'] as String? ?? '07:00');
         _afternoonTime = _parseTimeOfDay(prefs['afternoonTime'] as String? ?? '12:00');
@@ -76,6 +81,11 @@ class _NotificationSettingsScreenState
         const SnackBar(content: Text('設定を保存しました')),
       );
     }
+  }
+
+  Future<void> _setWeeklyReportEnabled(bool value) async {
+    setState(() => _weeklyReportEnabled = value);
+    await WeeklyReportNotificationService.instance.setEnabled(value);
   }
 
   Future<void> _selectTime(
@@ -297,6 +307,43 @@ class _NotificationSettingsScreenState
                       setState(() => _rankingAlertEnabled = value);
                       _saveSettings();
                     },
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          // 週次レポート（保護者向けサマリー通知）
+          Card(
+            margin: const EdgeInsets.only(bottom: 16),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '週次レポート（保護者向け）',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 4),
+                      Text(
+                        '毎週日曜19時ごろ、今週のがんばりをお知らせ',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Switch(
+                    value: _weeklyReportEnabled,
+                    onChanged: _setWeeklyReportEnabled,
                   ),
                 ],
               ),
