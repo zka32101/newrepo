@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_core/shared_core.dart'
-    show globalRankingProvider, GlobalRankingEntry, missionProvider;
+import 'package:shared_core/shared_core.dart' show globalRankingProvider;
 import '../models/ranking_model.dart';
 import '../providers/ranking_provider.dart';
 import '../widgets/ranking_display_widget.dart';
