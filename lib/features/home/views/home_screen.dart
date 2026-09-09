@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_core/shared_core.dart'
-    show equippedItemsProvider, kCommonShopItems, AppShopItem;
+    show
+        equippedItemsProvider,
+        kCommonShopItems,
+        AppShopItem,
+        screenTimeProvider,
+        ScreenTimeLimitReachedWidget;
 import '../../../shared/constants/app_colors.dart';
 import '../../../data/seeds/stages.dart';
 import '../../../data/seeds/creatures.dart';
@@ -63,6 +68,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // 利用時間制限（デフォルトは制限なし）: 上限に達している場合はホーム画面の
+    // 代わりに全画面オーバーレイを表示する。保護者ゲート経由で一時解除できる。
+    ref.watch(screenTimeProvider);
+    final isScreenTimeLimitReached =
+        ref.read(screenTimeProvider.notifier).isLimitReached;
+    if (isScreenTimeLimitReached) {
+      return const ScreenTimeLimitReachedWidget(
+        primaryColor: AppColors.sciencePrimary,
+      );
+    }
+
     final equipped = ref.watch(equippedItemsProvider).equippedByCategory;
     final equippedTheme = _equippedItem(equipped, '背景');
     final themeColors = (equippedTheme?.themeData?['colors'] as List?)

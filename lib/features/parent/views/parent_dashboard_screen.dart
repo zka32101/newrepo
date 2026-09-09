@@ -115,6 +115,11 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
                       const SizedBox(height: 16),
                       // アドバイス
                       _adviceCard(progress),
+                      const SizedBox(height: 16),
+                      // 利用時間制限
+                      _sectionTitle('⏰ 利用時間制限'),
+                      const SizedBox(height: 8),
+                      _screenTimeSection(context),
                       const SizedBox(height: 32),
                     ],
                   ),
@@ -366,6 +371,48 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
             child: Text(advice, style: const TextStyle(fontSize: 13, height: 1.6, color: AppColors.textDark)),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _screenTimeSection(BuildContext context) {
+    final screenTime = ref.watch(screenTimeProvider);
+    final settings = screenTime.settings;
+    final statusText = !settings.enabled
+        ? '制限なし'
+        : settings.dailyLimitMinutes != null
+            ? '1日 ${settings.dailyLimitMinutes}分まで（今日 ${screenTime.usage.usedMinutes}分利用）'
+            : '制限なし';
+
+    return GestureDetector(
+      onTap: () => context.push('/screen-time-settings'),
+      child: Container(
+        padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          color: Theme.of(context).cardColor,
+          borderRadius: BorderRadius.circular(14),
+          boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 8)],
+        ),
+        child: Row(
+          children: [
+            Icon(
+              settings.enabled ? Icons.hourglass_bottom_rounded : Icons.all_inclusive_rounded,
+              color: AppColors.sciencePrimary,
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('1日の利用時間', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+                  const SizedBox(height: 2),
+                  Text(statusText, style: const TextStyle(fontSize: 12, color: AppColors.textGray)),
+                ],
+              ),
+            ),
+            const Icon(Icons.chevron_right_rounded, color: AppColors.textGray),
+          ],
+        ),
       ),
     );
   }

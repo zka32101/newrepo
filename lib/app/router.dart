@@ -13,6 +13,7 @@ import '../features/review/views/review_screen.dart';
 import '../features/progress/views/today_reviews_screen.dart';
 import '../features/parent/views/parent_dashboard_screen.dart';
 import '../features/parent/views/praise_send_screen.dart';
+import '../features/parent/views/screen_time_settings_screen.dart';
 import '../features/test/views/comprehensive_test_screen.dart';
 import '../features/collection/views/collection_screen.dart';
 import '../features/onboarding/views/onboarding_screen.dart';
@@ -138,6 +139,13 @@ class AppRouter {
         path: '/parent-dashboard',
         name: 'parent-dashboard',
         builder: (_, __) => const ParentDashboardScreen(),
+      ),
+      // 利用時間の設定（保護者ダッシュボードから遷移。ダッシュボード自体が
+      // requireParentalGate 済みのため、ここでは再度ゲートを掛けない）
+      GoRoute(
+        path: '/screen-time-settings',
+        name: 'screen-time-settings',
+        builder: (_, __) => const ScreenTimeSettingsScreen(),
       ),
       // まとめテスト
       GoRoute(
