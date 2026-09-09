@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../shared/constants/app_colors.dart';
+import '../../../shared/theme/app_theme.dart';
 
 class PredictionStepWidget extends StatelessWidget {
   final String question;
@@ -58,14 +60,18 @@ class PredictionStepWidget extends StatelessWidget {
                           horizontal: 40,
                           vertical: 20,
                         ),
-                        backgroundColor: Colors.blue.shade400,
+                        backgroundColor: AppColors.sciencePrimary,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
                       child: Text(
                         choice,
-                        style: const TextStyle(
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ) ?? const TextStyle(
                           fontSize: 18,
                           color: Colors.white,
                           fontWeight: FontWeight.w600,

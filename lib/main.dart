@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'app/router.dart';
-import 'app/theme.dart';
+import 'shared/theme/app_theme.dart';
 import 'features/progress/data/repositories/incorrect_monster_repository.dart';
 import 'features/progress/data/repositories/review_time_capsule_repository.dart';
 import 'features/progress/providers/incorrect_monster_provider.dart';
