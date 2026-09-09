@@ -100,9 +100,8 @@ class ClaudeChatNotifier extends StateNotifier<ClaudeChatState> {
   /// メッセージ送信
   Future<void> sendMessage(String userMessage) async {
     if (state.isLimitReached) {
-      final error = '月の API 呼び出し制限に達しました。'
-          '${state.monthlyApiCallLimit}回まで。'
-          '来月をお待ちください。';
+      final error =
+          '月の API 呼び出し制限に達しました。${state.monthlyApiCallLimit}回まで。来月をお待ちください。';
       state = state.copyWith(error: error);
       return;
     }
