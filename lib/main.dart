@@ -19,6 +19,7 @@ import 'providers/equipped_items_provider.dart';
 import 'providers/locale_provider.dart';
 import 'services/firebase_service.dart';
 import 'services/firestore_feedback_service.dart';
+import 'services/multiplayer_service.dart';
 import 'services/notification_service.dart';
 import 'services/streak_service.dart';
 import 'services/ranking_service.dart';
@@ -78,6 +79,12 @@ void main() async {
             .overrideWithValue(ReviewTimeCapsuleRepositoryImpl(prefs)),
         // 保存されたロケール設定を注入
         localeProvider.overrideWith((ref) => LocaleNotifier(savedLocale)),
+        // マルチプレイ対戦（レートマッチング）: shared_core のハンドラ注入方式に
+        // Firestore デフォルト実装（rika_ プレフィックス付きコレクション）を接続
+        matchmakingHandlersProvider
+            .overrideWithValue(MultiplayerService.instance.matchmakingHandlers),
+        matchHandlersProvider
+            .overrideWithValue(MultiplayerService.instance.matchHandlers),
       ],
       child: const MyApp(),
     ),

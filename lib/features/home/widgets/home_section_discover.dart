@@ -208,6 +208,14 @@ class HomeSectionDiscover extends ConsumerWidget {
               ),
               _buildFeatureCard(
                 context: context,
+                emoji: '⚔️',
+                title: 'たいせん',
+                subtitle: 'だれかとリアルタイム対戦！',
+                color: const Color(0xFF1565C0),
+                onTap: () => context.push('/matchmaker'),
+              ),
+              _buildFeatureCard(
+                context: context,
                 emoji: '🏆',
                 title: 'ランキング',
                 subtitle: 'みんなと競争しよう！',
