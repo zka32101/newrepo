@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_core/shared_core.dart'
     hide progressProvider, LearningProgress, ProgressNotifier, FirebaseService;
@@ -80,9 +81,7 @@ void main() async {
         reviewTimeCapsuleRepositoryProvider
             .overrideWithValue(ReviewTimeCapsuleRepositoryImpl(prefs)),
         // 保存されたロケール設定を注入
-        localeProvider.overrideWithValue(
-          StateNotifierProvider((ref) => LocaleNotifier(savedLocale)),
-        ),
+        localeProvider.overrideWith((ref) => LocaleNotifier(savedLocale)),
       ],
       child: const MyApp(),
     ),
@@ -103,8 +102,8 @@ class MyApp extends ConsumerWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: themeMode,
       locale: locale,
-      localizationsDelegates: const [
-        AppLocalizationsDelegate(),
+      localizationsDelegates: [
+        const AppLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
