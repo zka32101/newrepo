@@ -113,9 +113,9 @@ class ClaudeApiClient {
       '星': response4,
     };
 
-    for (final (key, value) in responses.entries) {
-      if (userMessage.contains(key)) {
-        return value;
+    for (final entry in responses.entries) {
+      if (userMessage.contains(entry.key)) {
+        return entry.value;
       }
     }
 

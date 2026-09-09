@@ -60,4 +60,7 @@ class ChatMessage {
   static ChatRole _parseRole(String roleStr) {
     return roleStr == 'assistant' ? ChatRole.assistant : ChatRole.user;
   }
+
+  bool get isUser => role.isUser;
+  bool get isAssistant => role.isAssistant;
 }
