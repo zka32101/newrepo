@@ -161,7 +161,7 @@ class _QuizResultScreenState extends ConsumerState<QuizResultScreen> {
       final progressAsyncValue = ref.read(userProgressProvider);
       int totalQuizzes = 0;
       progressAsyncValue.whenData((progress) {
-        totalQuizzes = progress.stagesCompleted.length;
+        totalQuizzes = progress.clearedCount;
       });
 
       final achievementNotifications = await ref.read(

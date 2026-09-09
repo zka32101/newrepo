@@ -534,16 +534,32 @@ class AchievementService {
   }
 
   /// 全問正解の回数を取得
+  ///
+  /// [FirestoreProgressService] がアップロードするユーザー進捗ドキュメント
+  /// （users/{uid}/data/progress）の `clearedStages` を参照する。
+  /// `clearedStages` にはステージIDごとのベストスコア(0-100)が保存されており、
+  /// UserProgressNotifier.completeStage では全問正解の場合のみステージが
+  /// 記録される仕様のため、登録されているエントリ数（スコア100のもの）が
+  /// そのまま「全問正解を達成したステージ数」＝全問正解の回数となる。
   Future<int> _getPerfectScoreCount(String userId) async {
     try {
-      final collection = await _firestore
-          .collectionGroup('users')
-          .where(FieldPath.documentId, isEqualTo: userId)
+      final doc = await _firestore
+          .collection('users')
+          .doc(userId)
+          .collection('data')
+          .doc('progress')
           .get();
 
-      // ここでは簡略化して、クイズプログレスから全問正解の回数を取得する
-      // 実装は他のサービスと連携が必要
-      return 1; // プレースホルダー
+      if (!doc.exists || doc.data() == null) return 0;
+
+      final data = doc.data()!;
+      final clearedStages =
+          (data['clearedStages'] as Map<String, dynamic>?) ?? {};
+
+      // 念のため、スコアが100（全問正解）のもののみをカウントする
+      return clearedStages.values
+          .where((score) => (score as num).toInt() == 100)
+          .length;
     } catch (e) {
       developer.log('Error getting perfect score count: $e', error: e);
       return 0;

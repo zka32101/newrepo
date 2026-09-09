@@ -36,6 +36,8 @@ import '../features/progress/views/daily_mystery_omikuji_screen.dart';
 import '../features/lesson/views/lesson_screen.dart';
 import '../features/ai_hakase/views/ai_hakase_screen.dart';
 import '../screens/privacy_settings_screen.dart';
+import '../screens/ranking_screen.dart';
+import '../screens/achievement_screen.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -337,6 +339,20 @@ class AppRouter {
         path: '/ai-hakase',
         name: 'ai-hakase',
         builder: (_, __) => const AiHakaseScreen(),
+      ),
+
+      // ランキング
+      GoRoute(
+        path: '/ranking',
+        name: 'ranking',
+        builder: (_, __) => const RankingScreen(),
+      ),
+
+      // アチーブメント
+      GoRoute(
+        path: '/achievements',
+        name: 'achievements',
+        builder: (_, __) => const AchievementScreen(),
       ),
     ],
   );
