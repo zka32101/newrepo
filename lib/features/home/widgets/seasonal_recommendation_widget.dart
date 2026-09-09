@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../shared/constants/app_colors.dart';
+import '../../../shared/theme/app_theme.dart';
 
 class SeasonalRecommendationWidget extends StatelessWidget {
   final Function(String stageId) onTap;
@@ -189,15 +191,35 @@ class SeasonalRecommendationWidget extends StatelessWidget {
     }
   }
 
+  /// 季節別グラデーション（Material Design 3対応）
   List<Color> _getColors(int month) {
+    // 冬（12月〜2月）：青系グラデーション
     if (month <= 2 || month == 12) {
-      return [const Color(0xFF1565C0), const Color(0xFF00BCD4)]; // 冬
-    } else if (month <= 5) {
-      return [const Color(0xFFE91E63), const Color(0xFF4CAF50)]; // 春
-    } else if (month <= 8) {
-      return [const Color(0xFFFF6F00), const Color(0xFFE53935)]; // 夏
-    } else {
-      return [const Color(0xFFEF6C00), const Color(0xFFF9A825)]; // 秋
+      return [
+        AppColors.sciencePrimary,        // 0xFF3498DB
+        const Color(0xFF5DADE2),         // より明るい青
+      ];
+    }
+    // 春（3月〜5月）：ピンク・緑グラデーション
+    else if (month <= 5) {
+      return [
+        const Color(0xFFE83E8C),         // ローズピンク
+        const Color(0xFF20B2AA),         // ライトシーグリーン
+      ];
+    }
+    // 夏（6月〜8月）：オレンジ・赤グラデーション
+    else if (month <= 8) {
+      return [
+        const Color(0xFFFF8C42),         // 暖色オレンジ
+        const Color(0xFFFF6B6B),         // コーラルレッド
+      ];
+    }
+    // 秋（9月〜11月）：オレンジ・ゴールドグラデーション
+    else {
+      return [
+        const Color(0xFFFF9E42),         // 深いオレンジ
+        const Color(0xFFFFA500),         // ゴールド
+      ];
     }
   }
 }
