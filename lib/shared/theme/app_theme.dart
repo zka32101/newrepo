@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import '../constants/app_colors.dart';
 
-/// アプリのテーマ定義
+/// アプリのテーマ定義（小学コレ！理科）
+/// Material Design 3対応、ライト・ダークテーマ統合管理
 class AppTheme {
-  // ライトモード
+  // ライトモード：理科テーマカラーベース
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
     colorScheme: ColorScheme.fromSeed(
-      seedColor: const Color(0xFF2196F3),
+      seedColor: AppColors.sciencePrimary,
       brightness: Brightness.light,
     ),
     scaffoldBackgroundColor: const Color(0xFFFAFAFA),
@@ -38,12 +40,12 @@ class AppTheme {
     ],
   );
 
-  // ダークモード
+  // ダークモード：理科テーマカラーベース（深夜学習に配慮した色調）
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.dark,
     colorScheme: ColorScheme.fromSeed(
-      seedColor: const Color(0xFF2196F3),
+      seedColor: AppColors.sciencePrimary,
       brightness: Brightness.dark,
     ),
     scaffoldBackgroundColor: const Color(0xFF121212),
@@ -213,30 +215,30 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.info,
   });
 
-  // ライトモード用
+  // ライトモード用（理科テーマ）
   static const AppColors light = AppColors(
-    primary: Color(0xFF2196F3),
-    secondary: Color(0xFFFF6B6B),
-    surface: Color(0xFFFFFFFF),
-    surfaceVariant: Color(0xFFF5F5F5),
-    background: Color(0xFFFAFAFA),
-    error: Color(0xFFE53935),
-    success: Color(0xFF43A047),
-    warning: Color(0xFFFDD835),
-    info: Color(0xFF1976D2),
+    primary: AppColors.sciencePrimary,     // 0xFF3498DB
+    secondary: AppColors.scienceSecondary, // 0xFF2874A6
+    surface: AppColors.white,              // 0xFFFFFFFF
+    surfaceVariant: AppColors.bgGray,      // 0xFFF5F5F5
+    background: AppColors.bgGray,          // 0xFFF5F5F5
+    error: AppColors.error,                // 0xFFE74C3C
+    success: AppColors.success,            // 0xFF27AE60
+    warning: AppColors.warning,            // 0xFFF39C12
+    info: AppColors.info,                  // 0xFF3498DB
   );
 
-  // ダークモード用
+  // ダークモード用（深夜学習配慮・理科テーマ）
   static const AppColors dark = AppColors(
-    primary: Color(0xFF64B5F6),
-    secondary: Color(0xFFEF5350),
-    surface: Color(0xFF1E1E1E),
-    surfaceVariant: Color(0xFF2D2D2D),
-    background: Color(0xFF121212),
-    error: Color(0xFFEF5350),
-    success: Color(0xFF66BB6A),
-    warning: Color(0xFFFFca28),
-    info: Color(0xFF42A5F5),
+    primary: Color(0xFF5DADE2),            // 明るい理科ブルー
+    secondary: Color(0xFF3498DB),         // 理科セカンダリ
+    surface: Color(0xFF0F1419),           // 深い濃紺
+    surfaceVariant: Color(0xFF1A1E27),    // わずかに明るい濃紺
+    background: Color(0xFF0A0E14),        // 最も深い濃紺
+    error: Color(0xFFEF5350),             // ダークモード用エラー
+    success: Color(0xFF66BB6A),           // ダークモード用成功
+    warning: Color(0xFFFFca28),           // ダークモード用警告
+    info: Color(0xFF5DADE2),              // ダークモード用情報
   );
 
   @override
