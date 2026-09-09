@@ -33,6 +33,7 @@ import '../features/time_travel/views/scientist_story_screen.dart';
 import '../features/time_travel/views/scientist_collection_screen.dart';
 import '../features/weekly_challenge/views/weekly_challenge_screen.dart';
 import '../features/progress/views/daily_mystery_omikuji_screen.dart';
+import '../features/lesson/views/lesson_screen.dart';
 import '../features/ai_hakase/views/ai_hakase_screen.dart';
 import '../screens/privacy_settings_screen.dart';
 
@@ -315,6 +316,13 @@ class AppRouter {
           final stageName = extra['stageName'] as String? ?? stageId;
           return PraiseSendScreen(stageId: stageId, stageName: stageName);
         },
+      ),
+
+      // 学ぶ（解説メニュー）
+      GoRoute(
+        path: '/lessons',
+        name: 'lessons',
+        builder: (_, __) => const LessonScreen(),
       ),
 
       // プライバシー設定
