@@ -49,6 +49,9 @@ class ClaudeChatNotifier extends StateNotifier<ClaudeChatState> {
   late SharedPreferences _prefs;
   final String apiKey;
 
+  // セキュリティ: チャット履歴の保存数制限
+  static const int _maxStoredMessages = 10;
+
   ClaudeChatNotifier({required this.apiKey})
       : super(const ClaudeChatState()) {
     _initializeApiClient();
@@ -164,9 +167,15 @@ class ClaudeChatNotifier extends StateNotifier<ClaudeChatState> {
   }
 
   /// チャット履歴を保存
+  /// セキュリティ: 最新10件のメッセージのみ保存し、データ漏洩リスクを軽減
   Future<void> _saveChatHistory(List<ChatMessage> messages) async {
     try {
-      final jsonList = messages.map((m) => m.toJson()).toList();
+      // 最新 _maxStoredMessages 件のメッセージのみを保持
+      final recentMessages = messages.length > _maxStoredMessages
+          ? messages.sublist(messages.length - _maxStoredMessages)
+          : messages;
+
+      final jsonList = recentMessages.map((m) => m.toJson()).toList();
       await _prefs.setString('claude_chat_history', jsonEncode(jsonList));
     } catch (e) {
       // ログのみ

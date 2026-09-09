@@ -52,9 +52,7 @@ class ClaudeApiClient {
       };
 
       if (kDebugMode) {
-        print('[Claude API Request]');
-        print('URL: ${apiBaseUrl ?? _apiUrl}');
-        print('Body: ${jsonEncode(requestBody)}');
+        print('[Claude API Request] URL: ${apiBaseUrl ?? _apiUrl}');
       }
 
       // Claude API へリクエスト送信
@@ -75,9 +73,7 @@ class ClaudeApiClient {
       );
 
       if (kDebugMode) {
-        print('[Claude API Response]');
-        print('Status: ${response.statusCode}');
-        print('Body: ${response.body}');
+        print('[Claude API Response] Status: ${response.statusCode}');
       }
 
       // ステータスコード判定
@@ -93,10 +89,10 @@ class ClaudeApiClient {
         throw ClaudeApiException('API キーが無効です');
       } else if (response.statusCode == 429) {
         throw ClaudeApiException('API リクエストが多すぎます。しばらく待ってから再度お試しください。');
+      } else if (response.statusCode >= 500) {
+        throw ClaudeApiException('Claude API サーバーエラーが発生しました。しばらく待ってから再度お試しください。');
       } else {
-        throw ClaudeApiException(
-          'Claude API エラー（ステータス: ${response.statusCode}）: ${response.body}',
-        );
+        throw ClaudeApiException('Claude API エラーが発生しました。リクエストを確認してもう一度お試しください。');
       }
     } catch (e) {
       throw ClaudeApiException('Claude API エラー: $e');

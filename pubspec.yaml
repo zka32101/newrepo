@@ -55,6 +55,7 @@ dependencies:
 
   # ============== Local Storage ==============
   shared_preferences: ^2.2.0
+  flutter_secure_storage: ^9.0.0
   google_fonts: ^6.2.1
 
   # ============== Media & Notifications ==============
