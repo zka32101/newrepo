@@ -88,7 +88,7 @@ dependencies:
   shimmer: ^3.0.0                  # ローディングシマー効果
 
   # Phase 4.2: RevenueCat SDK for subscription management
-  purchases_flutter: ^8.2.0
+  purchases_flutter: ^10.11.0
 
 flutter_launcher_icons:
   android: true
