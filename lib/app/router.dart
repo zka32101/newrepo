@@ -33,6 +33,7 @@ import '../features/time_travel/views/scientist_story_screen.dart';
 import '../features/time_travel/views/scientist_collection_screen.dart';
 import '../features/weekly_challenge/views/weekly_challenge_screen.dart';
 import '../features/progress/views/daily_mystery_omikuji_screen.dart';
+import '../features/ai_hakase/views/ai_hakase_screen.dart';
 import '../screens/privacy_settings_screen.dart';
 
 class AppRouter {
@@ -321,6 +322,13 @@ class AppRouter {
         path: '/privacy-settings',
         name: 'privacy-settings',
         builder: (_, __) => const PrivacySettingsScreen(),
+      ),
+
+      // AIはかせチャット
+      GoRoute(
+        path: '/ai-hakase',
+        name: 'ai-hakase',
+        builder: (_, __) => const AiHakaseScreen(),
       ),
     ],
   );
