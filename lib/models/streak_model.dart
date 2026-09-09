@@ -1,33 +1,75 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'streak_model.freezed.dart';
-part 'streak_model.g.dart';
-
 /// ストリーク情報モデル
-@freezed
-class StreakData with _$StreakData {
-  const factory StreakData({
-    /// 現在のストリーク日数
-    required int currentStreak,
+///
+/// 手書きの不変クラス（`freezed`ではなく）。理由: 生成ファイルが
+/// リポジトリにコミットされておらず、`build_runner` による
+/// コード生成も行われていなかったため。
+class StreakData {
+  /// 現在のストリーク日数
+  final int currentStreak;
 
-    /// ストリーク開始日
-    required DateTime streakStartDate,
+  /// ストリーク開始日
+  final DateTime streakStartDate;
 
-    /// 最大ストリーク日数
-    required int maxStreak,
+  /// 最大ストリーク日数
+  final int maxStreak;
 
-    /// 最後に学習した日付
-    required DateTime lastActivityDate,
+  /// 最後に学習した日付
+  final DateTime lastActivityDate;
 
-    /// 今日学習したかどうか
-    required bool completedToday,
+  /// 今日学習したかどうか
+  final bool completedToday;
 
-    /// ストリークが途絶した日時（null=継続中）
+  /// ストリークが途絶した日時（null=継続中）
+  final DateTime? streakBrokenDate;
+
+  const StreakData({
+    required this.currentStreak,
+    required this.streakStartDate,
+    required this.maxStreak,
+    required this.lastActivityDate,
+    required this.completedToday,
+    this.streakBrokenDate,
+  });
+
+  factory StreakData.fromJson(Map<String, dynamic> json) {
+    return StreakData(
+      currentStreak: json['currentStreak'] as int,
+      streakStartDate: DateTime.parse(json['streakStartDate'] as String),
+      maxStreak: json['maxStreak'] as int,
+      lastActivityDate: DateTime.parse(json['lastActivityDate'] as String),
+      completedToday: json['completedToday'] as bool,
+      streakBrokenDate: json['streakBrokenDate'] == null
+          ? null
+          : DateTime.parse(json['streakBrokenDate'] as String),
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        'currentStreak': currentStreak,
+        'streakStartDate': streakStartDate.toIso8601String(),
+        'maxStreak': maxStreak,
+        'lastActivityDate': lastActivityDate.toIso8601String(),
+        'completedToday': completedToday,
+        'streakBrokenDate': streakBrokenDate?.toIso8601String(),
+      };
+
+  StreakData copyWith({
+    int? currentStreak,
+    DateTime? streakStartDate,
+    int? maxStreak,
+    DateTime? lastActivityDate,
+    bool? completedToday,
     DateTime? streakBrokenDate,
-  }) = _StreakData;
-
-  factory StreakData.fromJson(Map<String, dynamic> json) =>
-      _$StreakDataFromJson(json);
+  }) {
+    return StreakData(
+      currentStreak: currentStreak ?? this.currentStreak,
+      streakStartDate: streakStartDate ?? this.streakStartDate,
+      maxStreak: maxStreak ?? this.maxStreak,
+      lastActivityDate: lastActivityDate ?? this.lastActivityDate,
+      completedToday: completedToday ?? this.completedToday,
+      streakBrokenDate: streakBrokenDate ?? this.streakBrokenDate,
+    );
+  }
 
   factory StreakData.initial() {
     final now = DateTime.now();
@@ -39,21 +81,94 @@ class StreakData with _$StreakData {
       completedToday: false,
     );
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is StreakData &&
+          runtimeType == other.runtimeType &&
+          currentStreak == other.currentStreak &&
+          streakStartDate == other.streakStartDate &&
+          maxStreak == other.maxStreak &&
+          lastActivityDate == other.lastActivityDate &&
+          completedToday == other.completedToday &&
+          streakBrokenDate == other.streakBrokenDate;
+
+  @override
+  int get hashCode => Object.hash(
+        currentStreak,
+        streakStartDate,
+        maxStreak,
+        lastActivityDate,
+        completedToday,
+        streakBrokenDate,
+      );
 }
 
 /// ストリークマイルストーン（ユーザーが達成できる目標）
-@freezed
-class StreakMilestone with _$StreakMilestone {
-  const factory StreakMilestone({
-    required int days,
-    required String title,
-    required String description,
-    required String iconPath,
-    required bool isUnlocked,
-  }) = _StreakMilestone;
+class StreakMilestone {
+  final int days;
+  final String title;
+  final String description;
+  final String iconPath;
+  final bool isUnlocked;
 
-  factory StreakMilestone.fromJson(Map<String, dynamic> json) =>
-      _$StreakMilestoneFromJson(json);
+  const StreakMilestone({
+    required this.days,
+    required this.title,
+    required this.description,
+    required this.iconPath,
+    required this.isUnlocked,
+  });
+
+  factory StreakMilestone.fromJson(Map<String, dynamic> json) {
+    return StreakMilestone(
+      days: json['days'] as int,
+      title: json['title'] as String,
+      description: json['description'] as String,
+      iconPath: json['iconPath'] as String,
+      isUnlocked: json['isUnlocked'] as bool,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        'days': days,
+        'title': title,
+        'description': description,
+        'iconPath': iconPath,
+        'isUnlocked': isUnlocked,
+      };
+
+  StreakMilestone copyWith({
+    int? days,
+    String? title,
+    String? description,
+    String? iconPath,
+    bool? isUnlocked,
+  }) {
+    return StreakMilestone(
+      days: days ?? this.days,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      iconPath: iconPath ?? this.iconPath,
+      isUnlocked: isUnlocked ?? this.isUnlocked,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is StreakMilestone &&
+          runtimeType == other.runtimeType &&
+          days == other.days &&
+          title == other.title &&
+          description == other.description &&
+          iconPath == other.iconPath &&
+          isUnlocked == other.isUnlocked;
+
+  @override
+  int get hashCode =>
+      Object.hash(days, title, description, iconPath, isUnlocked);
 }
 
 /// 事前定義されたマイルストーン
