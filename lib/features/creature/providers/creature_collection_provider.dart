@@ -12,6 +12,7 @@ class CreatureCollectionItem {
   final int points;
   final DateTime discoveredAt;
   final String description;
+  final String? photoPath;
 
   const CreatureCollectionItem({
     required this.id,
@@ -20,6 +21,7 @@ class CreatureCollectionItem {
     required this.points,
     required this.discoveredAt,
     required this.description,
+    this.photoPath,
   });
 
   factory CreatureCollectionItem.fromJson(Map<String, dynamic> json) {
@@ -30,6 +32,7 @@ class CreatureCollectionItem {
       points: json['points'] as int? ?? 0,
       discoveredAt: DateTime.parse(json['discoveredAt'] as String? ?? DateTime.now().toIso8601String()),
       description: json['description'] as String? ?? '',
+      photoPath: json['photoPath'] as String?,
     );
   }
 
@@ -40,6 +43,7 @@ class CreatureCollectionItem {
     'points': points,
     'discoveredAt': discoveredAt.toIso8601String(),
     'description': description,
+    'photoPath': photoPath,
   };
 }
 
@@ -88,6 +92,7 @@ class CreatureCollectionNotifier
                 discoveredAt:
                     DateTime.tryParse(data['discoveredAt'] as String? ?? '') ??
                         DateTime.now(),
+                description: data['description'] as String? ?? '',
                 photoPath: data['photoPath'] as String?,
                 points: data['points'] as int? ?? 50,
               );
@@ -115,6 +120,7 @@ class CreatureCollectionNotifier
     required String emoji,
     required int points,
     String? photoPath,
+    String description = '',
   }) async {
     final now = DateTime.now();
     final newCreature = CreatureCollectionItem(
@@ -122,6 +128,7 @@ class CreatureCollectionNotifier
       name: name,
       emoji: emoji,
       discoveredAt: now,
+      description: description,
       photoPath: photoPath,
       points: points,
     );

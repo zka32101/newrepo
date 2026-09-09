@@ -94,7 +94,7 @@ class AppLocalizations {
   String get grade5 => translate('grade5');
   String get grade6 => translate('grade6');
   String get question => translate('question');
-  String get of => translate('of');
+  String get ofWord => translate('of');
   String get selectAnswer => translate('selectAnswer');
   String get correct => translate('correct');
   String get incorrect => translate('incorrect');

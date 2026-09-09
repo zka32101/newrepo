@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants/app_colors.dart' as AppColorsConstants;
 
 /// アプリのテーマ定義（小学コレ！理科）
 /// Material Design 3対応、ライト・ダークテーマ統合管理
@@ -8,7 +9,7 @@ class AppTheme {
     useMaterial3: true,
     brightness: Brightness.light,
     colorScheme: ColorScheme.fromSeed(
-      seedColor: AppColors.sciencePrimary,
+      seedColor: AppColorsConstants.AppColors.sciencePrimary,
       brightness: Brightness.light,
     ),
     scaffoldBackgroundColor: const Color(0xFFFAFAFA),
@@ -44,7 +45,7 @@ class AppTheme {
     useMaterial3: true,
     brightness: Brightness.dark,
     colorScheme: ColorScheme.fromSeed(
-      seedColor: AppColors.sciencePrimary,
+      seedColor: AppColorsConstants.AppColors.sciencePrimary,
       brightness: Brightness.dark,
     ),
     scaffoldBackgroundColor: const Color(0xFF121212),
