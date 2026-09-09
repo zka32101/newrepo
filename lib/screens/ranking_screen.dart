@@ -8,6 +8,7 @@ import '../widgets/composite_filter_widget.dart';
 import '../widgets/tier_stats_widget.dart';
 import '../shared/theme/app_theme.dart';
 import '../shared/utils/responsive.dart';
+import 'add_friend_screen.dart';
 
 /// ランキング画面
 class RankingScreen extends ConsumerStatefulWidget {
@@ -55,6 +56,19 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
           title: const Text('ランキング'),
           centerTitle: true,
           elevation: 0,
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.person_add_alt_1),
+              tooltip: '友達を追加',
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => const AddFriendScreen(),
+                  ),
+                );
+              },
+            ),
+          ],
           bottom: TabBar(
             controller: _tabController,
             tabs: [
@@ -157,6 +171,7 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
         startMonthFilter: _monthFilter,
         applyBothFilters: _applyBothFilters,
       ))),
+      RankingTier.friends => ref.watch(rankingFriendsProvider(period)),
     };
   }
 
@@ -288,6 +303,41 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
     );
   }
 
+  Widget _buildNoFriendsHint(double padding) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: padding),
+      child: Card(
+        color: Colors.blue.shade50,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            children: [
+              const Icon(Icons.people_outline, color: Colors.blue),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  'まだ友達が登録されていません。招待コードを送って友達と競争しよう！',
+                  style: TextStyle(color: Colors.blue.shade900),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => const AddFriendScreen(),
+                    ),
+                  );
+                },
+                child: const Text('追加する'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _buildRankingListSection(RankingPeriod period) {
     final rankingAsync = _getRankingAsync(period);
     final responsivePadding = Responsive.getPadding(context);
@@ -300,12 +350,15 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
             Padding(
               padding: EdgeInsets.all(responsivePadding.left),
               child: Text(
-                '📊 全ランキング',
+                _selectedTier == RankingTier.friends ? '👫 友達ランキング' : '📊 全ランキング',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
               ),
             ),
+            if (_selectedTier == RankingTier.friends &&
+                ranking.entries.length <= 1)
+              _buildNoFriendsHint(responsivePadding.left),
             SizedBox(
               height: 400,
               child: RankingListWidget(

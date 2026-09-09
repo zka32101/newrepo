@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../services/ranking_service.dart';
 import '../models/ranking_model.dart';
+import 'friend_provider.dart';
 
 /// ランキングサービスプロバイダー
 final rankingServiceProvider = Provider<RankingService>((ref) {
@@ -44,6 +45,7 @@ final updateScoreProvider = FutureProvider.family<void, Map<String, dynamic>>(
     ref.invalidate(rankingProvider);
     ref.invalidate(userStatsProvider);
     ref.invalidate(topThreeProvider);
+    ref.invalidate(rankingFriendsProvider);
   },
 );
 
@@ -114,6 +116,19 @@ final rankingCompositeProvider = FutureProvider.family<
   },
 );
 
+/// 友達ランキング取得プロバイダー
+/// 現在のユーザーの友達一覧（friendUserIdsProvider）を自動的に参照する
+final rankingFriendsProvider = FutureProvider.family<RankingList, RankingPeriod>(
+  (ref, period) async {
+    final service = ref.watch(rankingServiceProvider);
+    final friendIds = await ref.watch(friendUserIdsProvider.future);
+    return service.getRankingFriends(
+      period: period,
+      friendUserIds: friendIds,
+    );
+  },
+);
+
 /// スコア更新プロバイダー（ティア情報付き）
 final updateScoreTierProvider = FutureProvider.family<void, Map<String, dynamic>>(
   (ref, params) async {
@@ -141,5 +156,6 @@ final updateScoreTierProvider = FutureProvider.family<void, Map<String, dynamic>
     ref.invalidate(rankingByGradeProvider);
     ref.invalidate(rankingByStartMonthProvider);
     ref.invalidate(rankingCompositeProvider);
+    ref.invalidate(rankingFriendsProvider);
   },
 );
