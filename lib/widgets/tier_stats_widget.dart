@@ -208,6 +208,7 @@ class TierStatsWidget extends StatelessWidget {
       RankingTier.byGrade => Colors.blue,
       RankingTier.byStartMonth => Colors.green,
       RankingTier.composite => Colors.purple,
+      RankingTier.friends => Colors.pink,
     };
   }
 }

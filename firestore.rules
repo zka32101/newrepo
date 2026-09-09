@@ -7,6 +7,24 @@ service cloud.firestore {
       allow read, write: if request.auth != null && request.auth.uid == userId;
     }
 
+    // 友達機能: 招待コード（= userId）で相手を検索できるよう、
+    // 最小限の公開プロフィール（userName / avatarUrl）は認証済みユーザー
+    // なら誰でも読み取り可能にする。書き込みは本人のみ。
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // 友達サブコレクション: 自分の一覧は自分だけが読める。
+    // 招待コードによる相互登録のため、書き込みは
+    // 「自分の friends に自分が書く」か「相手の friends に自分の
+    // エントリを書く（= friendId が自分）」のいずれかを許可する。
+    match /users/{userId}/friends/{friendId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow write: if request.auth != null &&
+        (request.auth.uid == userId || request.auth.uid == friendId);
+    }
+
     // 問題データ・ステージデータ: 認証済みユーザーは読み取り可（書き込み不可）
     match /stages/{stageId} {
       allow read: if request.auth != null;

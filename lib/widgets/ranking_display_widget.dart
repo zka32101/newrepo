@@ -202,7 +202,7 @@ class RankingEntryWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              entry.userName,
+                              entry.displayName,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
@@ -447,7 +447,7 @@ class TopThreeWidget extends ConsumerWidget {
                 ),
               SizedBox(height: isMobile ? 2 : 4),
               Text(
-                entry.userName,
+                entry.displayName,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(

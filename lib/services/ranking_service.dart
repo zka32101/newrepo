@@ -63,6 +63,8 @@ class RankingService {
                       ?.toDate() ??
                   DateTime.now(),
               isCurrentUser: e.value.id == _auth.currentUser?.uid,
+              showNameInRanking:
+                  data['showNameInRanking'] as bool? ?? false,
             );
           })
           .toList();
@@ -104,6 +106,12 @@ class RankingService {
           ? (correctAnswers / totalQuestions * 100)
           : 0.0;
 
+      // プライバシー設定（ランキング名前公表フラグ）を取得し、
+      // ランキングエントリー自体にスナップショットとして含める。
+      // これにより、閲覧側は毎回プライバシー設定を別途取得せずに
+      // RankingEntry.showNameInRanking / displayName で匿名化を判定できる。
+      final showNameInRanking = await _getShowNameInRanking(currentUser.uid);
+
       final userData = {
         'userId': currentUser.uid,
         'userName': currentUser.displayName ?? '匿名ユーザー',
@@ -116,6 +124,7 @@ class RankingService {
         'updatedAt': FieldValue.serverTimestamp(),
         'gradeLevel': gradeLevel?.toGradeNumber() ?? 3,
         'startMonth': startMonth?.toMonthNumber() ?? 4,
+        'showNameInRanking': showNameInRanking,
       };
 
       // 日別ランキングを更新
@@ -294,6 +303,8 @@ class RankingService {
                       ?.toDate() ??
                   DateTime.now(),
               isCurrentUser: e.value.id == _auth.currentUser?.uid,
+              showNameInRanking:
+                  data['showNameInRanking'] as bool? ?? false,
             );
           })
           .toList();
@@ -525,6 +536,7 @@ class RankingService {
             userGradeLevel: gradeLevel,
             userStartMonth: startMonth,
             rankingTier: rankingTier,
+            showNameInRanking: data['showNameInRanking'] as bool? ?? false,
           );
         })
         .toList();
@@ -604,6 +616,8 @@ class RankingService {
               '${gradeFilter?.label ?? '全学年'} & ${startMonthFilter?.label ?? '全月'}';
         case RankingTier.allTime:
           tierDescription = '全体';
+        case RankingTier.friends:
+          tierDescription = '友達';
       }
 
       return TierRankingInfo(
@@ -710,6 +724,124 @@ class RankingService {
   Future<void> _ensureInitialized() async {
     if (!_isInitialized) {
       await initialize();
+    }
+  }
+
+  /// プライバシー設定（`users/{uid}/settings/privacy`）から
+  /// ランキング名前公表フラグを取得する
+  ///
+  /// `privacy_settings_provider.dart` の
+  /// `UserPrivacySettings.showNameInRanking` と同じドキュメントを参照する。
+  /// 設定が未作成の場合はデフォルト（非公表 = false）を返す。
+  Future<bool> _getShowNameInRanking(String userId) async {
+    try {
+      final doc = await _firestore
+          .collection('users')
+          .doc(userId)
+          .collection('settings')
+          .doc('privacy')
+          .get();
+      if (!doc.exists) return false;
+      return doc.data()?['showNameInRanking'] as bool? ?? false;
+    } catch (e) {
+      developer.log('Error getting privacy settings: $e', error: e);
+      return false;
+    }
+  }
+
+  /// 友達ランキングを取得
+  ///
+  /// [friendUserIds] は友達のユーザーIDリスト（現在のユーザー自身も
+  /// 比較のため自動的に含める）。Firestore の `whereIn` は最大30件までの
+  /// 制限があるため、30件ずつに分割してクエリする。
+  Future<RankingList> getRankingFriends({
+    required RankingPeriod period,
+    required List<String> friendUserIds,
+    int limit = 50,
+  }) async {
+    await _ensureInitialized();
+
+    try {
+      final currentUser = _auth.currentUser;
+      final collectionName = _getCollectionName(period);
+
+      final targetIds = <String>{
+        ...friendUserIds,
+        if (currentUser != null) currentUser.uid,
+      }.toList();
+
+      if (targetIds.isEmpty) {
+        return RankingList(
+          period: period,
+          entries: const [],
+          lastUpdatedAt: DateTime.now(),
+          refreshIntervalSeconds: _getRefreshInterval(period),
+          rankingTier: RankingTier.friends,
+          tierDescription: '友達',
+        );
+      }
+
+      final docs = <QueryDocumentSnapshot<Map<String, dynamic>>>[];
+      for (var i = 0; i < targetIds.length; i += 30) {
+        final chunk = targetIds.sublist(
+          i,
+          i + 30 > targetIds.length ? targetIds.length : i + 30,
+        );
+        final snapshot = await _firestore
+            .collection(collectionName)
+            .where(FieldPath.documentId, whereIn: chunk)
+            .get();
+        docs.addAll(snapshot.docs);
+      }
+
+      // スコア降順に並び替え、上限件数に絞る
+      docs.sort((a, b) {
+        final scoreA = a.data()['score'] as int? ?? 0;
+        final scoreB = b.data()['score'] as int? ?? 0;
+        return scoreB.compareTo(scoreA);
+      });
+      final limitedDocs = docs.take(limit).toList();
+
+      final entries = limitedDocs.asMap().entries.map((e) {
+        final rank = e.key + 1;
+        final data = e.value.data();
+        return RankingEntry(
+          userId: e.value.id,
+          userName: data['userName'] as String? ?? '匿名ユーザー',
+          avatarUrl: data['avatarUrl'] as String?,
+          score: data['score'] as int? ?? 0,
+          rank: rank,
+          correctAnswers: data['correctAnswers'] as int? ?? 0,
+          totalQuestions: data['totalQuestions'] as int? ?? 0,
+          correctRate: (data['correctRate'] as num?)?.toDouble() ?? 0.0,
+          streak: data['streak'] as int? ?? 0,
+          lastScoreDate:
+              (data['lastScoreDate'] as Timestamp?)?.toDate() ??
+                  DateTime.now(),
+          isCurrentUser: e.value.id == currentUser?.uid,
+          rankingTier: RankingTier.friends,
+          showNameInRanking: data['showNameInRanking'] as bool? ?? false,
+        );
+      }).toList();
+
+      return RankingList(
+        period: period,
+        entries: entries,
+        lastUpdatedAt: DateTime.now(),
+        refreshIntervalSeconds: _getRefreshInterval(period),
+        rankingTier: RankingTier.friends,
+        tierDescription: '友達',
+      );
+    } catch (e) {
+      developer.log('Error getting friends ranking: $e', error: e);
+      return RankingList(
+        period: period,
+        entries: const [],
+        lastUpdatedAt: DateTime.now(),
+        refreshIntervalSeconds: _getRefreshInterval(period),
+        rankingTier: RankingTier.friends,
+        tierDescription: '友達',
+      );
     }
   }
 }

@@ -1,3 +1,5 @@
+import 'privacy_settings_model.dart';
+
 /// ユーザーのランキング情報
 ///
 /// 手書きの不変クラス（`freezed`ではなく）。理由: 生成ファイルが
@@ -47,6 +49,23 @@ class RankingEntry {
   /// このエントリーが属するランキングティア
   final RankingTier? rankingTier;
 
+  /// このユーザーがランキングで本名表示を許可しているかどうか
+  /// （プライバシー設定 `UserPrivacySettings.showNameInRanking` の値を
+  /// ランキングエントリー生成時にスナップショットしたもの）
+  final bool showNameInRanking;
+
+  /// 表示用の名前を取得
+  ///
+  /// [showNameInRanking] と [isCurrentUser] に基づいて、
+  /// 本名または匿名IDを返す（`PrivacyUtils.getDisplayName` に委譲）。
+  /// ランキング表示 UI は必ずこの getter 経由で名前を表示すること。
+  String get displayName => PrivacyUtils.getDisplayName(
+        userId,
+        userName,
+        showNameInRanking,
+        isCurrentUser,
+      );
+
   const RankingEntry({
     required this.userId,
     required this.userName,
@@ -62,6 +81,7 @@ class RankingEntry {
     this.userGradeLevel,
     this.userStartMonth,
     this.rankingTier,
+    this.showNameInRanking = false,
   });
 
   factory RankingEntry.fromJson(Map<String, dynamic> json) {
@@ -86,6 +106,7 @@ class RankingEntry {
       rankingTier: json['rankingTier'] == null
           ? null
           : RankingTier.values.byName(json['rankingTier'] as String),
+      showNameInRanking: json['showNameInRanking'] as bool? ?? false,
     );
   }
 
@@ -104,6 +125,7 @@ class RankingEntry {
         'userGradeLevel': userGradeLevel?.name,
         'userStartMonth': userStartMonth?.name,
         'rankingTier': rankingTier?.name,
+        'showNameInRanking': showNameInRanking,
       };
 
   RankingEntry copyWith({
@@ -121,6 +143,7 @@ class RankingEntry {
     GradeLevel? userGradeLevel,
     SchoolYear? userStartMonth,
     RankingTier? rankingTier,
+    bool? showNameInRanking,
   }) {
     return RankingEntry(
       userId: userId ?? this.userId,
@@ -137,6 +160,7 @@ class RankingEntry {
       userGradeLevel: userGradeLevel ?? this.userGradeLevel,
       userStartMonth: userStartMonth ?? this.userStartMonth,
       rankingTier: rankingTier ?? this.rankingTier,
+      showNameInRanking: showNameInRanking ?? this.showNameInRanking,
     );
   }
 
@@ -158,7 +182,8 @@ class RankingEntry {
           isCurrentUser == other.isCurrentUser &&
           userGradeLevel == other.userGradeLevel &&
           userStartMonth == other.userStartMonth &&
-          rankingTier == other.rankingTier;
+          rankingTier == other.rankingTier &&
+          showNameInRanking == other.showNameInRanking;
 
   @override
   int get hashCode => Object.hash(
@@ -176,6 +201,7 @@ class RankingEntry {
         userGradeLevel,
         userStartMonth,
         rankingTier,
+        showNameInRanking,
       );
 }
 
@@ -587,12 +613,13 @@ enum RankChangeDirection {
   const RankChangeDirection(this.label);
 }
 
-/// ランキングの4つのティア区分
+/// ランキングのティア区分
 enum RankingTier {
   allTime('全体ランキング'),
   byGrade('学年別ランキング'),
   byStartMonth('開始月別ランキング'),
-  composite('複合グループランキング');
+  composite('複合グループランキング'),
+  friends('友達ランキング');
 
   final String label;
   const RankingTier(this.label);
@@ -602,6 +629,7 @@ enum RankingTier {
     RankingTier.byGrade => '学年別',
     RankingTier.byStartMonth => '開始月別',
     RankingTier.composite => '複合グループ',
+    RankingTier.friends => '友達',
   };
 }
 

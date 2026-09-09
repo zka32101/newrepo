@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shokollen_science/models/ranking_model.dart';
-import 'package:shokollen_science/models/privacy_settings_model.dart';
-import 'package:shokollen_science/providers/privacy_settings_provider.dart';
 
 /// プライバシー保護対応ランキング表示ウィジェット
 ///
@@ -50,17 +48,10 @@ class PrivacyRankingEntryWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // 他のユーザーのプライバシー設定を読み込み
-    // TODO: 実装では、ランキングエントリに privacy フラグを含める必要があります
-    // 一時的に、デフォルトプライバシー（名前非公表）を仮定
-    final displayShowNameInRanking = false; // TODO: entry から取得
-
-    final displayName = PrivacyUtils.getDisplayName(
-      entry.userId,
-      entry.userName,
-      displayShowNameInRanking,
-      isCurrentUser,
-    );
+    // 表示名の匿名化は RankingEntry.displayName に一本化されている
+    // （entry.showNameInRanking はランキングサービスがスコア更新時に
+    // プライバシー設定からスナップショットして書き込む）。
+    final displayName = entry.displayName;
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -311,14 +302,8 @@ class PrivacyTopThreeWidget extends ConsumerWidget {
   }
 
   Widget _buildMedalColumn(RankingEntry entry) {
-    // TODO: エントリにプライバシー情報を含める場合は、ここで使用
-    final displayShowNameInRanking = false; // デフォルトで非公表
-    final displayName = PrivacyUtils.getDisplayName(
-      entry.userId,
-      entry.userName,
-      displayShowNameInRanking,
-      false, // トップ3は常に他のユーザー
-    );
+    // 表示名の匿名化は RankingEntry.displayName に一本化されている
+    final displayName = entry.displayName;
 
     return Column(
       children: [
