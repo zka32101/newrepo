@@ -36,6 +36,7 @@ import '../features/time_travel/views/scientist_collection_screen.dart';
 import '../features/weekly_challenge/views/weekly_challenge_screen.dart';
 import '../features/progress/views/daily_mystery_omikuji_screen.dart';
 import '../features/lesson/views/lesson_screen.dart';
+import '../features/lesson/views/lesson_detail_screen.dart';
 import '../screens/privacy_settings_screen.dart';
 import '../screens/notification_settings_screen.dart';
 import '../screens/ranking_screen.dart';
@@ -338,6 +339,16 @@ class AppRouter {
         path: '/lessons',
         name: 'lessons',
         builder: (_, __) => const LessonScreen(),
+      ),
+
+      // 学ぶ（詳細ページ）
+      GoRoute(
+        path: '/lesson/:lessonId',
+        name: 'lesson-detail',
+        builder: (_, state) {
+          final lessonId = state.pathParameters['lessonId'] ?? 'lesson_photosynthesis';
+          return LessonDetailScreen(lessonId: lessonId);
+        },
       ),
 
       // プライバシー設定
