@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../shared/constants/app_colors.dart';
-import '../../../shared/theme/app_theme.dart';
 
 class SeasonalRecommendationWidget extends StatelessWidget {
   final Function(String stageId) onTap;

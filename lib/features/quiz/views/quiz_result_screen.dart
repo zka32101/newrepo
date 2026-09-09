@@ -158,9 +158,15 @@ class _QuizResultScreenState extends ConsumerState<QuizResultScreen> {
 
     // 🎯 アチーブメントを確認・記録
     try {
+      final progressAsyncValue = ref.read(userProgressProvider);
+      int totalQuizzes = 0;
+      progressAsyncValue.whenData((progress) {
+        totalQuizzes = progress.stagesCompleted.length;
+      });
+
       final achievementNotifications = await ref.read(
         checkQuizAchievementsProvider({
-          'totalQuizzes': result.totalStagesCompleted,
+          'totalQuizzes': totalQuizzes,
           'correctCount': quiz.correctCount,
           'totalQuestions': quiz.totalQuestions,
         }).future,

@@ -149,11 +149,13 @@ class AchievementCard extends ConsumerWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  achievement.emoji,
-                  style: TextStyle(
-                    fontSize: 40,
-                    opacity: isUnlocked ? 1.0 : 0.3,
+                Opacity(
+                  opacity: isUnlocked ? 1.0 : 0.3,
+                  child: Text(
+                    achievement.emoji,
+                    style: const TextStyle(
+                      fontSize: 40,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 8),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../constants/app_colors.dart';
+import '../constants/app_colors.dart' as AppColorsConstants;
 
 /// アプリのテーマ定義（小学コレ！理科）
 /// Material Design 3対応、ライト・ダークテーマ統合管理
@@ -9,7 +9,7 @@ class AppTheme {
     useMaterial3: true,
     brightness: Brightness.light,
     colorScheme: ColorScheme.fromSeed(
-      seedColor: AppColors.sciencePrimary,
+      seedColor: AppColorsConstants.AppColors.sciencePrimary,
       brightness: Brightness.light,
     ),
     scaffoldBackgroundColor: const Color(0xFFFAFAFA),
@@ -19,7 +19,7 @@ class AppTheme {
       elevation: 0,
       surfaceTintColor: Colors.transparent,
     ),
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       color: Colors.white,
       elevation: 2,
       shape: RoundedRectangleBorder(
@@ -45,7 +45,7 @@ class AppTheme {
     useMaterial3: true,
     brightness: Brightness.dark,
     colorScheme: ColorScheme.fromSeed(
-      seedColor: AppColors.sciencePrimary,
+      seedColor: AppColorsConstants.AppColors.sciencePrimary,
       brightness: Brightness.dark,
     ),
     scaffoldBackgroundColor: const Color(0xFF121212),
@@ -55,7 +55,7 @@ class AppTheme {
       elevation: 0,
       surfaceTintColor: Colors.transparent,
     ),
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       color: const Color(0xFF1E1E1E),
       elevation: 2,
       shape: RoundedRectangleBorder(
@@ -217,15 +217,15 @@ class AppColors extends ThemeExtension<AppColors> {
 
   // ライトモード用（理科テーマ）
   static const AppColors light = AppColors(
-    primary: AppColors.sciencePrimary,     // 0xFF3498DB
-    secondary: AppColors.scienceSecondary, // 0xFF2874A6
-    surface: AppColors.white,              // 0xFFFFFFFF
-    surfaceVariant: AppColors.bgGray,      // 0xFFF5F5F5
-    background: AppColors.bgGray,          // 0xFFF5F5F5
-    error: AppColors.error,                // 0xFFE74C3C
-    success: AppColors.success,            // 0xFF27AE60
-    warning: AppColors.warning,            // 0xFFF39C12
-    info: AppColors.info,                  // 0xFF3498DB
+    primary: Color(0xFF3498DB),            // sciencePrimary
+    secondary: Color(0xFF2874A6),          // scienceSecondary
+    surface: Color(0xFFFFFFFF),            // white
+    surfaceVariant: Color(0xFFF5F5F5),     // bgGray
+    background: Color(0xFFF5F5F5),         // bgGray
+    error: Color(0xFFE74C3C),              // error
+    success: Color(0xFF27AE60),            // success
+    warning: Color(0xFFF39C12),            // warning
+    info: Color(0xFF3498DB),               // info
   );
 
   // ダークモード用（深夜学習配慮・理科テーマ）

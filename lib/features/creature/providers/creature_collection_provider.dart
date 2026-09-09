@@ -4,6 +4,49 @@ import 'dart:convert';
 import 'dart:typed_data';
 import '../services/creature_identification_service.dart';
 
+/// 生き物コレクションアイテム
+class CreatureCollectionItem {
+  final String id;
+  final String name;
+  final String emoji;
+  final int points;
+  final DateTime discoveredAt;
+  final String description;
+  final String? photoPath;
+
+  const CreatureCollectionItem({
+    required this.id,
+    required this.name,
+    required this.emoji,
+    required this.points,
+    required this.discoveredAt,
+    required this.description,
+    this.photoPath,
+  });
+
+  factory CreatureCollectionItem.fromJson(Map<String, dynamic> json) {
+    return CreatureCollectionItem(
+      id: json['id'] as String,
+      name: json['name'] as String,
+      emoji: json['emoji'] as String,
+      points: json['points'] as int? ?? 0,
+      discoveredAt: DateTime.parse(json['discoveredAt'] as String? ?? DateTime.now().toIso8601String()),
+      description: json['description'] as String? ?? '',
+      photoPath: json['photoPath'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'name': name,
+    'emoji': emoji,
+    'points': points,
+    'discoveredAt': discoveredAt.toIso8601String(),
+    'description': description,
+    'photoPath': photoPath,
+  };
+}
+
 /// 生き物コレクション状態
 class CreatureCollectionState {
   final List<CreatureCollectionItem> discoveredCreatures;
@@ -49,6 +92,7 @@ class CreatureCollectionNotifier
                 discoveredAt:
                     DateTime.tryParse(data['discoveredAt'] as String? ?? '') ??
                         DateTime.now(),
+                description: data['description'] as String? ?? '',
                 photoPath: data['photoPath'] as String?,
                 points: data['points'] as int? ?? 50,
               );
@@ -76,6 +120,7 @@ class CreatureCollectionNotifier
     required String emoji,
     required int points,
     String? photoPath,
+    String description = '',
   }) async {
     final now = DateTime.now();
     final newCreature = CreatureCollectionItem(
@@ -83,6 +128,7 @@ class CreatureCollectionNotifier
       name: name,
       emoji: emoji,
       discoveredAt: now,
+      description: description,
       photoPath: photoPath,
       points: points,
     );
