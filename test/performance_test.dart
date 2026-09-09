@@ -81,27 +81,21 @@ void main() {
     testWidgets('メモリリークを検出', (WidgetTester tester) async {
       await tester.pumpWidget(const MyApp());
 
-      // 初期メモリ使用量を記録
-      final initialSnapshot = tester.binding.window.physicalGeometry;
-
       // ウィジェット生成・破棄のサイクルを実行
       for (int i = 0; i < 50; i++) {
         await tester.pumpWidget(const MyApp());
         await tester.pump();
       }
 
-      // 最終メモリ状態を確認
-      final finalSnapshot = tester.binding.window.physicalGeometry;
-
-      // メモリが異常に増加していないか確認
-      expect(finalSnapshot, isNotNull);
+      // ウィジェットツリーが正常に構築されることを確認
+      expect(find.byType(MaterialApp), findsOneWidget);
 
       print('✅ メモリリークテスト: 成功');
     });
 
     // ========== レンダリングパフォーマンス ==========
     testWidgets('フレームレートを測定', (WidgetTester tester) async {
-      addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
+      addTearDown(tester.binding.platformDispatcher.clearViewportMetricsTestValue);
 
       await tester.pumpWidget(const MyApp());
 
