@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_core/widgets/components/app_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shokollen_science/models/privacy_settings_model.dart';
 import 'package:shokollen_science/providers/privacy_settings_provider.dart';

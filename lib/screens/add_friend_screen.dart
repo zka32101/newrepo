@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_core/widgets/components/app_button.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/friend_model.dart';
@@ -62,7 +63,7 @@ class _AddFriendScreenState extends ConsumerState<AddFriendScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('キャンセル'),
+            label: 'キャンセル',
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
@@ -177,7 +178,7 @@ class _AddFriendScreenState extends ConsumerState<AddFriendScreen> {
                   const SizedBox(height: 12),
                   SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton.icon(
+                    child: AppButton(
                       onPressed: _isSubmitting ? null : _submit,
                       icon: _isSubmitting
                           ? const SizedBox(
