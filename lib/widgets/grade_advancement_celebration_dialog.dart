@@ -295,7 +295,7 @@ class _GradeAdvancementCelebrationDialogState
   Widget _buildFloatingEmoji(String emoji, double delay) {
     return TweenAnimationBuilder<double>(
       tween: Tween(begin: 0.0, end: 1.0),
-      duration: Duration(milliseconds: 1200, inMilliseconds: ((1200 * delay).toInt())),
+      duration: Duration(milliseconds: (1200 * (1 + delay)).toInt()),
       curve: Curves.elasticInOut,
       builder: (context, value, child) {
         return Transform.translate(

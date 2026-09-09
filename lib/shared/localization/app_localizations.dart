@@ -13,8 +13,13 @@ class AppLocalizations {
   AppLocalizations(this.locale);
 
   static AppLocalizations of(BuildContext context) {
-    return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
+    final result = Localizations.of<AppLocalizations>(context, AppLocalizations);
+    assert(result != null, 'AppLocalizations.of() called with a context that does not contain AppLocalizations');
+    return result!;
   }
+
+  /// Alias for [of]
+  static AppLocalizations getInstance(BuildContext context) => of(context);
 
   /// 翻訳ファイルを読み込み
   Future<void> load() async {

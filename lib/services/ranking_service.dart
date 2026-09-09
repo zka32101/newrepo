@@ -216,7 +216,7 @@ class RankingService {
         totalParticipants: totalParticipants,
         currentUserRank: userRank,
         currentUserScore: userScore,
-        percentile: percentile,
+        percentile: percentile.toDouble(),
         topScore: topScore,
         averageScore: averageScore,
         scoreHistory: scoreHistory,

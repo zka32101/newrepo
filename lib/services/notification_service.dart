@@ -71,8 +71,8 @@ class NotificationService {
         _handleMessageOpenedApp(initialMessage);
       }
 
-      // タイムゾーン初期化
-      tz.initializeTimeZones();
+      // タイムゾーン初期化（同期処理）
+      // tz.initializeTimeZones() はすでに別の場所で呼び出し済み
 
       _isInitialized = true;
       developer.log('NotificationService initialized successfully');
@@ -89,7 +89,6 @@ class NotificationService {
         alert: true,
         announcement: true,
         badge: true,
-        carryForward: true,
         criticalAlert: true,
         provisional: false,
         sound: true,
@@ -149,9 +148,10 @@ class NotificationService {
   Future<void> _showLocalNotification(RemoteMessage message) async {
     try {
       final notification = message.notification;
-      final android = message.android;
 
       if (notification == null) return;
+
+      final android = notification.android;
 
       const androidDetails = AndroidNotificationDetails(
         'science_app_channel',
