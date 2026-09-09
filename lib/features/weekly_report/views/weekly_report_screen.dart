@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_core/shared_core.dart';
 import '../../../shared/constants/app_colors.dart';
 import '../../../features/progress/providers/user_progress_provider.dart';
 import '../../../data/seeds/stages.dart';
@@ -36,6 +37,12 @@ class _WeeklyReportBody extends StatelessWidget {
     // 過去7日の正解数リスト
     final counts = days.map((d) => activityMap[d] ?? 0).toList();
     final maxCount = max(1, counts.reduce(max));
+    final todayIndex = days.indexOf(_todayStr());
+    // 今日のバーだけ色分けできるよう、表示上は影響しない極小値を加えて一意化する
+    final chartValues = [
+      for (var i = 0; i < counts.length; i++)
+        counts[i].toDouble() + (i == todayIndex ? 0.0001 : 0.0),
+    ];
 
     // 今週の正解数合計
     final weeklyTotal = counts.fold(0, (a, b) => a + b);
@@ -95,10 +102,29 @@ class _WeeklyReportBody extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 16),
-                      _BarChart(
-                        days: days,
-                        counts: counts,
-                        maxCount: maxCount,
+                      WeeklyBarChartWidget(
+                        values: chartValues,
+                        labels: days
+                            .map(
+                              (d) =>
+                                  '${int.parse(d.substring(5, 7))}/${int.parse(d.substring(8, 10))}',
+                            )
+                            .toList(),
+                        primaryColor: const Color(0xFFBDE0F9),
+                        barColorForValue: (value) => value ==
+                                (todayIndex >= 0 ? chartValues[todayIndex] : null)
+                            ? AppColors.sciencePrimary
+                            : const Color(0xFFBDE0F9),
+                        valueSuffix: '問',
+                        maxY: maxCount.toDouble(),
+                        labelStyle: const TextStyle(
+                          fontSize: 10,
+                          color: AppColors.textGray,
+                        ),
+                        axisValueStyle: const TextStyle(
+                          fontSize: 10,
+                          color: AppColors.textGray,
+                        ),
                       ),
                     ],
                   ),
@@ -219,85 +245,8 @@ class _WeeklyReportBody extends StatelessWidget {
       return '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
     });
   }
-}
 
-// ──────────────────────────────────────────────────────────────────────────────
-// 7日間バーチャート
-// ──────────────────────────────────────────────────────────────────────────────
-
-class _BarChart extends StatelessWidget {
-  final List<String> days;
-  final List<int> counts;
-  final int maxCount;
-
-  const _BarChart({
-    required this.days,
-    required this.counts,
-    required this.maxCount,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final todayStr = _todayStr();
-
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: List.generate(days.length, (i) {
-        final day = days[i];
-        final count = counts[i];
-        final isToday = day == todayStr;
-        final barHeight = (count / maxCount) * 80.0;
-        final label =
-            '${int.parse(day.substring(5, 7))}/${int.parse(day.substring(8, 10))}';
-
-        return Expanded(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // 正解数テキスト
-              Text(
-                count > 0 ? '$count' : '',
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: FontWeight.bold,
-                  color: isToday
-                      ? AppColors.sciencePrimary
-                      : AppColors.textGray,
-                ),
-              ),
-              const SizedBox(height: 4),
-              // バー
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 600),
-                curve: Curves.easeOut,
-                height: count > 0 ? barHeight.clamp(4.0, 80.0) : 4.0,
-                margin: const EdgeInsets.symmetric(horizontal: 3),
-                decoration: BoxDecoration(
-                  color: isToday
-                      ? AppColors.sciencePrimary
-                      : const Color(0xFFBDE0F9),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-              ),
-              const SizedBox(height: 4),
-              // 日付ラベル
-              Text(
-                label,
-                style: TextStyle(
-                  fontSize: 10,
-                  color: isToday
-                      ? AppColors.sciencePrimary
-                      : AppColors.textGray,
-                  fontWeight: isToday ? FontWeight.bold : FontWeight.normal,
-                ),
-              ),
-            ],
-          ),
-        );
-      }),
-    );
-  }
-
+  /// 今日の日付文字列（yyyy-MM-dd）
   static String _todayStr() {
     final now = DateTime.now();
     return '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}';
