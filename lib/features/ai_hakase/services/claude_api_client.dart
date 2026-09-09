@@ -41,20 +41,18 @@ class ClaudeApiClient {
         },
       ];
 
+      const systemPromptDefault =
+          'あなたは小学3〜6年生向けの理科学習サポートAI「はかせ」です。子どもにもわかりやすく、楽しく理科を説明してください。回答は常に日本語で、難しい言葉は避けてください。';
+
       final requestBody = {
         'model': _model,
         'max_tokens': _maxTokens,
-        'system': systemPrompt ??
-            'あなたは小学3〜6年生向けの理科学習サポートAI「はかせ」です。'
-            '子どもにもわかりやすく、楽しく理科を説明してください。'
-            '回答は常に日本語で、難しい言葉は避けてください。',
+        'system': systemPrompt ?? systemPromptDefault,
         'messages': messages,
       };
 
       if (kDebugMode) {
-        print('[Claude API Request]');
-        print('URL: ${apiBaseUrl ?? _apiUrl}');
-        print('Body: ${jsonEncode(requestBody)}');
+        print('[Claude API Request] URL: ${apiBaseUrl ?? _apiUrl}');
       }
 
       // Claude API へリクエスト送信
@@ -75,9 +73,7 @@ class ClaudeApiClient {
       );
 
       if (kDebugMode) {
-        print('[Claude API Response]');
-        print('Status: ${response.statusCode}');
-        print('Body: ${response.body}');
+        print('[Claude API Response] Status: ${response.statusCode}');
       }
 
       // ステータスコード判定
@@ -93,10 +89,10 @@ class ClaudeApiClient {
         throw ClaudeApiException('API キーが無効です');
       } else if (response.statusCode == 429) {
         throw ClaudeApiException('API リクエストが多すぎます。しばらく待ってから再度お試しください。');
+      } else if (response.statusCode >= 500) {
+        throw ClaudeApiException('Claude API サーバーエラーが発生しました。しばらく待ってから再度お試しください。');
       } else {
-        throw ClaudeApiException(
-          'Claude API エラー（ステータス: ${response.statusCode}）: ${response.body}',
-        );
+        throw ClaudeApiException('Claude API エラーが発生しました。リクエストを確認してもう一度お試しください。');
       }
     } catch (e) {
       throw ClaudeApiException('Claude API エラー: $e');
@@ -105,25 +101,25 @@ class ClaudeApiClient {
 
   /// テスト用ダミーレスポンス生成
   String _generateDummyResponse(String userMessage) {
+    const response1 = '磁石は、北と南の2つの磁極を持った不思議な石です。同じ磁極同士は反発し、反対の磁極同士は引き付け合いますよ。';
+    const response2 = '電気は、目には見えませんが、電子という小さな粒が動くことで作られます。雷も電気の仲間なんですよ。';
+    const response3 = '植物は、太陽の光を使って、空気と水から栄養を作ります。これを光合成と言うんです。';
+    const response4 = '星は遠くにある大きな火の玉で、太陽も実は星なんですよ。夜の空に見える星は、昼間は太陽に隠れているんです。';
+
     final responses = {
-      '磁石': '磁石は、北と南の2つの磁極を持った不思議な石です。'
-             '同じ磁極同士は反発し、反対の磁極同士は引き付け合いますよ。',
-      '電気': '電気は、目には見えませんが、電子という小さな粒が動くことで作られます。'
-             '雷も電気の仲間なんですよ。',
-      '植物': '植物は、太陽の光を使って、空気と水から栄養を作ります。'
-             'これを光合成と言うんです。',
-      '星': '星は遠くにある大きな火の玉で、太陽も実は星なんですよ。'
-           '夜の空に見える星は、昼間は太陽に隠れているんです。',
+      '磁石': response1,
+      '電気': response2,
+      '植物': response3,
+      '星': response4,
     };
 
-    for (final (key, value) in responses.entries) {
-      if (userMessage.contains(key)) {
-        return value;
+    for (final entry in responses.entries) {
+      if (userMessage.contains(entry.key)) {
+        return entry.value;
       }
     }
 
-    return 'いい質問だね！$userMessage について、もっと詳しく教えてほしいです。'
-           'わからないことは、何度でも聞いてくれていいんですよ。';
+    return 'いい質問だね！$userMessage について、もっと詳しく教えてほしいです。わからないことは、何度でも聞いてくれていいんですよ。';
   }
 
   /// API キーの有効性を確認（簡易版）

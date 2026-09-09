@@ -1,3 +1,23 @@
+/// メッセージの役割
+enum ChatRole {
+  user, // ユーザー
+  assistant, // AIはかせ
+}
+
+extension ChatRoleExt on ChatRole {
+  String get label {
+    switch (this) {
+      case ChatRole.user:
+        return 'ユーザー';
+      case ChatRole.assistant:
+        return 'AIはかせ';
+    }
+  }
+
+  bool get isUser => this == ChatRole.user;
+  bool get isAssistant => this == ChatRole.assistant;
+}
+
 /// AIはかせチャットメッセージ
 class ChatMessage {
   final String id;
@@ -41,22 +61,6 @@ class ChatMessage {
     return roleStr == 'assistant' ? ChatRole.assistant : ChatRole.user;
   }
 
-/// メッセージの役割
-enum ChatRole {
-  user,  // ユーザー
-  assistant, // AIはかせ
-}
-
-extension ChatRoleExt on ChatRole {
-  String get label {
-    switch (this) {
-      case ChatRole.user:
-        return 'ユーザー';
-      case ChatRole.assistant:
-        return 'AIはかせ';
-    }
-  }
-
-  bool get isUser => this == ChatRole.user;
-  bool get isAssistant => this == ChatRole.assistant;
+  bool get isUser => role.isUser;
+  bool get isAssistant => role.isAssistant;
 }
