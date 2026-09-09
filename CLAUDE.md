@@ -62,22 +62,22 @@ cd S:/ && flutter pub get
 - `android/settings.gradle.kts` でビルドディレクトリを `C:/rika-build/` に変更済み
 - `pubspec.yaml` の shared_core は git dependency（`https://github.com/org-zka32101/shared_core.git`, ref: main）
 
-## 実装済み機能（v0.9.0 → v1.0 準備中）
+## 実装済み機能（v1.0 リリース中）
 
-### Phase 3 までの既存機能
-| 機能 | 実装状況 |
-|---|---|
-| ステージ別クイズ（3〜6年） | ✅ |
-| ふりがな表示（FuriganaText） | ✅ |
-| 進捗管理（UserProgress + SharedPreferences） | ✅ |
-| デイリーチャレンジ | ✅ |
-| 週次レポート（棒グラフ） | ✅ |
-| 学年末まとめテスト＋証明書 | ✅ |
-| タイマークイズモード | ✅ |
-| バッジシステム（shared_core） | ✅ |
-| キャラクターコレクション（16体） | ✅ |
-| コインショップ | ✅ |
-| テーマ（ライト/ダーク） | ✅ |
+### Phase 3 基本機能（完了）
+| 機能 | 実装状況 | 詳細 |
+|---|---|---|
+| ステージ別クイズ（3〜6年） | ✅ | 全学年・全ステージ実装完了 |
+| ふりがな表示（FuriganaText） | ✅ | 全問題対応済み |
+| 進捗管理（UserProgress + SharedPreferences） | ✅ | ローカル永続化 |
+| デイリーチャレンジ | ✅ | 毎日更新機構 |
+| 週次レポート（棒グラフ） | ✅ | fl_chart 利用 |
+| 学年末まとめテスト＋証明書 | ✅ | 生成・共有対応 |
+| タイマークイズモード | ✅ | 制限時間クイズ |
+| バッジシステム（shared_core） | ✅ | 16個バッジ実装 |
+| キャラクターコレクション（16体） | ✅ | ティアシステム |
+| コインショップ | ✅ | shared_core CoinShopPage |
+| テーマ（ライト/ダーク） | ✅ | ThemeProvider 統合 |
 
 ### Phase 3.5 革新機能（2026-06-15 実装開始）
 
@@ -91,14 +91,14 @@ cd S:/ && flutter pub get
 | ⑥ 失敗ラボ推理 | `lib/features/experiments/data/troubleshoot_data.dart` | ✅ 問題データ完成 |
 | ⑨ 親子バトル化 | `lib/features/battle/data/prediction_battle_data.dart` | ✅ 予想バトルロジック完成 |
 
-#### Sonnet 実装待ち（複雑な統合・API連携）
-| 機能 | 予定 | 優先度 |
+#### Phase 3.5 実装進捗（v1.0.0 → v1.1 開発中）
+| 機能 | 実装状況 | ファイル |
 |---|---|---|
-| ② AIはかせチャット | Claude API 本実装（月制限付き） | 🥇 |
-| ④ 今夜の空 | OpenWeatherMap + 天文計算ライブラリ | 中 |
-| ⑤ いきものカメラ | Claude Vision + カメラUI | 中 |
-| ⑧ タイムトラベル拡張 | 科学者ストーリー追加 | 低 |
-| ⑩ 教科横断バッジ | shared_core 統合 | 低 |
+| ② AIはかせチャット | ✅ CloudFunctions経由 | `lib/services/claude_api_service.dart` |
+| ④ 今夜の空 | ⏳ 実装準備中 | - |
+| ⑤ いきものカメラ | ⏳ 実装準備中 | - |
+| ⑧ タイムトラベル拡張 | ✅ UI完成 | `lib/features/time_travel/` |
+| ⑩ 教科横断バッジ | ⏳ shared_core統合予定 | - |
 
 ## キャラクター一覧（lib/data/rika_characters.dart）
 
@@ -128,8 +128,47 @@ lib/
 └── main.dart
 ```
 
+## 課金・API セキュリティ
+
+### Claude API 統合（v1.0.1 セキュリティ更新済み）
+- **実装**: Firebase Cloud Functions プロキシ経由
+- **ファイル**: `lib/services/claude_api_service.dart`
+- **セキュリティ**: APIキーはサーバー側で管理（クライアントから非公開）
+- **利用制限**: ユーザーあたり月50回までの AI相談可能
+- **月額**: ¥120のプレミアム会員向け機能
+
+### RevenueCat サブスクリプション（v1.0.1 新規対応）
+```dart
+// 実装ファイル: lib/services/revenue_cat_service.dart
+// 商品ID: 'rika_premium_monthly' (¥120/月)
+
+// サブスク確認
+final isSubscribed = await revenueCatService.isSubscribed();
+
+// 購入処理
+await revenueCatService.purchaseMonthly();
+```
+
+### Google Play/App Store 連携
+- 領収書検証: Google Play Billing Library + App Store Server API
+- 自動更新管理: RevenueCat ダッシュボード
+- キャンセル・復帰対応: 実装済み
+
+### 環境変数管理
+```bash
+# .env ファイル（ローカルのみ、コミット禁止）
+CLAUDE_API_KEY=sk-xxxx  # CloudFunctions で処理
+REVENUE_CAT_API_KEY=appl_xxxx
+ADMOB_ANDROID_ID=ca-app-pub-xxxx
+
+# CI/CD でのシークレット設定
+# GitHub Actions: Settings > Secrets and variables > Actions
+# → CLAUDE_API_KEY, REVENUE_CAT_API_KEY など
+```
+
 ## 注意事項
 
-- `FuriganaText` の呼び出し: `FuriganaText('テキスト', style: TextStyle(...))` ← 第1引数が位置引数
+- `FuriganaText` の呼び方: `FuriganaText('テキスト', style: TextStyle(...))` ← 第1引数が位置引数
 - shared_core のインポートで `progressProvider` 競合 → `hide progressProvider, LearningProgress, ProgressNotifier`
 - `characterStateProvider` は `main.dart` で `CharacterNotifier.new` で上書き必須
+- **⚠️ セキュリティ注意**: APIキー・商品ID は `pubspec.yaml` や `constants.dart` に直接記入しない。環境変数 or Firebase RemoteConfig で管理
