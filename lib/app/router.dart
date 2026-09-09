@@ -40,6 +40,10 @@ import '../screens/privacy_settings_screen.dart';
 import '../screens/notification_settings_screen.dart';
 import '../screens/ranking_screen.dart';
 import '../features/settings/views/settings_screen.dart';
+import '../features/multiplayer/views/matchmaker_screen.dart';
+import '../features/multiplayer/views/matching_waiting_screen.dart';
+import '../features/multiplayer/views/multiplayer_quiz_screen.dart';
+import '../features/multiplayer/views/multiplayer_leaderboard_screen.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -380,6 +384,31 @@ class AppRouter {
         path: '/achievements',
         name: 'achievements',
         builder: (_, __) => const CollectionScreen(),
+      ),
+
+      // マルチプレイ対戦（レートマッチング）
+      GoRoute(
+        path: '/matchmaker',
+        name: 'matchmaker',
+        builder: (_, __) => const MatchmakerScreen(),
+      ),
+      GoRoute(
+        path: '/matching-waiting',
+        name: 'matching-waiting',
+        builder: (_, __) => const MatchingWaitingScreen(),
+      ),
+      GoRoute(
+        path: '/multiplayer-quiz/:matchId',
+        name: 'multiplayer-quiz',
+        builder: (_, state) {
+          final matchId = state.pathParameters['matchId']!;
+          return MultiplayerQuizScreen(matchId: matchId);
+        },
+      ),
+      GoRoute(
+        path: '/multiplayer-leaderboard',
+        name: 'multiplayer-leaderboard',
+        builder: (_, __) => const MultiplayerLeaderboardScreen(),
       ),
     ],
   );
