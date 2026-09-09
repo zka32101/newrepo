@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
-import 'package:http/http.dart' as http;
+import 'package:cloud_functions/cloud_functions.dart';
 
 /// 生き物特定レスポンス
 class CreatureIdentificationResult {
@@ -41,6 +41,14 @@ class CreatureIdentificationResult {
   }
 }
 
+class CreatureIdentificationException implements Exception {
+  final String message;
+  CreatureIdentificationException(this.message);
+
+  @override
+  String toString() => message;
+}
+
 /// 生き物図鑑のコレクションアイテム
 class CreatureCollectionItem {
   final String id;
@@ -63,14 +71,16 @@ class CreatureCollectionItem {
 }
 
 /// Claude Vision API を使った生き物特定サービス
+///
+/// APIキーはクライアントに埋め込まない。Cloud Functions の callable function
+/// (`identifyCreature`) をサーバー側プロキシとして呼び出す。月次利用回数の
+/// 判定もサーバー側（Firestore）で行われる。
 class CreatureIdentificationService {
-  final String _apiKey;
-  static const String _apiEndpoint =
-      'https://api.anthropic.com/v1/messages';
-  static const String _modelId = 'claude-3-5-sonnet-20241022';
-  static const int _timeoutSeconds = 30;
+  CreatureIdentificationService({FirebaseFunctions? functions})
+      : _functions = functions ??
+            FirebaseFunctions.instanceFor(region: 'asia-northeast1');
 
-  CreatureIdentificationService({required String apiKey}) : _apiKey = apiKey;
+  final FirebaseFunctions _functions;
 
   /// 画像から生き物を特定
   ///
@@ -81,118 +91,32 @@ class CreatureIdentificationService {
     String mediaType = 'image/jpeg',
   }) async {
     try {
-      // Base64エンコード
       final base64Image = base64Encode(imageBytes);
 
-      // プロンプト
-      const systemPrompt = '''あなたは小学生向けの博物学者です。
-提供された画像から生き物を特定し、以下の JSON フォーマットで返してください：
-{
-  "name": "日本語の生き物名",
-  "species": "学名",
-  "description": "簡潔な説明（100字以内）",
-  "habitat": "生息地",
-  "diet": "食性",
-  "lifeSpan": "寿命",
-  "interestingFact": "面白い事実",
-  "emoji": "適切な絵文字",
-  "confidence": 0.8
-}
+      final callable = _functions.httpsCallable(
+        'identifyCreature',
+        options: HttpsCallableOptions(timeout: const Duration(seconds: 45)),
+      );
+      final response = await callable.call<Map<String, dynamic>>({
+        'imageBase64': base64Image,
+        'mediaType': mediaType,
+      });
 
-生き物が見つからない場合は、最も近い可能性のある生き物を返してください。
-confidence は 0.0-1.0 の数値で信頼度を表現してください。''';
-
-      const userPrompt =
-          'この画像に写っている生き物を特定して、JSON形式で情報を教えてください。';
-
-      // API リクエスト
-      final response = await http
-          .post(
-            Uri.parse(_apiEndpoint),
-            headers: {
-              'x-api-key': _apiKey,
-              'anthropic-version': '2023-06-01',
-              'content-type': 'application/json',
-            },
-            body: jsonEncode({
-              'model': _modelId,
-              'max_tokens': 1024,
-              'system': systemPrompt,
-              'messages': [
-                {
-                  'role': 'user',
-                  'content': [
-                    {
-                      'type': 'image',
-                      'source': {
-                        'type': 'base64',
-                        'media_type': mediaType,
-                        'data': base64Image,
-                      },
-                    },
-                    {
-                      'type': 'text',
-                      'text': userPrompt,
-                    }
-                  ],
-                }
-              ],
-            }),
-          )
-          .timeout(
-            const Duration(seconds: _timeoutSeconds),
-            onTimeout: () => throw Exception('リクエストがタイムアウトしました'),
-          );
-
-      // エラーハンドリング
-      if (response.statusCode == 429) {
-        throw Exception('API呼び出し数が上限に達しました。少し待ってから試してください。');
+      final data = response.data;
+      final result = data['result'] as Map<Object?, Object?>?;
+      if (result == null) {
+        throw CreatureIdentificationException('AIの応答が不正です');
       }
 
-      if (response.statusCode != 200) {
-        throw Exception(
-            'API呼び出しに失敗しました（ステータス: ${response.statusCode}）');
-      }
-
-      // レスポンスパース
-      final data = jsonDecode(response.body) as Map<String, dynamic>?;
-      if (data == null) {
-        throw Exception('API応答が不正です');
-      }
-
-      final content = data['content'] as List?;
-      if (content == null || content.isEmpty) {
-        throw Exception('API応答にコンテンツがありません');
-      }
-
-      final firstContent = content[0] as Map<String, dynamic>?;
-      if (firstContent == null) {
-        throw Exception('API応答のコンテンツが不正です');
-      }
-
-      final text = firstContent['text'] as String?;
-      if (text == null || text.isEmpty) {
-        throw Exception('API応答テキストが空です');
-      }
-
-      // JSON抽出（Markdownコードブロックから抽出）
-      final jsonMatch = RegExp(r'```json\n([\s\S]*?)\n```').firstMatch(text);
-      final jsonStr = jsonMatch?.group(1) ?? text;
-
-      if (jsonStr == null || jsonStr.isEmpty) {
-        throw Exception('JSONを抽出できません');
-      }
-
-      final parsed = jsonDecode(jsonStr) as Map<String, dynamic>?;
-      if (parsed == null) {
-        throw Exception('JSONのパースに失敗しました');
-      }
-
-      return CreatureIdentificationResult.fromJson(parsed);
-    } on http.ClientException catch (e) {
-      throw Exception('ネットワークエラー: ${e.message}');
+      return CreatureIdentificationResult.fromJson(
+        Map<String, dynamic>.from(result),
+      );
+    } on FirebaseFunctionsException catch (e) {
+      throw CreatureIdentificationException(_messageFor(e));
+    } on CreatureIdentificationException {
+      rethrow;
     } catch (e) {
-      throw Exception('生き物特定エラー: $e');
+      throw CreatureIdentificationException('つながらなかったよ。インターネットをかくにんしてね！');
     }
   }
 
@@ -208,5 +132,18 @@ confidence は 0.0-1.0 の数値で信頼度を表現してください。''';
       );
     }
     return results;
+  }
+
+  String _messageFor(FirebaseFunctionsException e) {
+    switch (e.code) {
+      case 'resource-exhausted':
+        return e.message ?? '今月の無料回数を使い切ったよ。来月になるとまた使えるよ！';
+      case 'unauthenticated':
+        return 'サインインを確認できませんでした。少ししてからもう一度試してね！';
+      case 'invalid-argument':
+        return e.message ?? '画像を確認できませんでした。もう一度試してね！';
+      default:
+        return 'エラーが起きたよ（${e.code}）。もう一度試してね！';
+    }
   }
 }

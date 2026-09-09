@@ -372,7 +372,7 @@ class AppRouter {
         ),
       ),
 
-      // AIはかせチャット
+      // AIはかせチャット（旧実装・BYOK。/ai-chat に統合予定、詳細はPR参照）
       GoRoute(
         path: '/ai-hakase',
         name: 'ai-hakase',

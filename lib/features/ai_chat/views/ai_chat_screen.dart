@@ -342,9 +342,11 @@ class _AiChatScreenState extends ConsumerState<AiChatScreen> {
     text = text.trim();
     if (text.isEmpty || _isLoading) return;
 
+    // 事前チェックはあくまで表示上の最適化（無駄な送信を減らす）。
+    // 実際の上限判定は Cloud Functions 側（askScience）が行うため、
+    // ここでの判定をすり抜けても課金上の実害はない。
     final usageNotifier = ref.read(monthlyUsageProvider.notifier);
-    final canSend = await usageNotifier.canSend();
-    if (!canSend) return;
+    if (ref.read(monthlyUsageProvider).isLimitReached) return;
 
     _controller.clear();
     setState(() {
@@ -358,12 +360,12 @@ class _AiChatScreenState extends ConsumerState<AiChatScreen> {
     _scrollToBottom();
 
     try {
-      final reply = await _claudeService.askHaiku(text);
-      // 応答が得られたときだけ利用回数を消費する（通信/APIエラー時は消費しない）
-      await usageNotifier.recordUsage();
+      final result = await _claudeService.askHaiku(text);
+      // サーバーが返した最新の残り回数をそのまま反映する
+      usageNotifier.applyServerRemaining(result.remaining);
       if (!mounted) return;
       setState(() {
-        _messages.add(_ChatMessage(text: reply, isUser: false));
+        _messages.add(_ChatMessage(text: result.reply, isUser: false));
         _isLoading = false;
       });
     } catch (e) {
