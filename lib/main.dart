@@ -7,6 +7,7 @@ import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'app/router.dart';
 import 'shared/theme/app_theme.dart';
+import 'shared/localization/app_localizations.dart';
 import 'features/progress/data/repositories/incorrect_monster_repository.dart';
 import 'features/progress/data/repositories/review_time_capsule_repository.dart';
 import 'features/progress/providers/incorrect_monster_provider.dart';
@@ -20,8 +21,6 @@ import 'services/streak_service.dart';
 import 'services/ranking_service.dart';
 import 'services/achievement_service.dart';
 import 'features/progress/services/daily_mystery_notification_service.dart';
-import 'shared/theme/app_theme.dart';
-import 'shared/localization/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:yourwish/features/home/widgets/home_section_discover.dart';
+import 'package:shokollen_science/features/home/widgets/home_section_discover.dart';
 
 void main() {
   group('HomeSectionDiscover', () {
