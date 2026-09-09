@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../providers/purchase_provider.dart';
 
 const int kTrialDays = 14;
 
@@ -24,9 +25,24 @@ class TrialState {
   bool get isExpired => !isPremium && trialDaysRemaining <= 0;
 }
 
+/// トライアル期間の管理 + プレミアム判定。
+///
+/// 【セキュリティ上の変更点】
+/// 以前は `isPremium` を SharedPreferences の真偽値フラグ（`is_premium_v1`）
+/// に持たせており、`activatePremium()` を呼ぶだけで（＝端末のローカル
+/// ストレージを直接書き換えるだけで）誰でも無料でプレミアム相当の
+/// アクセスを得られる状態だった。RevenueCat が pubspec に宣言されているのに
+/// 実際には接続されておらず、この呼び出しがどこからも発火していなかった
+/// （つまりレシート検証もされないまま放置されていた）ことも判明している。
+///
+/// 現在は `premiumStatusProvider`（RevenueCat SDK の
+/// `entitlements.active` を参照）を `ref.watch` してそのまま `isPremium`
+/// に使う。RevenueCatが実ストアのレシートを検証した結果をSDK経由で
+/// 取得しているため、ローカルの値を直接書き換えるだけでは解放できない。
+/// サーバー側（Webhook）検証までは未実装（`lib/services/purchase_service.dart`
+/// のコメント参照）。
 class TrialNotifier extends AsyncNotifier<TrialState> {
   static const _installKey = 'install_timestamp_v1';
-  static const _premiumKey = 'is_premium_v1';
 
   @override
   Future<TrialState> build() async {
@@ -42,7 +58,11 @@ class TrialNotifier extends AsyncNotifier<TrialState> {
     final installDate = DateTime.fromMillisecondsSinceEpoch(ts);
     final daysSince = DateTime.now().difference(installDate).inDays;
     final remaining = (kTrialDays - daysSince).clamp(0, kTrialDays);
-    final isPremium = prefs.getBool(_premiumKey) ?? false;
+
+    // RevenueCat のエンタイトルメント状態を購読する。値が変わるたびに
+    // このプロバイダも再評価され、TrialState.isPremium が追従する。
+    final premiumAsync = ref.watch(premiumStatusProvider);
+    final isPremium = premiumAsync.valueOrNull ?? false;
 
     return TrialState(
       installDate: installDate,
@@ -51,18 +71,11 @@ class TrialNotifier extends AsyncNotifier<TrialState> {
     );
   }
 
-  /// プレミアムを有効化（RevenueCat 購入後に呼ぶ）
-  Future<void> activatePremium() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_premiumKey, true);
-    ref.invalidateSelf();
-  }
-
-  /// デバッグ用：トライアルをリセット
+  /// デバッグ用：トライアル日数のリセットのみ行う（プレミアム状態は
+  /// RevenueCat 側が真実の情報源のため、ここでは一切操作しない）。
   Future<void> debugResetTrial() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_installKey);
-    await prefs.remove(_premiumKey);
     ref.invalidateSelf();
   }
 }

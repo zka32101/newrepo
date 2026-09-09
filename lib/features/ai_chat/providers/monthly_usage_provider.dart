@@ -1,76 +1,72 @@
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 // ② AIはかせチャット: 月ごとの利用回数制限 (無料: 5回/月)
+//
+// 【重要】実際の上限判定はサーバー側（Cloud Functions `askScience` /
+// Firestore の月次カウンタ）で行われる。ここに保持する状態はあくまで
+// サーバーから返ってきた最新の「残り回数」をUI表示用にキャッシュしたもので、
+// クライアント側だけで完結する判定・カウントアップは行わない
+// （旧実装は SharedPreferences にローカルでカウントしていたため、
+// アプリのデータ削除・端末変更・ローカル改ざんで無制限に使えてしまっていた）。
 const int kFreeMonthlyLimit = 5;
 
 class MonthlyUsageState {
   final int usedCount;
-  final String yearMonth; // "2026-06"
+  final int remaining;
+  final bool isLoaded;
 
   const MonthlyUsageState({
     required this.usedCount,
-    required this.yearMonth,
+    required this.remaining,
+    this.isLoaded = false,
   });
 
-  bool get isLimitReached => usedCount >= kFreeMonthlyLimit;
-  int get remaining => (kFreeMonthlyLimit - usedCount).clamp(0, kFreeMonthlyLimit);
+  bool get isLimitReached => isLoaded && remaining <= 0;
+
+  static const initial = MonthlyUsageState(
+    usedCount: 0,
+    remaining: kFreeMonthlyLimit,
+    isLoaded: false,
+  );
 }
 
 class MonthlyUsageNotifier extends StateNotifier<MonthlyUsageState> {
-  MonthlyUsageNotifier()
-      : super(MonthlyUsageState(usedCount: 0, yearMonth: _currentYearMonth())) {
-    _loadFuture = load();
+  MonthlyUsageNotifier({FirebaseFunctions? functions})
+      : _functions = functions ??
+            FirebaseFunctions.instanceFor(region: 'asia-northeast1'),
+        super(MonthlyUsageState.initial) {
+    refresh();
   }
 
-  /// SharedPreferences からの読み込み完了を表す Future。
-  /// state の初期値（usedCount: 0）は読み込みが終わるまでの仮値でしかないため、
-  /// 制限判定を行うメソッドは必ずこれを待ってから state を参照する。
-  late final Future<void> _loadFuture;
+  final FirebaseFunctions _functions;
 
-  static String _currentYearMonth() {
-    final now = DateTime.now();
-    return '${now.year}-${now.month.toString().padLeft(2, '0')}';
-  }
-
-  Future<void> load() async {
-    final prefs = await SharedPreferences.getInstance();
-    final ym = _currentYearMonth();
-    final key = 'ai_chat_usage_$ym';
-    final count = prefs.getInt(key) ?? 0;
-    state = MonthlyUsageState(usedCount: count, yearMonth: ym);
-  }
-
-  /// 送信可否だけを確認する（カウントは消費しない）。
-  Future<bool> canSend() async {
-    await _loadFuture;
-    return !state.isLimitReached;
-  }
-
-  /// 実際にAIから応答を得られたときにだけ呼び、利用回数を1消費する。
-  /// 同時実行の競合を避けるため、読み込み後すぐに書き込む。
-  Future<bool> recordUsage() async {
-    await _loadFuture;
-    if (state.isLimitReached) return false;
-
+  /// サーバーから現在の利用状況を取得する（消費しない）。
+  /// 画面表示の初期化・チャット送信前の事前表示更新に使う。
+  Future<void> refresh() async {
     try {
-      final prefs = await SharedPreferences.getInstance();
-      final ym = _currentYearMonth();
-      final key = 'ai_chat_usage_$ym';
-
-      // 現在の状態から計算（SharedPreferencesを再度読むのではなく）
-      final newCount = state.usedCount + 1;
-      if (newCount > kFreeMonthlyLimit) {
-        return false;
-      }
-
-      await prefs.setInt(key, newCount);
-      state = MonthlyUsageState(usedCount: newCount, yearMonth: ym);
-      return true;
-    } catch (e) {
-      // SharedPreferences エラー時は失敗を返す
-      return false;
+      final callable = _functions.httpsCallable('getAiChatUsageStatus');
+      final response = await callable.call<Map<String, dynamic>>();
+      final data = response.data;
+      state = MonthlyUsageState(
+        usedCount: (data['usedCount'] as int?) ?? 0,
+        remaining: (data['remaining'] as int?) ?? 0,
+        isLoaded: true,
+      );
+    } catch (_) {
+      // オフライン等で取得できない場合は「未ロード」のまま扱い、
+      // 送信ボタン自体は塞がない（実際の可否はサーバー側で判定されるため）。
     }
+  }
+
+  /// `askScience` の応答に含まれる remaining をそのまま反映する
+  /// （わざわざもう一度 getAiChatUsageStatus を呼び直さないための最適化）。
+  void applyServerRemaining(int remaining) {
+    state = MonthlyUsageState(
+      usedCount: kFreeMonthlyLimit - remaining,
+      remaining: remaining,
+      isLoaded: true,
+    );
   }
 }
 

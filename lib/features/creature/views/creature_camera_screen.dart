@@ -35,18 +35,10 @@ class _CreatureCameraScreenState extends ConsumerState<CreatureCameraScreen> {
       // テスト用画像取得（実装時はカメラから取得）
       final imageBytes = await _getTestImage();
 
-      // APIキーは環境変数から取得
-      // 本実装ではビルド時に --dart-define で注入
-      const apiKey = String.fromEnvironment('ANTHROPIC_API_KEY');
-
-      if (apiKey.isEmpty) {
-        throw Exception('APIキーが設定されていません');
-      }
-
-      // サービスで生き物を特定
+      // サービスで生き物を特定（Cloud Functions 経由。APIキーはサーバー側のみ）
       final result = await ref
           .read(creatureIdentificationProvider.notifier)
-          .identifyFromImage(imageBytes: imageBytes, apiKey: apiKey);
+          .identifyFromImage(imageBytes: imageBytes);
 
       if (!mounted) return;
 

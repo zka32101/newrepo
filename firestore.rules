@@ -36,6 +36,19 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    // AIはかせチャット / いきものカメラの月次利用回数カウンタ:
+    // Cloud Functions（Admin SDK、ルールをバイパス）からのみ読み書きする。
+    // クライアントから直接読めてしまうと「残り回数」を先読みして無限に
+    // リトライする、あるいは直接書き換えて上限を回避する余地が生まれるため、
+    // 明示的に読み書き両方を拒否する（下の catch-all でも拒否されるが、
+    // 意図を明確にするためここにも明記する）。
+    match /users/{userId}/aiChatUsage/{yearMonth} {
+      allow read, write: if false;
+    }
+    match /users/{userId}/creatureIdUsage/{yearMonth} {
+      allow read, write: if false;
+    }
+
     // その他すべてのドキュメント: アクセス不可
     match /{document=**} {
       allow read, write: if false;

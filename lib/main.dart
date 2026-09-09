@@ -19,6 +19,7 @@ import 'providers/equipped_items_provider.dart';
 import 'providers/locale_provider.dart';
 import 'providers/screen_time_provider.dart';
 import 'services/firebase_service.dart';
+import 'services/purchase_service.dart';
 import 'services/firestore_feedback_service.dart';
 import 'services/multiplayer_service.dart';
 import 'services/notification_service.dart';
@@ -30,6 +31,13 @@ import 'features/progress/services/daily_mystery_notification_service.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FirebaseService.initialize(); // google-services.json 未配置時はローカルモードで継続
+
+  // 課金基盤（RevenueCat）初期化。APIキー未設定時はローカルモードで継続。
+  try {
+    await PurchaseService.instance.initialize();
+  } catch (e) {
+    // エラーでも起動は継続（プレミアム判定は false 扱いになる）
+  }
 
   final prefs = await SharedPreferences.getInstance();
 

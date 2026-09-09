@@ -195,11 +195,10 @@ class _CreatureIdentificationNotifier extends StateNotifier<AsyncValue<void>> {
   /// 画像から生き物を特定
   Future<CreatureIdentificationResult> identifyFromImage({
     required Uint8List imageBytes,
-    required String apiKey,
   }) async {
     state = const AsyncValue.loading();
     try {
-      final service = CreatureIdentificationService(apiKey: apiKey);
+      final service = CreatureIdentificationService();
       final result = await service.identifyCreature(imageBytes: imageBytes);
       state = const AsyncValue.data(null);
       return result;
