@@ -39,7 +39,6 @@ import '../features/ai_hakase/views/ai_hakase_screen.dart';
 import '../screens/privacy_settings_screen.dart';
 import '../screens/notification_settings_screen.dart';
 import '../screens/ranking_screen.dart';
-import '../screens/achievement_screen.dart';
 import '../features/settings/views/settings_screen.dart';
 
 class AppRouter {
@@ -375,11 +374,12 @@ class AppRouter {
         builder: (_, __) => const RankingScreen(),
       ),
 
-      // アチーブメント
+      // アチーブメント（バッジ・実績は features/progress のバッジシステムに一本化）
+      // コレクション画面の「バッジ」タブを表示する
       GoRoute(
         path: '/achievements',
         name: 'achievements',
-        builder: (_, __) => const AchievementScreen(),
+        builder: (_, __) => const CollectionScreen(),
       ),
     ],
   );

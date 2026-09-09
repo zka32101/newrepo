@@ -237,6 +237,7 @@ class UserProgressNotifier extends AsyncNotifier<UserProgress> {
       case 'streak_7':        return p.streakDays >= 7;
       case 'streak_14':       return p.streakDays >= 14;
       case 'streak_30':       return p.streakDays >= 30;
+      case 'streak_100':      return p.streakDays >= 100;
       // 満点
       case 'perfect_score':   return p.clearedStages.values.any((s) => s == 100);
       // ポイント
