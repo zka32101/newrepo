@@ -73,15 +73,12 @@ jobs:
         run: |
           flutter pub get --no-example
           flutter clean
-        continue-on-error: true
 
       - name: Analyze code
         run: flutter analyze
-        continue-on-error: true
 
       - name: Run tests
         run: flutter test test/six_point_test.dart -v
-        continue-on-error: true
 
       - name: Build Debug APK
         run: |

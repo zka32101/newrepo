@@ -48,11 +48,9 @@ jobs:
 
       - name: Run 6-point tests
         run: flutter test test/six_point_test.dart -v
-        continue-on-error: true
 
       - name: Run all unit tests
         run: flutter test --coverage
-        continue-on-error: true
 
       - name: Upload coverage
         uses: codecov/codecov-action@v3
@@ -148,13 +146,11 @@ jobs:
 
       - name: Build debug APK
         run: flutter build apk --debug --no-pub
-        continue-on-error: true
 
       - name: Run integration tests
         run: |
-          flutter test integration_test/integration_test.dart -v || true
+          flutter test integration_test/integration_test.dart -v
         working-directory: .
-        continue-on-error: true
 
       - name: Collect device logs
         if: always()
@@ -197,11 +193,9 @@ jobs:
 
       - name: Run analyzer
         run: flutter analyze
-        continue-on-error: true
 
       - name: Check format
         run: dart format --set-exit-if-changed lib/ test/
-        continue-on-error: true
 
   # ========== Test Report Summary ==========
   test-summary:
