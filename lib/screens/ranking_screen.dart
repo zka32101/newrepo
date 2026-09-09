@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_core/widgets/components/app_card.dart';
 import 'package:shared_core/widgets/components/app_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/ranking_model.dart';
@@ -307,7 +308,7 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
   Widget _buildNoFriendsHint(double padding) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: padding),
-      child: Card(
+      child: AppCard(
         color: Colors.blue.shade50,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Padding(
@@ -468,7 +469,7 @@ class RankingStatsScreen extends ConsumerWidget {
 
   Widget _buildStatsDetails(BuildContext context, RankingStats stats) {
     final responsivePadding = Responsive.getPadding(context);
-    return Card(
+    return AppCard(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: EdgeInsets.all(responsivePadding.left),

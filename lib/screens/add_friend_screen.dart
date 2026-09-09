@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_core/widgets/components/app_card.dart';
 import 'package:shared_core/widgets/components/app_button.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -94,7 +95,7 @@ class _AddFriendScreenState extends ConsumerState<AddFriendScreen> {
         padding: const EdgeInsets.all(16),
         children: [
           // 自分の招待コード
-          Card(
+          AppCard(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             child: Padding(
               padding: const EdgeInsets.all(16),
@@ -155,7 +156,7 @@ class _AddFriendScreenState extends ConsumerState<AddFriendScreen> {
           const SizedBox(height: 16),
 
           // 招待コード入力
-          Card(
+          AppCard(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             child: Padding(
               padding: const EdgeInsets.all(16),
@@ -219,7 +220,7 @@ class _AddFriendScreenState extends ConsumerState<AddFriendScreen> {
               }
               return Column(
                 children: friends.map((friend) {
-                  return Card(
+                  return AppCard(
                     margin: const EdgeInsets.symmetric(vertical: 4),
                     child: ListTile(
                       leading: CircleAvatar(

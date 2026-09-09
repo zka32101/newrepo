@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_core/widgets/components/app_card.dart';
 import 'package:shared_core/widgets/components/app_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../services/notification_service.dart';
@@ -116,7 +117,7 @@ class _NotificationSettingsScreenState
         padding: const EdgeInsets.all(16),
         children: [
           // 毎日の問題配信
-          Card(
+          AppCard(
             margin: const EdgeInsets.only(bottom: 16),
             child: Padding(
               padding: const EdgeInsets.all(16),
@@ -195,7 +196,7 @@ class _NotificationSettingsScreenState
           ),
 
           // ストリーク途絶予告
-          Card(
+          AppCard(
             margin: const EdgeInsets.only(bottom: 16),
             child: Padding(
               padding: const EdgeInsets.all(16),
@@ -235,7 +236,7 @@ class _NotificationSettingsScreenState
           ),
 
           // 実績・バッジ通知
-          Card(
+          AppCard(
             margin: const EdgeInsets.only(bottom: 16),
             child: Padding(
               padding: const EdgeInsets.all(16),
@@ -275,7 +276,7 @@ class _NotificationSettingsScreenState
           ),
 
           // ランキング変動通知
-          Card(
+          AppCard(
             margin: const EdgeInsets.only(bottom: 16),
             child: Padding(
               padding: const EdgeInsets.all(16),
@@ -315,7 +316,7 @@ class _NotificationSettingsScreenState
           ),
 
           // 週次レポート（保護者向けサマリー通知）
-          Card(
+          AppCard(
             margin: const EdgeInsets.only(bottom: 16),
             child: Padding(
               padding: const EdgeInsets.all(16),

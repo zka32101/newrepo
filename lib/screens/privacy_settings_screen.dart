@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_core/widgets/components/app_card.dart';
 import 'package:shared_core/widgets/components/app_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shokollen_science/models/privacy_settings_model.dart';
@@ -114,7 +115,7 @@ class _PrivacySettingsScreenState extends ConsumerState<PrivacySettingsScreen> {
           const SizedBox(height: 16),
 
           // ランキング名前公表
-          Card(
+          AppCard(
             margin: const EdgeInsets.only(bottom: 16),
             child: Padding(
               padding: const EdgeInsets.all(16),
@@ -172,7 +173,7 @@ class _PrivacySettingsScreenState extends ConsumerState<PrivacySettingsScreen> {
           ),
 
           // 親向けダッシュボード公表
-          Card(
+          AppCard(
             margin: const EdgeInsets.only(bottom: 16),
             child: Padding(
               padding: const EdgeInsets.all(16),
@@ -232,7 +233,7 @@ class _PrivacySettingsScreenState extends ConsumerState<PrivacySettingsScreen> {
           ),
 
           // アプリ通知
-          Card(
+          AppCard(
             margin: const EdgeInsets.only(bottom: 16),
             child: Padding(
               padding: const EdgeInsets.all(16),
@@ -281,7 +282,7 @@ class _PrivacySettingsScreenState extends ConsumerState<PrivacySettingsScreen> {
           ),
 
           // マーケティング通知
-          Card(
+          AppCard(
             margin: const EdgeInsets.only(bottom: 16),
             child: Padding(
               padding: const EdgeInsets.all(16),
@@ -342,7 +343,7 @@ class _PrivacySettingsScreenState extends ConsumerState<PrivacySettingsScreen> {
           ),
 
           // データ分析への参加
-          Card(
+          AppCard(
             margin: const EdgeInsets.only(bottom: 16),
             child: Padding(
               padding: const EdgeInsets.all(16),
@@ -457,7 +458,7 @@ class _PrivacySettingsScreenState extends ConsumerState<PrivacySettingsScreen> {
       cardColor = Colors.red.withOpacity(0.1);
     }
 
-    return Card(
+    return AppCard(
       color: cardColor,
       margin: const EdgeInsets.only(bottom: 16),
       child: Padding(
