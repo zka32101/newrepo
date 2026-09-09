@@ -21,6 +21,7 @@ import 'services/firebase_service.dart';
 import 'services/firestore_feedback_service.dart';
 import 'services/multiplayer_service.dart';
 import 'services/notification_service.dart';
+import 'services/weekly_report_notification_service.dart';
 import 'services/streak_service.dart';
 import 'services/ranking_service.dart';
 import 'features/progress/services/daily_mystery_notification_service.dart';
@@ -40,6 +41,13 @@ void main() async {
   try {
     await NotificationService.instance.initialize();
     await NotificationService.instance.requestPermissionAndGetToken();
+  } catch (e) {
+    // 通知権限拒否・端末の通知機能未対応などでも起動は継続する
+  }
+
+  // 保護者向け週次レポートのサマリー通知（設定でON/OFF可能、毎週日曜19時）
+  try {
+    await WeeklyReportNotificationService.instance.applySavedPreference();
   } catch (e) {
     // 通知権限拒否・端末の通知機能未対応などでも起動は継続する
   }

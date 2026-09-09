@@ -5,6 +5,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:developer' as developer;
+import '../app/router.dart';
+import 'weekly_report_notification_service.dart';
 
 /// グローバル通知ハンドラー
 @pragma('vm:entry-point')
@@ -29,6 +31,15 @@ class NotificationService {
   late StreamSubscription<RemoteMessage> _onMessageSubscription;
 
   bool _isInitialized = false;
+
+  /// ローカル通知プラグインのインスタンス。
+  ///
+  /// [WeeklyReportNotificationService] など、初期化済みの
+  /// `FlutterLocalNotificationsPlugin` を再利用したい他のサービスに公開する。
+  /// `initialize()` 実行前は `late` フィールド未初期化のため呼び出し側は
+  /// 通常 `NotificationService.instance.initialize()` 完了後にアクセスすること。
+  FlutterLocalNotificationsPlugin get localNotificationsPlugin =>
+      _localNotifications;
 
   /// 初期化
   Future<void> initialize() async {
@@ -187,6 +198,13 @@ class NotificationService {
 
   /// ローカル通知タップ時の処理
   void _handleNotificationTap(NotificationResponse response) {
+    // 週次レポート通知（shared_core の WeeklyReportNotificationScheduler 経由）は
+    // payload を持たないため、通知IDで判定してレポート画面へ遷移する。
+    if (response.id == WeeklyReportNotificationService.notificationId) {
+      _navigateToWeeklyReport();
+      return;
+    }
+
     final data = _decodePayload(response.payload ?? '');
     _routeToNotificationScreen(data);
   }
@@ -252,6 +270,15 @@ class NotificationService {
 
   void _navigateToEvent(String? eventId) {
     developer.log('Navigate to event: $eventId');
+  }
+
+  void _navigateToWeeklyReport() {
+    developer.log('Navigate to weekly report');
+    try {
+      AppRouter.router.push('/weekly-report');
+    } catch (e) {
+      developer.log('Error navigating to weekly report: $e', error: e);
+    }
   }
 
   /// データペイロード エンコード
