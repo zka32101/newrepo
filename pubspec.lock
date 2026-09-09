@@ -1106,9 +1106,11 @@ packages:
   shared_core:
     dependency: "direct main"
     description:
-      path: "H:\\マイドライブ\\apps\\shared_core"
-      relative: false
-    source: path
+      path: "."
+      ref: main
+      resolved-ref: e8f862745c31a15cdae2a13cba44392f20503c19
+      url: "https://github.com/org-zka32101/shared_core.git"
+    source: git
     version: "0.1.0"
   shared_preferences:
     dependency: "direct main"

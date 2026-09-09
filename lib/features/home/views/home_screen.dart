@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_core/shared_core.dart'
+    show equippedItemsProvider, kCommonShopItems, AppShopItem;
 import '../../../shared/constants/app_colors.dart';
 import '../../../data/seeds/stages.dart';
 import '../../../data/seeds/creatures.dart';
@@ -42,10 +44,37 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   final _todayStage = stagesData[0]; // stage_3_001 昆虫と植物
   final int _totalCreatures = 16;
 
+  /// フレームIDごとの縁取り色（[kCommonShopItems] の frame_* に対応）。
+  static const _frameColors = {
+    'frame_gold': Color(0xFFFFC107),
+    'frame_silver': Color(0xFFB0BEC5),
+    'frame_ribbon': Color(0xFFEC407A),
+    'frame_star': Color(0xFF7E57C2),
+  };
+
+  AppShopItem? _equippedItem(Map<String, String> equipped, String category) {
+    final id = equipped[category];
+    if (id == null) return null;
+    for (final item in kCommonShopItems) {
+      if (item.id == id) return item;
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final equipped = ref.watch(equippedItemsProvider).equippedByCategory;
+    final equippedTheme = _equippedItem(equipped, '背景');
+    final themeColors = (equippedTheme?.themeData?['colors'] as List?)
+        ?.cast<String>();
+    final homeBackground = themeColors != null && themeColors.isNotEmpty
+        ? Color(
+            0xFF000000 | int.parse(themeColors.last.replaceFirst('#', ''), radix: 16),
+          ).withValues(alpha: 0.08)
+        : const Color(0xFFF7F9FC);
+
     return Scaffold(
-      backgroundColor: const Color(0xFFF7F9FC),
+      backgroundColor: homeBackground,
       body: SafeArea(
         child: IndexedStack(
           index: _selectedIndex,
@@ -93,6 +122,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final coins = progressAsync.value?.coins ?? 0;
     final isPremium = trialAsync.value?.isPremium ?? false;
     final trialRemaining = trialAsync.value?.trialDaysRemaining ?? 14;
+    final equipped = ref.watch(equippedItemsProvider).equippedByCategory;
+    final equippedFrameId = equipped['フレーム'];
+    final frameColor = _frameColors[equippedFrameId];
 
     return Stack(
       clipBehavior: Clip.hardEdge,
@@ -137,7 +169,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   decoration: BoxDecoration(
                     color: Colors.white.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.white.withValues(alpha: 0.4)),
+                    border: Border.all(
+                      color: frameColor ?? Colors.white.withValues(alpha: 0.4),
+                      width: frameColor != null ? 2 : 1,
+                    ),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,

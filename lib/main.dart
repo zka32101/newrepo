@@ -15,6 +15,7 @@ import 'features/progress/providers/incorrect_monster_provider.dart';
 import 'features/progress/providers/review_time_capsule_provider.dart';
 import 'features/settings/providers/theme_provider.dart';
 import 'providers/character_provider.dart';
+import 'providers/equipped_items_provider.dart';
 import 'providers/locale_provider.dart';
 import 'services/firebase_service.dart';
 import 'services/firestore_feedback_service.dart';
@@ -68,6 +69,8 @@ void main() async {
       overrides: [
         // 理科コレのキャラクターノティファイアを注入
         characterStateProvider.overrideWith(CharacterNotifier.new),
+        // 理科コレのショップアイテム装着状態ノティファイアを注入
+        equippedItemsProvider.overrideWith(EquippedItemsNotifier.new),
         // まちがい図鑑・復習タイムカプセルの永続化リポジトリを注入
         incorrectMonsterRepositoryProvider
             .overrideWithValue(IncorrectMonsterRepositoryImpl(prefs)),
