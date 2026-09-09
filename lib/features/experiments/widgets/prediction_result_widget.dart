@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../shared/constants/app_colors.dart';
 import '../providers/prediction_provider.dart';
 
 class PredictionResultWidget extends ConsumerWidget {
@@ -33,11 +34,11 @@ class PredictionResultWidget extends ConsumerWidget {
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: isCorrect
-                ? Colors.green.withOpacity(0.1)
-                : Colors.orange.withOpacity(0.1),
+                ? AppColors.success.withOpacity(0.1)
+                : AppColors.warning.withOpacity(0.1),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: isCorrect ? Colors.green : Colors.orange,
+              color: isCorrect ? AppColors.success : AppColors.warning,
               width: 2,
             ),
           ),
