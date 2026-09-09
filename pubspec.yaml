@@ -76,9 +76,6 @@ dependencies:
       url: https://github.com/org-zka32101/shared_core.git
       ref: main
 
-  # ============== Monetization ==============
-  purchases_flutter: ^10.0.0
-
   # ============== Utility ==============
   intl: ^0.19.0
   uuid: ^4.0.0
