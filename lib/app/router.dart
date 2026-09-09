@@ -36,7 +36,6 @@ import '../features/time_travel/views/scientist_collection_screen.dart';
 import '../features/weekly_challenge/views/weekly_challenge_screen.dart';
 import '../features/progress/views/daily_mystery_omikuji_screen.dart';
 import '../features/lesson/views/lesson_screen.dart';
-import '../features/ai_hakase/views/ai_hakase_screen.dart';
 import '../screens/privacy_settings_screen.dart';
 import '../screens/notification_settings_screen.dart';
 import '../screens/ranking_screen.dart';
@@ -370,13 +369,6 @@ class AppRouter {
           appName: 'shokollen_science',
           appVersion: '1.0.1+2',
         ),
-      ),
-
-      // AIはかせチャット（旧実装・BYOK。/ai-chat に統合予定、詳細はPR参照）
-      GoRoute(
-        path: '/ai-hakase',
-        name: 'ai-hakase',
-        builder: (_, __) => const AiHakaseScreen(),
       ),
 
       // ランキング
