@@ -76,13 +76,9 @@ dependencies:
       url: https://github.com/org-zka32101/shared_core.git
       ref: main
 
-  # ============== Monetization ==============
-  purchases_flutter: ^10.0.0
-
   # ============== Utility ==============
   intl: ^0.19.0
   uuid: ^4.0.0
-  http: ^1.2.0
   share_plus: ^10.0.0
 
   # ============== 解説画面強化 ==============
@@ -90,6 +86,9 @@ dependencies:
   flutter_tts: ^4.2.0                  # 音声読み上げ
   flutter_markdown: ^0.7.3         # マークダウンレンダリング
   shimmer: ^3.0.0                  # ローディングシマー効果
+
+  # Phase 4.2: RevenueCat SDK for subscription management
+  purchases_flutter: ^8.2.0
 
 flutter_launcher_icons:
   android: true

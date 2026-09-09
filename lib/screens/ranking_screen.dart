@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_core/shared_core.dart' show globalRankingProvider;
 import '../models/ranking_model.dart';
 import '../providers/ranking_provider.dart';
 import '../widgets/ranking_display_widget.dart';
@@ -10,7 +11,7 @@ import '../shared/theme/app_theme.dart';
 import '../shared/utils/responsive.dart';
 import 'add_friend_screen.dart';
 
-/// ランキング画面
+/// ランキング画面（Phase 4.3-4.6 Global Ranking Integration）
 class RankingScreen extends ConsumerStatefulWidget {
   const RankingScreen({Key? key}) : super(key: key);
 
@@ -26,6 +27,9 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
     RankingPeriod.weekly,
     RankingPeriod.monthly,
   ];
+
+  // 新しいグローバルランキング用タブ
+  int _globalTabIndex = 0;
 
   // ティア選択状態
   late RankingTier _selectedTier = RankingTier.allTime;
@@ -50,7 +54,7 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: periods.length,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('ランキング'),
@@ -70,62 +74,190 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
             ),
           ],
           bottom: TabBar(
-            controller: _tabController,
-            tabs: [
+            indicatorColor: Colors.green,
+            labelColor: Colors.green,
+            unselectedLabelColor: Colors.grey,
+            onTap: (index) {
+              setState(() => _globalTabIndex = index);
+            },
+            tabs: const [
               Tab(
-                text: periods[0].displayLabel,
-                icon: const Icon(Icons.calendar_today),
+                text: 'グローバル',
+                icon: Icon(Icons.public),
               ),
               Tab(
-                text: periods[1].displayLabel,
-                icon: const Icon(Icons.calendar_view_week),
+                text: '教科別',
+                icon: Icon(Icons.school),
               ),
               Tab(
-                text: periods[2].displayLabel,
-                icon: const Icon(Icons.calendar_view_month),
+                text: 'フレンド',
+                icon: Icon(Icons.people),
               ),
             ],
           ),
         ),
-        body: Column(
+        body: TabBarView(
           children: [
-            // ティア選択セクション
-            TierSelectorWidget(
-              selectedTier: _selectedTier,
-              onTierChanged: (tier) {
-                setState(() => _selectedTier = tier);
-              },
-            ),
+            _buildGlobalRankingTab(),
+            _buildSubjectRankingTab(),
+            _buildFriendRankingTab(),
+          ],
+        ),
+      ),
+    );
+  }
 
-            // 複合フィルターセクション（複合ティア選択時のみ表示）
-            if (_selectedTier == RankingTier.composite)
-              CompositeFilterWidget(
-                selectedGrade: _gradeFilter,
-                selectedMonth: _monthFilter,
-                applyBothFilters: _applyBothFilters,
-                onFilterChanged: (grade, month, both) {
-                  setState(() {
-                    _gradeFilter = grade;
-                    _monthFilter = month;
-                    _applyBothFilters = both;
-                  });
+  /// グローバルランキングタブ
+  Widget _buildGlobalRankingTab() {
+    return Consumer(
+      builder: (context, ref, _) {
+        try {
+          final globalRankingAsync = ref.watch(globalRankingProvider);
+
+          return globalRankingAsync.when(
+            data: (entries) {
+              if (entries.isEmpty) {
+                return const Center(
+                  child: Text('グローバルランキングデータがありません'),
+                );
+              }
+
+              return ListView.builder(
+                padding: const EdgeInsets.all(12),
+                itemCount: entries.length,
+                itemBuilder: (context, index) {
+                  final entry = entries[index];
+                  return _GlobalRankEntryCard(
+                    rank: index + 1,
+                    entry: entry,
+                    color: Colors.green,
+                  );
                 },
-                displayMode: FilterDisplayMode.simple,
-              ),
-
-            // ランキングビュー
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
+              );
+            },
+            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (error, stack) => Center(
+              child: Text('エラー: $error'),
+            ),
+          );
+        } catch (e) {
+          // Fallback: デモデータまたは空表示
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _buildPeriodView(periods[0]),
-                  _buildPeriodView(periods[1]),
-                  _buildPeriodView(periods[2]),
+                  const Icon(Icons.public, size: 64, color: Colors.grey),
+                  const SizedBox(height: 16),
+                  Text('グローバルランキングは準備中です\n($e)'),
                 ],
               ),
             ),
-          ],
-        ),
+          );
+        }
+      },
+    );
+  }
+
+  /// 教科別ランキングタブ（science）
+  Widget _buildSubjectRankingTab() {
+    return Consumer(
+      builder: (context, ref, _) {
+        try {
+          // subject_id: 'science' のランキング取得
+          final subjectRankingAsync = ref.watch(
+            globalRankingProvider, // TODO: implement fetchSubjectRanking
+          );
+
+          return subjectRankingAsync.when(
+            data: (entries) {
+              if (entries.isEmpty) {
+                return const Center(
+                  child: Text('理科のランキングデータがありません'),
+                );
+              }
+
+              return ListView.builder(
+                padding: const EdgeInsets.all(12),
+                itemCount: entries.length,
+                itemBuilder: (context, index) {
+                  final entry = entries[index];
+                  return _GlobalRankEntryCard(
+                    rank: index + 1,
+                    entry: entry,
+                    color: Colors.green,
+                    subjectLabel: '理科',
+                  );
+                },
+              );
+            },
+            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (error, stack) => Center(
+              child: Text('エラー: $error'),
+            ),
+          );
+        } catch (e) {
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.school, size: 64, color: Colors.grey),
+                  const SizedBox(height: 16),
+                  Text('教科別ランキングは準備中です\n($e)'),
+                ],
+              ),
+            ),
+          );
+        }
+      },
+    );
+  }
+
+  /// フレンドランキングタブ（既存実装保持）
+  Widget _buildFriendRankingTab() {
+    return DefaultTabController(
+      length: periods.length,
+      child: Column(
+        children: [
+          // ティア選択セクション
+          TierSelectorWidget(
+            selectedTier: _selectedTier,
+            onTierChanged: (tier) {
+              setState(() => _selectedTier = tier);
+            },
+          ),
+
+          // 複合フィルターセクション（複合ティア選択時のみ表示）
+          if (_selectedTier == RankingTier.composite)
+            CompositeFilterWidget(
+              selectedGrade: _gradeFilter,
+              selectedMonth: _monthFilter,
+              applyBothFilters: _applyBothFilters,
+              onFilterChanged: (grade, month, both) {
+                setState(() {
+                  _gradeFilter = grade;
+                  _monthFilter = month;
+                  _applyBothFilters = both;
+                });
+              },
+              displayMode: FilterDisplayMode.simple,
+            ),
+
+          // 既存のランキングビュー
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                _buildPeriodView(periods[0]),
+                _buildPeriodView(periods[1]),
+                _buildPeriodView(periods[2]),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -583,5 +715,213 @@ class RankingStatsScreen extends ConsumerWidget {
         );
       }).toList(),
     );
+  }
+}
+
+/// グローバルランキング用カードウィジェット
+class _GlobalRankEntryCard extends StatelessWidget {
+  final int rank;
+  final dynamic entry; // GlobalRankingEntry
+  final Color color;
+  final String? subjectLabel;
+
+  const _GlobalRankEntryCard({
+    required this.rank,
+    required this.entry,
+    required this.color,
+    this.subjectLabel,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final rankMedal = _getMedalEmoji(rank);
+
+    // entry の属性を安全に取得
+    final String userName = _safeGet(entry, 'userName', 'ユーザー$rank');
+    final int score = _safeGetInt(entry, 'score', 0);
+
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 6),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      elevation: 2,
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Row(
+          children: [
+            // ランク表示（メダル）
+            SizedBox(
+              width: 50,
+              child: Text(
+                rankMedal,
+                style: const TextStyle(fontSize: 32),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            const SizedBox(width: 12),
+
+            // ユーザー情報
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    userName,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  if (subjectLabel != null)
+                    Text(
+                      subjectLabel!,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey[600],
+                      ),
+                    ),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.star,
+                        size: 16,
+                        color: color,
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        '${score}点',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: color,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  String _getMedalEmoji(int rank) {
+    return switch (rank) {
+      1 => '🥇',
+      2 => '🥈',
+      3 => '🥉',
+      _ => '${rank}位',
+    };
+  }
+
+  String _safeGet(dynamic obj, String key, String defaultValue) {
+    try {
+      if (obj is Map && obj.containsKey(key)) {
+        return obj[key].toString();
+      }
+      // Handle objects with properties
+      final value = obj?.toString() ?? defaultValue;
+      return value;
+    } catch (_) {
+      return defaultValue;
+    }
+  }
+
+  int _safeGetInt(dynamic obj, String key, int defaultValue) {
+    try {
+      if (obj is Map && obj.containsKey(key)) {
+        return (obj[key] as num).toInt();
+      }
+      return defaultValue;
+    } catch (_) {
+      return defaultValue;
+    }
+  }
+}
+
+/// フレンドランキング用カードウィジェット（統合版）
+class _FriendRankCard extends StatelessWidget {
+  final int rank;
+  final RankingEntry entry;
+  final Color color;
+
+  const _FriendRankCard({
+    required this.rank,
+    required this.entry,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final rankMedal = _getMedalEmoji(rank);
+
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 6),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      elevation: 2,
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Row(
+          children: [
+            // ランク表示（メダル）
+            SizedBox(
+              width: 50,
+              child: Text(
+                rankMedal,
+                style: const TextStyle(fontSize: 32),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            const SizedBox(width: 12),
+
+            // ユーザー情報
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    entry.displayName,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.star,
+                        size: 16,
+                        color: color,
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        '${entry.rank}位',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: color,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  String _getMedalEmoji(int rank) {
+    return switch (rank) {
+      1 => '🥇',
+      2 => '🥈',
+      3 => '🥉',
+      _ => '${rank}位',
+    };
   }
 }
