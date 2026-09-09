@@ -21,7 +21,6 @@ import 'services/firestore_feedback_service.dart';
 import 'services/notification_service.dart';
 import 'services/streak_service.dart';
 import 'services/ranking_service.dart';
-import 'services/achievement_service.dart';
 import 'features/progress/services/daily_mystery_notification_service.dart';
 
 void main() async {
@@ -53,13 +52,6 @@ void main() async {
   // ランキングサービス初期化
   try {
     await RankingService.instance.initialize();
-  } catch (e) {
-    // エラーでも起動は継続
-  }
-
-  // アチーブメントサービス初期化
-  try {
-    await AchievementService.instance.initialize();
   } catch (e) {
     // エラーでも起動は継続
   }
