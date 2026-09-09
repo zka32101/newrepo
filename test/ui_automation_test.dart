@@ -63,8 +63,8 @@ void main() {
       final scrollViewFinder = find.byType(ListView);
 
       if (scrollViewFinder.evaluate().isNotEmpty) {
-        // スクロール操作
-        await tester.scroll(scrollViewFinder.first, const Offset(0, -300));
+        // スクロール操作（drag を使用）
+        await tester.drag(scrollViewFinder.first, const Offset(0, -300));
         await tester.pumpAndSettle();
 
         print('✅ スクロール操作テスト: 成功');

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:yourwish/features/home/widgets/home_section_records.dart';
+import 'package:shokollen_science/features/home/widgets/home_section_records.dart';
 
 void main() {
   group('HomeSectionRecords', () {
