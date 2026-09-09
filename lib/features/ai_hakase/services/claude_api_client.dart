@@ -42,7 +42,9 @@ class ClaudeApiClient {
       ];
 
       const systemPromptDefault =
-          'あなたは小学3〜6年生向けの理科学習サポートAI「はかせ」です。子どもにもわかりやすく、楽しく理科を説明してください。回答は常に日本語で、難しい言葉は避けてください。';
+          'あなたは小学3〜6年生向けの理科学習サポートAI「はかせ」です。'
+          '子どもにもわかりやすく、楽しく理科を説明してください。'
+          '回答は常に日本語で、難しい言葉は避けてください。';
 
       final requestBody = {
         'model': _model,
@@ -68,7 +70,8 @@ class ClaudeApiClient {
       ).timeout(
         Duration(seconds: _requestTimeoutSeconds),
         onTimeout: () => throw ClaudeApiException(
-          'Claude API リクエストがタイムアウトしました（${_requestTimeoutSeconds}秒）',
+          'Claude API リクエストがタイムアウトしました'
+          '（${_requestTimeoutSeconds}秒）',
         ),
       );
 
@@ -82,17 +85,27 @@ class ClaudeApiClient {
         final content = responseData['content'] as List?;
         if (content != null && content.isNotEmpty) {
           final firstContent = content[0] as Map<String, dynamic>;
-          return firstContent['text'] as String? ?? 'レスポンスを取得できませんでした';
+          return firstContent['text'] as String?
+              ?? 'レスポンスを取得できませんでした';
         }
         throw ClaudeApiException('Claude API レスポンスが不正です');
       } else if (response.statusCode == 401) {
         throw ClaudeApiException('API キーが無効です');
       } else if (response.statusCode == 429) {
-        throw ClaudeApiException('API リクエストが多すぎます。しばらく待ってから再度お試しください。');
+        throw ClaudeApiException(
+          'API リクエストが多すぎます。'
+          'しばらく待ってから再度お試しください。',
+        );
       } else if (response.statusCode >= 500) {
-        throw ClaudeApiException('Claude API サーバーエラーが発生しました。しばらく待ってから再度お試しください。');
+        throw ClaudeApiException(
+          'Claude API サーバーエラーが発生しました。'
+          'しばらく待ってから再度お試しください。',
+        );
       } else {
-        throw ClaudeApiException('Claude API エラーが発生しました。リクエストを確認してもう一度お試しください。');
+        throw ClaudeApiException(
+          'Claude API エラーが発生しました。'
+          'リクエストを確認してもう一度お試しください。',
+        );
       }
     } catch (e) {
       throw ClaudeApiException('Claude API エラー: $e');
@@ -101,10 +114,18 @@ class ClaudeApiClient {
 
   /// テスト用ダミーレスポンス生成
   String _generateDummyResponse(String userMessage) {
-    const response1 = '磁石は、北と南の2つの磁極を持った不思議な石です。同じ磁極同士は反発し、反対の磁極同士は引き付け合いますよ。';
-    const response2 = '電気は、目には見えませんが、電子という小さな粒が動くことで作られます。雷も電気の仲間なんですよ。';
-    const response3 = '植物は、太陽の光を使って、空気と水から栄養を作ります。これを光合成と言うんです。';
-    const response4 = '星は遠くにある大きな火の玉で、太陽も実は星なんですよ。夜の空に見える星は、昼間は太陽に隠れているんです。';
+    const response1 =
+        '磁石は、北と南の2つの磁極を持った不思議な石です。'
+        '同じ磁極同士は反発し、反対の磁極同士は引き付け合いますよ。';
+    const response2 =
+        '電気は、目には見えませんが、電子という小さな粒が動くことで'
+        '作られます。雷も電気の仲間なんですよ。';
+    const response3 =
+        '植物は、太陽の光を使って、空気と水から栄養を作ります。'
+        'これを光合成と言うんです。';
+    const response4 =
+        '星は遠くにある大きな火の玉で、太陽も実は星なんですよ。'
+        '夜の空に見える星は、昼間は太陽に隠れているんです。';
 
     final responses = {
       '磁石': response1,
@@ -119,7 +140,9 @@ class ClaudeApiClient {
       }
     }
 
-    return 'いい質問だね！$userMessage について、もっと詳しく教えてほしいです。わからないことは、何度でも聞いてくれていいんですよ。';
+    return 'いい質問だね！$userMessage について、'
+        'もっと詳しく教えてほしいです。'
+        'わからないことは、何度でも聞いてくれていいんですよ。';
   }
 
   /// API キーの有効性を確認（簡易版）
