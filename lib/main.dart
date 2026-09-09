@@ -17,6 +17,7 @@ import 'features/settings/providers/theme_provider.dart';
 import 'providers/character_provider.dart';
 import 'providers/locale_provider.dart';
 import 'services/firebase_service.dart';
+import 'services/firestore_feedback_service.dart';
 import 'services/notification_service.dart';
 import 'services/streak_service.dart';
 import 'services/ranking_service.dart';
@@ -88,11 +89,27 @@ void main() async {
   );
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends ConsumerStatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends ConsumerState<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    // バグ報告・改善要望フォーム（shared_core）: Firestoreの feedback コレクションへの
+    // 書き込みハンドラをアプリ側から注入し、起動時に未送信分の再送信を試みる。
+    ref
+        .read(feedbackProvider.notifier)
+        .setSubmitHandler(FirestoreFeedbackService.submit);
+    ref.read(feedbackProvider.notifier).retryPendingReports();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final themeMode = ref.watch(themeProvider);
     final locale = ref.watch(localeProvider);
 

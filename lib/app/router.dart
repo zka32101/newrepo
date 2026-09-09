@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:shared_core/shared_core.dart' show FeedbackFormPage;
 import '../features/auth/views/splash_login_screen.dart';
 import '../features/home/views/home_screen.dart';
 import '../features/quiz/views/quiz_screen.dart';
@@ -36,8 +37,10 @@ import '../features/progress/views/daily_mystery_omikuji_screen.dart';
 import '../features/lesson/views/lesson_screen.dart';
 import '../features/ai_hakase/views/ai_hakase_screen.dart';
 import '../screens/privacy_settings_screen.dart';
+import '../screens/notification_settings_screen.dart';
 import '../screens/ranking_screen.dart';
 import '../screens/achievement_screen.dart';
+import '../features/settings/views/settings_screen.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -332,6 +335,30 @@ class AppRouter {
         path: '/privacy-settings',
         name: 'privacy-settings',
         builder: (_, __) => const PrivacySettingsScreen(),
+      ),
+
+      // 通知設定
+      GoRoute(
+        path: '/notification-settings',
+        name: 'notification-settings',
+        builder: (_, __) => const NotificationSettingsScreen(),
+      ),
+
+      // 設定（テーマ・プライバシー・お問い合わせ等の導線）
+      GoRoute(
+        path: '/settings',
+        name: 'settings',
+        builder: (_, __) => const SettingsScreen(),
+      ),
+
+      // バグ報告・改善要望（shared_core 共通フォーム）
+      GoRoute(
+        path: '/feedback',
+        name: 'feedback',
+        builder: (_, __) => const FeedbackFormPage(
+          appName: 'shokollen_science',
+          appVersion: '1.0.1+2',
+        ),
       ),
 
       // AIはかせチャット

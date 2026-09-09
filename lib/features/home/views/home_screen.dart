@@ -242,6 +242,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   minimumSize: const Size(44, 44),
                 ),
               ),
+              const SizedBox(width: 6),
+              // 設定（バグ報告・ご意見はこちら）
+              IconButton(
+                onPressed: () => context.push('/settings'),
+                icon: const Icon(Icons.settings_outlined, color: Colors.white, size: 18),
+                tooltip: '設定',
+                style: IconButton.styleFrom(
+                  backgroundColor: Colors.white.withValues(alpha: 0.2),
+                  shape: const CircleBorder(),
+                  minimumSize: const Size(44, 44),
+                ),
+              ),
             ],
           ),
           // トライアル期限切れバナー
