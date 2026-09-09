@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_core/shared_core.dart'
+    hide profileProvider, ProfileState, ProfileNotifier;
 import '../../../shared/constants/app_colors.dart';
 import '../providers/profile_provider.dart';
 import '../models/profile_model.dart';
@@ -103,8 +105,16 @@ class _ProfileSelectView extends ConsumerWidget {
     );
   }
 
-  void _confirmDelete(
-      BuildContext context, WidgetRef ref, ProfileModel profile) {
+  Future<void> _confirmDelete(
+      BuildContext context, WidgetRef ref, ProfileModel profile) async {
+    // 進捗データを含むプロフィール全削除のため、先に保護者ゲートで確認する
+    final passedGate = await requireParentalGate(
+      context,
+      description: 'プロフィールの削除は大人の方が行う操作です。\n下の計算の答えを入力してください。',
+      primaryColor: AppColors.sciencePrimary,
+    );
+    if (!passedGate || !context.mounted) return;
+
     showDialog<void>(
       context: context,
       builder: (_) => AlertDialog(
