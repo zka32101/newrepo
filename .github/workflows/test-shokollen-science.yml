@@ -43,6 +43,9 @@ jobs:
           restore-keys: |
             flutter-${{ runner.os }}-
 
+      - name: Clean Flutter cache
+        run: flutter clean
+
       - name: Get dependencies
         run: flutter pub get
 
@@ -141,6 +144,9 @@ jobs:
           $ANDROID_SDK_ROOT/platform-tools/adb devices || true
           $ANDROID_SDK_ROOT/platform-tools/adb shell getprop ro.build.version.release || true
 
+      - name: Clean Flutter cache
+        run: flutter clean
+
       - name: Get dependencies
         run: flutter pub get
 
@@ -187,6 +193,9 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+
+      - name: Clean Flutter cache
+        run: flutter clean
 
       - name: Get dependencies
         run: flutter pub get
