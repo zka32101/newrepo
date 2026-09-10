@@ -86,7 +86,6 @@ git push origin main --tags
 3. ✅ リリースAPKビルド（split-per-abi, obfuscate）
 4. ✅ App Bundle(AAB)ビルド
 5. ✅ GitHubリリース自動作成（APK/AAB同梱）
-6. ✅ Google Drive へのアップロード（オプション）
 
 **リリース結果**:
 - GitHub Releases: https://github.com/zka32101/newrepo/releases
@@ -139,8 +138,6 @@ GitHub Actions がビルド・署名・デプロイを行うために、以下�
 | `KEYSTORE_PASSWORD` | キーストアのパスワード | your-keystore-password |
 | `KEY_PASSWORD` | キーのパスワード | your-key-password |
 | `KEY_ALIAS` | キーのエイリアス | release-key |
-| `GOOGLE_DRIVE_FOLDER_ID` | Google Drive のアップロード先フォルダID | 1a2b3c4d5e6f... |
-| `GOOGLE_DRIVE_SERVICE_ACCOUNT` | Google Drive JSON認証情報 | {...} |
 
 ### キーストアの準備（Base64エンコード）
 
@@ -244,11 +241,6 @@ GitHub Release の本文は以下のテンプレートで自動生成されま�
 | `Flutter version not found` | Flutter SDK が見つからない | ワークフローのFlutterバージョンを確認（現在: 3.34.0） |
 | `APK build failed` | Dart/Flutter コンパイルエラー | ローカルで `flutter build apk --release` を実行してエラーを確認 |
 
-### Google Drive アップロード失敗
-
-- `GOOGLE_DRIVE_FOLDER_ID` と `GOOGLE_DRIVE_SERVICE_ACCOUNT` が正しく設定されているか確認
-- 認証情報の有効期限を確認（期限切れの場合は再発行）
-
 ### GitHub Release 作成失敗
 
 - `GITHUB_TOKEN` が正しく設定されているか確認
@@ -268,7 +260,7 @@ GitHub Release の本文は以下のテンプレートで自動生成されま�
 - [ ] タグ形式が正しいか確認（`v1.1.4` 形式）
 - [ ] GitHub Actions のワークフロー実行ログを確認
 - [ ] GitHub Release に APK/AAB が正しく添付されているか確認
-- [ ] APK がローカルでインストール・動作確認できるか確認
+- [ ] APK ファイルをダウンロード、デバイスでインストール・動作確認できるか確認
 
 ---
 
@@ -289,6 +281,7 @@ GitHub Release の本文は以下のテンプレートで自動生成されま�
 - [ ] リリースノート自動生成（PRタイトル/ラベルから）
 - [ ] スナップショット中間テスト（毎日 main ブランチの自動ビルド）
 - [ ] Windows CI 環境での日本語パス対応（仮想ドライブ割り当て自動化）
+- [ ] デスクトップ UI から GitHub Release への直接ダウンロードリンク表示
 
 ---
 
