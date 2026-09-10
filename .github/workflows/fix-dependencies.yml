@@ -35,9 +35,6 @@ jobs:
             echo "pubspec.lock is already up to date"
           else
             git add pubspec.lock
-            git commit -m "fix: resolve flutter dependencies
-
-Co-Authored-By: Claude Haiku 4.5 <noreply@anthropic.com>
-Claude-Session: https://claude.ai/code/session_01FZaDAEMc8YsK5kKRmKqCym"
+            git commit -m "fix: resolve flutter dependencies" -m "Co-Authored-By: Claude Haiku 4.5 <noreply@anthropic.com>" -m "Claude-Session: https://claude.ai/code/session_01FZaDAEMc8YsK5kKRmKqCym"
             git push origin main
           fi
