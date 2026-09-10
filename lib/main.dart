@@ -17,6 +17,7 @@ import 'features/settings/providers/theme_provider.dart';
 import 'providers/character_provider.dart';
 import 'providers/equipped_items_provider.dart';
 import 'providers/locale_provider.dart';
+import 'providers/lesson_provider.dart' show LessonNotifier, lessonProvider;
 import 'providers/screen_time_provider.dart';
 import 'services/firebase_service.dart';
 import 'services/purchase_service.dart';
@@ -91,6 +92,8 @@ void main() async {
         equippedItemsProvider.overrideWith(EquippedItemsNotifier.new),
         // 理科コレの利用時間制限（スクリーンタイム管理）ノティファイアを注入
         screenTimeProvider.overrideWith(ScreenTimeNotifier.new),
+        // 理科コレの学習コンテンツ（解説記事）ノティファイアを注入
+        lessonProvider.overrideWith(LessonNotifier.new),
         // まちがい図鑑・復習タイムカプセルの永続化リポジトリを注入
         incorrectMonsterRepositoryProvider
             .overrideWithValue(IncorrectMonsterRepositoryImpl(prefs)),
