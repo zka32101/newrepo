@@ -138,51 +138,6 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
         ),
       ),
     );
-
-          return subjectRankingAsync.when(
-            data: (entries) {
-              if (entries.isEmpty) {
-                return const Center(
-                  child: Text('理科のランキングデータがありません'),
-                );
-              }
-
-              return ListView.builder(
-                padding: const EdgeInsets.all(12),
-                itemCount: entries.length,
-                itemBuilder: (context, index) {
-                  final entry = entries[index];
-                  return _GlobalRankEntryCard(
-                    rank: index + 1,
-                    entry: entry,
-                    color: Colors.green,
-                    subjectLabel: '理科',
-                  );
-                },
-              );
-            },
-            loading: () => const Center(child: CircularProgressIndicator()),
-            error: (error, stack) => Center(
-              child: Text('エラー: $error'),
-            ),
-          );
-        } catch (e) {
-          return Center(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.school, size: 64, color: Colors.grey),
-                  const SizedBox(height: 16),
-                  Text('教科別ランキングは準備中です\n($e)'),
-                ],
-              ),
-            ),
-          );
-        }
-      },
-    );
   }
 
   /// フレンドランキングタブ（既存実装保持）
