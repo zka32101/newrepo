@@ -1,0 +1,78 @@
+name: Auto Bump Version
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  bump-version:
+    name: Increment Build Number
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Git config
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+      - name: Increment Build Number
+        id: bump
+        run: |
+          # pubspec.yaml から現在のバージョンを取得
+          # 形式: version: X.Y.Z+N
+          CURRENT_VERSION=$(grep "^version:" pubspec.yaml | awk '{print $2}')
+          echo "Current version: $CURRENT_VERSION"
+
+          # バージョン部分とビルドナンバーを分割
+          VERSION_PART="${CURRENT_VERSION%+*}"
+          BUILD_NUMBER="${CURRENT_VERSION#*+}"
+
+          # ビルドナンバーをインクリメント
+          NEW_BUILD_NUMBER=$((BUILD_NUMBER + 1))
+          NEW_VERSION="${VERSION_PART}+${NEW_BUILD_NUMBER}"
+
+          echo "New version: $NEW_VERSION"
+          echo "version=${NEW_VERSION}" >> $GITHUB_OUTPUT
+
+          # pubspec.yaml を更新
+          sed -i "s/^version: .*/version: $NEW_VERSION/" pubspec.yaml
+
+      - name: Verify changes
+        run: |
+          echo "Updated pubspec.yaml:"
+          grep "^version:" pubspec.yaml
+
+      - name: Commit and push
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git add pubspec.yaml
+          git commit -m "chore: bump build number to ${{ steps.bump.outputs.version }}
+
+- Auto-increment build number after PR merge
+- Triggered by: ${{ github.event.pull_request.number }}
+- PR Title: ${{ github.event.pull_request.title }}
+
+Co-Authored-By: github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+
+          git push origin main
+
+      - name: Create annotation
+        if: steps.bump.outputs.version != ''
+        run: |
+          echo "✅ Build number bumped to: ${{ steps.bump.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "📝 Commit: chore: bump build number" >> $GITHUB_STEP_SUMMARY

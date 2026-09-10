@@ -164,34 +164,49 @@ version: 1.1.3+14
 - **1.1.3** = アプリバージョン（ユーザー向け表示）
 - **+14** = ビルドナンバー（内部用、自動インクリメント）
 
-### バージョン更新手順
+### 自動バージョンバンプ機構
 
-1. **pubspec.yaml を編集**:
+PR が main にマージされるたびに、ビルドナンバーが自動でインクリメントされます。
+
+**自動実行フロー**:
+```
+PR をマージ → GitHub Actions 自動実行
+  ↓
+pubspec.yaml のビルドナンバーを +1
+例: 1.1.3+14 → 1.1.3+15
+  ↓
+自動コミット & プッシュ
+```
+
+**ワークフロー**: `.github/workflows/auto-bump-version.yml`
+
+### 手動リリース手順（アプリバージョン更新時）
+
+**例**: v1.1.3 → v1.1.4 にアップグレード
+
+1. **pubspec.yaml を編集** - アプリバージョンのみ更新:
    ```yaml
-   version: 1.1.3+14  →  version: 1.1.4+15
+   version: 1.1.3+14  →  version: 1.1.4+14
    ```
+   > 注意: ビルドナンバーは手動で変更しないこと（自動管理）
 
 2. **コミット**:
    ```bash
    git add pubspec.yaml
-   git commit -m "chore: bump version to 1.1.4+15
-
-   - Increment app version for public release
-   - Update build number"
+   git commit -m "chore: bump app version to 1.1.4"
+   git push origin main
    ```
 
-3. **タグ作成・プッシュ**:
+3. **PR マージ → 自動バンプ**:
+   - マージ後、自動で `1.1.4+15` に更新されます
+
+4. **タグ作成・リリース** - ビルドナンバー確認後:
    ```bash
+   git pull origin main  # 最新版を取得
    git tag v1.1.4
-   git push origin main
    git push origin v1.1.4
    ```
-
-4. **自動実行**:
-   - GitHub Actions が `v1.1.4` タグを検出
-   - リリースAPKを自動ビルド
-   - GitHub Release を自動作成
-   - Google Drive にアップロード
+   > GitHub Actions が自動でリリースAPKをビルド・デプロイします
 
 ---
 
@@ -253,8 +268,10 @@ GitHub Release の本文は以下のテンプレートで自動生成されま�
 リリース前に以下を確認してください：
 
 - [ ] ローカルで `flutter build apk --release` を実行し、エラーなくビルドできることを確認
-- [ ] `pubspec.yaml` のバージョンが正しく更新されているか確認
+- [ ] `pubspec.yaml` のアプリバージョンのみ更新（ビルドナンバーは自動管理）
 - [ ] Git にコミット・プッシュ済みか確認
+- [ ] PR がマージされたか確認（自動バンプが実行される）
+- [ ] `git pull origin main` で最新版を確認（ビルドナンバー自動更新）
 - [ ] `KEYSTORE_FILE` が GitHub Secrets に登録されているか確認
 - [ ] `KEYSTORE_PASSWORD`, `KEY_PASSWORD`, `KEY_ALIAS` が登録されているか確認
 - [ ] タグ形式が正しいか確認（`v1.1.4` 形式）
@@ -275,13 +292,14 @@ GitHub Release の本文は以下のテンプレートで自動生成されま�
 
 ## 🔟 今後の改善案
 
-- [ ] 自動バージョンバンプ機構（PR マージ時に build number インクリメント）
+- [x] **自動バージョンバンプ機構**（PR マージ時に build number インクリメント）✅ 実装済み
 - [ ] App Store への自動配布（iOS 対応時）
 - [ ] Beta ビルド自動配布（TestFlight / Firebase App Distribution）
 - [ ] リリースノート自動生成（PRタイトル/ラベルから）
 - [ ] スナップショット中間テスト（毎日 main ブランチの自動ビルド）
 - [ ] Windows CI 環境での日本語パス対応（仮想ドライブ割り当て自動化）
 - [ ] デスクトップ UI から GitHub Release への直接ダウンロードリンク表示
+- [ ] 自動バージョンバンプのスキップオプション（`[skip-bump]` コミットメッセージ）
 
 ---
 
