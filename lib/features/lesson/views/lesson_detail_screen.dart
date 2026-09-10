@@ -52,7 +52,7 @@ class LessonDetailScreen extends ConsumerWidget {
             // =====================
             // ③ 関連ステージへのリンク
             // =====================
-            if ((lesson.relatedStageId?.isNotEmpty ?? false))
+            if (lesson.relatedStageId.isNotEmpty)
               _buildRelatedStage(context, lesson),
 
             const SizedBox(height: 32),
@@ -150,7 +150,7 @@ class LessonDetailScreen extends ConsumerWidget {
         children: [
           // セクション見出し
           FuriganaText(
-            section.heading ?? '',
+            section.heading,
             style: theme.textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
               color: theme.colorScheme.onSurface,
