@@ -8,6 +8,7 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shokollen_science/main.dart';
 
 void main() {
@@ -17,7 +18,11 @@ void main() {
     testWidgets('アプリ起動時間を測定', (WidgetTester tester) async {
       final stopwatch = Stopwatch()..start();
 
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(
+        const ProviderScope(
+          child: MyApp(),
+        ),
+      );
       await tester.pumpAndSettle(const Duration(seconds: 3));
 
       stopwatch.stop();
@@ -34,7 +39,11 @@ void main() {
 
     // ========== 画面遷移時間 ==========
     testWidgets('画面遷移時間を測定', (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(
+        const ProviderScope(
+          child: MyApp(),
+        ),
+      );
       await tester.pumpAndSettle(const Duration(seconds: 2));
 
       final stopwatch = Stopwatch()..start();
@@ -79,11 +88,19 @@ void main() {
 
     // ========== メモリ管理テスト ==========
     testWidgets('メモリリークを検出', (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(
+        const ProviderScope(
+          child: MyApp(),
+        ),
+      );
 
       // ウィジェット生成・破棄のサイクルを実行
       for (int i = 0; i < 50; i++) {
-        await tester.pumpWidget(const MyApp());
+        await tester.pumpWidget(
+        const ProviderScope(
+          child: MyApp(),
+        ),
+      );
         await tester.pump();
       }
 
@@ -98,7 +115,11 @@ void main() {
       // Note: clearViewportMetricsTestValue was removed in newer Flutter versions
       // addTearDown(tester.binding.platformDispatcher.clearViewportMetricsTestValue);
 
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(
+        const ProviderScope(
+          child: MyApp(),
+        ),
+      );
 
       int frameCount = 0;
       final stopwatch = Stopwatch()..start();
@@ -123,7 +144,11 @@ void main() {
 
     // ========== ツリー深さ測定 ==========
     testWidgets('ウィジェットツリー深さを測定', (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(
+        const ProviderScope(
+          child: MyApp(),
+        ),
+      );
 
       int maxDepth = 0;
 
@@ -154,7 +179,11 @@ void main() {
 
       // ウィジェット構築時間
       final buildStopwatch = Stopwatch()..start();
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(
+        const ProviderScope(
+          child: MyApp(),
+        ),
+      );
       buildStopwatch.stop();
       print('  - ウィジェット構築: ${buildStopwatch.elapsedMilliseconds}ms');
 
