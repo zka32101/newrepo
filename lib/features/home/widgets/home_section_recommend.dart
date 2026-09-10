@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../progress/providers/user_progress_provider.dart';
 import '../widgets/seasonal_recommendation_widget.dart';
 import 'home_section_divider.dart';

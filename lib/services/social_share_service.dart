@@ -1,6 +1,8 @@
+import 'dart:developer' as developer;
+
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'dart:developer' as developer;
+
 import '../models/streak_model.dart';
 
 /// SNS シェア対象データ

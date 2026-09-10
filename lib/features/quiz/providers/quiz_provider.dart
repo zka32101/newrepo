@@ -1,7 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../models/question_model.dart';
+
 import '../../../data/seeds/sample_questions.dart';
 import '../../../data/seeds/stages.dart';
+import '../models/question_model.dart';
 
 // ─── ポイント定数 ────────────────────────────────────────
 const int kPointsPerCorrect   = 10;

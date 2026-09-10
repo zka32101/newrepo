@@ -1,6 +1,8 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'dart:typed_data';
+
 import '../providers/creature_collection_provider.dart';
 import '../services/creature_identification_service.dart';
 import 'creature_result_screen.dart';

@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../services/friend_service.dart';
+
 import '../models/friend_model.dart';
+import '../services/friend_service.dart';
 
 /// 友達サービスプロバイダー
 final friendServiceProvider = Provider<FriendService>((ref) {

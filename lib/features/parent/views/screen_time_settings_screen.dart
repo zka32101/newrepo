@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_core/shared_core.dart' show ScreenTimeSettingsWidget;
+
 import '../../../shared/constants/app_colors.dart';
 
 /// 利用時間制限（スクリーンタイム管理）の設定画面。

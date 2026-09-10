@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../services/social_share_service.dart';
 
 /// SNS シェアサービスプロバイダー

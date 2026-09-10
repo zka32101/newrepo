@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_core/shared_core.dart';
+
 import '../../../data/rika_characters.dart';
 
 // ── 理科コレ 交換所アイテム ──────────────────────────────────────────────────

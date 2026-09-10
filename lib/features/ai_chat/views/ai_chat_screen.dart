@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../services/claude_service.dart';
+
 import '../providers/monthly_usage_provider.dart';
+import '../services/claude_service.dart';
 
 // ② AIはかせチャット: 理科の質問をAIに聞けるチャット画面
 class AiChatScreen extends ConsumerStatefulWidget {

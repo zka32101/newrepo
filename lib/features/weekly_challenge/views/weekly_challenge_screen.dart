@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../providers/weekly_challenge_provider.dart';
 
 class WeeklyChallengeScreen extends ConsumerWidget {

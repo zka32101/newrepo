@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../services/ranking_service.dart';
+
 import '../models/ranking_model.dart';
+import '../services/ranking_service.dart';
 import 'friend_provider.dart';
 
 /// ランキングサービスプロバイダー

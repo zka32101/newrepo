@@ -1,4 +1,5 @@
 import 'package:shared_core/shared_core.dart';
+
 import '../data/rika_characters.dart';
 
 /// 理科コレ固有のキャラクターノティファイア。

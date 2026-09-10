@@ -1,19 +1,21 @@
+import 'dart:developer' as developer;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'dart:developer' as developer;
+
+import '../../../data/seeds/explanations/explanations_index.dart';
+import '../../../providers/ranking_provider.dart';
 import '../../../shared/constants/app_colors.dart';
 import '../../../shared/widgets/furigana_text.dart';
-import '../providers/quiz_provider.dart';
-import '../../progress/providers/user_progress_provider.dart';
-import '../../progress/views/badge_earned_dialog.dart';
 import '../../parent/providers/praise_provider.dart';
-import '../../../data/seeds/explanations/explanations_index.dart';
 import '../../progress/models/incorrect_monster.dart';
 import '../../progress/providers/incorrect_monster_provider.dart';
-import '../../progress/views/widgets/monster_dialogs.dart';
 import '../../progress/providers/review_time_capsule_provider.dart';
-import '../../../providers/ranking_provider.dart';
+import '../../progress/providers/user_progress_provider.dart';
+import '../../progress/views/badge_earned_dialog.dart';
+import '../../progress/views/widgets/monster_dialogs.dart';
+import '../providers/quiz_provider.dart';
 
 class QuizResultScreen extends ConsumerStatefulWidget {
   const QuizResultScreen({super.key});

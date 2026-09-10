@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../data/troubleshoot_data.dart';
 
 // ⑥ 失敗ラボ推理: 実験の失敗原因を推理するクイズ画面

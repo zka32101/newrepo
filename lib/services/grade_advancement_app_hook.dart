@@ -1,9 +1,11 @@
+import 'dart:developer' as developer;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../features/profile/models/profile_model.dart';
 import '../widgets/grade_advancement_celebration_dialog.dart';
 import 'grade_advancement_service.dart';
-import 'dart:developer' as developer;
 
 /// アプリ起動時に学年進級をチェック・実行するヘルパー
 ///

@@ -1,6 +1,8 @@
 import 'dart:developer' as developer;
+
 import 'package:shared_core/shared_core.dart' show WeeklyReportNotificationScheduler;
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'notification_service.dart';
 
 /// 保護者向け週次レポートのサマリー通知を管理するサービス。

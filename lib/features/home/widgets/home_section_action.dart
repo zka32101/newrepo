@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../shared/constants/app_colors.dart';
-import '../../progress/providers/user_progress_provider.dart';
 import '../../daily/providers/daily_challenge_provider.dart';
 import '../../daily/widgets/daily_login_bonus_widget.dart';
 import '../../parent/widgets/praise_received_widget.dart';
+import '../../progress/providers/user_progress_provider.dart';
 import '../../weekly_challenge/widgets/weekly_challenge_widget.dart';
 import 'home_section_divider.dart';
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../providers/creature_collection_provider.dart';
 
 /// 生き物図鑑コレクション表示画面

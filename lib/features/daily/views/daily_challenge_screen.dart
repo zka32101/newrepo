@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../features/progress/providers/user_progress_provider.dart';
 import '../../../shared/constants/app_colors.dart';
 import '../../../shared/widgets/furigana_text.dart';
-import '../../../features/progress/providers/user_progress_provider.dart';
 import '../providers/daily_challenge_provider.dart';
 
 class DailyChallengeScreen extends ConsumerStatefulWidget {
