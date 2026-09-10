@@ -1,0 +1,109 @@
+name: Daily Snapshot Build
+
+on:
+  schedule:
+    # 毎日 09:00 UTC (日本時間: 18:00) に実行
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  snapshot-build:
+    name: Build Daily Snapshot
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.34.0'
+          channel: 'stable'
+
+      - name: Get Flutter dependencies
+        run: |
+          flutter pub get
+
+      - name: Setup Android build environment
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openjdk-17-jdk
+
+      - name: Build Debug APK (Quick Build)
+        id: build
+        run: |
+          SNAPSHOT_TIME=$(date -u +'%Y%m%d_%H%M%SZ')
+          echo "snapshot_time=${SNAPSHOT_TIME}" >> $GITHUB_OUTPUT
+
+          echo "🔨 Building Debug APK snapshot at: $SNAPSHOT_TIME"
+          flutter build apk --debug --no-pub 2>&1 | tee build.log
+
+          if [ ${PIPESTATUS[0]} -eq 0 ]; then
+            echo "✅ Build succeeded"
+          else
+            echo "❌ Build failed"
+            exit 1
+          fi
+
+      - name: Check APK size
+        run: |
+          if [ -f build/app/outputs/flutter-apk/app-debug.apk ]; then
+            SIZE=$(ls -lh build/app/outputs/flutter-apk/app-debug.apk | awk '{print $5}')
+            echo "📱 APK Size: $SIZE"
+            echo "📱 APK Size: $SIZE" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Upload Debug APK artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: snapshot-apk-${{ steps.build.outputs.snapshot_time }}
+          path: build/app/outputs/flutter-apk/app-debug.apk
+          retention-days: 7
+
+      - name: Run Flutter Analyze
+        continue-on-error: true
+        run: |
+          flutter analyze > analyze.log 2>&1
+          cat analyze.log
+
+      - name: Build Summary
+        if: always()
+        run: |
+          echo "## 📊 Daily Snapshot Build Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Timestamp**: ${{ steps.build.outputs.snapshot_time }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch**: main" >> $GITHUB_STEP_SUMMARY
+          echo "**Status**: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ job.status }}" = "success" ]; then
+            echo "✅ Build completed successfully" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ Build failed or had warnings" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Last 20 lines of build log:" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          tail -20 build.log 2>/dev/null || echo "No build log available" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+  notify-on-failure:
+    name: Notify Failure
+    needs: snapshot-build
+    if: failure()
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create failure notification
+        run: |
+          echo "⚠️ Daily snapshot build failed on main branch"
+          echo "Please check GitHub Actions logs for details"
+          echo "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"

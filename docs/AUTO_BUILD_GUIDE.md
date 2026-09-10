@@ -14,13 +14,27 @@ GitHub Actionsを使用した自動APKビルド・リリースシステムです
 
 | ファイル | トリガー | 機能 |
 |---------|---------|------|
-| `.github/workflows/build-release-apk.yml` | タグプッシュ（v*）/ workflow_dispatch / リリース作成 | リリースAPKビルド + GitHubリリース自動作成 |
-| `.github/workflows/deploy.yml` | タグプッシュ（v*） | 基本的なAPKビルド |
-| `.github/workflows/google-drive-upload.yml` | 呼び出し | ビルド成果物をGoogle Driveにアップロード |
+| `build-release-apk.yml` | タグプッシュ（v*）/ workflow_dispatch / リリース作成 | リリースAPKビルド + GitHub Release自動作成 |
+| `auto-bump-version.yml` | PR マージ（main） | ビルドナンバー自動インクリメント |
+| `daily-snapshot-build.yml` | 毎日 09:00 UTC / workflow_dispatch | デバッグAPK日次スナップショットビルド |
+| `deploy.yml` | タグプッシュ（v*） | 基本的なAPKビルド |
 
-### 推奨：統合ワークフロー
+### ワークフロー活用例
 
-本ガイドでは `build-release-apk.yml` をメインワークフローとして使用します。
+**本番リリース**: `build-release-apk.yml`（タグプッシュ時）
+```
+git tag v1.1.0 → 署名付きAPK + GitHub Release
+```
+
+**日次健全性確認**: `daily-snapshot-build.yml`（毎日 9:00 UTC）
+```
+毎日 main をビルド → デバッグAPK生成 → 問題早期発見
+```
+
+**開発フロー**: `auto-bump-version.yml`（PR マージ時）
+```
+PR マージ → ビルドナンバー自動インクリメント → 1.0.0+5 → 1.0.0+6
+```
 
 ---
 
@@ -245,6 +259,51 @@ GitHub Release の本文は以下のテンプレートで自動生成されま�
 
 ---
 
+## 6️⃣ 日次スナップショットビルド
+
+毎日 **09:00 UTC**（日本時間 18:00）に main ブランチの自動ビルドが実行されます。
+
+**ワークフロー**: `.github/workflows/daily-snapshot-build.yml`
+
+### 実行内容
+
+1. ✅ main ブランチをチェックアウト
+2. ✅ Flutter 依存をインストール
+3. ✅ デバッグAPKをビルド（高速）
+4. ✅ ビルド解析（flutter analyze）
+5. ✅ 成果物を7日間保持
+
+### スナップショットの確認
+
+GitHub Actions → `Daily Snapshot Build` タブで確認可能
+
+- ビルド成功・失敗ログ
+- APK サイズ
+- 解析警告
+
+### 手動実行
+
+開発中に即座にビルドをテストしたい場合：
+
+```bash
+# GitHub CLI
+gh workflow run daily-snapshot-build.yml
+
+# または GitHub UI → Actions → Daily Snapshot Build → Run workflow
+```
+
+### スナップショットAPK のダウンロード
+
+GitHub Actions Artifacts から 7 日以内なら直接ダウンロード可能
+
+```
+Actions → Daily Snapshot Build
+  → snapshot-apk-YYYYMMDD_HHMMSSZ
+  → app-debug.apk をダウンロード
+```
+
+---
+
 ## 7️⃣ トラブルシューティング
 
 ### ビルド失敗時
@@ -293,13 +352,15 @@ GitHub Release の本文は以下のテンプレートで自動生成されま�
 ## 🔟 今後の改善案
 
 - [x] **自動バージョンバンプ機構**（PR マージ時に build number インクリメント）✅ 実装済み
+- [x] **スナップショット中間テスト**（毎日 main ブランチの自動ビルド）✅ 実装済み
+- [ ] リリースノート自動生成（PRタイトル/ラベルから）
 - [ ] App Store への自動配布（iOS 対応時）
 - [ ] Beta ビルド自動配布（TestFlight / Firebase App Distribution）
-- [ ] リリースノート自動生成（PRタイトル/ラベルから）
-- [ ] スナップショット中間テスト（毎日 main ブランチの自動ビルド）
 - [ ] Windows CI 環境での日本語パス対応（仮想ドライブ割り当て自動化）
 - [ ] デスクトップ UI から GitHub Release への直接ダウンロードリンク表示
 - [ ] 自動バージョンバンプのスキップオプション（`[skip-bump]` コミットメッセージ）
+- [ ] Slack 通知統合（ビルド失敗時）
+- [ ] Performance メトリクス追跡（APK サイズ、ビルド時間）
 
 ---
 
