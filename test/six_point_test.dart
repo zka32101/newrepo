@@ -42,7 +42,7 @@ void main() {
         );
 
         // 初期画面でナビゲーション要素が存在するか確認
-        await tester.pumpAndSettle();
+        await tester.pump(const Duration(milliseconds: 500));
         expect(find.byType(MaterialApp), findsOneWidget);
       });
 
@@ -70,7 +70,7 @@ void main() {
 
         // Firebase が初期化されているか確認
         // （実際の実装では Firebase インスタンスを確認）
-        await tester.pumpAndSettle();
+        await tester.pump(const Duration(milliseconds: 500));
         expect(find.byType(MaterialApp), findsOneWidget);
       });
 
@@ -82,7 +82,7 @@ void main() {
         );
 
         // キャッシュされた画像やデータが表示されるか確認
-        await tester.pumpAndSettle();
+        await tester.pump(const Duration(milliseconds: 500));
         expect(find.byType(MaterialApp), findsOneWidget);
       });
 
@@ -94,7 +94,7 @@ void main() {
         );
 
         // アプリがネットワークエラーを適切に処理できるか
-        await tester.pumpAndSettle();
+        await tester.pump(const Duration(milliseconds: 500));
         expect(find.byType(MaterialApp), findsOneWidget);
       });
     });
@@ -109,7 +109,7 @@ void main() {
         );
 
         // 課金関連の画面要素が存在するか確認
-        await tester.pumpAndSettle();
+        await tester.pump(const Duration(milliseconds: 500));
         expect(find.byType(MaterialApp), findsOneWidget);
       });
 
@@ -121,7 +121,7 @@ void main() {
         );
 
         // 課金商品情報が表示される画面に遷移可能
-        await tester.pumpAndSettle();
+        await tester.pump(const Duration(milliseconds: 500));
         expect(find.byType(MaterialApp), findsOneWidget);
       });
 
@@ -133,7 +133,7 @@ void main() {
         );
 
         // 購入処理中にアプリがクラッシュしない
-        await tester.pumpAndSettle();
+        await tester.pump(const Duration(milliseconds: 500));
         expect(find.byType(MaterialApp), findsOneWidget);
       });
     });
@@ -148,7 +148,7 @@ void main() {
         );
 
         // 認証フロー UI が表示可能
-        await tester.pumpAndSettle();
+        await tester.pump(const Duration(milliseconds: 500));
         expect(find.byType(MaterialApp), findsOneWidget);
       });
 
@@ -160,7 +160,7 @@ void main() {
         );
 
         // 認証状態に応じた適切な画面が表示される
-        await tester.pumpAndSettle();
+        await tester.pump(const Duration(milliseconds: 500));
         expect(find.byType(MaterialApp), findsOneWidget);
       });
 
@@ -172,7 +172,7 @@ void main() {
         );
 
         // ログイン状態が保持されるか確認
-        await tester.pumpAndSettle();
+        await tester.pump(const Duration(milliseconds: 500));
         expect(find.byType(MaterialApp), findsOneWidget);
       });
     });
@@ -187,7 +187,7 @@ void main() {
         );
 
         // 広告SDK が正常に初期化されている
-        await tester.pumpAndSettle();
+        await tester.pump(const Duration(milliseconds: 500));
         expect(find.byType(MaterialApp), findsOneWidget);
       });
 
@@ -199,7 +199,7 @@ void main() {
         );
 
         // 広告表示中もアプリの操作性が保持される
-        await tester.pumpAndSettle();
+        await tester.pump(const Duration(milliseconds: 500));
         expect(find.byType(MaterialApp), findsOneWidget);
       });
 
@@ -211,7 +211,7 @@ void main() {
         );
 
         // 広告読み込み失敗時もアプリは動作し続ける
-        await tester.pumpAndSettle();
+        await tester.pump(const Duration(milliseconds: 500));
         expect(find.byType(MaterialApp), findsOneWidget);
       });
     });
@@ -226,7 +226,7 @@ void main() {
         );
 
         // 予期しない例外が発生してもアプリがクラッシュしない
-        await tester.pumpAndSettle();
+        await tester.pump(const Duration(milliseconds: 500));
         expect(find.byType(MaterialApp), findsOneWidget);
       });
 
@@ -238,7 +238,7 @@ void main() {
         );
 
         // ウィジェットのビルド/破棄サイクルが適切に行われる
-        await tester.pumpAndSettle();
+        await tester.pump(const Duration(milliseconds: 500));
         expect(find.byType(MaterialApp), findsOneWidget);
       });
 
@@ -250,7 +250,7 @@ void main() {
         );
 
         // 高速な画面遷移でもアプリが安定している
-        await tester.pumpAndSettle();
+        await tester.pump(const Duration(milliseconds: 500));
         expect(find.byType(MaterialApp), findsOneWidget);
       });
 
@@ -262,7 +262,7 @@ void main() {
         );
 
         // dispose メソッドが適切に呼び出される
-        await tester.pumpAndSettle();
+        await tester.pump(const Duration(milliseconds: 500));
         expect(find.byType(MaterialApp), findsOneWidget);
       });
     });
