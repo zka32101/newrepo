@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../services/social_share_service.dart';
-import '../models/streak_model.dart';
-import '../shared/theme/app_theme.dart';
 
 /// シェアボタンのタイプ
 enum ShareType {
@@ -225,7 +223,7 @@ class ShareOptionsDialog extends ConsumerWidget {
   void _shareDefault(WidgetRef ref) async {
     final content = _buildShareContent();
     try {
-      await SocialShareService.instance._share(content);
+      await SocialShareService.instance.shareGeneric(content);
     } catch (e) {
       // エラーハンドリング
     }

@@ -35,6 +35,10 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
 
+  # ============== Localization ==============
+  flutter_localizations:
+    sdk: flutter
+
   # ============== State Management ==============
   flutter_riverpod: ^2.4.0
   riverpod_annotation: ^2.3.0
@@ -77,7 +81,7 @@ dependencies:
       ref: main
 
   # ============== Utility ==============
-  intl: ^0.19.0
+  intl: ^0.20.3
   uuid: ^4.0.0
   share_plus: ^10.0.0
 
@@ -132,6 +136,7 @@ flutter:
     - assets/icon/
     - assets/illustrations/stage_3/
     - assets/images/monsters/
+    - lib/l10n/
     - lib/assets/images/features/ai_chat/
     - lib/assets/images/features/tonight_sky/
     - lib/assets/images/features/creature_camera/

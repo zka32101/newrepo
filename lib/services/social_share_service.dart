@@ -1,7 +1,6 @@
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:developer' as developer;
-import '../models/streak_model.dart';
 
 /// SNS シェア対象データ
 class ShareContent {
@@ -183,6 +182,16 @@ A) $correctAnswer
       await _share(content);
     } catch (e) {
       developer.log('Error sharing question: $e', error: e);
+      rethrow;
+    }
+  }
+
+  /// シェアコンテンツを汎用的にシェア（システムシェアダイアログ）
+  Future<void> shareGeneric(ShareContent content) async {
+    try {
+      await _share(content);
+    } catch (e) {
+      developer.log('Error in generic share: $e', error: e);
       rethrow;
     }
   }

@@ -61,7 +61,7 @@ class RevenueCatService {
       return isActive;
     } catch (e) {
       if (kDebugMode) {
-        print('[RevatureCat] Error checking subscription: $e');
+        print('[RevenueCat] Error checking subscription: $e');
       }
       return false;
     }
@@ -95,9 +95,9 @@ class RevenueCatService {
 
       _subscriptionStatusController.add(isActive);
       return isActive;
-    } on PurchaseException catch (e) {
+    } catch (e) {
       if (kDebugMode) {
-        print('[RevenueCat] Purchase error: ${e.message}');
+        print('[RevenueCat] Purchase error: $e');
       }
       return false;
     }
@@ -128,11 +128,17 @@ class RevenueCatService {
   Future<DateTime?> getSubscriptionExpirationDate() async {
     try {
       final customerInfo = await Purchases.getCustomerInfo();
-      final expirationDate = customerInfo.entitlements.active
-          .values
-          .firstOrNull
-          ?.expirationDate;
-      return expirationDate;
+      final activeEntitlements = customerInfo.entitlements.active.values;
+      if (activeEntitlements.isEmpty) return null;
+
+      final expirationDate = activeEntitlements.first.expirationDate;
+      if (expirationDate == null) return null;
+
+      // Parse expirationDate if it's a String, otherwise return as DateTime
+      if (expirationDate is String) {
+        return DateTime.tryParse(expirationDate);
+      }
+      return expirationDate as DateTime?;
     } catch (e) {
       if (kDebugMode) {
         print('[RevenueCat] Error fetching expiration date: $e');

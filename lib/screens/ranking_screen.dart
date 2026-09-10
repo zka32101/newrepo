@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_core/shared_core.dart' show globalRankingProvider;
 import '../models/ranking_model.dart';
 import '../providers/ranking_provider.dart';
 import '../widgets/ranking_display_widget.dart';
@@ -109,110 +108,35 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
 
   /// グローバルランキングタブ
   Widget _buildGlobalRankingTab() {
-    return Consumer(
-      builder: (context, ref, _) {
-        try {
-          final globalRankingAsync = ref.watch(globalRankingProvider);
-
-          return globalRankingAsync.when(
-            data: (entries) {
-              if (entries.isEmpty) {
-                return const Center(
-                  child: Text('グローバルランキングデータがありません'),
-                );
-              }
-
-              return ListView.builder(
-                padding: const EdgeInsets.all(12),
-                itemCount: entries.length,
-                itemBuilder: (context, index) {
-                  final entry = entries[index];
-                  return _GlobalRankEntryCard(
-                    rank: index + 1,
-                    entry: entry,
-                    color: Colors.green,
-                  );
-                },
-              );
-            },
-            loading: () => const Center(child: CircularProgressIndicator()),
-            error: (error, stack) => Center(
-              child: Text('エラー: $error'),
-            ),
-          );
-        } catch (e) {
-          // Fallback: デモデータまたは空表示
-          return Center(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.public, size: 64, color: Colors.grey),
-                  const SizedBox(height: 16),
-                  Text('グローバルランキングは準備中です\n($e)'),
-                ],
-              ),
-            ),
-          );
-        }
-      },
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.public, size: 64, color: Colors.grey),
+            const SizedBox(height: 16),
+            const Text('グローバルランキングは準備中です'),
+          ],
+        ),
+      ),
     );
   }
 
   /// 教科別ランキングタブ（science）
   Widget _buildSubjectRankingTab() {
-    return Consumer(
-      builder: (context, ref, _) {
-        try {
-          // subject_id: 'science' のランキング取得
-          final subjectRankingAsync = ref.watch(
-            globalRankingProvider, // TODO: implement fetchSubjectRanking
-          );
-
-          return subjectRankingAsync.when(
-            data: (entries) {
-              if (entries.isEmpty) {
-                return const Center(
-                  child: Text('理科のランキングデータがありません'),
-                );
-              }
-
-              return ListView.builder(
-                padding: const EdgeInsets.all(12),
-                itemCount: entries.length,
-                itemBuilder: (context, index) {
-                  final entry = entries[index];
-                  return _GlobalRankEntryCard(
-                    rank: index + 1,
-                    entry: entry,
-                    color: Colors.green,
-                    subjectLabel: '理科',
-                  );
-                },
-              );
-            },
-            loading: () => const Center(child: CircularProgressIndicator()),
-            error: (error, stack) => Center(
-              child: Text('エラー: $error'),
-            ),
-          );
-        } catch (e) {
-          return Center(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.school, size: 64, color: Colors.grey),
-                  const SizedBox(height: 16),
-                  Text('教科別ランキングは準備中です\n($e)'),
-                ],
-              ),
-            ),
-          );
-        }
-      },
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.school, size: 64, color: Colors.grey),
+            const SizedBox(height: 16),
+            const Text('教科別ランキングは準備中です'),
+          ],
+        ),
+      ),
     );
   }
 

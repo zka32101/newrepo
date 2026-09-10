@@ -13,7 +13,6 @@ class LanguageSelectorWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final currentLocale = ref.watch(localeProvider);
     final isJapanese = currentLocale.languageCode == 'ja';
-    final isDark = AppColors.isDark(context);
     final localizations = AppLocalizations.of(context);
     final isMobile = Responsive.isMobile(context);
 
