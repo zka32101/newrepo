@@ -34,6 +34,12 @@ jobs:
           flutter-version: '3.34.0'
           channel: 'stable'
 
+      - name: Clean build artifacts
+        run: |
+          flutter clean
+          rm -rf ~/.pub-cache
+          rm -rf .dart_tool
+
       - name: Get Flutter dependencies
         run: |
           flutter pub get
