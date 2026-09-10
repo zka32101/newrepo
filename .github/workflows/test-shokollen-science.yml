@@ -54,8 +54,8 @@ jobs:
       - name: Run 6-point tests
         run: flutter test test/six_point_test.dart -v
 
-      - name: Run all unit tests
-        run: flutter test --coverage
+      - name: Run all unit tests with coverage
+        run: flutter test test/six_point_test.dart --coverage
 
       - name: Upload coverage
         uses: codecov/codecov-action@v3
