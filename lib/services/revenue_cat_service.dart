@@ -95,9 +95,9 @@ class RevenueCatService {
 
       _subscriptionStatusController.add(isActive);
       return isActive;
-    } on PurchaseException catch (e) {
+    } on Exception catch (e) {
       if (kDebugMode) {
-        print('[RevenueCat] Purchase error: ${e.message}');
+        print('[RevenueCat] Purchase error: $e');
       }
       return false;
     }
@@ -128,10 +128,10 @@ class RevenueCatService {
   Future<DateTime?> getSubscriptionExpirationDate() async {
     try {
       final customerInfo = await Purchases.getCustomerInfo();
-      final expirationDate = customerInfo.entitlements.active
-          .values
-          .firstOrNull
-          ?.expirationDate;
+      final activeEntitlements = customerInfo.entitlements.active.values;
+      if (activeEntitlements.isEmpty) return null;
+
+      final expirationDate = activeEntitlements.first.expirationDate;
       return expirationDate;
     } catch (e) {
       if (kDebugMode) {
