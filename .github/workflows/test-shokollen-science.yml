@@ -73,6 +73,8 @@ jobs:
     strategy:
       matrix:
         api-level: [31, 34]
+    env:
+      _JAVA_OPTIONS: "-XX:+IgnoreUnrecognizedVMOptions --add-modules java.base"
 
     steps:
       - name: Checkout code
