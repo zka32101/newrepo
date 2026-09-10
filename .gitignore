@@ -76,3 +76,6 @@ firebase-debug.log
 firebase-debug.*.log
 .firebase/
 .firebaserc
+# Keystore files (managed via GitHub Secrets)
+release-keystore.jks
+keystore.b64
