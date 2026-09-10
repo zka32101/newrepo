@@ -2,6 +2,7 @@
   "permissions": {
     "defaultMode": "bypassPermissions",
     "allow": [
+      "Bash(git push *)",
       "mcp__Claude_Code_Remote__create_trigger",
       "mcp__Claude_Code_Remote__create_session",
       "mcp__Claude_Code_Remote__list_sessions",
