@@ -29,6 +29,7 @@ analyzer:
     - 'docs/**'
     - 'integration_test/**'
     - 'lib/data/seeds/**'
+    - 'test/**'
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
