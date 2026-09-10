@@ -186,7 +186,7 @@ void main() {
 
         // dispose メソッドが適切に呼び出される
         await tester.pump(const Duration(milliseconds: 100));
-        expect(find.byType(MaterialApp), findsWidgets);
+        expect(find.byType(MaterialApp), findsOneWidget);
       });
     });
 
