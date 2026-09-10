@@ -105,7 +105,6 @@ class RankingEntryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = AppColors.isDark(context);
     final colors = AppColors.of(context);
-    final responsivePadding = Responsive.getPadding(context);
     final isMobile = Responsive.isMobile(context);
 
     return Container(
