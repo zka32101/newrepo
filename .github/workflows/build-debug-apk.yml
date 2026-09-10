@@ -71,8 +71,8 @@ jobs:
 
       - name: Get Flutter dependencies
         run: |
-          flutter pub get --no-example
           flutter clean
+          flutter pub get --no-example
 
       - name: Analyze code
         run: flutter analyze
