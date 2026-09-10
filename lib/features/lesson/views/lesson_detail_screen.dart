@@ -62,7 +62,7 @@ class LessonDetailScreen extends ConsumerWidget {
     );
   }
 
-  /// 헤더를 구성합니다（emoji, カテゴリ, 学年, 読了時間）
+  /// ヘッダーを構成（emoji, カテゴリ, 学年, 読了時間）
   Widget _buildHeader(BuildContext context, LessonContent lesson) {
     final theme = Theme.of(context);
 
