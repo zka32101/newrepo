@@ -61,7 +61,7 @@ class RevenueCatService {
       return isActive;
     } catch (e) {
       if (kDebugMode) {
-        print('[RevatureCat] Error checking subscription: $e');
+        print('[RevenueCat] Error checking subscription: $e');
       }
       return false;
     }
@@ -95,7 +95,7 @@ class RevenueCatService {
 
       _subscriptionStatusController.add(isActive);
       return isActive;
-    } on Exception catch (e) {
+    } catch (e) {
       if (kDebugMode) {
         print('[RevenueCat] Purchase error: $e');
       }
