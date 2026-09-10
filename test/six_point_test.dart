@@ -22,11 +22,11 @@ void main() {
         await tester.pumpWidget(const MyApp());
 
         // ウィジェットツリーが正常に構築されたか確認
-        expect(find.byType(MaterialApp), findsWidgets);
+        expect(find.byType(MaterialApp), findsOneWidget);
 
         // ホーム画面（またはログイン画面）が表示されたか確認
         await tester.pump(const Duration(milliseconds: 100));
-        expect(find.byType(MaterialApp), findsWidgets);
+        expect(find.byType(MaterialApp), findsOneWidget);
       });
 
       testWidgets('ナビゲーションが正常に機能する', (WidgetTester tester) async {
@@ -34,7 +34,7 @@ void main() {
 
         // 初期画面でナビゲーション要素が存在するか確認
         await tester.pump(const Duration(milliseconds: 100));
-        expect(find.byType(MaterialApp), findsWidgets);
+        expect(find.byType(MaterialApp), findsOneWidget);
       });
 
       testWidgets('テーマが正常に適用される', (WidgetTester tester) async {
@@ -42,7 +42,7 @@ void main() {
 
         // MaterialApp が存在して、テーマが設定されているか確認
         final materialApp = find.byType(MaterialApp);
-        expect(materialApp, findsWidgets);
+        expect(materialApp, findsOneWidget);
       });
     });
 
@@ -54,7 +54,7 @@ void main() {
         // Firebase が初期化されているか確認
         // （実際の実装では Firebase インスタンスを確認）
         await tester.pump();
-        expect(find.byType(MaterialApp), findsWidgets);
+        expect(find.byType(MaterialApp), findsOneWidget);
       });
 
       testWidgets('インターネット接続を前提とした画面描画', (WidgetTester tester) async {
@@ -62,7 +62,7 @@ void main() {
 
         // キャッシュされた画像やデータが表示されるか確認
         await tester.pump(const Duration(milliseconds: 100));
-        expect(find.byType(MaterialApp), findsWidgets);
+        expect(find.byType(MaterialApp), findsOneWidget);
       });
 
       testWidgets('ネットワークエラーハンドリング', (WidgetTester tester) async {
@@ -70,7 +70,7 @@ void main() {
 
         // アプリがネットワークエラーを適切に処理できるか
         await tester.pump();
-        expect(find.byType(MaterialApp), findsWidgets);
+        expect(find.byType(MaterialApp), findsOneWidget);
       });
     });
 
@@ -81,7 +81,7 @@ void main() {
 
         // 課金関連の画面要素が存在するか確認
         await tester.pump();
-        expect(find.byType(MaterialApp), findsWidgets);
+        expect(find.byType(MaterialApp), findsOneWidget);
       });
 
       testWidgets('課金商品リストを取得可能', (WidgetTester tester) async {
@@ -89,7 +89,7 @@ void main() {
 
         // 課金商品情報が表示される画面に遷移可能
         await tester.pump(const Duration(milliseconds: 100));
-        expect(find.byType(MaterialApp), findsWidgets);
+        expect(find.byType(MaterialApp), findsOneWidget);
       });
 
       testWidgets('購入フローがハングしない', (WidgetTester tester) async {
@@ -97,7 +97,7 @@ void main() {
 
         // 購入処理中にアプリがクラッシュしない
         await tester.pump();
-        expect(find.byType(MaterialApp), findsWidgets);
+        expect(find.byType(MaterialApp), findsOneWidget);
       });
     });
 
@@ -108,7 +108,7 @@ void main() {
 
         // 認証フロー UI が表示可能
         await tester.pump();
-        expect(find.byType(MaterialApp), findsWidgets);
+        expect(find.byType(MaterialApp), findsOneWidget);
       });
 
       testWidgets('認証状態に基づいた画面遷移', (WidgetTester tester) async {
@@ -116,7 +116,7 @@ void main() {
 
         // 認証状態に応じた適切な画面が表示される
         await tester.pump(const Duration(milliseconds: 100));
-        expect(find.byType(MaterialApp), findsWidgets);
+        expect(find.byType(MaterialApp), findsOneWidget);
       });
 
       testWidgets('セッション管理が正常に機能', (WidgetTester tester) async {
@@ -124,7 +124,7 @@ void main() {
 
         // ログイン状態が保持されるか確認
         await tester.pump();
-        expect(find.byType(MaterialApp), findsWidgets);
+        expect(find.byType(MaterialApp), findsOneWidget);
       });
     });
 
@@ -135,7 +135,7 @@ void main() {
 
         // 広告SDK が正常に初期化されている
         await tester.pump();
-        expect(find.byType(MaterialApp), findsWidgets);
+        expect(find.byType(MaterialApp), findsOneWidget);
       });
 
       testWidgets('広告表示がアプリをブロックしない', (WidgetTester tester) async {
@@ -143,7 +143,7 @@ void main() {
 
         // 広告表示中もアプリの操作性が保持される
         await tester.pump(const Duration(milliseconds: 100));
-        expect(find.byType(MaterialApp), findsWidgets);
+        expect(find.byType(MaterialApp), findsOneWidget);
       });
 
       testWidgets('広告エラーが適切にハンドリングされる', (WidgetTester tester) async {
@@ -151,7 +151,7 @@ void main() {
 
         // 広告読み込み失敗時もアプリは動作し続ける
         await tester.pump();
-        expect(find.byType(MaterialApp), findsWidgets);
+        expect(find.byType(MaterialApp), findsOneWidget);
       });
     });
 
@@ -162,7 +162,7 @@ void main() {
 
         // 予期しない例外が発生してもアプリがクラッシュしない
         await tester.pump();
-        expect(find.byType(MaterialApp), findsWidgets);
+        expect(find.byType(MaterialApp), findsOneWidget);
       });
 
       testWidgets('メモリリークが発生しない', (WidgetTester tester) async {
@@ -170,7 +170,7 @@ void main() {
 
         // ウィジェットのビルド/破棄サイクルが適切に行われる
         await tester.pump(const Duration(milliseconds: 100));
-        expect(find.byType(MaterialApp), findsWidgets);
+        expect(find.byType(MaterialApp), findsOneWidget);
       });
 
       testWidgets('画面遷移中のクラッシュ回避', (WidgetTester tester) async {
@@ -178,7 +178,7 @@ void main() {
 
         // 高速な画面遷移でもアプリが安定している
         await tester.pump();
-        expect(find.byType(MaterialApp), findsWidgets);
+        expect(find.byType(MaterialApp), findsOneWidget);
       });
 
       testWidgets('リソース解放が正常に機能', (WidgetTester tester) async {
