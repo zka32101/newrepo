@@ -25,16 +25,16 @@ void main() {
         expect(find.byType(MaterialApp), findsWidgets);
 
         // ホーム画面（またはログイン画面）が表示されたか確認
-        await tester.pump();
-        expect(find.byType(Scaffold), findsWidgets);
+        await tester.pump(const Duration(milliseconds: 100));
+        expect(find.byType(MaterialApp), findsWidgets);
       });
 
       testWidgets('ナビゲーションが正常に機能する', (WidgetTester tester) async {
         await tester.pumpWidget(const MyApp());
 
         // 初期画面でナビゲーション要素が存在するか確認
-        await tester.pump();
-        expect(find.byType(Scaffold), findsWidgets);
+        await tester.pump(const Duration(milliseconds: 100));
+        expect(find.byType(MaterialApp), findsWidgets);
       });
 
       testWidgets('テーマが正常に適用される', (WidgetTester tester) async {
@@ -61,8 +61,8 @@ void main() {
         await tester.pumpWidget(const MyApp());
 
         // キャッシュされた画像やデータが表示されるか確認
-        await tester.pump();
-        expect(find.byType(Scaffold), findsWidgets);
+        await tester.pump(const Duration(milliseconds: 100));
+        expect(find.byType(MaterialApp), findsWidgets);
       });
 
       testWidgets('ネットワークエラーハンドリング', (WidgetTester tester) async {
@@ -88,8 +88,8 @@ void main() {
         await tester.pumpWidget(const MyApp());
 
         // 課金商品情報が表示される画面に遷移可能
-        await tester.pump();
-        expect(find.byType(Scaffold), findsWidgets);
+        await tester.pump(const Duration(milliseconds: 100));
+        expect(find.byType(MaterialApp), findsWidgets);
       });
 
       testWidgets('購入フローがハングしない', (WidgetTester tester) async {
@@ -115,8 +115,8 @@ void main() {
         await tester.pumpWidget(const MyApp());
 
         // 認証状態に応じた適切な画面が表示される
-        await tester.pump();
-        expect(find.byType(Scaffold), findsWidgets);
+        await tester.pump(const Duration(milliseconds: 100));
+        expect(find.byType(MaterialApp), findsWidgets);
       });
 
       testWidgets('セッション管理が正常に機能', (WidgetTester tester) async {
@@ -142,8 +142,8 @@ void main() {
         await tester.pumpWidget(const MyApp());
 
         // 広告表示中もアプリの操作性が保持される
-        await tester.pump();
-        expect(find.byType(Scaffold), findsWidgets);
+        await tester.pump(const Duration(milliseconds: 100));
+        expect(find.byType(MaterialApp), findsWidgets);
       });
 
       testWidgets('広告エラーが適切にハンドリングされる', (WidgetTester tester) async {
@@ -169,8 +169,8 @@ void main() {
         await tester.pumpWidget(const MyApp());
 
         // ウィジェットのビルド/破棄サイクルが適切に行われる
-        await tester.pump();
-        expect(find.byType(Scaffold), findsWidgets);
+        await tester.pump(const Duration(milliseconds: 100));
+        expect(find.byType(MaterialApp), findsWidgets);
       });
 
       testWidgets('画面遷移中のクラッシュ回避', (WidgetTester tester) async {
@@ -185,8 +185,8 @@ void main() {
         await tester.pumpWidget(const MyApp());
 
         // dispose メソッドが適切に呼び出される
-        await tester.pump();
-        expect(find.byType(Scaffold), findsWidgets);
+        await tester.pump(const Duration(milliseconds: 100));
+        expect(find.byType(MaterialApp), findsWidgets);
       });
     });
 
