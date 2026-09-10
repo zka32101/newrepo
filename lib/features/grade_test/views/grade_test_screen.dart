@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import '../../../shared/constants/app_colors.dart';
 import '../../../shared/widgets/furigana_text.dart';
 import '../../../data/seeds/sample_questions.dart';
-import '../../../data/seeds/stages.dart';
 
 class GradeTestScreen extends ConsumerStatefulWidget {
   const GradeTestScreen({super.key});

@@ -84,11 +84,6 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Configure Java for JAXB compatibility
-        run: |
-          echo "JAVA_OPTS=-XX:+IgnoreUnrecognizedVMOptions --add-modules java.base --add-modules java.xml.bind" >> $GITHUB_ENV
-          echo "_JAVA_OPTIONS=-XX:+IgnoreUnrecognizedVMOptions --add-modules java.base --add-modules java.xml.bind" >> $GITHUB_ENV
-
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
         with:
@@ -120,8 +115,6 @@ jobs:
             flutter-${{ runner.os }}-
 
       - name: Create Android Virtual Device
-        env:
-          JAVA_OPTS: '-XX:+IgnoreUnrecognizedVMOptions --add-modules java.base --add-modules java.xml.bind'
         run: |
           $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager \
             "system-images;android-${{ matrix.api-level }};google_apis;x86_64"
