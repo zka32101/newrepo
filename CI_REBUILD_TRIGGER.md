@@ -13,3 +13,4 @@
 1. CI テスト完了を待機
 2. テスト結果に基づいて追加修正実施
 # Rebuild trigger - Thu Sep 10 10:02:27 UTC 2026
+# Dependency refresh trigger - Thu Sep 10 10:03:41 UTC 2026
