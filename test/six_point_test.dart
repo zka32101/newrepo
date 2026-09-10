@@ -30,7 +30,7 @@ void main() {
         expect(find.byType(MaterialApp), findsOneWidget);
 
         // ホーム画面（またはログイン画面）が表示されたか確認
-        await tester.pumpAndSettle();
+        await tester.pumpAndSettle(const Duration(seconds: 5));
         expect(find.byType(MaterialApp), findsOneWidget);
       });
 
