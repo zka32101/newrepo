@@ -39,12 +39,14 @@ jobs:
           path: |
             ~/.pub-cache
             ~/.flutter
-          key: flutter-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
+          key: flutter-${{ runner.os }}-v2-${{ hashFiles('**/pubspec.lock') }}
           restore-keys: |
-            flutter-${{ runner.os }}-
+            flutter-${{ runner.os }}-v2-
 
-      - name: Clean Flutter cache
-        run: flutter clean
+      - name: Clean Flutter & Pub cache
+        run: |
+          flutter clean
+          rm -rf ~/.pub-cache
 
       - name: Get dependencies
         run: flutter pub get
@@ -108,9 +110,14 @@ jobs:
           path: |
             ~/.pub-cache
             ~/.flutter
-          key: flutter-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
+          key: flutter-${{ runner.os }}-v2-${{ hashFiles('**/pubspec.lock') }}
           restore-keys: |
-            flutter-${{ runner.os }}-
+            flutter-${{ runner.os }}-v2-
+
+      - name: Clean Flutter & Pub cache
+        run: |
+          flutter clean
+          rm -rf ~/.pub-cache
 
       - name: Create Android Virtual Device
         run: |
@@ -194,8 +201,10 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Clean Flutter cache
-        run: flutter clean
+      - name: Clean Flutter & Pub cache
+        run: |
+          flutter clean
+          rm -rf ~/.pub-cache
 
       - name: Get dependencies
         run: flutter pub get
