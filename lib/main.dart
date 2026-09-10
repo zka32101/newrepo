@@ -3,6 +3,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_core/shared_core.dart'
     hide progressProvider, LearningProgress, ProgressNotifier, FirebaseService;
+import 'package:shared_core/shared_core.dart'
+    show
+        badgeProvider,
+        unifiedBadges,
+        BadgeNotifier;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -90,6 +95,12 @@ void main() async {
         characterStateProvider.overrideWith(CharacterNotifier.new),
         // 理科コレのショップアイテム装着状態ノティファイアを注入
         equippedItemsProvider.overrideWith(EquippedItemsNotifier.new),
+        // 統一バッジシステム（Phase 4.1）: 理科コレ用バッジを主題タグで初期化
+        badgeProvider.overrideWith((ref) {
+          final notifier = BadgeNotifier();
+          notifier.setBadgeDefinitions(unifiedBadges, subject: 'rika');
+          return notifier;
+        }),
         // 理科コレの利用時間制限（スクリーンタイム管理）ノティファイアを注入
         screenTimeProvider.overrideWith(ScreenTimeNotifier.new),
         // 理科コレの学習コンテンツ（解説記事）ノティファイアを注入
