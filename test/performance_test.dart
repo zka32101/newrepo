@@ -95,7 +95,8 @@ void main() {
 
     // ========== レンダリングパフォーマンス ==========
     testWidgets('フレームレートを測定', (WidgetTester tester) async {
-      addTearDown(tester.binding.platformDispatcher.clearViewportMetricsTestValue);
+      // Note: clearViewportMetricsTestValue was removed in newer Flutter versions
+      // addTearDown(tester.binding.platformDispatcher.clearViewportMetricsTestValue);
 
       await tester.pumpWidget(const MyApp());
 

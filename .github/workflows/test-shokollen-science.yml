@@ -43,6 +43,9 @@ jobs:
           restore-keys: |
             flutter-${{ runner.os }}-
 
+      - name: Clean dart tool cache
+        run: rm -rf .dart_tool
+
       - name: Get dependencies
         run: flutter pub get
 
