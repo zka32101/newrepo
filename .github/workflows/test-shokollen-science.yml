@@ -43,8 +43,10 @@ jobs:
           restore-keys: |
             flutter-${{ runner.os }}-
 
-      - name: Get dependencies
-        run: flutter pub get
+      - name: Clean and get dependencies
+        run: |
+          flutter clean
+          flutter pub get
 
       - name: Run 6-point tests
         run: flutter test test/six_point_test.dart -v
@@ -109,6 +111,11 @@ jobs:
           restore-keys: |
             flutter-${{ runner.os }}-
 
+      - name: Clean and get dependencies (for emulator tests)
+        run: |
+          flutter clean
+          flutter pub get
+
       - name: Create Android Virtual Device
         run: |
           $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager \
@@ -140,9 +147,6 @@ jobs:
         run: |
           $ANDROID_SDK_ROOT/platform-tools/adb devices || true
           $ANDROID_SDK_ROOT/platform-tools/adb shell getprop ro.build.version.release || true
-
-      - name: Get dependencies
-        run: flutter pub get
 
       - name: Build debug APK
         run: flutter build apk --debug --no-pub
@@ -188,8 +192,10 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Get dependencies
-        run: flutter pub get
+      - name: Clean and get dependencies
+        run: |
+          flutter clean
+          flutter pub get
 
       - name: Run analyzer
         run: flutter analyze
