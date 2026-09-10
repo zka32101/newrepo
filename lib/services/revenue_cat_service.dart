@@ -132,7 +132,13 @@ class RevenueCatService {
       if (activeEntitlements.isEmpty) return null;
 
       final expirationDate = activeEntitlements.first.expirationDate;
-      return expirationDate;
+      if (expirationDate == null) return null;
+
+      // Parse expirationDate if it's a String, otherwise return as DateTime
+      if (expirationDate is String) {
+        return DateTime.tryParse(expirationDate);
+      }
+      return expirationDate as DateTime?;
     } catch (e) {
       if (kDebugMode) {
         print('[RevenueCat] Error fetching expiration date: $e');
