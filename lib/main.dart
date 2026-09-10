@@ -7,7 +7,10 @@ import 'package:shared_core/shared_core.dart'
     show
         badgeProvider,
         unifiedBadges,
-        BadgeNotifier;
+        BadgeNotifier,
+        rankingProvider,
+        friendProvider,
+        feedbackProvider;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -32,6 +35,8 @@ import 'services/notification_service.dart';
 import 'services/weekly_report_notification_service.dart';
 import 'services/streak_service.dart';
 import 'services/ranking_service.dart';
+import 'services/firestore_ranking_service.dart';
+import 'services/firestore_friend_service.dart';
 import 'features/progress/services/daily_mystery_notification_service.dart';
 
 void main() async {
@@ -118,6 +123,17 @@ void main() async {
 
   // バッジシステム初期化: 統一バッジを主題タグで初期化
   container.read(badgeProvider.notifier).setBadgeDefinitions(unifiedBadges, subject: 'rika');
+
+  // Firestore ランキング・フレンド サービスの初期化
+  final rankingService = FirestoreRankingService();
+  final friendService = FirestoreFriendService();
+
+  // Handler を shared_core provider に注入
+  container.read(rankingProvider.notifier).setFetchHandler(rankingService.fetchRankings);
+  container.read(friendProvider.notifier)
+    ..setFetchHandler(friendService.fetchFriends)
+    ..setAddFriendHandler(friendService.addFriend)
+    ..setRemoveFriendHandler(friendService.removeFriend);
 
   runApp(
     UncontrolledProviderScope(
