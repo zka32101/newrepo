@@ -135,13 +135,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build Info
-        run: |
-          echo "ℹ️ APK Build Completed"
-          echo "📱 Direct distribution ready"
-          echo "📍 Files available in GitHub Release"
-          echo "ℹ️ For Google Play Store, consider using App Bundle""
-
       - name: Build Summary
         run: |
           echo "✅ Build Completed Successfully"
@@ -152,8 +145,13 @@ jobs:
           echo "📱 App Bundle:"
           ls -lh build/app/outputs/bundle/release/
           echo ""
-          echo "📦 Total Size:"
+          echo "📦 Total Build Size:"
           du -sh build/app/outputs/
+          echo ""
+          echo "🎉 Release ready for:"
+          echo "   - Direct APK distribution"
+          echo "   - Google Play Store (via App Bundle)"
+          echo "   - GitHub Release (auto-created)"
 
   upload-to-google-drive:
     name: Upload to Google Drive
