@@ -1,0 +1,43 @@
+name: Fix Dependencies
+
+on:
+  workflow_dispatch:  # 手動トリガー
+
+jobs:
+  fix-deps:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.47.3'
+          channel: 'stable'
+
+      - name: Get Flutter dependencies
+        run: |
+          flutter pub get
+          flutter analyze --no-fatal-infos
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "Claude Automation"
+          git config user.email "noreply@anthropic.com"
+
+          if git diff --quiet pubspec.lock; then
+            echo "pubspec.lock is already up to date"
+          else
+            git add pubspec.lock
+            git commit -m "fix: resolve flutter dependencies
+
+Co-Authored-By: Claude Haiku 4.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01FZaDAEMc8YsK5kKRmKqCym"
+            git push origin main
+          fi
