@@ -91,8 +91,8 @@ class PurchaseService {
   Future<CustomerInfo?> purchase(Package package) async {
     try {
       return await Purchases.purchasePackage(package);
-    } on PurchasesErrorCode catch (e) {
-      if (e == PurchasesErrorCode.purchaseCancelledError) return null;
+    } catch (e) {
+      debugPrint('[Purchase] purchase 失敗: $e');
       rethrow;
     }
   }

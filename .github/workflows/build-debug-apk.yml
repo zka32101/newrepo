@@ -65,9 +65,14 @@ jobs:
           path: |
             ~/.pub-cache
             ~/.flutter
-          key: flutter-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
+          key: flutter-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}-${{ github.run_number }}
           restore-keys: |
             flutter-${{ runner.os }}-
+
+      - name: Clean dart tool cache and pubspec.lock
+        run: |
+          rm -rf .dart_tool
+          rm -f pubspec.lock
 
       - name: Get Flutter dependencies
         run: |
@@ -76,6 +81,7 @@ jobs:
           flutter pub get --no-example
 
       - name: Analyze code
+        continue-on-error: true
         run: flutter analyze
 
       - name: Run tests

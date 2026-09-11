@@ -73,6 +73,65 @@ class _HomeSectionLearningState extends ConsumerState<HomeSectionLearning> {
     );
   }
 
+  // ── 学習コンテンツカード ──────────────────────────────
+  Widget _buildLessonCard(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.fromLTRB(16, 14, 16, 0),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFF81C784), Color(0xFF558B2F)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF558B2F).withOpacity(0.3),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: GestureDetector(
+        onTap: () => context.push('/learn'),
+        child: Row(
+          children: [
+            const Text('📖', style: TextStyle(fontSize: 32)),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    '学ぶ',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    '理科の知識を深掘りする',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.white.withOpacity(0.9),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Icon(
+              Icons.arrow_forward_rounded,
+              color: Colors.white.withOpacity(0.8),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   // ── 今日のテーマカード ────────────────────────────────
   Widget _buildTodayThemeCard() {
     return Container(
@@ -661,55 +720,6 @@ class _ComingSoonCard extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  // ── 学ぶカード（ふりがな対応の解説記事を表示） ───────────
-  Widget _buildLessonCard(BuildContext context) {
-    return GestureDetector(
-      onTap: () => context.push('/lessons'),
-      child: Container(
-        margin: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-        decoration: BoxDecoration(
-          color: const Color(0xFFE8F5E9),
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: const Color(0xFF4CAF50).withOpacity(0.3)),
-        ),
-        child: Row(
-          children: [
-            const Text('📖', style: TextStyle(fontSize: 22)),
-            const SizedBox(width: 10),
-            const Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '学ぶ',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF2E7D32),
-                    ),
-                  ),
-                  SizedBox(height: 4),
-                  Text(
-                    '336個のふりがなで理科を学ぶ',
-                    style: TextStyle(
-                      fontSize: 11,
-                      color: Color(0xFF558B2F),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Icon(
-              Icons.chevron_right_rounded,
-              color: const Color(0xFF4CAF50).withOpacity(0.6),
             ),
           ],
         ),

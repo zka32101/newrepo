@@ -85,7 +85,7 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
                 const SizedBox(height: 12),
                 _buildFeatureItem(
                   context,
-                  icon: Icons.infinite,
+                  icon: Icons.all_inclusive,
                   title: '無制限クイズ',
                   description: '毎日無制限にクイズができます',
                 ),

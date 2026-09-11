@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/streak_model.dart';
 import '../services/streak_service.dart';
-import '../shared/theme/app_theme.dart';
 
 final streakDataProvider = FutureProvider<StreakData>((ref) async {
   await StreakService.instance.initialize();

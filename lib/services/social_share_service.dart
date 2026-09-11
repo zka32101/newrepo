@@ -189,6 +189,16 @@ A) $correctAnswer
     }
   }
 
+  /// シェアコンテンツを汎用的にシェア（システムシェアダイアログ）
+  Future<void> shareGeneric(ShareContent content) async {
+    try {
+      await _share(content);
+    } catch (e) {
+      developer.log('Error in generic share: $e', error: e);
+      rethrow;
+    }
+  }
+
   /// Twitter に直接シェア
   Future<void> shareToTwitter(ShareContent content) async {
     try {

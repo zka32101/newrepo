@@ -52,7 +52,7 @@ class LessonDetailScreen extends ConsumerWidget {
             // =====================
             // ③ 関連ステージへのリンク
             // =====================
-            if (lesson.relatedStageId.isNotEmpty)
+            if ((lesson.relatedStageId?.isNotEmpty) ?? false)
               _buildRelatedStage(context, lesson),
 
             const SizedBox(height: 32),
@@ -62,7 +62,7 @@ class LessonDetailScreen extends ConsumerWidget {
     );
   }
 
-  /// 헤더를 구성합니다（emoji, カテゴリ, 学年, 読了時間）
+  /// ヘッダーを構成（emoji, カテゴリ, 学年, 読了時間）
   Widget _buildHeader(BuildContext context, LessonContent lesson) {
     final theme = Theme.of(context);
 
@@ -149,13 +149,14 @@ class LessonDetailScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // セクション見出し
-          FuriganaText(
-            section.heading,
-            style: theme.textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: theme.colorScheme.onSurface,
+          if (section.heading != null)
+            FuriganaText(
+              section.heading!,
+              style: theme.textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: theme.colorScheme.onSurface,
+              ),
             ),
-          ),
           const SizedBox(height: 12),
 
           // セクション本文（ふりがな対応）

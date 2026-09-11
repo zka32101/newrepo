@@ -226,7 +226,7 @@ class ShareOptionsDialog extends ConsumerWidget {
   void _shareDefault(WidgetRef ref) async {
     final content = _buildShareContent();
     try {
-      await SocialShareService.instance._share(content);
+      await SocialShareService.instance.shareGeneric(content);
     } catch (e) {
       // エラーハンドリング
     }
