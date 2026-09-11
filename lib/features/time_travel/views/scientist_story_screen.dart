@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../data/scientist_stories_data.dart';
 import '../providers/scientist_provider.dart';
 

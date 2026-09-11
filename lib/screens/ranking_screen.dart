@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../models/ranking_model.dart';
 import '../providers/ranking_provider.dart';
-import '../widgets/ranking_display_widget.dart';
-import '../widgets/tier_selector_widget.dart';
-import '../widgets/composite_filter_widget.dart';
-import '../widgets/tier_stats_widget.dart';
 import '../shared/theme/app_theme.dart';
 import '../shared/utils/responsive.dart';
+import '../widgets/composite_filter_widget.dart';
+import '../widgets/ranking_display_widget.dart';
+import '../widgets/tier_selector_widget.dart';
+import '../widgets/tier_stats_widget.dart';
 import 'add_friend_screen.dart';
 
 /// ランキング画面（Phase 4.3-4.6 Global Ranking Integration）
@@ -39,7 +40,7 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: periods.length, vsync: this);
+    _tabController = TabController(length: 1, vsync: this);
     _gradeFilter = null;
     _monthFilter = null;
   }
@@ -52,91 +53,26 @@ class _RankingScreenState extends ConsumerState<RankingScreen>
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('ランキング'),
-          centerTitle: true,
-          elevation: 0,
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.person_add_alt_1),
-              tooltip: '友達を追加',
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => const AddFriendScreen(),
-                  ),
-                );
-              },
-            ),
-          ],
-          bottom: TabBar(
-            indicatorColor: Colors.green,
-            labelColor: Colors.green,
-            unselectedLabelColor: Colors.grey,
-            onTap: (index) {
-              setState(() => _globalTabIndex = index);
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('ランキング'),
+        centerTitle: true,
+        elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.person_add_alt_1),
+            tooltip: '友達を追加',
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const AddFriendScreen(),
+                ),
+              );
             },
-            tabs: const [
-              Tab(
-                text: 'グローバル',
-                icon: Icon(Icons.public),
-              ),
-              Tab(
-                text: '教科別',
-                icon: Icon(Icons.school),
-              ),
-              Tab(
-                text: 'フレンド',
-                icon: Icon(Icons.people),
-              ),
-            ],
           ),
-        ),
-        body: TabBarView(
-          children: [
-            _buildGlobalRankingTab(),
-            _buildSubjectRankingTab(),
-            _buildFriendRankingTab(),
-          ],
-        ),
+        ],
       ),
-    );
-  }
-
-  /// グローバルランキングタブ
-  Widget _buildGlobalRankingTab() {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.public, size: 64, color: Colors.grey),
-            const SizedBox(height: 16),
-            const Text('グローバルランキングは準備中です'),
-          ],
-        ),
-      ),
-    );
-  }
-
-  /// 教科別ランキングタブ（science）
-  Widget _buildSubjectRankingTab() {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.school, size: 64, color: Colors.grey),
-            const SizedBox(height: 16),
-            const Text('教科別ランキングは準備中です'),
-          ],
-        ),
-      ),
+      body: _buildFriendRankingTab(),
     );
   }
 
@@ -639,129 +575,6 @@ class RankingStatsScreen extends ConsumerWidget {
         );
       }).toList(),
     );
-  }
-}
-
-/// グローバルランキング用カードウィジェット
-class _GlobalRankEntryCard extends StatelessWidget {
-  final int rank;
-  final dynamic entry; // GlobalRankingEntry
-  final Color color;
-  final String? subjectLabel;
-
-  const _GlobalRankEntryCard({
-    required this.rank,
-    required this.entry,
-    required this.color,
-    this.subjectLabel,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final rankMedal = _getMedalEmoji(rank);
-
-    // entry の属性を安全に取得
-    final String userName = _safeGet(entry, 'userName', 'ユーザー$rank');
-    final int score = _safeGetInt(entry, 'score', 0);
-
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 6),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      elevation: 2,
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Row(
-          children: [
-            // ランク表示（メダル）
-            SizedBox(
-              width: 50,
-              child: Text(
-                rankMedal,
-                style: const TextStyle(fontSize: 32),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            const SizedBox(width: 12),
-
-            // ユーザー情報
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    userName,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  if (subjectLabel != null)
-                    Text(
-                      subjectLabel!,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey[600],
-                      ),
-                    ),
-                  const SizedBox(height: 4),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.star,
-                        size: 16,
-                        color: color,
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        '${score}点',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: color,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  String _getMedalEmoji(int rank) {
-    return switch (rank) {
-      1 => '🥇',
-      2 => '🥈',
-      3 => '🥉',
-      _ => '${rank}位',
-    };
-  }
-
-  String _safeGet(dynamic obj, String key, String defaultValue) {
-    try {
-      if (obj is Map && obj.containsKey(key)) {
-        return obj[key].toString();
-      }
-      // Handle objects with properties
-      final value = obj?.toString() ?? defaultValue;
-      return value;
-    } catch (_) {
-      return defaultValue;
-    }
-  }
-
-  int _safeGetInt(dynamic obj, String key, int defaultValue) {
-    try {
-      if (obj is Map && obj.containsKey(key)) {
-        return (obj[key] as num).toInt();
-      }
-      return defaultValue;
-    } catch (_) {
-      return defaultValue;
-    }
   }
 }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../data/prediction_battle_data.dart';
 
 // ⑨ 親子バトル化: 同じ実験の結果を親子で予想し合い、当てた方が勝ち

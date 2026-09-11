@@ -1,6 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:io';
 
 /// スパイク: image_picker 動作確認用最小スクリーン
 /// 目的: Week 3 Day 3-4 の実装前に、プラグイン動作を先に検証

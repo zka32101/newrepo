@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../services/grade_advancement_service.dart';
+
 import '../features/profile/models/profile_model.dart';
+import '../services/grade_advancement_service.dart';
 
 /// 学年進級サービスプロバイダー
 final gradeAdvancementServiceProvider = Provider<GradeAdvancementService>((ref) {

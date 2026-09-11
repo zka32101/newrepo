@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../models/badge_model.dart';
 
 /// バッジ獲得時に表示するアニメーションダイアログ

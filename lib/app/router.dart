@@ -1,50 +1,52 @@
 import 'package:go_router/go_router.dart';
 import 'package:shared_core/shared_core.dart' show FeedbackFormPage;
+
+import '../features/ai_chat/views/ai_chat_screen.dart';
 import '../features/auth/views/splash_login_screen.dart';
-import '../features/home/views/home_screen.dart';
-import '../features/quiz/views/quiz_screen.dart';
-import '../features/quiz/views/quiz_result_screen.dart';
-import '../features/learn/views/learn_screen.dart';
-import '../features/experiments/views/experiment_detail_screen.dart';
-import '../features/profile/views/profile_select_screen.dart';
-import '../features/profile/views/profile_create_screen.dart';
+import '../features/battle/views/prediction_battle_screen.dart';
+import '../features/character/views/character_screen.dart';
+import '../features/collection/views/collection_screen.dart';
+import '../features/creature/views/creature_camera_screen.dart';
+import '../features/creature/views/creature_collection_screen.dart';
 import '../features/daily/views/daily_challenge_screen.dart';
-import '../features/review/views/review_screen.dart';
-import '../features/progress/views/today_reviews_screen.dart';
+import '../features/experiments/views/experiment_detail_screen.dart';
+import '../features/experiments/views/prediction_quiz_screen.dart';
+import '../features/experiments/views/troubleshoot_screen.dart';
+import '../features/grade_test/views/certificate_screen.dart';
+import '../features/grade_test/views/grade_test_screen.dart';
+import '../features/home/views/home_screen.dart';
+import '../features/home_lab/views/home_lab_screen.dart';
+import '../features/learn/views/learn_screen.dart';
+import '../screens/mission/mission_screen.dart';
+import '../features/lesson/views/lesson_detail_screen.dart';
+import '../features/lesson/views/lesson_screen.dart';
+import '../features/multiplayer/views/matching_waiting_screen.dart';
+import '../features/multiplayer/views/matchmaker_screen.dart';
+import '../features/multiplayer/views/multiplayer_leaderboard_screen.dart';
+import '../features/multiplayer/views/multiplayer_quiz_screen.dart';
+import '../features/onboarding/views/onboarding_screen.dart';
 import '../features/parent/views/parent_dashboard_screen.dart';
 import '../features/parent/views/praise_send_screen.dart';
 import '../features/parent/views/screen_time_settings_screen.dart';
-import '../features/test/views/comprehensive_test_screen.dart';
-import '../features/collection/views/collection_screen.dart';
-import '../features/onboarding/views/onboarding_screen.dart';
-import '../features/weekly_report/views/weekly_report_screen.dart';
-import '../features/grade_test/views/grade_test_screen.dart';
-import '../features/grade_test/views/certificate_screen.dart';
-import '../features/quiz/views/timer_quiz_screen.dart';
-import '../features/quiz/views/timer_quiz_result_screen.dart';
-import '../features/character/views/character_screen.dart';
-import '../features/experiments/views/prediction_quiz_screen.dart';
-import '../features/experiments/views/troubleshoot_screen.dart';
-import '../features/battle/views/prediction_battle_screen.dart';
-import '../features/ai_chat/views/ai_chat_screen.dart';
-import '../features/home_lab/views/home_lab_screen.dart';
-import '../features/sky/views/tonight_sky_screen.dart';
-import '../features/creature/views/creature_camera_screen.dart';
-import '../features/creature/views/creature_collection_screen.dart';
-import '../features/time_travel/views/scientist_story_screen.dart';
-import '../features/time_travel/views/scientist_collection_screen.dart';
-import '../features/weekly_challenge/views/weekly_challenge_screen.dart';
+import '../features/profile/views/profile_create_screen.dart';
+import '../features/profile/views/profile_select_screen.dart';
 import '../features/progress/views/daily_mystery_omikuji_screen.dart';
-import '../features/lesson/views/lesson_screen.dart';
-import '../features/lesson/views/lesson_detail_screen.dart';
-import '../screens/privacy_settings_screen.dart';
-import '../screens/notification_settings_screen.dart';
-import '../screens/ranking_screen.dart';
+import '../features/progress/views/today_reviews_screen.dart';
+import '../features/quiz/views/quiz_result_screen.dart';
+import '../features/quiz/views/quiz_screen.dart';
+import '../features/quiz/views/timer_quiz_result_screen.dart';
+import '../features/quiz/views/timer_quiz_screen.dart';
+import '../features/review/views/review_screen.dart';
 import '../features/settings/views/settings_screen.dart';
-import '../features/multiplayer/views/matchmaker_screen.dart';
-import '../features/multiplayer/views/matching_waiting_screen.dart';
-import '../features/multiplayer/views/multiplayer_quiz_screen.dart';
-import '../features/multiplayer/views/multiplayer_leaderboard_screen.dart';
+import '../features/sky/views/tonight_sky_screen.dart';
+import '../features/test/views/comprehensive_test_screen.dart';
+import '../features/time_travel/views/scientist_collection_screen.dart';
+import '../features/time_travel/views/scientist_story_screen.dart';
+import '../features/weekly_challenge/views/weekly_challenge_screen.dart';
+import '../features/weekly_report/views/weekly_report_screen.dart';
+import '../screens/notification_settings_screen.dart';
+import '../screens/privacy_settings_screen.dart';
+import '../screens/ranking_screen.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -91,6 +93,13 @@ class AppRouter {
               state.pathParameters['stageId'] ?? 'stage_3_001';
           return LearnScreen(stageId: stageId);
         },
+      ),
+
+      // デイリーミッション
+      GoRoute(
+        path: '/mission',
+        name: 'mission',
+        builder: (_, __) => const MissionScreen(),
       ),
 
       // 実験詳細

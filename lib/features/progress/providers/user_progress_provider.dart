@@ -1,8 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models/user_progress_model.dart';
-import '../models/badge_model.dart';
+
 import '../../profile/providers/profile_provider.dart';
+import '../models/badge_model.dart';
+import '../models/user_progress_model.dart';
 
 // 学年別ステージID一覧
 const _grade3StageIds = [

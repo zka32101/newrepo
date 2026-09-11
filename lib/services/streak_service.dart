@@ -1,6 +1,8 @@
-import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'dart:developer' as developer;
+
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../models/streak_model.dart';
 
 /// ストリーク管理サービス

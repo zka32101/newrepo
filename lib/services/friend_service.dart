@@ -1,6 +1,8 @@
+import 'dart:developer' as developer;
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'dart:developer' as developer;
+
 import '../models/friend_model.dart';
 
 /// 友達管理サービス

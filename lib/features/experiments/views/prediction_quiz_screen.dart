@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../providers/prediction_provider.dart';
 import '../widgets/prediction_result_widget.dart';
 

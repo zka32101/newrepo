@@ -1,5 +1,7 @@
 import 'dart:developer' as developer;
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../features/profile/models/profile_model.dart';
 import '../models/ranking_model.dart';
 

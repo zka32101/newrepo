@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../features/progress/providers/user_progress_provider.dart';
 
 /// ホーム画面に表示する博士キャラ（ポイントに応じてレベルアップ）

@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../shared/constants/app_colors.dart';
+
 import '../../../data/seeds/stages.dart';
+import '../../../shared/constants/app_colors.dart';
 import '../models/badge_model.dart';
 import '../models/user_progress_model.dart';
 import '../providers/user_progress_provider.dart';

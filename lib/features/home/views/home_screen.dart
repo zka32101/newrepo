@@ -7,7 +7,9 @@ import 'package:shared_core/shared_core.dart'
         kCommonShopItems,
         AppShopItem,
         screenTimeProvider,
-        ScreenTimeLimitReachedWidget;
+        ScreenTimeLimitReachedWidget,
+        FriendsListPage,
+        DailyMissionPage;
 import '../../../shared/constants/app_colors.dart';
 import '../../../data/seeds/stages.dart';
 import '../../../data/seeds/creatures.dart';
@@ -287,6 +289,44 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 onPressed: () => context.push('/parent-dashboard'),
                 icon: const Icon(Icons.shield_outlined, color: Colors.white, size: 18),
                 tooltip: '保護者ダッシュボード',
+                style: IconButton.styleFrom(
+                  backgroundColor: Colors.white.withValues(alpha: 0.2),
+                  shape: const CircleBorder(),
+                  minimumSize: const Size(44, 44),
+                ),
+              ),
+              const SizedBox(width: 6),
+              // デイリーミッション
+              IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => DailyMissionPage(
+                        primaryColor: AppColors.sciencePrimary,
+                        appTitle: '小学コレ！理科',
+                        filterSubject: 'science',
+                      ),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.assignment, color: Colors.white, size: 18),
+                tooltip: 'デイリーミッション',
+                style: IconButton.styleFrom(
+                  backgroundColor: Colors.white.withValues(alpha: 0.2),
+                  shape: const CircleBorder(),
+                  minimumSize: const Size(44, 44),
+                ),
+              ),
+              const SizedBox(width: 6),
+              // フレンドボタン（Phase 4.4 フレンド機能）
+              IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const FriendsListPage()),
+                  );
+                },
+                icon: const Icon(Icons.people, color: Colors.white, size: 18),
+                tooltip: 'フレンド',
                 style: IconButton.styleFrom(
                   backgroundColor: Colors.white.withValues(alpha: 0.2),
                   shape: const CircleBorder(),

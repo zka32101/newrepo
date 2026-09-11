@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.6+1
 
 environment:
-  sdk: ^3.5.0
+  sdk: ^3.9.0
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -40,8 +40,8 @@ dependencies:
     sdk: flutter
 
   # ============== State Management ==============
-  flutter_riverpod: ^2.4.0
-  riverpod_annotation: ^2.3.0
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.3.5
 
   # ============== Firebase ==============
   firebase_core: ^3.0.0
@@ -77,7 +77,7 @@ dependencies:
   # ============== Shared Core ==============
   shared_core:
     git:
-      url: https://github.com/org-zka32101/shared_core.git
+      url: https://github.com/zka32101/shared_core.git
       ref: main
 
   # ============== Utility ==============

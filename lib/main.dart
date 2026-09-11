@@ -1,8 +1,20 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart' show ProviderContainer, UncontrolledProviderScope;
 import 'package:shared_core/shared_core.dart'
     hide progressProvider, LearningProgress, ProgressNotifier, FirebaseService;
+import 'package:shared_core/shared_core.dart'
+    show
+        badgeProvider,
+        unifiedBadges,
+        BadgeNotifier,
+        rankingProvider,
+        friendProvider,
+        feedbackProvider,
+        missionProvider,
+        coinProvider;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -17,6 +29,7 @@ import 'features/settings/providers/theme_provider.dart';
 import 'providers/character_provider.dart';
 import 'providers/equipped_items_provider.dart';
 import 'providers/locale_provider.dart';
+import 'providers/lesson_provider.dart' show LessonNotifier, lessonProvider;
 import 'providers/screen_time_provider.dart';
 import 'services/firebase_service.dart';
 import 'services/purchase_service.dart';
@@ -26,6 +39,9 @@ import 'services/notification_service.dart';
 import 'services/weekly_report_notification_service.dart';
 import 'services/streak_service.dart';
 import 'services/ranking_service.dart';
+import 'services/firestore_ranking_service.dart';
+import 'services/firestore_friend_service.dart';
+import 'services/firestore_mission_service.dart';
 import 'features/progress/services/daily_mystery_notification_service.dart';
 
 void main() async {
@@ -82,29 +98,60 @@ void main() async {
     // 通知権限拒否・端末の通知機能未対応などでも起動は継続する
   }
 
+  final container = ProviderContainer(
+    overrides: [
+      // 理科コレのキャラクターノティファイアを注入
+      characterStateProvider.overrideWith(CharacterNotifier.new),
+      // 理科コレのショップアイテム装着状態ノティファイアを注入
+      equippedItemsProvider.overrideWith(EquippedItemsNotifier.new),
+      // 統一バッジシステム（Phase 4.1）: 理科コレ用バッジを主題タグで初期化
+      badgeProvider.overrideWith(() => BadgeNotifier()),
+      // 理科コレの利用時間制限（スクリーンタイム管理）ノティファイアを注入
+      screenTimeProvider.overrideWith(ScreenTimeNotifier.new),
+      // 理科コレの学習コンテンツ（解説記事）ノティファイアを注入
+      lessonProvider.overrideWith(LessonNotifier.new),
+      // まちがい図鑑・復習タイムカプセルの永続化リポジトリを注入
+      incorrectMonsterRepositoryProvider
+          .overrideWithValue(IncorrectMonsterRepositoryImpl(prefs)),
+      reviewTimeCapsuleRepositoryProvider
+          .overrideWithValue(ReviewTimeCapsuleRepositoryImpl(prefs)),
+      // 保存されたロケール設定を注入
+      localeProvider.overrideWith((ref) => LocaleNotifier(savedLocale)),
+      // マルチプレイ対戦（レートマッチング）: shared_core のハンドラ注入方式に
+      // Firestore デフォルト実装（rika_ プレフィックス付きコレクション）を接続
+      matchmakingHandlersProvider
+          .overrideWithValue(MultiplayerService.instance.matchmakingHandlers),
+      matchHandlersProvider
+          .overrideWithValue(MultiplayerService.instance.matchHandlers),
+    ],
+  );
+
+  // バッジシステム初期化: 統一バッジを主題タグで初期化
+  container.read(badgeProvider.notifier).setBadgeDefinitions(unifiedBadges, subject: 'rika');
+
+  // Firestore ランキング・フレンド・ミッション サービスの初期化
+  final rankingService = FirestoreRankingService();
+  final friendService = FirestoreFriendService();
+  final missionService = FirestoreMissionService();
+
+  // Handler を shared_core provider に注入
+  container.read(rankingProvider.notifier).setFetchHandler(rankingService.fetchRankings);
+  container.read(globalRankingProvider.notifier).setFetchHandler(rankingService.fetchGlobalRankings);
+  container.read(friendProvider.notifier)
+    ..setFetchHandler(friendService.fetchFriends)
+    ..setAddFriendHandler(friendService.addFriend)
+    ..setRemoveFriendHandler(friendService.removeFriend);
+
+  // Phase 4.5: デイリーミッション統一
+  // ミッション初期化: 現在のユーザー ID で初期化
+  final currentUserId = missionService.getCurrentUserId();
+  if (currentUserId != null) {
+    unawaited(container.read(missionProvider.notifier).initializeMissions(currentUserId));
+  }
+
   runApp(
-    ProviderScope(
-      overrides: [
-        // 理科コレのキャラクターノティファイアを注入
-        characterStateProvider.overrideWith(CharacterNotifier.new),
-        // 理科コレのショップアイテム装着状態ノティファイアを注入
-        equippedItemsProvider.overrideWith(EquippedItemsNotifier.new),
-        // 理科コレの利用時間制限（スクリーンタイム管理）ノティファイアを注入
-        screenTimeProvider.overrideWith(ScreenTimeNotifier.new),
-        // まちがい図鑑・復習タイムカプセルの永続化リポジトリを注入
-        incorrectMonsterRepositoryProvider
-            .overrideWithValue(IncorrectMonsterRepositoryImpl(prefs)),
-        reviewTimeCapsuleRepositoryProvider
-            .overrideWithValue(ReviewTimeCapsuleRepositoryImpl(prefs)),
-        // 保存されたロケール設定を注入
-        localeProvider.overrideWith((ref) => LocaleNotifier(savedLocale)),
-        // マルチプレイ対戦（レートマッチング）: shared_core のハンドラ注入方式に
-        // Firestore デフォルト実装（rika_ プレフィックス付きコレクション）を接続
-        matchmakingHandlersProvider
-            .overrideWithValue(MultiplayerService.instance.matchmakingHandlers),
-        matchHandlersProvider
-            .overrideWithValue(MultiplayerService.instance.matchHandlers),
-      ],
+    UncontrolledProviderScope(
+      container: container,
       child: const MyApp(),
     ),
   );

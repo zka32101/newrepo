@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../data/seeds/quiz_images_metadata.dart';
 
 /// クイズ解説に対応する画像を表示するウィジェット

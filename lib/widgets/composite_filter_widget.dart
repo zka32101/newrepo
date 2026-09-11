@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../models/ranking_model.dart';
 
 /// 複合グループフィルター選択ウィジェット

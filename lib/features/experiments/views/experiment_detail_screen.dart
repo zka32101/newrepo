@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../../shared/constants/app_colors.dart';
+
 import '../../../data/seeds/experiment_data.dart';
+import '../../../shared/constants/app_colors.dart';
 
 class ExperimentDetailScreen extends StatelessWidget {
   final String experimentId;
