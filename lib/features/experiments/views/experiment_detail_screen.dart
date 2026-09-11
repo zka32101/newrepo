@@ -1,19 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_core/providers/premium_provider.dart';
+import 'package:shared_core/widgets/premium_gate_widget.dart';
 
 import '../../../data/seeds/experiment_data.dart';
 import '../../../shared/constants/app_colors.dart';
 
-class ExperimentDetailScreen extends StatelessWidget {
+class ExperimentDetailScreen extends ConsumerWidget {
   final String experimentId;
   const ExperimentDetailScreen({super.key, required this.experimentId});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final premiumState = ref.watch(premiumProvider);
     final data = experimentData.firstWhere(
       (e) => e['id'] == experimentId,
       orElse: () => experimentData[0],
     );
+
+    // プレミアムゲーティング
+    if (!premiumState.isSubscribed) {
+      return Scaffold(
+        backgroundColor: const Color(0xFFF7F9FC),
+        appBar: AppBar(
+          title: const Text('よそうラボ'),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => context.pop(),
+          ),
+        ),
+        body: PremiumGateWidget(
+          featureName: 'よそうラボ',
+          onPremiumAccess: () {
+            // TODO: RevenueCat 購入フロー
+          },
+          child: Container(),
+        ),
+      );
+    }
 
     return Scaffold(
       backgroundColor: const Color(0xFFF7F9FC),
