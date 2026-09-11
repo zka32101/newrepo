@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../services/firebase_service.dart';
 import '../../../services/tts_service.dart';
 import '../../../shared/constants/app_colors.dart';
 import '../../../shared/widgets/furigana_text.dart';
@@ -21,6 +23,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
   late AnimationController _explanationAnim;
   late Animation<Offset> _explanationSlide;
   int? _eliminatedIndex;
+  late DateTime _quizStartTime;
 
   // 難易度ごとの絵文字
   static const _diffEmoji = ['', '⭐', '⭐⭐', '⭐⭐⭐', '⭐⭐⭐⭐', '⭐⭐⭐⭐⭐'];
@@ -28,6 +31,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
   @override
   void initState() {
     super.initState();
+    _quizStartTime = DateTime.now();
     _explanationAnim = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 400),
@@ -52,6 +56,27 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
     super.dispose();
   }
 
+  /// クイズ完了時の学習メトリクス記録
+  Future<void> _recordLearningMetrics(Duration elapsed) async {
+    try {
+      final durationMinutes = elapsed.inSeconds / 60.0;
+
+      if (!kDebugMode) {
+        await FirebaseService.recordLearningSession(
+          userId: FirebaseService.userId ?? 'anonymous',
+          durationMinutes: durationMinutes,
+        );
+        await FirebaseService.updateStreak(
+          userId: FirebaseService.userId ?? 'anonymous',
+        );
+      } else {
+        debugPrint('[Learning Metrics] Science: ${durationMinutes.toStringAsFixed(2)} minutes');
+      }
+    } catch (e) {
+      debugPrint('[Learning Metrics Error] $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final quiz = ref.watch(quizProvider);
@@ -59,6 +84,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
     // 全問終了 → 結果画面へ
     ref.listen(quizProvider, (prev, next) {
       if (!prev!.isFinished && next.isFinished) {
+        _recordLearningMetrics(DateTime.now().difference(_quizStartTime));
         context.go('/quiz-result');
       }
       // 回答した瞬間にスライドアニメーション
