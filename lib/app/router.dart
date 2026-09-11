@@ -17,6 +17,7 @@ import '../features/grade_test/views/grade_test_screen.dart';
 import '../features/home/views/home_screen.dart';
 import '../features/home_lab/views/home_lab_screen.dart';
 import '../features/learn/views/learn_screen.dart';
+import '../screens/mission/mission_screen.dart';
 import '../features/lesson/views/lesson_detail_screen.dart';
 import '../features/lesson/views/lesson_screen.dart';
 import '../features/multiplayer/views/matching_waiting_screen.dart';
@@ -92,6 +93,13 @@ class AppRouter {
               state.pathParameters['stageId'] ?? 'stage_3_001';
           return LearnScreen(stageId: stageId);
         },
+      ),
+
+      // デイリーミッション
+      GoRoute(
+        path: '/mission',
+        name: 'mission',
+        builder: (_, __) => const MissionScreen(),
       ),
 
       // 実験詳細

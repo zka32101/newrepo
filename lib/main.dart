@@ -10,7 +10,9 @@ import 'package:shared_core/shared_core.dart'
         BadgeNotifier,
         rankingProvider,
         friendProvider,
-        feedbackProvider;
+        feedbackProvider,
+        missionProvider,
+        coinProvider;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
