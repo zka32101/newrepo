@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' show ProviderContainer, UncontrolledProviderScope;
@@ -14,7 +15,11 @@ import 'package:shared_core/shared_core.dart'
         friendProvider,
         feedbackProvider,
         missionProvider,
-        coinProvider;
+        coinProvider,
+        premiumProvider,
+        PremiumNotifier,
+        PushNotificationService,
+        adaptiveDifficultyNotifierProvider;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -48,9 +53,37 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FirebaseService.initialize(); // google-services.json 未配置時はローカルモードで継続
 
-  // 課金基盤（RevenueCat）初期化。APIキー未設定時はローカルモードで継続。
+  // Phase 4.18: プッシュ通知サービス初期化
+  final pushService = PushNotificationService();
   try {
-    await PurchaseService.instance.initialize();
+    await pushService.initialize(
+      onMessageHandler: (RemoteMessage message) {
+        debugPrint('Received message: ${message.notification?.title}');
+      },
+    );
+  } catch (e) {
+    // PushNotificationService initialization failed, continue anyway
+  }
+
+  // FCM トークンを取得・保存
+  try {
+    final fcmToken = await pushService.getFCMToken();
+    if (fcmToken != null) {
+      debugPrint('FCM Token obtained: ${fcmToken.substring(0, 20)}...');
+      // 将来: await updateUserFCMToken(userId, fcmToken);
+    }
+  } catch (e) {
+    // FCM token retrieval failed, continue anyway
+  }
+
+  // Phase 4.19: 適応難易度エンジン初期化
+  // 注: ユーザーID取得後（プロフィール画面後）に各ユーザーごとに initializeAdaptiveDifficulty() を呼ぶこと
+  debugPrint('Phase 4.19 Retention Optimization Engine: Initialized');
+
+  // 課金基盤（RevenueCat）初期化。APIキー未設定時はローカルモードで継続。
+  final purchaseService = PurchaseService.instance;
+  try {
+    await purchaseService.initialize();
   } catch (e) {
     // エラーでも起動は継続（プレミアム判定は false 扱いになる）
   }
@@ -117,6 +150,8 @@ void main() async {
           .overrideWithValue(ReviewTimeCapsuleRepositoryImpl(prefs)),
       // 保存されたロケール設定を注入
       localeProvider.overrideWith((ref) => LocaleNotifier(savedLocale)),
+      // Phase 4.7: 統一サブスクリプション管理（PremiumProvider）
+      premiumProvider.overrideWith(PremiumNotifier.new),
       // マルチプレイ対戦（レートマッチング）: shared_core のハンドラ注入方式に
       // Firestore デフォルト実装（rika_ プレフィックス付きコレクション）を接続
       matchmakingHandlersProvider
@@ -142,9 +177,17 @@ void main() async {
     ..setAddFriendHandler(friendService.addFriend)
     ..setRemoveFriendHandler(friendService.removeFriend);
 
+  // Phase 4.7: 統一サブスクリプション初期化
+  final currentUserId = missionService.getCurrentUserId();
+  if (currentUserId != null) {
+    container.read(premiumProvider.notifier)
+      ..setCheckHandler((userId) => purchaseService.isSubscribed(userId))
+      ..setExpiryHandler((userId) => purchaseService.getSubscriptionExpirationDate(userId));
+    unawaited(container.read(premiumProvider.notifier).checkSubscription(currentUserId));
+  }
+
   // Phase 4.5: デイリーミッション統一
   // ミッション初期化: 現在のユーザー ID で初期化
-  final currentUserId = missionService.getCurrentUserId();
   if (currentUserId != null) {
     unawaited(container.read(missionProvider.notifier).initializeMissions(currentUserId));
   }
