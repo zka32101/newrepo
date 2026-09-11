@@ -51,6 +51,30 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
+      - name: Create google-services.json from secrets
+        env:
+          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: |
+          if [ ! -z "$GOOGLE_SERVICES_JSON" ]; then
+            echo "$GOOGLE_SERVICES_JSON" | base64 -d > android/app/google-services.json
+            echo "✅ google-services.json restored from secrets"
+          else
+            echo "⚠️  GOOGLE_SERVICES_JSON secret not found - using placeholder"
+            mkdir -p android/app
+            cat > android/app/google-services.json << 'PLACEHOLDER'
+          {
+            "type": "service_account",
+            "project_id": "shokollen-science-dev",
+            "private_key_id": "dev-key-id",
+            "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC7VJTUt9Us8cKj\n-----END PRIVATE KEY-----\n",
+            "client_email": "firebase-adminsdk-dev@shokollen-science-dev.iam.gserviceaccount.com",
+            "client_id": "123456789",
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+            "token_uri": "https://oauth2.googleapis.com/token"
+          }
+          PLACEHOLDER
+          fi
+
       - name: Run 6-point tests
         run: flutter test test/six_point_test.dart -v
 
@@ -150,6 +174,30 @@ jobs:
 
       - name: Get dependencies
         run: flutter pub get
+
+      - name: Create google-services.json from secrets
+        env:
+          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: |
+          if [ ! -z "$GOOGLE_SERVICES_JSON" ]; then
+            echo "$GOOGLE_SERVICES_JSON" | base64 -d > android/app/google-services.json
+            echo "✅ google-services.json restored from secrets"
+          else
+            echo "⚠️  GOOGLE_SERVICES_JSON secret not found - using placeholder"
+            mkdir -p android/app
+            cat > android/app/google-services.json << 'PLACEHOLDER'
+          {
+            "type": "service_account",
+            "project_id": "shokollen-science-dev",
+            "private_key_id": "dev-key-id",
+            "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC7VJTUt9Us8cKj\n-----END PRIVATE KEY-----\n",
+            "client_email": "firebase-adminsdk-dev@shokollen-science-dev.iam.gserviceaccount.com",
+            "client_id": "123456789",
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+            "token_uri": "https://oauth2.googleapis.com/token"
+          }
+          PLACEHOLDER
+          fi
 
       - name: Build debug APK
         run: flutter build apk --debug --no-pub
