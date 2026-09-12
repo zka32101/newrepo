@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,8 @@ import 'package:shared_core/shared_core.dart'
         premiumProvider,
         PremiumNotifier,
         PushNotificationService,
-        adaptiveDifficultyNotifierProvider;
+        adaptiveDifficultyNotifierProvider,
+        weeklyBonusProvider;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -184,6 +186,24 @@ void main() async {
     ..setFetchHandler(missionService.fetchMissions)
     ..setProgressHandler(missionService.updateProgress)
     ..setCompleteHandler(missionService.completeMission);
+
+  // Phase 4.20: 週次ボーナスシステム Firestore 永続化
+  final weeklyBonusRef = FirebaseFirestore.instance.collection('users').doc(currentUserId).collection('bonuses').doc('weekly');
+  container.read(weeklyBonusProvider.notifier).setPersistHandler(
+    (userId, bonusState) async {
+      try {
+        await weeklyBonusRef.set({
+          'consecutiveDays': bonusState.consecutiveDays,
+          'lastClaimedDate': bonusState.lastClaimedDate?.toIso8601String(),
+          'weeklyResetDate': bonusState.weeklyResetDate?.toIso8601String(),
+          'totalCoinsEarned': bonusState.totalCoinsEarned,
+          'updatedAt': FieldValue.serverTimestamp(),
+        }, SetOptions(merge: true));
+      } catch (e) {
+        debugPrint('Error persisting weekly bonus: $e');
+      }
+    },
+  );
 
   // Phase 4.7: 統一サブスクリプション初期化
   final currentUserId = FirebaseAuth.instance.currentUser?.uid;
