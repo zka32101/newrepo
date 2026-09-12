@@ -9,7 +9,9 @@ import 'package:shared_core/shared_core.dart'
         screenTimeProvider,
         ScreenTimeLimitReachedWidget,
         FriendsListPage,
-        DailyMissionPage;
+        DailyMissionPage,
+        WeeklyBonusWidget,
+        coinProvider;
 import '../../../shared/constants/app_colors.dart';
 import '../../../data/seeds/stages.dart';
 import '../../../data/seeds/creatures.dart';
@@ -120,6 +122,24 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
           // セクションの widget 化
           const HomeSectionAction(),      // 📅 今日のアクション
+
+          // Phase 4.20: 週次ボーナスシステム
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            child: WeeklyBonusWidget(
+              onBonusClaimed: (coins) {
+                ref.read(coinProvider.notifier).addCoins(coins);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('ボーナス $coins コイン獲得しました！🎉'),
+                    backgroundColor: Colors.green,
+                    duration: const Duration(seconds: 2),
+                  ),
+                );
+              },
+            ),
+          ),
+
           const HomeSectionRecommend(),   // 🔬 おすすめ・キャラクター
           const HomeSectionRecords(),     // 🏆 がんばりの記録
 
