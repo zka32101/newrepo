@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../constants/app_colors.dart' as AppColorsConstants;
 
@@ -78,116 +79,34 @@ class AppTheme {
   );
 
   static TextTheme _buildLightTextTheme() {
-    return const TextTheme(
-      displayLarge: TextStyle(
-        fontSize: 32,
-        fontWeight: FontWeight.bold,
-        color: Colors.black87,
-      ),
-      displayMedium: TextStyle(
-        fontSize: 28,
-        fontWeight: FontWeight.bold,
-        color: Colors.black87,
-      ),
-      displaySmall: TextStyle(
-        fontSize: 24,
-        fontWeight: FontWeight.bold,
-        color: Colors.black87,
-      ),
-      headlineMedium: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-        color: Colors.black87,
-      ),
-      headlineSmall: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.w600,
-        color: Colors.black87,
-      ),
-      titleLarge: TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.w600,
-        color: Colors.black87,
-      ),
-      titleMedium: TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w500,
-        color: Colors.black87,
-      ),
-      bodyLarge: TextStyle(
-        fontSize: 16,
-        color: Colors.black87,
-      ),
-      bodyMedium: TextStyle(
-        fontSize: 14,
-        color: Colors.black87,
-      ),
-      bodySmall: TextStyle(
-        fontSize: 12,
-        color: Colors.black54,
-      ),
-      labelLarge: TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w500,
-        color: Colors.black87,
-      ),
+    return TextTheme(
+      displayLarge: GoogleFonts.notoSansJp(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black87),
+      displayMedium: GoogleFonts.notoSansJp(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black87),
+      displaySmall: GoogleFonts.notoSansJp(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87),
+      headlineMedium: GoogleFonts.notoSansJp(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87),
+      headlineSmall: GoogleFonts.notoSansJp(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black87),
+      titleLarge: GoogleFonts.notoSansJp(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black87),
+      titleMedium: GoogleFonts.notoSansJp(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.black87),
+      bodyLarge: GoogleFonts.notoSansJp(fontSize: 16, color: Colors.black87),
+      bodyMedium: GoogleFonts.notoSansJp(fontSize: 14, color: Colors.black87),
+      bodySmall: GoogleFonts.notoSansJp(fontSize: 12, color: Colors.black54),
+      labelLarge: GoogleFonts.notoSansJp(fontSize: 12, fontWeight: FontWeight.w500, color: Colors.black87),
     );
   }
 
   static TextTheme _buildDarkTextTheme() {
-    return const TextTheme(
-      displayLarge: TextStyle(
-        fontSize: 32,
-        fontWeight: FontWeight.bold,
-        color: Colors.white,
-      ),
-      displayMedium: TextStyle(
-        fontSize: 28,
-        fontWeight: FontWeight.bold,
-        color: Colors.white,
-      ),
-      displaySmall: TextStyle(
-        fontSize: 24,
-        fontWeight: FontWeight.bold,
-        color: Colors.white,
-      ),
-      headlineMedium: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-        color: Colors.white,
-      ),
-      headlineSmall: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.w600,
-        color: Colors.white,
-      ),
-      titleLarge: TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.w600,
-        color: Colors.white,
-      ),
-      titleMedium: TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w500,
-        color: Colors.white70,
-      ),
-      bodyLarge: TextStyle(
-        fontSize: 16,
-        color: Colors.white,
-      ),
-      bodyMedium: TextStyle(
-        fontSize: 14,
-        color: Colors.white70,
-      ),
-      bodySmall: TextStyle(
-        fontSize: 12,
-        color: Colors.white54,
-      ),
-      labelLarge: TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w500,
-        color: Colors.white,
-      ),
+    return TextTheme(
+      displayLarge: GoogleFonts.notoSansJp(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
+      displayMedium: GoogleFonts.notoSansJp(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
+      displaySmall: GoogleFonts.notoSansJp(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+      headlineMedium: GoogleFonts.notoSansJp(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+      headlineSmall: GoogleFonts.notoSansJp(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white),
+      titleLarge: GoogleFonts.notoSansJp(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
+      titleMedium: GoogleFonts.notoSansJp(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.white70),
+      bodyLarge: GoogleFonts.notoSansJp(fontSize: 16, color: Colors.white),
+      bodyMedium: GoogleFonts.notoSansJp(fontSize: 14, color: Colors.white70),
+      bodySmall: GoogleFonts.notoSansJp(fontSize: 12, color: Colors.white54),
+      labelLarge: GoogleFonts.notoSansJp(fontSize: 12, fontWeight: FontWeight.w500, color: Colors.white),
     );
   }
 }
