@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_core/shared_core.dart' show WeeklyBonusWidget, coinProvider;
 
 import '../../../shared/constants/app_colors.dart';
 import '../../daily/providers/daily_challenge_provider.dart';
@@ -22,6 +23,17 @@ class HomeSectionAction extends ConsumerWidget {
         HomeSectionDivider('📅 今日のアクション'),
         _buildStreakBanner(context, ref),
         const DailyLoginBonusWidget(),
+        WeeklyBonusWidget(
+          onBonusClaimed: (coins) {
+            ref.read(coinProvider.notifier).addCoins(coins);
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('週次ボーナス獲得！ $coins コイン'),
+                duration: const Duration(seconds: 2),
+              ),
+            );
+          },
+        ),
         const PraiseReceivedWidget(),
         const WeeklyChallengeWidget(),
         _buildDailyChallengeCard(context, ref),
