@@ -37,6 +37,7 @@ import '../widgets/home_section_recommend.dart';
 import '../widgets/home_section_records.dart';
 import '../widgets/home_section_learning.dart';
 import '../widgets/home_section_discover.dart';
+import '../../coaching/widgets/ai_coaching_card.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -141,6 +142,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
 
           const HomeSectionRecommend(),   // 🔬 おすすめ・キャラクター
+
+          // Phase 4.24: AI コーチング
+          const AiCoachingCard(),
+
           const HomeSectionRecords(),     // 🏆 がんばりの記録
 
           const HomeSectionLearning(),    // 📚 学習をすすめる

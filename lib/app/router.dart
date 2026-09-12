@@ -4,6 +4,7 @@ import 'package:shared_core/shared_core.dart' show FeedbackFormPage;
 import '../features/ai_chat/views/ai_chat_screen.dart';
 import '../features/auth/views/splash_login_screen.dart';
 import '../features/battle/views/prediction_battle_screen.dart';
+import '../features/coaching/views/ai_coaching_dashboard_screen.dart';
 import '../features/character/views/character_screen.dart';
 import '../features/collection/views/collection_screen.dart';
 import '../features/creature/views/creature_camera_screen.dart';
@@ -100,6 +101,13 @@ class AppRouter {
         path: '/mission',
         name: 'mission',
         builder: (_, __) => const MissionScreen(),
+      ),
+
+      // AI コーチング
+      GoRoute(
+        path: '/ai-coaching',
+        name: 'ai-coaching',
+        builder: (_, __) => const AiCoachingDashboardScreen(),
       ),
 
       // 実験詳細
