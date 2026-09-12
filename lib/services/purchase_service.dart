@@ -78,6 +78,43 @@ class PurchaseService {
     }
   }
 
+  /// ユーザーがアクティブなサブスク状態か確認
+  ///
+  /// Phase 4.7: shared_core の [premiumProvider] ハンドラー注入用メソッド
+  /// userId パラメータはオプショナル（デフォルト ''）。
+  /// shared_core handler injection では userId を指定、内部用途では省略可能。
+  Future<bool> isSubscribed([String userId = '']) async {
+    if (!_initialized) return false;
+    try {
+      final info = await Purchases.getCustomerInfo();
+      return info.entitlements.active.containsKey(premiumEntitlementId);
+    } catch (e) {
+      debugPrint('[Purchase] isSubscribed 確認失敗: $e');
+      return false;
+    }
+  }
+
+  /// サブスクリプション有効期限を取得
+  ///
+  /// Phase 4.7: shared_core の [premiumProvider] ハンドラー注入用メソッド
+  /// userId パラメータはオプショナル（デフォルト ''）。
+  /// shared_core handler injection では userId を指定、内部用途では省略可能。
+  Future<DateTime?> getSubscriptionExpirationDate([String userId = '']) async {
+    if (!_initialized) return null;
+    try {
+      final info = await Purchases.getCustomerInfo();
+      final expirationDateString = info.entitlements.active.values
+          .firstOrNull
+          ?.expirationDate;
+      return expirationDateString != null
+          ? DateTime.tryParse(expirationDateString)
+          : null;
+    } catch (e) {
+      debugPrint('[Purchase] getSubscriptionExpirationDate 取得失敗: $e');
+      return null;
+    }
+  }
+
   Future<Offerings?> getOfferings() async {
     if (!_initialized) return null;
     try {
