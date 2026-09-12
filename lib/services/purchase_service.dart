@@ -81,8 +81,9 @@ class PurchaseService {
   /// ユーザーがアクティブなサブスク状態か確認
   ///
   /// Phase 4.7: shared_core の [premiumProvider] ハンドラー注入用メソッド
-  /// userId パラメータは shared_core との連携のため。実装では現在のユーザー情報を使用。
-  Future<bool> isSubscribed(String userId) async {
+  /// userId パラメータはオプショナル（デフォルト ''）。
+  /// shared_core handler injection では userId を指定、内部用途では省略可能。
+  Future<bool> isSubscribed([String userId = '']) async {
     if (!_initialized) return false;
     try {
       final info = await Purchases.getCustomerInfo();
@@ -96,8 +97,9 @@ class PurchaseService {
   /// サブスクリプション有効期限を取得
   ///
   /// Phase 4.7: shared_core の [premiumProvider] ハンドラー注入用メソッド
-  /// userId パラメータは shared_core との連携のため。実装では現在のユーザー情報を使用。
-  Future<DateTime?> getSubscriptionExpirationDate(String userId) async {
+  /// userId パラメータはオプショナル（デフォルト ''）。
+  /// shared_core handler injection では userId を指定、内部用途では省略可能。
+  Future<DateTime?> getSubscriptionExpirationDate([String userId = '']) async {
     if (!_initialized) return null;
     try {
       final info = await Purchases.getCustomerInfo();
