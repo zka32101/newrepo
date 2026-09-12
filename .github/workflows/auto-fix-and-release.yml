@@ -1,4 +1,4 @@
-name: Auto Fix Release and Build APK
+﻿name: Auto Fix Release and Build APK
 
 on:
   workflow_dispatch:
@@ -53,25 +53,30 @@ jobs:
       - name: Create new release with tag
         run: |
           VERSION=${{ github.event.inputs.version }}
-
           echo "📝 Creating release: $VERSION"
+
+          # Create release notes file
+          cat > /tmp/release_notes.txt << 'EOF'
+          ## Release ${{ github.event.inputs.version }}
+
+          ### ✅ Changes
+          - Fixed GitHub Actions workflow (upload-artifact v4 → v7)
+          - APK build automation enabled
+          - Production release ready
+
+          ### 📦 Build Details
+          - Flutter 3.16.0
+          - Release (Optimized)
+          - Obfuscated & split-per-ABI
+          - App Bundle for Google Play
+
+          ### 🚀 Build Status
+          Building APK automatically...
+          EOF
+
           gh release create "$VERSION" \
             --title "小学コレ！理科 $VERSION" \
-            --notes "## Release $VERSION
-
-### ✅ Changes
-- Fixed GitHub Actions workflow (upload-artifact@v3 → v4)
-- APK build automation enabled
-- Production release ready
-
-### 📦 Build Details
-- Flutter 3.16.0
-- Release (Optimized)
-- Obfuscated & split-per-ABI
-- App Bundle for Google Play
-
-### 🚀 Build Status
-Building APK automatically..." \
+            --notes-file /tmp/release_notes.txt \
             --target main
 
           echo "✅ Release created: $VERSION"
