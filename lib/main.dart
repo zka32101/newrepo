@@ -141,7 +141,7 @@ void main() async {
       // 統一バッジシステム（Phase 4.1）: 理科コレ用バッジを主題タグで初期化
       badgeProvider.overrideWith(() => BadgeNotifier()),
       // 理科コレの利用時間制限（スクリーンタイム管理）ノティファイアを注入
-      screenTimeProvider.overrideWith(ScreenTimeNotifier.new),
+      screenTimeProvider.overrideWith(() => ScreenTimeNotifier()),
       // 理科コレの学習コンテンツ（解説記事）ノティファイアを注入
       lessonProvider.overrideWith(LessonNotifier.new),
       // まちがい図鑑・復習タイムカプセルの永続化リポジトリを注入
