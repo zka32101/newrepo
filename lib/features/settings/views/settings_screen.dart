@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_core/shared_core.dart'
-    show NotificationSettingsPage, RetentionDashboard;
+    show NotificationSettingsPage, RetentionDashboard, AddFriendDialog;
 
 import '../../../shared/constants/app_colors.dart';
 import '../providers/theme_provider.dart';
@@ -57,6 +57,18 @@ class SettingsScreen extends ConsumerWidget {
                 );
               }
             },
+          ),
+          const Divider(height: 24),
+          _SectionHeader('ソーシャル'),
+          ListTile(
+            leading: const Icon(Icons.person_add, color: AppColors.sciencePrimary),
+            title: const Text('フレンドを探す'),
+            subtitle: const Text('ユーザーを検索してフレンド申請する'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => showDialog(
+              context: context,
+              builder: (context) => const AddFriendDialog(),
+            ),
           ),
           const Divider(height: 24),
           _SectionHeader('分析'),
