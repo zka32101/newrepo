@@ -65,6 +65,7 @@ extension ReviewStatusExt on ReviewStatus {
 }
 
 /// 1 回の復習スケジュール
+@JsonSerializable()
 @freezed
 class ReviewSchedule with _$ReviewSchedule {
   const factory ReviewSchedule({
@@ -111,6 +112,7 @@ class ReviewSchedule with _$ReviewSchedule {
 }
 
 /// 復習タイムカプセル（正解した問題を管理）
+@JsonSerializable()
 @freezed
 class TimeCapsule with _$TimeCapsule {
   const factory TimeCapsule({
