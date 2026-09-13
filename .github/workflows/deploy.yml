@@ -2,6 +2,9 @@ name: Build and Deploy APK
 
 on:
   push:
+    branches:
+      - claude/**
+      - main
     tags:
       - 'v*'
 
@@ -18,6 +21,12 @@ jobs:
         uses: subosito/flutter-action@44ac965b96f18d999802d4b807e3256d5a3f9fa1 # v2.16.0
         with:
           flutter-version: '3.x'
+
+      - name: Clean dependencies and cache
+        run: |
+          flutter clean
+          rm -f pubspec.lock
+          rm -rf .dart_tool/
 
       - name: Get dependencies
         run: flutter pub get
