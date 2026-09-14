@@ -78,7 +78,7 @@ dependencies:
   shared_core:
     git:
       url: https://github.com/zka32101/shared_core.git
-      ref: main
+      ref: claude/7apps-apk-build-y241bf
 
   # ============== Utility ==============
   intl: ^0.19.0
