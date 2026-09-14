@@ -21,6 +21,8 @@ class DailyStats with _$DailyStats {
 
 @freezed
 class MonthlyStats with _$MonthlyStats {
+  const MonthlyStats._();
+
   const factory MonthlyStats({
     required String month, // YYYY-MM
     required int totalQuestsCompleted,
@@ -32,8 +34,6 @@ class MonthlyStats with _$MonthlyStats {
     required int studyDaysCount, // 学習した日数
     required Map<String, dynamic> categoryStats, // {categoryId: {correct, total, accuracy}}
   }) = _MonthlyStats;
-
-  const MonthlyStats._();
 
   factory MonthlyStats.fromJson(Map<String, dynamic> json) =>
       _$MonthlyStatsFromJson(json);
