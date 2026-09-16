@@ -61,22 +61,22 @@ jobs:
             --target main \
             --notes "## Release $VERSION
 
-**Commit**: $COMMIT_SHA
+          **Commit**: $COMMIT_SHA
 
-### ✅ What's New
-- Fixed GitHub Actions workflow (upload-artifact@v3 → v4)
-- APK build automation enhanced
-- Production release ready
+          ### ✅ What's New
+          - Fixed GitHub Actions workflow (upload-artifact@v3 → v4)
+          - APK build automation enhanced
+          - Production release ready
 
-### 📦 Build Details
-- Flutter 3.16.0
-- Release Build (Optimized & Obfuscated)
-- Split-per-ABI APK generation
-- App Bundle for Google Play
+          ### 📦 Build Details
+          - Flutter 3.16.0
+          - Release Build (Optimized & Obfuscated)
+          - Split-per-ABI APK generation
+          - App Bundle for Google Play
 
-### 🚀 Build Status
-Building APK automatically...
-$(date -u '+%Y-%m-%d %H:%M:%S UTC')" \
+          ### 🚀 Build Status
+          Building APK automatically...
+          $(date -u '+%Y-%m-%d %H:%M:%S UTC')" \
             2>&1 | tee release.log
 
           echo "✅ Release created: $VERSION"
