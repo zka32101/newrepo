@@ -1,8 +1,10 @@
 import 'dart:math';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../profile/providers/profile_provider.dart';
+
 import '../../../data/seeds/sample_questions.dart';
+import '../../profile/providers/profile_provider.dart';
 
 class DailyChallengeState {
   final String date;

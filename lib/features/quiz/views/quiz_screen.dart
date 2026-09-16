@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../services/tts_service.dart';
 import '../../../shared/constants/app_colors.dart';
 import '../../../shared/widgets/furigana_text.dart';
-import '../../../services/tts_service.dart';
-import '../providers/quiz_provider.dart';
 import '../../progress/providers/user_progress_provider.dart';
+import '../providers/quiz_provider.dart';
 
 class QuizScreen extends ConsumerStatefulWidget {
   final String stageId;
@@ -170,11 +171,12 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
         children: [
           Row(
             children: [
-              GestureDetector(
-                onTap: () => context.go('/home'),
-                child: const Icon(Icons.close, color: Colors.white),
+              IconButton(
+                onPressed: () => context.go('/home'),
+                icon: const Icon(Icons.close, color: Colors.white),
+                tooltip: '閉じる',
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: 4),
               Expanded(
                 child: Text(
                   quiz.stageName,
@@ -227,7 +229,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(

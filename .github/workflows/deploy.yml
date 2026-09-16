@@ -2,6 +2,9 @@ name: Build and Deploy APK
 
 on:
   push:
+    branches:
+      - claude/**
+      - main
     tags:
       - 'v*'
 
@@ -12,12 +15,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Setup Flutter
-        uses: subosito/flutter-action@44ac965b96f18d999802d4b807e3256d5a3f9fa1 # v2.16.0
+        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
         with:
           flutter-version: '3.x'
+
+      - name: Clean dependencies and cache
+        run: |
+          flutter clean
+          rm -f pubspec.lock
+          rm -rf .dart_tool/
 
       - name: Get dependencies
         run: flutter pub get
@@ -27,3 +36,21 @@ jobs:
 
       - name: Upload APK
         run: echo "APK built and ready for deployment"
+
+  emulator-test:
+    needs: build
+    runs-on: ubuntu-latest
+    if: success()
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.x'
+      
+      - name: Run Android Emulator Tests
+        uses: zka32101/yourwish/.github/workflows/android-emulator-test.yml@main
+        with:
+          app-path: '.'
+          test-command: 'flutter test'

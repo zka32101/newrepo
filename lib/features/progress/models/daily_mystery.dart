@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'daily_mystery.freezed.dart';
 part 'daily_mystery.g.dart';
 
+@JsonSerializable()
 @freezed
 class DailyMystery with _$DailyMystery {
   const factory DailyMystery({
@@ -18,6 +19,7 @@ class DailyMystery with _$DailyMystery {
       _$DailyMysteryFromJson(json);
 }
 
+@JsonSerializable()
 @freezed
 class DailyMysteryRecord with _$DailyMysteryRecord {
   const factory DailyMysteryRecord({

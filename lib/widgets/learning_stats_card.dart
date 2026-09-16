@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../models/analytics_model.dart';
 
 const Color kPrimaryColor = Color(0xFF2E7D32);

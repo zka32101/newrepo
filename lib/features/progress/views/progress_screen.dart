@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../shared/constants/app_colors.dart';
+
 import '../../../data/seeds/stages.dart';
+import '../../../shared/constants/app_colors.dart';
 import '../models/badge_model.dart';
 import '../models/user_progress_model.dart';
 import '../providers/user_progress_provider.dart';
@@ -27,9 +29,9 @@ class ProgressScreen extends ConsumerWidget {
             _buildHeader(progress),
             _buildStatsRow(progress),
             _buildBadgeSection(context, progress),
-            _buildStageProgressSection(progress),
-            // デバッグ: リセットボタン（必要に応じて削除）
-            _buildResetButton(context, ref),
+            _buildStageProgressSection(context, progress),
+            // デバッグ専用: リリースビルドでは非表示（本番の子どもユーザーには出さない）
+            if (kDebugMode) _buildResetButton(context, ref),
             const SizedBox(height: 32),
           ],
         ),
@@ -139,7 +141,7 @@ class ProgressScreen extends ConsumerWidget {
       margin: const EdgeInsets.fromLTRB(16, 14, 16, 0),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -250,14 +252,14 @@ class ProgressScreen extends ConsumerWidget {
   }
 
   // ── 学年別進捗 ────────────────────────────────────────────
-  Widget _buildStageProgressSection(UserProgress p) {
+  Widget _buildStageProgressSection(BuildContext context, UserProgress p) {
     const grades = [3, 4, 5, 6];
 
     return Container(
       margin: const EdgeInsets.fromLTRB(16, 14, 16, 0),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(

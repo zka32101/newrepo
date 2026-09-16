@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../features/mission/providers/mission_provider.dart';
 import '../constants/app_colors.dart';
 
@@ -18,7 +19,7 @@ class MissionCardWidget extends ConsumerWidget {
         return Container(
           margin: const EdgeInsets.fromLTRB(16, 8, 16, 0),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(16),
             boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 8)],
           ),

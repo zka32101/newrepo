@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../shared/constants/app_colors.dart';
-import '../providers/profile_provider.dart';
 import '../models/profile_model.dart';
+import '../providers/profile_provider.dart';
 
 class ProfileCreateScreen extends ConsumerStatefulWidget {
   const ProfileCreateScreen({super.key});
@@ -110,8 +111,8 @@ class _ProfileCreateScreenState
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.all(24),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).cardColor,
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(28)),
                   ),

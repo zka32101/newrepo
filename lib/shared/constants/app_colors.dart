@@ -53,4 +53,17 @@ class AppColors {
     end: Alignment.bottomRight,
     colors: [Color(0xFFCD7F32), Color(0xFF8B4513)],
   );
+
+  // ============== 国語テーマ（文学的） ==============
+  static const LinearGradient literatureGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [Color(0xFF8B6F47), Color(0xFFC4A57B)],
+  );
+
+  static const LinearGradient warmLiteratureGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [Color(0xFFD4886C), Color(0xFFF5CBA7)],
+  );
 }

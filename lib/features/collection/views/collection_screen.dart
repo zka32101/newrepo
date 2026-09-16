@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../../shared/constants/app_colors.dart';
-import '../../../data/seeds/stages.dart';
+
 import '../../../data/seeds/experiment_data.dart';
-import '../../progress/providers/user_progress_provider.dart';
+import '../../../data/seeds/stages.dart';
+import '../../../shared/constants/app_colors.dart';
 import '../../progress/models/badge_model.dart';
+import '../../progress/providers/user_progress_provider.dart';
 
 class CollectionScreen extends ConsumerStatefulWidget {
   const CollectionScreen({super.key});
@@ -51,11 +52,12 @@ class _CollectionScreenState extends ConsumerState<CollectionScreen>
                     padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
                     child: Row(
                       children: [
-                        GestureDetector(
-                          onTap: () => context.go('/home'),
-                          child: const Icon(Icons.arrow_back_rounded, color: Colors.white),
+                        IconButton(
+                          onPressed: () => context.go('/home'),
+                          icon: const Icon(Icons.arrow_back_rounded, color: Colors.white),
+                          tooltip: '戻る',
                         ),
-                        const SizedBox(width: 12),
+                        const SizedBox(width: 4),
                         const Text('📚 コレクション帳',
                             style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
                         const Spacer(),

@@ -25,6 +25,27 @@
 2026-08-17: v1.0 正式版リリース 🚀
 ```
 
+```mermaid
+gantt
+    title 今後の実装ロードマップ（⑲⑪⑮ + v1.0）
+    dateFormat  YYYY-MM-DD
+    axisFormat  %m/%d
+    section ⑲ 理科おみくじ
+    実装（Days 1-5）      :q19_dev, 2026-07-01, 2026-07-06
+    ベータテスト          :q19_beta, 2026-07-10, 2026-07-16
+    本リリース            :milestone, q19_release, 2026-07-17, 0d
+    section ⑪ おうち実験キット（Phase 3-2）
+    実装（Days 1-7）      :q11_dev, 2026-07-18, 2026-07-24
+    ベータテスト + ⑲改善  :q11_beta, 2026-07-25, 2026-07-31
+    本リリース            :milestone, q11_release, 2026-08-01, 0d
+    section ⑮ 理科ディベート（Phase 3-3）
+    実装（Days 1-7）      :q15_dev, 2026-08-02, 2026-08-08
+    ベータテスト + 統合テスト :q15_beta, 2026-08-09, 2026-08-15
+    本リリース            :milestone, q15_release, 2026-08-16, 0d
+    section v1.0
+    正式版リリース         :crit, milestone, v1, 2026-08-17, 0d
+```
+
 ---
 
 ## ⑪ **おうち実験キット** (Phase 3-2)

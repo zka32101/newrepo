@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_core/shared_core.dart'
+    hide profileProvider, ProfileState, ProfileNotifier;
 import '../../../shared/constants/app_colors.dart';
 import '../../progress/providers/user_progress_provider.dart';
 import '../../profile/providers/profile_provider.dart';
@@ -15,95 +17,43 @@ class ParentDashboardScreen extends ConsumerStatefulWidget {
 
 class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
   bool _unlocked = false;
-  final _pinController = TextEditingController();
-
-  @override
-  void dispose() {
-    _pinController.dispose();
-    super.dispose();
-  }
+  bool _gateRequested = false;
 
   @override
   Widget build(BuildContext context) {
-    if (!_unlocked) return _buildPinScreen(context);
+    if (!_unlocked) {
+      // 初回ビルド後に保護者ゲートを表示する（build 中に showDialog できないため）
+      if (!_gateRequested) {
+        _gateRequested = true;
+        WidgetsBinding.instance.addPostFrameCallback((_) => _requestGate());
+      }
+      return _buildGateWaitScreen(context);
+    }
     return _buildDashboard(context);
   }
 
-  Widget _buildPinScreen(BuildContext context) {
+  Future<void> _requestGate() async {
+    final passedGate = await requireParentalGate(
+      context,
+      title: '保護者ダッシュボード',
+      description: 'これは保護者の方が確認する画面です。\n下の計算の答えを入力してください。',
+      primaryColor: AppColors.sciencePrimary,
+    );
+    if (!mounted) return;
+    if (passedGate) {
+      setState(() => _unlocked = true);
+    } else {
+      context.pop();
+    }
+  }
+
+  Widget _buildGateWaitScreen(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(gradient: AppColors.scienceGradient),
-        child: SafeArea(
+        child: const SafeArea(
           child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(32),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.shield_outlined, size: 64, color: Colors.white),
-                  const SizedBox(height: 16),
-                  const Text('保護者ダッシュボード',
-                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white)),
-                  const SizedBox(height: 8),
-                  const Text('確認のため、お子様の生まれた年を入力してください',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 13, color: Colors.white70)),
-                  const SizedBox(height: 24),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: TextField(
-                      controller: _pinController,
-                      keyboardType: TextInputType.number,
-                      maxLength: 4,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, letterSpacing: 8),
-                      decoration: const InputDecoration(
-                        hintText: '----',
-                        counterText: '',
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.symmetric(vertical: 16),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: OutlinedButton(
-                          onPressed: () => context.pop(),
-                          style: OutlinedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            side: const BorderSide(color: Colors.white),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                          ),
-                          child: const Text('もどる'),
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            // 4桁入力で解除（年度チェックは簡易）
-                            if (_pinController.text.length == 4) {
-                              setState(() => _unlocked = true);
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            foregroundColor: AppColors.sciencePrimary,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                          ),
-                          child: const Text('かくにん', style: TextStyle(fontWeight: FontWeight.bold)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            child: CircularProgressIndicator(color: Colors.white),
           ),
         ),
       ),
@@ -165,6 +115,11 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
                       const SizedBox(height: 16),
                       // アドバイス
                       _adviceCard(progress),
+                      const SizedBox(height: 16),
+                      // 利用時間制限
+                      _sectionTitle('⏰ 利用時間制限'),
+                      const SizedBox(height: 8),
+                      _screenTimeSection(context),
                       const SizedBox(height: 32),
                     ],
                   ),
@@ -269,7 +224,7 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(14),
         boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 8)],
       ),
@@ -336,7 +291,7 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 6)],
       ),
@@ -416,6 +371,48 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
             child: Text(advice, style: const TextStyle(fontSize: 13, height: 1.6, color: AppColors.textDark)),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _screenTimeSection(BuildContext context) {
+    final screenTime = ref.watch(screenTimeProvider);
+    final settings = screenTime.settings;
+    final statusText = !settings.enabled
+        ? '制限なし'
+        : settings.dailyLimitMinutes != null
+            ? '1日 ${settings.dailyLimitMinutes}分まで（今日 ${screenTime.usage.usedMinutes}分利用）'
+            : '制限なし';
+
+    return GestureDetector(
+      onTap: () => context.push('/screen-time-settings'),
+      child: Container(
+        padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          color: Theme.of(context).cardColor,
+          borderRadius: BorderRadius.circular(14),
+          boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 8)],
+        ),
+        child: Row(
+          children: [
+            Icon(
+              settings.enabled ? Icons.hourglass_bottom_rounded : Icons.all_inclusive_rounded,
+              color: AppColors.sciencePrimary,
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('1日の利用時間', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+                  const SizedBox(height: 2),
+                  Text(statusText, style: const TextStyle(fontSize: 12, color: AppColors.textGray)),
+                ],
+              ),
+            ),
+            const Icon(Icons.chevron_right_rounded, color: AppColors.textGray),
+          ],
+        ),
       ),
     );
   }

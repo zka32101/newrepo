@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../shared/constants/app_colors.dart';
+
 class PredictionStepWidget extends StatelessWidget {
   final String question;
   final List<String> choices;
@@ -41,9 +43,7 @@ class PredictionStepWidget extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 80),
-              ...choices.asMap().entries.map((entry) {
-                final index = entry.key;
-                final choice = entry.value;
+              ...choices.map((choice) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   child: SizedBox(
@@ -58,14 +58,18 @@ class PredictionStepWidget extends StatelessWidget {
                           horizontal: 40,
                           vertical: 20,
                         ),
-                        backgroundColor: Colors.blue.shade400,
+                        backgroundColor: AppColors.sciencePrimary,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
                       child: Text(
                         choice,
-                        style: const TextStyle(
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ) ?? const TextStyle(
                           fontSize: 18,
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
@@ -74,7 +78,7 @@ class PredictionStepWidget extends StatelessWidget {
                     ),
                   ),
                 );
-              }).toList(),
+              }),
               const SizedBox(height: 40),
               Text(
                 '※ どちらが正しいと思う？',

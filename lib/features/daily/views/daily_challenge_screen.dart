@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../features/progress/providers/user_progress_provider.dart';
 import '../../../shared/constants/app_colors.dart';
 import '../../../shared/widgets/furigana_text.dart';
-import '../../../features/progress/providers/user_progress_provider.dart';
 import '../providers/daily_challenge_provider.dart';
 
 class DailyChallengeScreen extends ConsumerStatefulWidget {
@@ -60,11 +61,12 @@ class _DailyChallengeScreenState extends ConsumerState<DailyChallengeScreen> {
                 children: [
                   Row(
                     children: [
-                      GestureDetector(
-                        onTap: () => context.pop(),
-                        child: const Icon(Icons.close, color: Colors.white),
+                      IconButton(
+                        onPressed: () => context.pop(),
+                        icon: const Icon(Icons.close, color: Colors.white),
+                        tooltip: '閉じる',
                       ),
-                      const SizedBox(width: 12),
+                      const SizedBox(width: 4),
                       const Expanded(
                         child: Text('⚡ デイリーチャレンジ',
                             style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
@@ -96,7 +98,7 @@ class _DailyChallengeScreenState extends ConsumerState<DailyChallengeScreen> {
                       width: double.infinity,
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(16),
                         boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.06), blurRadius: 10)],
                       ),

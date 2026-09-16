@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../../shared/constants/app_colors.dart';
-import '../../../data/seeds/stages.dart';
+
 import '../../../data/seeds/experiment_data.dart';
+import '../../../data/seeds/stages.dart';
+import '../../../shared/constants/app_colors.dart';
 import '../../progress/providers/user_progress_provider.dart';
 
 /// まなぶタブ - 全学年ステージ一覧
@@ -138,7 +139,7 @@ class _LearnTabScreenState extends ConsumerState<LearnTabScreen> {
             margin: const EdgeInsets.only(bottom: 10),
             padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(14),
               border: Border.all(color: Colors.orange.shade200),
               boxShadow: [
@@ -294,7 +295,7 @@ class _LearnStageTile extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 10),
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
             color: isCleared

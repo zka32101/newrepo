@@ -1,7 +1,9 @@
 import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
-import '../daily_mysteries_data.dart';
+
 import '../../models/daily_mystery.dart';
+import '../daily_mysteries_data.dart';
 
 abstract class DailyMysteryRepository {
   Future<DailyMystery?> getTodayMystery();

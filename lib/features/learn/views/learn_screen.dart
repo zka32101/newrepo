@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../../data/seeds/learn_content_data.dart';
+import '../../../data/seeds/stages.dart';
 import '../../../shared/constants/app_colors.dart';
 import '../../../shared/widgets/furigana_text.dart';
-import '../../../data/seeds/stages.dart';
-import '../../../data/seeds/learn_content_data.dart';
 import '../../progress/providers/user_progress_provider.dart';
 
 /// まなぶモード - ステージの学習ページ
@@ -410,7 +411,7 @@ class _SectionCardState extends State<_SectionCard>
           child: Container(
             margin: const EdgeInsets.only(bottom: 14),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
@@ -557,7 +558,7 @@ class _SectionCardState extends State<_SectionCard>
           child: Container(
             margin: const EdgeInsets.only(bottom: 14),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(

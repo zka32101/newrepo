@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../shared/utils/app_logger.dart';
-import '../data/seeds/stages.dart';
-import '../data/seeds/sample_questions.dart';
+
 import '../data/seeds/creatures.dart';
 import '../data/seeds/detailed_explanations.dart';
+import '../data/seeds/sample_questions.dart';
+import '../data/seeds/stages.dart';
+import '../shared/utils/app_logger.dart';
 
 /// Firestore へのデータシーディングサービス
 /// 開発時のみ使用（本番環境ではコメントアウト）

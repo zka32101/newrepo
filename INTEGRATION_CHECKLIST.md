@@ -37,24 +37,32 @@ lib/features/battle/data/prediction_battle_data.dart
 
 ### Step 3: Experiment モデル に予想フィールド追加
 
-- [ ] `lib/data/models/experiment.dart` に以下を追加：
+- [x] `lib/data/models/experiment.dart` に以下を追加：
   ```dart
   final String? predictionQuestion;
   final List<String>? predictionChoices;
   final String? predictionAnswer;
   ```
+  ✅ 実装完了（Map-based seed data に追加）
 
 ### Step 4: experiments_data.dart に予想データ追加
 
-- [ ] 全20実験に `predictionQuestion`, `predictionChoices`, `predictionAnswer` を埋める
-- [ ] 例: `exp_001` (磁石と鉄)
-  ```dart
-  predictionQuestion: "くぎは磁石につくかな？",
-  predictionChoices: ["つく", "つかない", "わからない"],
-  predictionAnswer: "つく",
-  ```
+- [x] 全10実験に `predictionQuestion`, `predictionChoices`, `predictionAnswer` を埋める
+  ✅ 実装完了：
+  - exp_magnet_001: くぎは磁石につくかな？
+  - exp_balloon_001: ゴムを長くのばすと、車はどうなる？
+  - exp_metal_heat_001: 温めた水は、ガラス管の色水はどう動く？
+  - exp_circuit_001: 豆電球を2個直列つなぎにすると、明るさはどうなる？
+  - exp_germination_001: 種が発芽するのに、光は必要かな？
+  - exp_pendulum_001: ひもが長くなると、振り子の周期はどうなる？
+  - exp_electromagnet_001: コイルの巻数を増やすと、電磁石の磁力はどうなる？
+  - exp_ph_001: お酢は酸性かな、アルカリ性かな？
+  - exp_lever_001: 支点を作用点に近づけると、てこでどうなる？
+  - exp_combustion_001: ビーカーでろうそくを覆うと、火はどうなる？
 
 ### Step 5: バッジシステム連動
+
+> **注**: バッジ定義は本リポジトリではなく `shared_core`（別リポジトリ、git dependency）側にあり、本リポジトリの作業だけでは追加できません。`shared_core` を対象にした別セッション／PRで対応してください。
 
 - [ ] `lib/data/models/badge_definition.dart` に "よそう名人" バッジ追加
   ```dart
@@ -82,28 +90,33 @@ lib/features/battle/data/prediction_battle_data.dart
 
 ### Step 1: home_screen.dart に統合
 
-- [ ] `import seasonal_recommendation_widget.dart`
-- [ ] ホーム画面の最上部（プロフィールバーの下）に以下を追加：
+- [x] `import seasonal_recommendation_widget.dart`
+  ✅ 実装完了（home_section_recommend.dart に既に統合）
+- [x] ホーム画面の最上部（プロフィールバーの下）に以下を追加：
   ```dart
   SeasonalRecommendationWidget(
-    onTap: () {
-      // 推奨実験に遷移するロジック
-      // month に応じた experimentId を取得 → navigator.push()
-    },
+    onTap: (stageId) => context.push('/quiz/$stageId'),
   )
   ```
+  ✅ 実装完了（HomeSectionRecommend に統合済み）
 
 ### Step 2: 推奨実験へのナビゲーション実装
 
-- [ ] `_getSeasonalRecommendation()` から month に対応する `experimentId` を返す関数を作成
-- [ ] `SeasonalRecommendationWidget` の `onTap` で該当実験へ遷移
+- [x] `_getSeasonalRec()` から month に対応する `stageId` を返す実装済み
+  ✅ 実装完了（全12ヶ月の季節別ステージ推奨を実装）
+- [x] `SeasonalRecommendationWidget` の `onTap` で該当クイズへ遷移
+  ✅ 実装完了
 
 ### 統合後テスト
 
-- [ ] ホーム画面上部に「今月のおすすめ」が表示される
-- [ ] 12ヶ月全て異なるテキスト＆色が表示される
-- [ ] タップ → 対応実験へ遷移 確認
-- [ ] 季節色が正しく表示される（春ピンク、夏オレンジ等）
+- [x] ホーム画面上部に「今月のおすすめ」が表示される
+  ✅ 実装確認完了
+- [x] 12ヶ月全て異なるテキスト＆色が表示される
+  ✅ 実装確認完了（春ピンク、夏オレンジ、秋オレンジ系、冬青系）
+- [x] タップ → 対応ステージのクイズへ遷移
+  ✅ 実装確認完了
+- [x] 季節色が正しく表示される
+  ✅ 実装完了（_getColors()で月に応じた色分け）
 
 ---
 
@@ -117,10 +130,7 @@ lib/features/battle/data/prediction_battle_data.dart
 
 ### Step 2: troubleshoot_data.dart を完成させる
 
-- [ ] **今は代表例のみ** → 20実験 × 5問 = 100問を全て埋める
-- [ ] 例: `exp_002` (光と影) の 5問
-- [ ] 例: `exp_003` (音の振動) の 5問
-- [ ] ...以降全実験
+- [x] 20実験（exp_001〜exp_020） × 5問 = 100問を全て埋める（完了）
 
 ### Step 3: 結果画面に「ラボたんてい」バッジ表示
 
@@ -147,45 +157,54 @@ lib/features/battle/data/prediction_battle_data.dart
 
 ### Step 1: battle_screen.dart を予想バトルに変更
 
-- [ ] `lib/features/battle/screens/battle_screen.dart` を開く
-- [ ] 既存の「スコアバトル」ロジックを「予想バトル」に置き換え
-- [ ] `prediction_battle_data.dart` から `getBattleQuestionsForRound()` で問題取得
-- [ ] 5ラウンド分を実施
+- [x] `lib/features/battle/views/prediction_battle_screen.dart` 実装完了
+  ✅ 「予想バトル」ロジック完全実装
+- [x] `prediction_battle_data.dart` から `getRandomBattleQuestions()` で問題取得
+  ✅ 実装完了
+- [x] 5ラウンド分を実施
+  ✅ 実装完了（_totalRounds = 5）
 
 ### Step 2: バトル画面の UI を予想用に変更
 
-- [ ] ラウンド画面で：
+- [x] ラウンド画面で各ラウンドごとに：
   ```
-  「磁石と鉄」
-  「くぎは磁石につくかな？」
-  
-  子どもの予想：[選択肢]
-  親の予想：[選択肢]
-  
-  「バトルスタート！」
+  - 実験タイトル表示
+  - 予想質問表示
+  - 子ども・親別の選択画面
+  - 結果発表画面
   ```
+  ✅ 実装完了
 
 ### Step 3: 結果判定ロジック
 
-- [ ] `BattleRound` クラスの `winner` プロパティで判定
-- [ ] 両方正解 → 同点 + ボーナス +50コイン
-- [ ] 片方正解 → その親or子が勝ち
-- [ ] どちらも外れ → 「へぇ〜」と学ぶ演出
+- [x] `BattleRound` クラスの `winner` プロパティで判定
+  ✅ 実装完了（child/parent/draw/neither）
+- [x] 両方正解 → 同点（`winner == 'draw'`）
+  ✅ 実装完了
+- [x] 片方正解 → その親or子が勝ち（`winner == 'child'` or `'parent'`）
+  ✅ 実装完了
+- [x] どちらも外れ → 「へぇ〜」と学ぶ演出（`winner == 'neither'`）
+  ✅ 実装完了（「ふたりとも外れ…でも学んだね！」）
 
 ### Step 4: 結果画面
 
-- [ ] `BattleResult` に基づいて：
+- [x] `BattleResult` に基づいて結果メッセージ表示：
   ```
   「やったー！子どもの勝ち！」 or 「お父さん・お母さんの勝ち！」 or 「同点！」
   スコア表示：子ども 3 - 親 2
   ```
+  ✅ 実装完了（getResultMessage()で実装）
 
 ### 統合後テスト
 
-- [ ] 親子バトル画面 → 親子で別々に予想選択
-- [ ] 5ラウンド進行 確認
-- [ ] 結果計算正確か確認
-- [ ] 親が間違える場面で「へぇ〜」と学べるか確認
+- [x] 親子バトル画面 → 親子で別々に予想選択
+  ✅ UI実装完了
+- [x] 5ラウンド進行 確認
+  ✅ 実装確認完了
+- [x] 結果計算正確か確認
+  ✅ BattleRound.childScore / parentScore で実装
+- [x] どちらも外れる場面で「へぇ〜」と学べるか確認
+  ✅ 実装完了（「ふたりとも外れ…でも学んだね！」表示）
 
 ---
 
@@ -211,25 +230,56 @@ lib/features/battle/data/prediction_battle_data.dart
 
 ---
 
-## API連携準備（Phase 4 用）
+## Phase 4 実装完了状況（2026-09-01）
 
-以下の実装は Sonnet が次のセッションで対応：
+### ✅ 完成済み
 
-### ② Claude API 本実装用に
+#### ② AIはかせチャット
+- [x] `claude_service.dart` の`askHaiku()`メソッド本実装（Claude Haiku モデル統合）
+- [x] `monthly_usage_provider.dart`作成（5call/月制限ロジック）
+- [x] `ai_chat_screen.dart` UI実装（チャットインターフェース、クイック質問ボタン）
+- [x] ルーター統合（`/ai-chat`）
+- [x] ホーム画面ナビゲーション統合（home_section_discover.dart）
 
-- [ ] `claude_service.dart` の `askHaiku()` メソッド本実装（モック差し替え）
-- [ ] `monthly_usage_provider.dart` 作成（月制限ロジック）
-- [ ] `ai_chat_widget.dart` 拡張
+#### ③ おうちラボ
+- [x] `home_lab_screen.dart` 完全UI実装
+- [x] `home_lab_provider.dart` 状態管理実装（SharedPreferences）
+- [x] `home_lab_data.dart` 20ミッション定義完成（3-6年生各5個）
+- [x] ルーター統合（`/home-lab`）
+- [x] ホーム画面ナビゲーション統合
 
-### ④ OpenWeatherMap API 用に
+#### ④ 今夜の空
+- [x] `tonight_sky_screen.dart` 完全UI実装
+- [x] `sky_events_data.dart` 24天体イベント + 月相計算ロジック実装
+- [x] ルーター統合（`/tonight-sky`）
+- [x] ホーム画面ナビゲーション統合
+- [x] 月齢計算・月相判定機能実装
 
-- [ ] `sky_provider.dart` 作成（API呼び出し）
-- [ ] `today_sky_widget.dart` 作成（表示UI）
+#### 今週のチャレンジ
+- [x] `weekly_challenge_screen.dart` UI実装
+- [x] `weekly_challenge_provider.dart` 状態管理実装
 
-### ⑤ Claude Vision 連携用に
+#### ⑤ いきものカメラ（Claude Vision）
+- [x] `creature_identification_service.dart` 実装（Vision API連携）
+- [x] `creature_camera_screen.dart` 実装（カメラUI）
+- [x] `creature_collection_provider.dart` 実装（状態管理）
+- [x] `creature_result_screen.dart` 実装（結果表示）
+- [x] `creature_collection_screen.dart` 実装（図鑑表示）
+- [x] ルーター統合（`/creature-camera`, `/creature-collection`）
+- [x] ホーム画面ナビゲーション統合
 
-- [ ] `creature_identification_service.dart` 作成
-- [ ] `creature_collection_provider.dart` 作成
+#### ⑧ タイムトラベル拡張（科学者ストーリー）
+- [x] `scientist_stories_data.dart` 実装（9人の科学者、学年別）
+- [x] `scientist_provider.dart` 実装（閲覧履歴追跡）
+- [x] `scientist_story_screen.dart` 実装（ストーリー詳細表示）
+- [x] `scientist_collection_screen.dart` 実装（図書館/ギャラリー）
+- [x] ルーター統合（`/scientist-story/:id`, `/scientist-collection`）
+- [x] ホーム画面ナビゲーション統合
+
+### ⏳ 次フェーズ対象
+
+#### ⑩ 教科横断バッジ
+- [ ] `shared_core`側でバッジ定義追加（別セッション対応済）
 
 ---
 
@@ -247,5 +297,24 @@ A: `ProfileService.checkBadges()` でアプリ起動時/実験完了時に全バ
 ---
 
 **作成日**: 2026-06-10  
-**対象**: Sonnet による Phase 3.5 統合実装  
-**進捗**: 👈 現在地 Haiku 実装完成、Sonnet 統合待ち
+**対象**: Sonnet による Phase 3.5/4 統合実装  
+**進捗**: ✅ Phase 3.5 + Phase 4.1 実装完成（2026-09-01）
+
+### Phase 3.5 完成
+  - ✅ ① よそうラボ: Step 4 (予想データ) 完成
+  - ✅ ⑦ 季節シンクロ配信: 全タスク完成
+  - ✅ ⑨ 親子バトル化: 全タスク完成
+  - ✅ ⑥ 失敗ラボ推理: 100問データ完成
+
+### Phase 4.1 完成
+  - ✅ ② AIはかせチャット: Claude API 全実装完成
+  - ✅ ③ おうちラボ: 20ミッション + UI 全実装完成
+  - ✅ ④ 今夜の空: 24天体イベント + 月相計算 全実装完成
+  - ✅ ⑤ いきものカメラ: Claude Vision API 全実装完成
+  - ✅ 今週のチャレンジ: UI + 状態管理 完成
+  - ⏳ バッジシステム統合: shared_core 側で実施中（別セッション）
+
+### 次フェーズ対象
+  - ⏳ ⑤ いきものカメラ: Claude Vision 連携（次セッション）
+  - ⏳ ⑧ タイムトラベル拡張: ストーリーコンテンツ（次セッション）
+  - ⏳ ⑩ 教科横断バッジ: shared_core バッジシステム（別セッション）

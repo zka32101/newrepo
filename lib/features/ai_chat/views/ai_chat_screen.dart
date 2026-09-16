@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../services/claude_service.dart';
+
 import '../providers/monthly_usage_provider.dart';
+import '../services/claude_service.dart';
 
 // ② AIはかせチャット: 理科の質問をAIに聞けるチャット画面
 class AiChatScreen extends ConsumerStatefulWidget {
@@ -18,6 +19,8 @@ class _AiChatScreenState extends ConsumerState<AiChatScreen> {
   bool _isLoading = false;
   final _claudeService = ClaudeService();
 
+  // メモリリーク防止: 最大200メッセージに制限
+  static const int _maxMessages = 200;
   static const List<String> _quickQuestions = [
     '🧲 磁石はなぜくっつくの？',
     '🌱 植物はどうして緑なの？',
@@ -54,11 +57,23 @@ class _AiChatScreenState extends ConsumerState<AiChatScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFF0F4FF),
       appBar: AppBar(
-        title: const Row(
+        title: Row(
           children: [
-            Text('🔬', style: TextStyle(fontSize: 22)),
-            SizedBox(width: 8),
-            Text('りかハカセ'),
+            // Phase 1: Claude mascot image integration
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                'lib/assets/images/features/ai_chat/claude_mascot.svg',
+                width: 36,
+                height: 36,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return const Text('🔬', style: TextStyle(fontSize: 22));
+                },
+              ),
+            ),
+            const SizedBox(width: 8),
+            const Text('りかハカセ'),
           ],
         ),
         backgroundColor: const Color(0xFF5C6BC0),
@@ -212,7 +227,7 @@ class _AiChatScreenState extends ConsumerState<AiChatScreen> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(16),
             ),
             child: const Row(
@@ -246,7 +261,7 @@ class _AiChatScreenState extends ConsumerState<AiChatScreen> {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(color: const Color(0xFF5C6BC0).withOpacity(0.4)),
               ),
@@ -304,20 +319,19 @@ class _AiChatScreenState extends ConsumerState<AiChatScreen> {
             ),
           ),
           const SizedBox(width: 8),
-          GestureDetector(
-            onTap: state.isLimitReached || _isLoading
+          IconButton(
+            onPressed: state.isLimitReached || _isLoading
                 ? null
                 : () => _sendMessage(_controller.text),
-            child: Container(
-              width: 44,
-              height: 44,
-              decoration: BoxDecoration(
-                color: state.isLimitReached || _isLoading
-                    ? Colors.grey.shade300
-                    : const Color(0xFF5C6BC0),
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(Icons.send, color: Colors.white, size: 20),
+            icon: const Icon(Icons.send, color: Colors.white, size: 20),
+            tooltip: '送信',
+            style: IconButton.styleFrom(
+              backgroundColor: state.isLimitReached || _isLoading
+                  ? Colors.grey.shade300
+                  : const Color(0xFF5C6BC0),
+              disabledBackgroundColor: Colors.grey.shade300,
+              shape: const CircleBorder(),
+              minimumSize: const Size(44, 44),
             ),
           ),
         ],
@@ -329,24 +343,30 @@ class _AiChatScreenState extends ConsumerState<AiChatScreen> {
     text = text.trim();
     if (text.isEmpty || _isLoading) return;
 
+    // 事前チェックはあくまで表示上の最適化（無駄な送信を減らす）。
+    // 実際の上限判定は Cloud Functions 側（askScience）が行うため、
+    // ここでの判定をすり抜けても課金上の実害はない。
     final usageNotifier = ref.read(monthlyUsageProvider.notifier);
-    final canSend = await usageNotifier.canSend();
-    if (!canSend) return;
+    if (ref.read(monthlyUsageProvider).isLimitReached) return;
 
     _controller.clear();
     setState(() {
       _messages.add(_ChatMessage(text: text, isUser: true));
       _isLoading = true;
+      // メモリリーク防止: 古いメッセージを削除
+      if (_messages.length > _maxMessages) {
+        _messages.removeRange(0, _messages.length - _maxMessages);
+      }
     });
     _scrollToBottom();
 
     try {
-      final reply = await _claudeService.askHaiku(text);
-      // 応答が得られたときだけ利用回数を消費する（通信/APIエラー時は消費しない）
-      await usageNotifier.recordUsage();
+      final result = await _claudeService.askHaiku(text);
+      // サーバーが返した最新の残り回数をそのまま反映する
+      usageNotifier.applyServerRemaining(result.remaining);
       if (!mounted) return;
       setState(() {
-        _messages.add(_ChatMessage(text: reply, isUser: false));
+        _messages.add(_ChatMessage(text: result.reply, isUser: false));
         _isLoading = false;
       });
     } catch (e) {

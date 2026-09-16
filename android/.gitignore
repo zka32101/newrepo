@@ -1,8 +1,7 @@
-gradle-wrapper.jar
+# gradle-wrapper.jar IS committed to git for reproducible builds
+# but gradlew/gradlew.bat are also committed
 /.gradle
 /captures/
-/gradlew
-/gradlew.bat
 /local.properties
 GeneratedPluginRegistrant.java
 .cxx/

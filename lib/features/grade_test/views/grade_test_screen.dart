@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../../shared/constants/app_colors.dart';
-import '../../../shared/widgets/furigana_text.dart';
+
 import '../../../data/seeds/sample_questions.dart';
 import '../../../data/seeds/stages.dart';
+import '../../../shared/constants/app_colors.dart';
+import '../../../shared/widgets/furigana_text.dart';
 
 class GradeTestScreen extends ConsumerStatefulWidget {
   const GradeTestScreen({super.key});
@@ -79,17 +80,32 @@ class _GradeTestScreenState extends ConsumerState<GradeTestScreen> {
           gradient: AppColors.scienceGradient,
         ),
         child: SafeArea(
-          child: Center(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.science,
-                    color: Colors.white,
-                    size: 64,
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8, top: 8),
+                  child: IconButton(
+                    icon: const Icon(Icons.arrow_back_ios_new,
+                        color: Colors.white),
+                    onPressed: () => Navigator.pop(context),
+                    tooltip: '戻る',
                   ),
+                ),
+              ),
+              Expanded(
+                child: Center(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.science,
+                          color: Colors.white,
+                          size: 64,
+                        ),
                   const SizedBox(height: 16),
                   const Text(
                     '学年末まとめテスト',
@@ -195,9 +211,12 @@ class _GradeTestScreenState extends ConsumerState<GradeTestScreen> {
                       ),
                     ),
                   ),
-                ],
+                      ],
+                    ),
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),

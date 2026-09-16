@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../shared/constants/app_colors.dart';
 import '../../../shared/widgets/furigana_text.dart';
 import '../providers/praise_provider.dart';
@@ -191,7 +192,7 @@ class _PraiseDialogState extends State<_PraiseDialog>
         child: Container(
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(24),
             boxShadow: [
               BoxShadow(

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../../shared/constants/app_colors.dart';
-import '../../../shared/widgets/furigana_text.dart';
+
 import '../../../data/seeds/sample_questions.dart';
 import '../../../data/seeds/stages.dart';
+import '../../../shared/constants/app_colors.dart';
+import '../../../shared/widgets/furigana_text.dart';
 import '../../progress/providers/user_progress_provider.dart';
 
 class ReviewScreen extends ConsumerStatefulWidget {
@@ -119,7 +120,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
               width: double.infinity,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(color: Colors.red.shade200),
                 boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 8)],

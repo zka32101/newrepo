@@ -33,6 +33,7 @@ extension EvolutionStateExt on EvolutionState {
   }[this]!;
 }
 
+@JsonSerializable()
 @freezed
 class IncorrectMonster with _$IncorrectMonster {
   const factory IncorrectMonster({

@@ -1,8 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models/user_progress_model.dart';
-import '../models/badge_model.dart';
+
 import '../../profile/providers/profile_provider.dart';
+import '../models/badge_model.dart';
+import '../models/user_progress_model.dart';
 
 // 学年別ステージID一覧
 const _grade3StageIds = [
@@ -237,6 +238,7 @@ class UserProgressNotifier extends AsyncNotifier<UserProgress> {
       case 'streak_7':        return p.streakDays >= 7;
       case 'streak_14':       return p.streakDays >= 14;
       case 'streak_30':       return p.streakDays >= 30;
+      case 'streak_100':      return p.streakDays >= 100;
       // 満点
       case 'perfect_score':   return p.clearedStages.values.any((s) => s == 100);
       // ポイント

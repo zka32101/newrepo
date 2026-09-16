@@ -57,6 +57,14 @@ const List<BadgeModel> allBadges = [
     category: BadgeCategory.streak,
     requiredCount: 30,
   ),
+  BadgeModel(
+    id: 'streak_100',
+    title: '伝説の継続者',
+    description: '100日間連続で学習した',
+    emoji: '🌟',
+    category: BadgeCategory.streak,
+    requiredCount: 100,
+  ),
 
   // ── 満点 ────────────────────────────────────────────────────
   BadgeModel(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+
 import '../../../shared/constants/app_colors.dart';
 import '../models/explanation_model.dart';
 import '../models/question_model.dart';
@@ -619,7 +620,7 @@ class _SectionCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -824,8 +825,8 @@ class _VideoCardState extends State<_VideoCard> {
           Container(
             padding:
                 const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-            decoration: const BoxDecoration(
-              color: Colors.white,
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
               borderRadius:
                   BorderRadius.vertical(bottom: Radius.circular(12)),
             ),

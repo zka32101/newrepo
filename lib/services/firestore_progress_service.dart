@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+
 import '../features/progress/models/user_progress_model.dart';
 import 'firebase_service.dart';
 

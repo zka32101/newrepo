@@ -67,3 +67,15 @@ ios/Flutter/ephemeral/
 # Crash dumps
 hs_err_pid*
 *.mdmp
+
+# Cloud Functions (functions/)
+functions/node_modules/
+functions/lib/
+functions/.runtimeconfig.json
+firebase-debug.log
+firebase-debug.*.log
+.firebase/
+.firebaserc
+# Keystore files (managed via GitHub Secrets)
+release-keystore.jks
+keystore.b64

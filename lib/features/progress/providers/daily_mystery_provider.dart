@@ -1,7 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../data/repositories/daily_mystery_repository.dart';
+
 import '../data/daily_mysteries_data.dart';
+import '../data/repositories/daily_mystery_repository.dart';
 import '../models/daily_mystery.dart';
 
 final sharedPreferencesProvider =

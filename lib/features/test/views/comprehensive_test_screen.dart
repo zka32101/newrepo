@@ -1,11 +1,13 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../../shared/constants/app_colors.dart';
-import '../../../shared/widgets/furigana_text.dart';
+
 import '../../../data/seeds/sample_questions.dart';
 import '../../../data/seeds/stages.dart';
+import '../../../shared/constants/app_colors.dart';
+import '../../../shared/widgets/furigana_text.dart';
 import '../../progress/providers/user_progress_provider.dart';
 
 class ComprehensiveTestScreen extends ConsumerStatefulWidget {
@@ -72,7 +74,7 @@ class _ComprehensiveTestScreenState
                       width: double.infinity,
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(16),
                         boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 8)],
                       ),
@@ -174,11 +176,12 @@ class _ComprehensiveTestScreenState
         children: [
           Row(
             children: [
-              GestureDetector(
-                onTap: () => context.go('/home'),
-                child: const Icon(Icons.close, color: Colors.white),
+              IconButton(
+                onPressed: () => context.go('/home'),
+                icon: const Icon(Icons.close, color: Colors.white),
+                tooltip: '閉じる',
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: 2),
               Expanded(
                 child: Text(
                   '${widget.grade}年生 まとめテスト',
@@ -245,7 +248,7 @@ class _ComprehensiveTestScreenState
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text('ランク $rank  $pct%',
@@ -259,7 +262,7 @@ class _ComprehensiveTestScreenState
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 8)],
                 ),

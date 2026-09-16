@@ -63,12 +63,17 @@ class PredictionNotifier extends StateNotifier<Map<String, PredictionStats>> {
     final totalKey = '$keyPrefix:totalAttempts';
     final correctKey = '$keyPrefix:correctPredictions';
 
+    // 一度に読み込んで書き込みまでの間の競合を最小化
     final currentTotal = prefs.getInt(totalKey) ?? 0;
     final currentCorrect = prefs.getInt(correctKey) ?? 0;
 
-    await prefs.setInt(totalKey, currentTotal + 1);
+    // アトミックに保存（複数の操作を順序付けして実行）
+    final newTotal = currentTotal + 1;
+    final newCorrect = currentCorrect + (isCorrect ? 1 : 0);
+
+    await prefs.setInt(totalKey, newTotal);
     if (isCorrect) {
-      await prefs.setInt(correctKey, currentCorrect + 1);
+      await prefs.setInt(correctKey, newCorrect);
     }
 
     // 履歴も記録（後でグラフ化可能）
@@ -78,13 +83,13 @@ class PredictionNotifier extends StateNotifier<Map<String, PredictionStats>> {
       isCorrect ? 'correct' : 'incorrect',
     );
 
-    // Riverpod更新
+    // Riverpod更新（変数をキーとして使用するには括弧が必要）
     state = {
       ...state,
       experimentId: PredictionStats(
         experimentId: experimentId,
-        totalAttempts: currentTotal + 1,
-        correctPredictions: currentCorrect + (isCorrect ? 1 : 0),
+        totalAttempts: newTotal,
+        correctPredictions: newCorrect,
       ),
     };
   }

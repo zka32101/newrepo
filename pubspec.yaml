@@ -16,10 +16,11 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.1+2
+version: 1.1.0+2
 
+# Build trigger for shared_core APK integration - 2026-09-13 10:30
 environment:
-  sdk: ^3.11.5
+  sdk: ^3.9.0
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -35,15 +36,20 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
 
+  # ============== Localization ==============
+  flutter_localizations:
+    sdk: flutter
+
   # ============== State Management ==============
-  flutter_riverpod: ^2.4.0
-  riverpod_annotation: ^2.3.0
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.3.5
 
   # ============== Firebase ==============
   firebase_core: ^3.0.0
   firebase_auth: ^5.5.4
   cloud_firestore: ^5.0.0
   firebase_analytics: ^11.0.0
+  firebase_messaging: ^15.2.10
 
   # ============== Routing ==============
   go_router: ^13.0.0
@@ -58,7 +64,7 @@ dependencies:
 
   # ============== Media & Notifications ==============
   image_picker: ^1.0.0
-  flutter_local_notifications: ^17.0.0
+  flutter_local_notifications: ^18.0.1
   timezone: ^0.9.0
 
   # ============== Data Models ==============
@@ -70,23 +76,23 @@ dependencies:
 
   # ============== Shared Core ==============
   shared_core:
-    path: H:\マイドライブ\apps\shared_core
-
-  # ============== Monetization ==============
-  purchases_flutter: ^10.0.0
+    git:
+      url: https://github.com/zka32101/shared_core.git
+      ref: main
 
   # ============== Utility ==============
-  intl: ^0.19.0
+  intl: ^0.20.3
   uuid: ^4.0.0
-  http: ^1.2.0
   share_plus: ^10.0.0
 
   # ============== 解説画面強化 ==============
-  youtube_player_iframe: ^4.0.0   # YouTube インライン再生
-  url_launcher: ^6.2.0             # 外部リンク・YouTube 外部起動
+  youtube_player_iframe: ^6.0.2   # YouTube インライン再生
   flutter_tts: ^4.2.0                  # 音声読み上げ
   flutter_markdown: ^0.7.3         # マークダウンレンダリング
   shimmer: ^3.0.0                  # ローディングシマー効果
+
+  # Phase 4.2: RevenueCat SDK for subscription management
+  purchases_flutter: ^8.2.0
 
 flutter_launcher_icons:
   android: true
@@ -101,7 +107,7 @@ dev_dependencies:
     sdk: flutter
 
   # Linting
-  flutter_lints: ^6.0.0
+  flutter_lints: ^5.0.0
   flutter_launcher_icons: ^0.14.3
 
   # Code Generation
@@ -130,6 +136,12 @@ flutter:
     - assets/icon/
     - assets/illustrations/stage_3/
     - assets/images/monsters/
+    - lib/l10n/
+    - lib/assets/images/features/ai_chat/
+    - lib/assets/images/features/tonight_sky/
+    - lib/assets/images/features/creature_camera/
+    - lib/assets/images/features/battle/
+    - lib/assets/images/features/home_lab/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

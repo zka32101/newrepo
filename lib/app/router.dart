@@ -1,34 +1,53 @@
 import 'package:go_router/go_router.dart';
+import 'package:shared_core/shared_core.dart' show FeedbackFormPage;
+
+import '../features/ai_chat/views/ai_chat_screen.dart';
 import '../features/auth/views/splash_login_screen.dart';
-import '../features/home/views/home_screen.dart';
-import '../features/quiz/views/quiz_screen.dart';
-import '../features/quiz/views/quiz_result_screen.dart';
-import '../features/learn/views/learn_screen.dart';
-import '../features/experiment/views/experiment_detail_screen.dart';
-import '../features/profile/views/profile_select_screen.dart';
-import '../features/profile/views/profile_create_screen.dart';
-import '../features/daily/views/daily_challenge_screen.dart';
-import '../features/review/views/review_screen.dart';
-import '../features/progress/views/today_reviews_screen.dart';
-import '../features/parent/views/parent_dashboard_screen.dart';
-import '../features/parent/views/praise_send_screen.dart';
-import '../features/test/views/comprehensive_test_screen.dart';
-import '../features/collection/views/collection_screen.dart';
-import '../features/onboarding/views/onboarding_screen.dart';
-import '../features/weekly_report/views/weekly_report_screen.dart';
-import '../features/grade_test/views/grade_test_screen.dart';
-import '../features/grade_test/views/certificate_screen.dart';
-import '../features/quiz/views/timer_quiz_screen.dart';
-import '../features/quiz/views/timer_quiz_result_screen.dart';
+import '../features/battle/views/prediction_battle_screen.dart';
+import '../features/coaching/views/ai_coaching_dashboard_screen.dart';
 import '../features/character/views/character_screen.dart';
+import '../features/collection/views/collection_screen.dart';
+import '../features/creature/views/creature_camera_screen.dart';
+import '../features/creature/views/creature_collection_screen.dart';
+import '../features/daily/views/daily_challenge_screen.dart';
+import '../features/experiments/views/experiment_detail_screen.dart';
 import '../features/experiments/views/prediction_quiz_screen.dart';
 import '../features/experiments/views/troubleshoot_screen.dart';
-import '../features/battle/views/prediction_battle_screen.dart';
-import '../features/ai_chat/views/ai_chat_screen.dart';
+import '../features/grade_test/views/certificate_screen.dart';
+import '../features/grade_test/views/grade_test_screen.dart';
+import '../features/home/views/home_screen.dart';
 import '../features/home_lab/views/home_lab_screen.dart';
-import '../features/sky/views/tonight_sky_screen.dart';
-import '../features/weekly_challenge/views/weekly_challenge_screen.dart';
+import '../features/learn/views/learn_screen.dart';
+import '../screens/mission/mission_screen.dart';
+import '../features/lesson/views/lesson_detail_screen.dart';
+import '../features/lesson/views/lesson_screen.dart';
+import '../features/multiplayer/views/matching_waiting_screen.dart';
+import '../features/multiplayer/views/matchmaker_screen.dart';
+import '../features/multiplayer/views/multiplayer_leaderboard_screen.dart';
+import '../features/multiplayer/views/multiplayer_quiz_screen.dart';
+import '../features/onboarding/views/onboarding_screen.dart';
+import '../features/parent/views/parent_dashboard_screen.dart';
+import '../features/parent/views/praise_send_screen.dart';
+import '../features/parent/views/screen_time_settings_screen.dart';
+import '../features/profile/views/profile_create_screen.dart';
+import '../features/profile/views/profile_select_screen.dart';
 import '../features/progress/views/daily_mystery_omikuji_screen.dart';
+import '../features/progress/views/today_reviews_screen.dart';
+import '../features/quiz/views/quiz_result_screen.dart';
+import '../features/quiz/views/quiz_screen.dart';
+import '../features/quiz/views/timer_quiz_result_screen.dart';
+import '../features/quiz/views/timer_quiz_screen.dart';
+import '../features/review/views/review_screen.dart';
+import '../features/settings/views/settings_screen.dart';
+import '../features/sky/views/tonight_sky_screen.dart';
+import '../features/test/views/comprehensive_test_screen.dart';
+import '../features/time_travel/views/scientist_collection_screen.dart';
+import '../features/time_travel/views/scientist_story_screen.dart';
+import '../features/weekly_challenge/views/weekly_challenge_screen.dart';
+import '../features/weekly_report/views/weekly_report_screen.dart';
+import '../screens/notification_settings_screen.dart';
+import '../screens/privacy_settings_screen.dart';
+import '../screens/ranking_screen.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -77,6 +96,20 @@ class AppRouter {
         },
       ),
 
+      // デイリーミッション
+      GoRoute(
+        path: '/mission',
+        name: 'mission',
+        builder: (_, __) => const MissionScreen(),
+      ),
+
+      // AI コーチング
+      GoRoute(
+        path: '/ai-coaching',
+        name: 'ai-coaching',
+        builder: (_, __) => const AiCoachingDashboardScreen(),
+      ),
+
       // 実験詳細
       GoRoute(
         path: '/experiment/:experimentId',
@@ -123,6 +156,13 @@ class AppRouter {
         path: '/parent-dashboard',
         name: 'parent-dashboard',
         builder: (_, __) => const ParentDashboardScreen(),
+      ),
+      // 利用時間の設定（保護者ダッシュボードから遷移。ダッシュボード自体が
+      // requireParentalGate 済みのため、ここでは再度ゲートを掛けない）
+      GoRoute(
+        path: '/screen-time-settings',
+        name: 'screen-time-settings',
+        builder: (_, __) => const ScreenTimeSettingsScreen(),
       ),
       // まとめテスト
       GoRoute(
@@ -253,6 +293,38 @@ class AppRouter {
         builder: (_, __) => const TonightSkyScreen(),
       ),
 
+      // ⑤ いきものカメラ
+      GoRoute(
+        path: '/creature-camera',
+        name: 'creature-camera',
+        builder: (_, __) => const CreatureCameraScreen(),
+      ),
+
+      // いきもの図鑑
+      GoRoute(
+        path: '/creature-collection',
+        name: 'creature-collection',
+        builder: (_, __) => const CreatureCollectionScreen(),
+      ),
+
+      // ⑧ タイムトラベル拡張 - 科学者ストーリー
+      GoRoute(
+        path: '/scientist-story/:scientistId',
+        name: 'scientist-story',
+        builder: (_, state) {
+          final scientistId =
+              state.pathParameters['scientistId'] ?? 'scientist_001';
+          return ScientistStoryScreen(scientistId: scientistId);
+        },
+      ),
+
+      // 科学者図書館
+      GoRoute(
+        path: '/scientist-collection',
+        name: 'scientist-collection',
+        builder: (_, __) => const ScientistCollectionScreen(),
+      ),
+
       // 今週のチャレンジ
       GoRoute(
         path: '/weekly-challenge',
@@ -277,6 +349,94 @@ class AppRouter {
           final stageName = extra['stageName'] as String? ?? stageId;
           return PraiseSendScreen(stageId: stageId, stageName: stageName);
         },
+      ),
+
+      // 学ぶ（解説メニュー）
+      GoRoute(
+        path: '/lessons',
+        name: 'lessons',
+        builder: (_, __) => const LessonScreen(),
+      ),
+
+      // 学ぶ（詳細ページ）
+      GoRoute(
+        path: '/lesson/:lessonId',
+        name: 'lesson-detail',
+        builder: (_, state) {
+          final lessonId = state.pathParameters['lessonId'] ?? 'lesson_photosynthesis';
+          return LessonDetailScreen(lessonId: lessonId);
+        },
+      ),
+
+      // プライバシー設定
+      GoRoute(
+        path: '/privacy-settings',
+        name: 'privacy-settings',
+        builder: (_, __) => const PrivacySettingsScreen(),
+      ),
+
+      // 通知設定
+      GoRoute(
+        path: '/notification-settings',
+        name: 'notification-settings',
+        builder: (_, __) => const NotificationSettingsScreen(),
+      ),
+
+      // 設定（テーマ・プライバシー・お問い合わせ等の導線）
+      GoRoute(
+        path: '/settings',
+        name: 'settings',
+        builder: (_, __) => const SettingsScreen(),
+      ),
+
+      // バグ報告・改善要望（shared_core 共通フォーム）
+      GoRoute(
+        path: '/feedback',
+        name: 'feedback',
+        builder: (_, __) => const FeedbackFormPage(
+          appName: 'shokollen_science',
+          appVersion: '1.0.1+2',
+        ),
+      ),
+
+      // ランキング
+      GoRoute(
+        path: '/ranking',
+        name: 'ranking',
+        builder: (_, __) => const RankingScreen(),
+      ),
+
+      // アチーブメント（バッジ・実績は features/progress のバッジシステムに一本化）
+      // コレクション画面の「バッジ」タブを表示する
+      GoRoute(
+        path: '/achievements',
+        name: 'achievements',
+        builder: (_, __) => const CollectionScreen(),
+      ),
+
+      // マルチプレイ対戦（レートマッチング）
+      GoRoute(
+        path: '/matchmaker',
+        name: 'matchmaker',
+        builder: (_, __) => const MatchmakerScreen(),
+      ),
+      GoRoute(
+        path: '/matching-waiting',
+        name: 'matching-waiting',
+        builder: (_, __) => const MatchingWaitingScreen(),
+      ),
+      GoRoute(
+        path: '/multiplayer-quiz/:matchId',
+        name: 'multiplayer-quiz',
+        builder: (_, state) {
+          final matchId = state.pathParameters['matchId']!;
+          return MultiplayerQuizScreen(matchId: matchId);
+        },
+      ),
+      GoRoute(
+        path: '/multiplayer-leaderboard',
+        name: 'multiplayer-leaderboard',
+        builder: (_, __) => const MultiplayerLeaderboardScreen(),
       ),
     ],
   );

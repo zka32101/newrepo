@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../data/prediction_battle_data.dart';
 
 // ⑨ 親子バトル化: 同じ実験の結果を親子で予想し合い、当てた方が勝ち
@@ -55,7 +56,22 @@ class _PredictionBattleScreenState extends State<PredictionBattleScreen> {
     return Scaffold(
       backgroundColor: isChild ? const Color(0xFFE3F2FD) : const Color(0xFFFFF3E0),
       appBar: AppBar(
-        title: Text('ラウンド ${_currentRound + 1} / $_totalRounds'),
+        title: Row(
+          children: [
+            // Phase 1: VS battle icon integration
+            Image.asset(
+              'lib/assets/images/features/battle/vs_battle_icon.svg',
+              width: 32,
+              height: 32,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) {
+                return const Text('⚔️', style: TextStyle(fontSize: 20));
+              },
+            ),
+            const SizedBox(width: 8),
+            Text('ラウンド ${_currentRound + 1} / $_totalRounds'),
+          ],
+        ),
         backgroundColor:
             isChild ? const Color(0xFF1565C0) : const Color(0xFFE65100),
         foregroundColor: Colors.white,
@@ -88,7 +104,7 @@ class _PredictionBattleScreenState extends State<PredictionBattleScreen> {
               width: double.infinity,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
@@ -211,6 +227,9 @@ class _PredictionBattleScreenState extends State<PredictionBattleScreen> {
 
   Widget _buildRoundReveal() {
     final q = _currentQuestion!;
+    if (_currentRound >= _rounds.length) {
+      return const Scaffold(body: Center(child: Text('エラー: ラウンドデータが見つかりません')));
+    }
     final round = _rounds[_currentRound];
 
     return Scaffold(
@@ -230,7 +249,7 @@ class _PredictionBattleScreenState extends State<PredictionBattleScreen> {
               width: double.infinity,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
@@ -390,6 +409,27 @@ class _PredictionBattleScreenState extends State<PredictionBattleScreen> {
               ),
               textAlign: TextAlign.center,
             ),
+            const SizedBox(height: 16),
+            // Phase 1: Win celebration image integration
+            Image.asset(
+              'lib/assets/images/features/battle/win_celebration.svg',
+              width: 200,
+              height: 140,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                  width: 200,
+                  height: 140,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade200,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Center(
+                    child: Text('🎉 勝利！', style: TextStyle(fontSize: 24)),
+                  ),
+                );
+              },
+            ),
             const SizedBox(height: 24),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -428,7 +468,7 @@ class _PredictionBattleScreenState extends State<PredictionBattleScreen> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(

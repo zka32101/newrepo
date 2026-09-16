@@ -23,6 +23,9 @@ final experimentData = [
     'point': '磁石は鉄（スチール）でできているものを引き付けます。10円玉（銅）・1円玉（アルミ）・プラスチックは引き付けられません。',
     'safetyNote': '磁石を砂鉄などの細かい粉末の近くで使うときは目を保護しましょう。電子機器（スマホ・ICカード）は離して実験しましょう。',
     'estimatedMinutes': 20,
+    'predictionQuestion': 'くぎは磁石につくかな？',
+    'predictionChoices': ['つく', 'つかない', 'わからない'],
+    'predictionAnswer': 'つく',
   },
   {
     'id': 'exp_balloon_001',
@@ -41,6 +44,9 @@ final experimentData = [
     'point': 'ゴムを長くのばすほど、太いゴムを使うほど、車が遠くまで走ります。ゴムの弾性力（元に戻ろうとする力）が大きいほど、車に加わる力も大きくなります。',
     'safetyNote': 'ゴムが切れたときに顔に当たらないよう注意しましょう。人のいない方向に向けて実験しましょう。',
     'estimatedMinutes': 25,
+    'predictionQuestion': 'ゴムを長くのばすと、車はどうなる？',
+    'predictionChoices': ['もっと遠くまで走る', '同じ距離走る', '走らなくなる'],
+    'predictionAnswer': 'もっと遠くまで走る',
   },
   {
     'id': 'exp_metal_heat_001',
@@ -59,6 +65,9 @@ final experimentData = [
     'point': '温めると体積が増え（膨張）、冷やすと体積が減ります（収縮）。その変化の大きさは「空気＞水＞金属」の順です。',
     'safetyNote': 'お湯を使うときはやけどに注意。ガラス器具は割れることがあるので、慎重に扱いましょう。',
     'estimatedMinutes': 30,
+    'predictionQuestion': '温めた水は、ガラス管の色水はどう動く？',
+    'predictionChoices': ['上に上がる', '下に下がる', '動かない'],
+    'predictionAnswer': '上に上がる',
   },
   {
     'id': 'exp_circuit_001',
@@ -77,6 +86,9 @@ final experimentData = [
     'point': '直列つなぎでは電圧が増し、豆電球が明るくなります。並列つなぎでは電球の明るさは1個のときと変わりませんが、電池が長持ちします。',
     'safetyNote': '電池の＋と－を直接つなぐ「ショート」は絶対にしないこと。電池が熱くなったらすぐに回路を切り離しましょう。',
     'estimatedMinutes': 30,
+    'predictionQuestion': '豆電球を2個直列つなぎにすると、明るさはどうなる？',
+    'predictionChoices': ['もっと明るくなる', '同じ明るさ', '暗くなる'],
+    'predictionAnswer': 'もっと明るくなる',
   },
   {
     'id': 'exp_germination_001',
@@ -97,6 +109,9 @@ final experimentData = [
     'point': '発芽したのは①と⑤のみ（光は発芽に不要）。水・空気（酸素）・適切な温度が揃って初めて発芽します。',
     'safetyNote': '脱脂綿や容器は清潔なものを使いましょう。カビが生えた場合はすぐに処分してください。',
     'estimatedMinutes': 15,
+    'predictionQuestion': '種が発芽するのに、光は必要かな？',
+    'predictionChoices': ['光が必要', '光は不要', 'わからない'],
+    'predictionAnswer': '光は不要',
   },
   {
     'id': 'exp_pendulum_001',
@@ -116,6 +131,9 @@ final experimentData = [
     'point': '振り子の周期（一往復の時間）はひもの長さだけで決まり、重さや振れ幅には影響されません。これを「振り子の等時性」といいます。',
     'safetyNote': 'おもりが振れているときに触らないように注意。実験前に周りに人がいないか確認しましょう。',
     'estimatedMinutes': 35,
+    'predictionQuestion': 'ひもが長くなると、振り子の周期はどうなる？',
+    'predictionChoices': ['長くなる', '短くなる', '変わらない'],
+    'predictionAnswer': '長くなる',
   },
   {
     'id': 'exp_electromagnet_001',
@@ -135,6 +153,9 @@ final experimentData = [
     'point': 'コイルの巻数を増やすか電流を大きくするほど電磁石の磁力が強くなります。また電流をOFFにすると磁力がなくなります（永久磁石との違い）。',
     'safetyNote': '電線が熱くなることがあります。長時間通電しないようにし、触れるときは熱くなっていないか確認しましょう。',
     'estimatedMinutes': 40,
+    'predictionQuestion': 'コイルの巻数を増やすと、電磁石の磁力はどうなる？',
+    'predictionChoices': ['強くなる', '弱くなる', '変わらない'],
+    'predictionAnswer': '強くなる',
   },
   {
     'id': 'exp_ph_001',
@@ -154,6 +175,9 @@ final experimentData = [
     'point': '酸性：青リトマス→赤（レモン汁・酢・塩酸）、アルカリ性：赤リトマス→青（重曹水・石灰水・アンモニア水）、中性：変化なし（食塩水・純水）。',
     'safetyNote': '薬品は直接手で触らず、目に入らないよう注意。万が一触れたときはすぐに水で洗い流しましょう。ゴーグル着用推奨。',
     'estimatedMinutes': 30,
+    'predictionQuestion': 'お酢は酸性かな、アルカリ性かな？',
+    'predictionChoices': ['酸性', 'アルカリ性', '中性'],
+    'predictionAnswer': '酸性',
   },
   {
     'id': 'exp_lever_001',
@@ -172,6 +196,9 @@ final experimentData = [
     'point': 'てこがつり合う条件は「力点の力×支点からの距離＝作用点の力×支点からの距離」（モーメントが等しい）。支点を作用点に近づけるほど少ない力で持ち上げられます。',
     'safetyNote': '定規が飛んで目に当たらないよう注意。重いものを持ち上げるときは周りの安全を確認しましょう。',
     'estimatedMinutes': 25,
+    'predictionQuestion': '支点を作用点に近づけると、てこでどうなる？',
+    'predictionChoices': ['少ない力で持ち上げられる', '同じ力が必要', 'もっと大きな力が必要'],
+    'predictionAnswer': '少ない力で持ち上げられる',
   },
   {
     'id': 'exp_combustion_001',
@@ -191,5 +218,8 @@ final experimentData = [
     'point': '燃焼の三要素は「燃料（可燃物）・酸素・発火点以上の温度」。これらの1つを取り除くと火は消えます。消火器もこの原理を使っています。',
     'safetyNote': '必ず大人と一緒に行いましょう。長い髪は束ねて、袖口が広い服は着ないようにしましょう。近くに水や砂を用意してから実験します。',
     'estimatedMinutes': 30,
+    'predictionQuestion': 'ビーカーでろうそくを覆うと、火はどうなる？',
+    'predictionChoices': ['すぐに消える', 'しばらく燃え続ける', '余計に明るくなる'],
+    'predictionAnswer': 'しばらく燃え続ける',
   },
 ];

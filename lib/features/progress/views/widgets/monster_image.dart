@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../models/incorrect_monster.dart';
 
 /// モンスター画像表示ウィジェット

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../shared/constants/app_colors.dart';
 
 class CertificateScreen extends StatelessWidget {
@@ -56,7 +57,7 @@ class CertificateScreen extends StatelessWidget {
                     width: double.infinity,
                     padding: const EdgeInsets.all(32),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.circular(24),
                       boxShadow: [
                         BoxShadow(

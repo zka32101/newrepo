@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../data/troubleshoot_data.dart';
 
 // ⑥ 失敗ラボ推理: 実験の失敗原因を推理するクイズ画面
@@ -113,7 +114,7 @@ class _TroubleshootScreenState extends State<TroubleshootScreen> {
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: Colors.orange.shade200, width: 2),
         boxShadow: [
