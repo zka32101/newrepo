@@ -63,11 +63,11 @@ jobs:
           git add pubspec.yaml
           git commit -m "chore: bump build number to ${{ steps.bump.outputs.version }}
 
-- Auto-increment build number after PR merge
-- Triggered by: ${{ github.event.pull_request.number }}
-- PR Title: ${{ github.event.pull_request.title }}
+          - Auto-increment build number after PR merge
+          - Triggered by: ${{ github.event.pull_request.number }}
+          - PR Title: ${{ github.event.pull_request.title }}
 
-Co-Authored-By: github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+          Co-Authored-By: github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
 
           git push origin main
 
