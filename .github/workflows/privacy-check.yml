@@ -45,6 +45,6 @@ jobs:
           fi
 
       - name: Check for accidentally committed secrets
-        uses: gitleaks/gitleaks-action@bb44cd9cedf0b90d2c6cb8f37621ea928a101a3e # v2.5.0
+        uses: gitleaks/gitleaks-action@v2.4.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
