@@ -139,17 +139,31 @@ lib/
 ### RevenueCat サブスクリプション実装
 ```dart
 // 実装ファイル: lib/services/revenue_cat_service.dart
-// 月額商品ID: 'premium_monthly' (¥300/月)
-// 年額商品ID: 'premium_annually' (¥2,400/年)
+
+final revenueCatService = RevenueCatService();
+
+// 初期化
+await revenueCatService.initialize();
 
 // サブスク確認
 final isSubscribed = await revenueCatService.isSubscribed();
 
-// 月額購入処理
-await revenueCatService.purchaseMonthly();
+// 有効なプランを取得
+final packages = await revenueCatService.getOfferings();
 
-// 年額購入処理
-await revenueCatService.purchaseAnnually();
+// 購入（Package は RevenueCat から取得）
+if (packages != null && packages.isNotEmpty) {
+  final monthlyPackage = packages.firstWhere(
+    (p) => p.identifier == 'premium_monthly',
+  );
+  await revenueCatService.purchaseSubscription(package: monthlyPackage);
+}
+
+// 購入復元
+await revenueCatService.restorePurchases();
+
+// 有効期限確認
+final expirationDate = await revenueCatService.getSubscriptionExpirationDate();
 ```
 
 ### Claude API 統合（実装保留中）
