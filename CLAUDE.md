@@ -136,34 +136,40 @@ lib/
 - **年額プラン**: ¥2,400/年（プレミアム会員）
 - **商品ID**: `premium_monthly`, `premium_annually`
 
-### RevenueCat サブスクリプション実装
+### RevenueCat サブスクリプション実装（shared_core で一元管理）
+**実装位置:** `shared_core/lib/services/purchase_service.dart`
+
+**初期化（main.dart）:**
 ```dart
-// 実装ファイル: lib/services/revenue_cat_service.dart
+// Phase 4.22: shared_core の SharedCoreInitializer を使用
+try {
+  await SharedCoreInitializer.initializeSubscriptions();
+} catch (e) {
+  // エラーでも起動は継続
+}
+```
 
-final revenueCatService = RevenueCatService();
+**プロバイダ層（lib/providers/purchase_provider.dart）:**
+```dart
+import 'package:shared_core/shared_core.dart' show PurchaseService;
 
-// 初期化
-await revenueCatService.initialize();
+// PurchaseService instance (shared_core から)
+final purchaseServiceProvider = Provider((ref) => PurchaseService.instance);
 
 // サブスク確認
-final isSubscribed = await revenueCatService.isSubscribed();
+final isSubscribed = await PurchaseService.instance.isSubscribed();
 
 // 有効なプランを取得
-final packages = await revenueCatService.getOfferings();
+final packages = await PurchaseService.instance.getOfferings();
 
-// 購入（Package は RevenueCat から取得）
-if (packages != null && packages.isNotEmpty) {
-  final monthlyPackage = packages.firstWhere(
-    (p) => p.identifier == 'premium_monthly',
-  );
-  await revenueCatService.purchaseSubscription(package: monthlyPackage);
-}
+// 購入
+final result = await PurchaseService.instance.purchase(package);
 
 // 購入復元
-await revenueCatService.restorePurchases();
+await PurchaseService.instance.restorePurchases();
 
 // 有効期限確認
-final expirationDate = await revenueCatService.getSubscriptionExpirationDate();
+final expirationDate = await PurchaseService.instance.getSubscriptionExpirationDate();
 ```
 
 ### Claude API 統合（実装保留中）
