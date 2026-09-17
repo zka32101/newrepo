@@ -132,19 +132,24 @@ lib/
 
 ### サブスクリプションモデル
 - **無料トライアル**: 2週間（一部機能制限あり）
-- **有料プラン**: ¥300/月（プレミアム会員）
-- **商品ID**: `rika_premium_monthly`
+- **月額プラン**: ¥300/月（プレミアム会員）
+- **年額プラン**: ¥2,400/年（プレミアム会員）
+- **商品ID**: `premium_monthly`, `premium_annually`
 
 ### RevenueCat サブスクリプション実装
 ```dart
 // 実装ファイル: lib/services/revenue_cat_service.dart
-// 商品ID: 'rika_premium_monthly' (¥300/月)
+// 月額商品ID: 'premium_monthly' (¥300/月)
+// 年額商品ID: 'premium_annually' (¥2,400/年)
 
 // サブスク確認
 final isSubscribed = await revenueCatService.isSubscribed();
 
-// 購入処理
+// 月額購入処理
 await revenueCatService.purchaseMonthly();
+
+// 年額購入処理
+await revenueCatService.purchaseAnnually();
 ```
 
 ### Claude API 統合（実装保留中）
