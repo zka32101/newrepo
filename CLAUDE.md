@@ -94,7 +94,7 @@ cd S:/ && flutter pub get
 #### Phase 3.5 実装進捗（v1.0.0 → v1.1 開発中）
 | 機能 | 実装状況 | ファイル |
 |---|---|---|
-| ② AIはかせチャット | ✅ CloudFunctions経由 | `lib/services/claude_api_service.dart` |
+| ② AIはかせチャット | ⏸️ 実装保留中 | - |
 | ④ 今夜の空 | ⏳ 実装準備中 | - |
 | ⑤ いきものカメラ | ⏳ 実装準備中 | - |
 | ⑧ タイムトラベル拡張 | ✅ UI完成 | `lib/features/time_travel/` |
@@ -130,17 +130,15 @@ lib/
 
 ## 課金・API セキュリティ
 
-### Claude API 統合（v1.0.1 セキュリティ更新済み）
-- **実装**: Firebase Cloud Functions プロキシ経由
-- **ファイル**: `lib/services/claude_api_service.dart`
-- **セキュリティ**: APIキーはサーバー側で管理（クライアントから非公開）
-- **利用制限**: ユーザーあたり月50回までの AI相談可能
-- **月額**: ¥120のプレミアム会員向け機能
+### サブスクリプションモデル
+- **無料トライアル**: 2週間（一部機能制限あり）
+- **有料プラン**: ¥300/月（プレミアム会員）
+- **商品ID**: `rika_premium_monthly`
 
-### RevenueCat サブスクリプション（v1.0.1 新規対応）
+### RevenueCat サブスクリプション実装
 ```dart
 // 実装ファイル: lib/services/revenue_cat_service.dart
-// 商品ID: 'rika_premium_monthly' (¥120/月)
+// 商品ID: 'rika_premium_monthly' (¥300/月)
 
 // サブスク確認
 final isSubscribed = await revenueCatService.isSubscribed();
@@ -148,6 +146,11 @@ final isSubscribed = await revenueCatService.isSubscribed();
 // 購入処理
 await revenueCatService.purchaseMonthly();
 ```
+
+### Claude API 統合（実装保留中）
+- **AIはかせチャット**: 今後実装予定
+- **参考ファイル**: `lib/services/claude_api_service.dart` (参考実装のみ)
+- セキュリティ: APIキーはサーバー側で管理予定
 
 ### Google Play/App Store 連携
 - 領収書検証: Google Play Billing Library + App Store Server API
@@ -157,13 +160,13 @@ await revenueCatService.purchaseMonthly();
 ### 環境変数管理
 ```bash
 # .env ファイル（ローカルのみ、コミット禁止）
-CLAUDE_API_KEY=sk-xxxx  # CloudFunctions で処理
 REVENUE_CAT_API_KEY=appl_xxxx
 ADMOB_ANDROID_ID=ca-app-pub-xxxx
+# CLAUDE_API_KEY=sk-xxxx  # 将来実装予定
 
 # CI/CD でのシークレット設定
 # GitHub Actions: Settings > Secrets and variables > Actions
-# → CLAUDE_API_KEY, REVENUE_CAT_API_KEY など
+# → REVENUE_CAT_API_KEY など
 ```
 
 ## 注意事項
