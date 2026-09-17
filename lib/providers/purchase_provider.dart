@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
-
-import '../services/purchase_service.dart';
+import 'package:shared_core/shared_core.dart' show PurchaseService;
 
 final purchaseServiceProvider = Provider((ref) => PurchaseService.instance);
 

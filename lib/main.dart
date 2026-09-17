@@ -43,7 +43,6 @@ import 'providers/locale_provider.dart';
 import 'providers/lesson_provider.dart' show LessonNotifier, lessonProvider;
 import 'providers/screen_time_provider.dart';
 import 'services/firebase_service.dart';
-import 'services/purchase_service.dart';
 import 'services/firestore_feedback_service.dart';
 import 'services/multiplayer_service.dart';
 import 'services/notification_service.dart';
@@ -93,10 +92,9 @@ void main() async {
   // 注: ユーザーID取得後（プロフィール画面後）に各ユーザーごとに initializeAdaptiveDifficulty() を呼ぶこと
   debugPrint('Phase 4.19 Retention Optimization Engine: Initialized');
 
-  // 課金基盤（RevenueCat）初期化。APIキー未設定時はローカルモードで継続。
-  final purchaseService = PurchaseService.instance;
+  // 課金基盤（RevenueCat）初期化。shared_core で一元管理。
   try {
-    await purchaseService.initialize();
+    await SharedCoreInitializer.initializeSubscriptions();
   } catch (e) {
     // エラーでも起動は継続（プレミアム判定は false 扱いになる）
   }
