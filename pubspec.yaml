@@ -111,11 +111,10 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.3
 
   # Code Generation
-  build_runner: ^2.5.4
-  riverpod_generator: ^2.6.5
+  build_runner: ^2.4.0
+  riverpod_generator: ^2.3.0
   freezed: ^3.1.0
   json_serializable: ^6.8.0
-  analyzer: ^7.6.0
 
   # Testing
   mockito: ^5.4.0
