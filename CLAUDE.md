@@ -128,6 +128,35 @@ lib/
 └── main.dart
 ```
 
+## shared_core での初期化一元管理（Phase 4.22+）
+
+### SharedCoreInitializer の使用
+**実装位置:** `shared_core/lib/core/initializers/shared_core_initializer.dart`
+
+**main.dart での呼び出し:**
+```dart
+// サブスクリプション（RevenueCat）初期化
+try {
+  await SharedCoreInitializer.initializeSubscriptions();
+} catch (e) {
+  // エラーでも起動は継続
+}
+
+// 通知・リマインダー初期化
+try {
+  await SharedCoreInitializer.initializeNotifications();
+} catch (e) {
+  // 通知サービス初期化失敗でも起動は継続
+}
+```
+
+**対応サービス:**
+| サービス | 初期化メソッド | 機能 |
+|---|---|---|
+| RevenueCat（PurchaseService） | initializeSubscriptions() | サブスク管理 |
+| PushNotificationService | initializeNotifications() | FCM プッシュ通知 |
+| ReminderService | initializeNotifications() | ローカル通知・リマインダー |
+
 ## 課金・API セキュリティ
 
 ### サブスクリプションモデル
