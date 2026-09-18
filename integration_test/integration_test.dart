@@ -14,7 +14,7 @@ void main() {
 
     // ========== 観点1: 起動テスト ==========
     testWidgets('アプリが正常に起動する', (WidgetTester tester) async {
-      await tester.binding.window.physicalSizeTestValue = const Size(1080, 1920);
+      tester.binding.window.physicalSizeTestValue = const Size(1080, 1920);
       addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
 
       // アプリを起動
