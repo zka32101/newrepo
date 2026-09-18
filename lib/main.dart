@@ -20,12 +20,11 @@ import 'package:shared_core/shared_core.dart'
         coinProvider,
         premiumProvider,
         PremiumNotifier,
-        PushNotificationService,
         adaptiveDifficultyNotifierProvider,
         weeklyBonusProvider,
-        ReminderService,
         NotificationBadge,
-        notificationProvider;
+        notificationProvider,
+        SharedCoreInitializer;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -58,35 +57,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FirebaseService.initialize(); // google-services.json 未配置時はローカルモードで継続
 
-  // Phase 4.18: プッシュ通知サービス初期化
-  final pushService = PushNotificationService();
+  // Phase 4.18 / 4.23: 通知・リマインダーシステム初期化。shared_core で一元管理。
   try {
-    await pushService.initialize(
-      onMessageHandler: (RemoteMessage message) {
-        debugPrint('Received message: ${message.notification?.title}');
-      },
-    );
+    await SharedCoreInitializer.initializeNotifications();
   } catch (e) {
-    // PushNotificationService initialization failed, continue anyway
+    // 通知サービス初期化失敗でも起動は継続
   }
-
-  // FCM トークンを取得・保存
-  try {
-    final fcmToken = await pushService.getFCMToken();
-    if (fcmToken != null) {
-      debugPrint('FCM Token obtained: ${fcmToken.substring(0, 20)}...');
-      // 将来: await updateUserFCMToken(userId, fcmToken);
-    }
-  } catch (e) {
-    // FCM token retrieval failed, continue anyway
-  }
-
-  // Phase 4.23: ローカル通知・リマインダーシステム初期化
-  final reminderService = ReminderService.instance;
-  // 通知コールバック設定（オプション）
-  reminderService.setNotificationCallback((notification) {
-    debugPrint('Reminder notification: ${notification.title}');
-  });
 
   // Phase 4.19: 適応難易度エンジン初期化
   // 注: ユーザーID取得後（プロフィール画面後）に各ユーザーごとに initializeAdaptiveDifficulty() を呼ぶこと
