@@ -94,7 +94,7 @@ cd S:/ && flutter pub get
 #### Phase 3.5 実装進捗（v1.0.0 → v1.1 開発中）
 | 機能 | 実装状況 | ファイル |
 |---|---|---|
-| ② AIはかせチャット | ✅ CloudFunctions経由 | `lib/services/claude_api_service.dart` |
+| ② AIはかせチャット | ⏸️ 実装保留中 | - |
 | ④ 今夜の空 | ⏳ 実装準備中 | - |
 | ⑤ いきものカメラ | ⏳ 実装準備中 | - |
 | ⑧ タイムトラベル拡張 | ✅ UI完成 | `lib/features/time_travel/` |
@@ -128,26 +128,83 @@ lib/
 └── main.dart
 ```
 
+## shared_core での初期化一元管理（Phase 4.22+）
+
+### SharedCoreInitializer の使用
+**実装位置:** `shared_core/lib/core/initializers/shared_core_initializer.dart`
+
+**main.dart での呼び出し:**
+```dart
+// サブスクリプション（RevenueCat）初期化
+try {
+  await SharedCoreInitializer.initializeSubscriptions();
+} catch (e) {
+  // エラーでも起動は継続
+}
+
+// 通知・リマインダー初期化
+try {
+  await SharedCoreInitializer.initializeNotifications();
+} catch (e) {
+  // 通知サービス初期化失敗でも起動は継続
+}
+```
+
+**対応サービス:**
+| サービス | 初期化メソッド | 機能 |
+|---|---|---|
+| RevenueCat（PurchaseService） | initializeSubscriptions() | サブスク管理 |
+| PushNotificationService | initializeNotifications() | FCM プッシュ通知 |
+| ReminderService | initializeNotifications() | ローカル通知・リマインダー |
+
 ## 課金・API セキュリティ
 
-### Claude API 統合（v1.0.1 セキュリティ更新済み）
-- **実装**: Firebase Cloud Functions プロキシ経由
-- **ファイル**: `lib/services/claude_api_service.dart`
-- **セキュリティ**: APIキーはサーバー側で管理（クライアントから非公開）
-- **利用制限**: ユーザーあたり月50回までの AI相談可能
-- **月額**: ¥120のプレミアム会員向け機能
+### サブスクリプションモデル
+- **無料トライアル**: 2週間（一部機能制限あり）
+- **月額プラン**: ¥300/月（プレミアム会員）
+- **年額プラン**: ¥2,400/年（プレミアム会員）
+- **商品ID**: `premium_monthly`, `premium_annually`
 
-### RevenueCat サブスクリプション（v1.0.1 新規対応）
+### RevenueCat サブスクリプション実装（shared_core で一元管理）
+**実装位置:** `shared_core/lib/services/purchase_service.dart`
+
+**初期化（main.dart）:**
 ```dart
-// 実装ファイル: lib/services/revenue_cat_service.dart
-// 商品ID: 'rika_premium_monthly' (¥120/月)
+// Phase 4.22: shared_core の SharedCoreInitializer を使用
+try {
+  await SharedCoreInitializer.initializeSubscriptions();
+} catch (e) {
+  // エラーでも起動は継続
+}
+```
+
+**プロバイダ層（lib/providers/purchase_provider.dart）:**
+```dart
+import 'package:shared_core/shared_core.dart' show PurchaseService;
+
+// PurchaseService instance (shared_core から)
+final purchaseServiceProvider = Provider((ref) => PurchaseService.instance);
 
 // サブスク確認
-final isSubscribed = await revenueCatService.isSubscribed();
+final isSubscribed = await PurchaseService.instance.isSubscribed();
 
-// 購入処理
-await revenueCatService.purchaseMonthly();
+// 有効なプランを取得
+final packages = await PurchaseService.instance.getOfferings();
+
+// 購入
+final result = await PurchaseService.instance.purchase(package);
+
+// 購入復元
+await PurchaseService.instance.restorePurchases();
+
+// 有効期限確認
+final expirationDate = await PurchaseService.instance.getSubscriptionExpirationDate();
 ```
+
+### Claude API 統合（実装保留中）
+- **AIはかせチャット**: 今後実装予定
+- **参考ファイル**: `lib/services/claude_api_service.dart` (参考実装のみ)
+- セキュリティ: APIキーはサーバー側で管理予定
 
 ### Google Play/App Store 連携
 - 領収書検証: Google Play Billing Library + App Store Server API
@@ -157,13 +214,13 @@ await revenueCatService.purchaseMonthly();
 ### 環境変数管理
 ```bash
 # .env ファイル（ローカルのみ、コミット禁止）
-CLAUDE_API_KEY=sk-xxxx  # CloudFunctions で処理
 REVENUE_CAT_API_KEY=appl_xxxx
 ADMOB_ANDROID_ID=ca-app-pub-xxxx
+# CLAUDE_API_KEY=sk-xxxx  # 将来実装予定
 
 # CI/CD でのシークレット設定
 # GitHub Actions: Settings > Secrets and variables > Actions
-# → CLAUDE_API_KEY, REVENUE_CAT_API_KEY など
+# → REVENUE_CAT_API_KEY など
 ```
 
 ## 注意事項

@@ -48,14 +48,11 @@ class SettingsScreen extends ConsumerWidget {
             title: const Text('通知設定'),
             trailing: const Icon(Icons.chevron_right),
             onTap: () {
-              final userId = FirebaseAuth.instance.currentUser?.uid ?? '';
-              if (userId.isNotEmpty) {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => NotificationSettingsPage(userId: userId),
-                  ),
-                );
-              }
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const NotificationSettingsPage(),
+                ),
+              );
             },
           ),
           const Divider(height: 24),
@@ -77,11 +74,15 @@ class SettingsScreen extends ConsumerWidget {
             title: const Text('ユーザーリテンション分析'),
             subtitle: const Text('あなたの活動パターンと継続性を分析'),
             trailing: const Icon(Icons.chevron_right),
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) => const RetentionDashboard(),
-              ),
-            ),
+            onTap: () {
+              final userId = FirebaseAuth.instance.currentUser?.uid;
+              if (userId == null) return;
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => RetentionDashboard(userId: userId),
+                ),
+              );
+            },
           ),
           const Divider(height: 24),
           _SectionHeader('サポート'),

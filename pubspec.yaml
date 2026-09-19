@@ -68,7 +68,7 @@ dependencies:
   timezone: ^0.9.0
 
   # ============== Data Models ==============
-  freezed_annotation: ^2.4.1
+  freezed_annotation: ^3.0.0
   json_annotation: ^4.9.0
 
   # ============== Charts ==============
@@ -92,7 +92,7 @@ dependencies:
   shimmer: ^3.0.0                  # ローディングシマー効果
 
   # Phase 4.2: RevenueCat SDK for subscription management
-  purchases_flutter: ^8.2.0
+  purchases_flutter: ^10.13.1
 
 flutter_launcher_icons:
   android: true
@@ -105,6 +105,8 @@ flutter_launcher_icons:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  integration_test:
+    sdk: flutter
 
   # Linting
   flutter_lints: ^5.0.0
@@ -113,7 +115,7 @@ dev_dependencies:
   # Code Generation
   build_runner: ^2.4.0
   riverpod_generator: ^2.3.0
-  freezed: ^2.5.7
+  freezed: ^3.1.0
   json_serializable: ^6.8.0
 
   # Testing

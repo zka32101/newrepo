@@ -1,27 +1,36 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:shared_core/shared_core.dart'
+    show PurchaseService, SharedCoreInitializer;
 
-import '../services/purchase_service.dart';
+import 'package:shokollen_science/providers/user_avatar_provider.dart';
 
-final purchaseServiceProvider = Provider((ref) => PurchaseService.instance);
+final purchaseServiceProvider = Provider<PurchaseService?>(
+  (ref) => SharedCoreInitializer.getPurchaseService(),
+);
 
 /// RevenueCat のエンタイトルメント（`premium`）が有効かどうか。
-/// SDK未初期化（キー未設定・オフライン等）の場合は false を返す
-/// （＝機能はロックされたまま。誤って無料開放される方向には倒さない）。
+/// SDK未初期化（キー未設定・オフライン等）やユーザー未ログインの場合は
+/// false を返す（＝機能はロックされたまま。誤って無料開放される方向には倒さない）。
 final premiumStatusProvider = StreamProvider<bool>((ref) async* {
   final service = ref.watch(purchaseServiceProvider);
+  final userId = ref.watch(currentUserIdProvider);
+  if (service == null || userId == null) {
+    yield false;
+    return;
+  }
 
-  yield await service.isPremium();
+  yield await service.isSubscribed(userId);
 
   await for (final info in service.customerInfoStream) {
     yield info.entitlements.active
-        .containsKey(PurchaseService.premiumEntitlementId);
+        .containsKey(service.config.premiumEntitlementId);
   }
 });
 
 final offeringsProvider = FutureProvider<Offerings?>((ref) async {
   final service = ref.watch(purchaseServiceProvider);
-  return service.getOfferings();
+  return service?.getOfferings();
 });
 
 enum PurchaseStatus { idle, loading, success, error }
@@ -41,13 +50,21 @@ final purchaseNotifierProvider =
 class PurchaseNotifier extends StateNotifier<PurchaseState> {
   PurchaseNotifier(this._service, this._ref) : super(const PurchaseState());
 
-  final PurchaseService _service;
+  final PurchaseService? _service;
   final Ref _ref;
 
   Future<bool> purchase(Package package) async {
+    final service = _service;
+    if (service == null) {
+      state = const PurchaseState(
+        status: PurchaseStatus.error,
+        errorMessage: '課金サービスが初期化されていません',
+      );
+      return false;
+    }
     state = const PurchaseState(status: PurchaseStatus.loading);
     try {
-      final info = await _service.purchase(package);
+      final info = await service.purchase(package);
       if (info == null) {
         // ユーザーによるキャンセル
         state = const PurchaseState(status: PurchaseStatus.idle);
@@ -56,7 +73,7 @@ class PurchaseNotifier extends StateNotifier<PurchaseState> {
       state = const PurchaseState(status: PurchaseStatus.success);
       _ref.invalidate(premiumStatusProvider);
       return info.entitlements.active
-          .containsKey(PurchaseService.premiumEntitlementId);
+          .containsKey(service.config.premiumEntitlementId);
     } catch (e) {
       state = PurchaseState(
         status: PurchaseStatus.error,
@@ -67,11 +84,19 @@ class PurchaseNotifier extends StateNotifier<PurchaseState> {
   }
 
   Future<bool> restore() async {
+    final service = _service;
+    if (service == null) {
+      state = const PurchaseState(
+        status: PurchaseStatus.error,
+        errorMessage: '課金サービスが初期化されていません',
+      );
+      return false;
+    }
     state = const PurchaseState(status: PurchaseStatus.loading);
     try {
-      final info = await _service.restorePurchases();
+      final info = await service.restorePurchases();
       final isPremium = info.entitlements.active
-          .containsKey(PurchaseService.premiumEntitlementId);
+          .containsKey(service.config.premiumEntitlementId);
       state = const PurchaseState(status: PurchaseStatus.success);
       _ref.invalidate(premiumStatusProvider);
       return isPremium;

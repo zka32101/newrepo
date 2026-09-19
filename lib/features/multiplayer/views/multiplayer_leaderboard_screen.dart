@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_core/shared_core.dart';
+import 'package:shared_core/shared_core.dart' hide AppColors;
 
 import '../../../shared/constants/app_colors.dart';
 import '../providers/multiplayer_identity_provider.dart';
