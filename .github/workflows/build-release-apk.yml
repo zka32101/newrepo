@@ -19,6 +19,7 @@ jobs:
   build:
     name: Build Release APK
     runs-on: ubuntu-latest
+    timeout-minutes: 60
 
     permissions:
       contents: read
@@ -40,6 +41,7 @@ jobs:
           flutter pub global activate intl_utils
 
       - name: Generate code with build_runner
+        timeout-minutes: 15
         run: flutter pub run build_runner build --delete-conflicting-outputs --build-filter="lib/**"
 
       - name: Setup Android build environment
