@@ -123,7 +123,7 @@ jobs:
           $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager \
             "system-images;android-${{ matrix.api-level }};google_apis;x86_64"
 
-          echo "no" | $ANDROID_SDK_ROOT/tools/bin/avdmanager create avd \
+          echo "no" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/avdmanager create avd \
             -n test_device_api${{ matrix.api-level }} \
             -k "system-images;android-${{ matrix.api-level }};google_apis;x86_64" \
             -d "Pixel_6_Pro_API_${{ matrix.api-level }}" \
@@ -149,6 +149,34 @@ jobs:
         run: |
           $ANDROID_SDK_ROOT/platform-tools/adb devices || true
           $ANDROID_SDK_ROOT/platform-tools/adb shell getprop ro.build.version.release || true
+
+      - name: Provide placeholder google-services.json
+        run: |
+          if [ ! -f android/app/google-services.json ]; then
+            cat > android/app/google-services.json << 'EOF'
+          {
+            "project_info": {
+              "project_number": "000000000000",
+              "project_id": "shokollen-science-ci-placeholder",
+              "storage_bucket": "shokollen-science-ci-placeholder.appspot.com"
+            },
+            "client": [
+              {
+                "client_info": {
+                  "mobilesdk_app_id": "1:000000000000:android:0000000000000000000000",
+                  "android_client_info": {
+                    "package_name": "com.petitworksapps.shougakukore.rika"
+                  }
+                },
+                "oauth_client": [],
+                "api_key": [{"current_key": "AIzaSyPlaceholder00000000000000000000000"}],
+                "services": {"appinvite_service": {"other_platform_oauth_client": []}}
+              }
+            ],
+            "configuration_version": "1"
+          }
+          EOF
+          fi
 
       - name: Build debug APK
         run: flutter build apk --debug --no-pub
