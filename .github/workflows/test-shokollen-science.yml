@@ -265,7 +265,7 @@ jobs:
     name: Status Check
     runs-on: ubuntu-latest
     if: always()
-    needs: [unit-widget-tests, lint-check]
+    needs: [unit-widget-tests, lint-check, emulator-tests]
 
     steps:
       - name: Check all tests passed
@@ -278,4 +278,5 @@ jobs:
             echo "⚠️  Lint & Format Check had issues"
           fi
           echo "✅ All critical tests completed"
-          echo "Note: Android Emulator Tests are informational (infrastructure issues with Java 17/JAXB)"
+          echo "ℹ️  Android Emulator Tests (optional) result: ${{ needs.emulator-tests.result }}"
+          echo "Note: Android Emulator Tests are informational (known SDK infrastructure issues)"
