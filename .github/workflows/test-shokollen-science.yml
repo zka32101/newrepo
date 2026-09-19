@@ -83,13 +83,6 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-        with:
-          api-levels: ${{ matrix.api-level }}
-          ndk-version: 26.1.10909125
-          cmake-version: 3.22.1
-
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -118,53 +111,68 @@ jobs:
           flutter clean
           flutter pub get
 
-      - name: Create Android Virtual Device
+      - name: Provide placeholder google-services.json
         run: |
-          $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager \
-            "system-images;android-${{ matrix.api-level }};google_apis;x86_64"
-
-          echo "no" | $ANDROID_SDK_ROOT/tools/bin/avdmanager create avd \
-            -n test_device_api${{ matrix.api-level }} \
-            -k "system-images;android-${{ matrix.api-level }};google_apis;x86_64" \
-            -d "Pixel_6_Pro_API_${{ matrix.api-level }}" \
-            --force
-
-      - name: Start Android Emulator
-        run: |
-          $ANDROID_SDK_ROOT/emulator/emulator \
-            -avd test_device_api${{ matrix.api-level }} \
-            -no-audio \
-            -no-boot-anim \
-            -no-window \
-            -gpu swiftshader_indirect \
-            -memory 2048 \
-            -cores 2 \
-            > /tmp/emulator.log 2>&1 &
-
-          echo "⏳ Waiting for emulator to boot..."
-          timeout 180 $ANDROID_SDK_ROOT/platform-tools/adb wait-for-device || true
-          sleep 30
-
-      - name: Verify emulator
-        run: |
-          $ANDROID_SDK_ROOT/platform-tools/adb devices || true
-          $ANDROID_SDK_ROOT/platform-tools/adb shell getprop ro.build.version.release || true
+          if [ ! -f android/app/google-services.json ]; then
+            cat > android/app/google-services.json << 'EOF'
+          {
+            "project_info": {
+              "project_number": "000000000000",
+              "project_id": "shokollen-science-ci-placeholder",
+              "storage_bucket": "shokollen-science-ci-placeholder.appspot.com"
+            },
+            "client": [
+              {
+                "client_info": {
+                  "mobilesdk_app_id": "1:000000000000:android:0000000000000000000000",
+                  "android_client_info": {
+                    "package_name": "com.petitworksapps.shougakukore.rika"
+                  }
+                },
+                "oauth_client": [],
+                "api_key": [{"current_key": "AIzaSyPlaceholder00000000000000000000000"}],
+                "services": {"appinvite_service": {"other_platform_oauth_client": []}}
+              }
+            ],
+            "configuration_version": "1"
+          }
+          EOF
+          fi
 
       - name: Build debug APK
         run: flutter build apk --debug --no-pub
 
-      - name: Run integration tests
+      # android-actions/setup-android@v3 + hand-rolled avdmanager/emulator
+      # commands used to live here. That setup action unconditionally runs
+      # `sdkmanager tools`, a package removed from current SDK repositories,
+      # and aborts before installing anything (including the requested API
+      # level) when that lookup fails - which it always does now. Replaced
+      # the whole AVD create/boot/teardown dance with
+      # reactivecircus/android-emulator-runner, which manages the SDK
+      # packages, AVD and emulator lifecycle itself and is actively
+      # maintained against current SDK tooling.
+      - name: Enable KVM group perms
         run: |
-          flutter test integration_test/integration_test.dart -v
-        working-directory: .
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
 
-      - name: Collect device logs
-        if: always()
-        timeout-minutes: 2
-        run: |
-          mkdir -p test-results/api-${{ matrix.api-level }}
-          timeout 30 $ANDROID_SDK_ROOT/platform-tools/adb logcat -d > test-results/api-${{ matrix.api-level }}/logcat.log || true
-          cat /tmp/emulator.log > test-results/api-${{ matrix.api-level }}/emulator.log || true
+      - name: Run integration tests on Android Emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: google_apis
+          arch: x86_64
+          profile: pixel_6_pro
+          disable-animations: true
+          disk-size: 6000M
+          script: |
+            set +e
+            flutter test integration_test/integration_test.dart -v
+            TEST_EXIT_CODE=$?
+            mkdir -p test-results/api-${{ matrix.api-level }}
+            adb logcat -d > test-results/api-${{ matrix.api-level }}/logcat.log || true
+            exit $TEST_EXIT_CODE
 
       - name: Upload test artifacts
         if: always()
@@ -173,12 +181,6 @@ jobs:
           name: emulator-logs-api-${{ matrix.api-level }}
           path: test-results/
           if-no-files-found: ignore
-
-      - name: Stop emulator
-        if: always()
-        run: |
-          $ANDROID_SDK_ROOT/platform-tools/adb emu kill || true
-          pkill -f qemu-system || true
 
   # ========== Lint & Format Check ==========
   lint-check:
