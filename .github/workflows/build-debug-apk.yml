@@ -82,7 +82,7 @@ jobs:
           flutter pub get --no-example
 
       - name: Generate code with build_runner
-        timeout-minutes: 15
+        timeout-minutes: 20
         run: flutter pub run build_runner build --delete-conflicting-outputs --build-filter="lib/**"
 
       - name: Analyze code
