@@ -31,12 +31,21 @@ jobs:
         run: |
           # pubspec.yaml から現在のバージョンを取得
           # 形式: version: X.Y.Z+N
-          CURRENT_VERSION=$(grep "^version:" pubspec.yaml | awk '{print $2}')
+          # pubspec.yaml が CRLF 行末を含むことがあるため、tr -d '\r' で
+          # キャリッジリターンを確実に除去する（BUILD_NUMBER に \r が残ると
+          # 後段の $(( )) 算術展開が構文エラーになり、壊れたバージョンが
+          # コミットされてしまう）。
+          CURRENT_VERSION=$(grep "^version:" pubspec.yaml | awk '{print $2}' | tr -d '\r')
           echo "Current version: $CURRENT_VERSION"
 
           # バージョン部分とビルドナンバーを分割
           VERSION_PART="${CURRENT_VERSION%+*}"
           BUILD_NUMBER="${CURRENT_VERSION#*+}"
+
+          if ! [[ "$BUILD_NUMBER" =~ ^[0-9]+$ ]]; then
+            echo "::error::Could not parse build number from version '$CURRENT_VERSION'. Aborting to avoid writing a broken pubspec.yaml."
+            exit 1
+          fi
 
           # ビルドナンバーをインクリメント
           NEW_BUILD_NUMBER=$((BUILD_NUMBER + 1))
