@@ -3,6 +3,7 @@
 /// エミュレータ/実機上で実行する E2E テスト
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:shokollen_science/main.dart';
@@ -18,7 +19,7 @@ void main() {
       addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
 
       // アプリを起動
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(const ProviderScope(child: MyApp()));
 
       // マテリアルアプリが初期化されたことを確認
       expect(find.byType(MaterialApp), findsWidgets);
@@ -32,7 +33,7 @@ void main() {
 
     // ========== 観点2: 接続テスト ==========
     testWidgets('Firebase 接続状態を確認', (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(const ProviderScope(child: MyApp()));
 
       // アプリが安定していることを確認
       await tester.pumpAndSettle(const Duration(seconds: 2));
@@ -45,7 +46,7 @@ void main() {
 
     // ========== 観点3: 課金画面テスト ==========
     testWidgets('ショップ画面への遷移テスト', (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(const ProviderScope(child: MyApp()));
       await tester.pumpAndSettle(const Duration(seconds: 2));
 
       // ホーム画面で UI 要素を探索
@@ -71,7 +72,7 @@ void main() {
 
     // ========== 観点4: 認証フロー ==========
     testWidgets('認証画面の表示確認', (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(const ProviderScope(child: MyApp()));
       await tester.pumpAndSettle(const Duration(seconds: 3));
 
       // ログインフォームまたは認証UI が表示されているか確認
@@ -85,7 +86,7 @@ void main() {
 
     // ========== 観点5: 広告表示テスト ==========
     testWidgets('広告表示がアプリをブロックしない', (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(const ProviderScope(child: MyApp()));
       await tester.pumpAndSettle(const Duration(seconds: 3));
 
       // アプリが応答可能な状態であることを確認
@@ -100,7 +101,7 @@ void main() {
 
     // ========== 観点6: クラッシュ検出 ==========
     testWidgets('画面遷移中にクラッシュしない', (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(const ProviderScope(child: MyApp()));
 
       // 複数回の画面更新でクラッシュをテスト
       for (int i = 0; i < 5; i++) {
@@ -118,7 +119,7 @@ void main() {
     testWidgets('アプリの起動時間を測定', (WidgetTester tester) async {
       final stopwatch = Stopwatch()..start();
 
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(const ProviderScope(child: MyApp()));
       await tester.pumpAndSettle(const Duration(seconds: 2));
 
       stopwatch.stop();
@@ -135,11 +136,11 @@ void main() {
 
     // ========== 追加: メモリリークテスト ==========
     testWidgets('メモリリークが発生していない', (WidgetTester tester) async {
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(const ProviderScope(child: MyApp()));
 
       // 複数回の画面更新でウィジェットツリーが破綻しないことを確認
       for (int i = 0; i < 10; i++) {
-        await tester.pumpWidget(const MyApp());
+        await tester.pumpWidget(const ProviderScope(child: MyApp()));
         await tester.pump();
       }
 
