@@ -53,7 +53,10 @@ void main() {
       await tester.pump();
 
       // ショップボタンを探す（アイコンまたはテキスト）
-      final shopButton = find.byTooltip('Shop') | find.byIcon(Icons.shopping_cart);
+      final tooltipFinder = find.byTooltip('Shop');
+      final iconFinder = find.byIcon(Icons.shopping_cart);
+      final shopButton =
+          tooltipFinder.evaluate().isNotEmpty ? tooltipFinder : iconFinder;
 
       if (shopButton.evaluate().isNotEmpty) {
         await tester.tap(shopButton);
