@@ -5,9 +5,21 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart' show ProviderContainer, UncontrolledProviderScope;
+import 'package:flutter_riverpod/flutter_riverpod.dart'
+    show
+        ProviderContainer,
+        UncontrolledProviderScope,
+        ConsumerStatefulWidget,
+        ConsumerState;
+import 'package:shared_core/config/subscription_config.dart' as revenue_cat_config;
 import 'package:shared_core/shared_core.dart'
-    hide progressProvider, LearningProgress, ProgressNotifier, FirebaseService;
+    hide
+        progressProvider,
+        LearningProgress,
+        ProgressNotifier,
+        FirebaseService,
+        lessonProvider,
+        LessonNotifier;
 import 'package:shared_core/shared_core.dart'
     show
         badgeProvider,
@@ -36,7 +48,6 @@ import 'features/progress/data/repositories/review_time_capsule_repository.dart'
 import 'features/progress/providers/incorrect_monster_provider.dart';
 import 'features/progress/providers/review_time_capsule_provider.dart';
 import 'features/settings/providers/theme_provider.dart';
-import 'providers/character_provider.dart';
 import 'providers/equipped_items_provider.dart';
 import 'providers/locale_provider.dart';
 import 'providers/lesson_provider.dart' show LessonNotifier, lessonProvider;
@@ -70,7 +81,14 @@ void main() async {
 
   // 課金基盤（RevenueCat）初期化。shared_core で一元管理。
   try {
-    await SharedCoreInitializer.initializeSubscriptions();
+    await SharedCoreInitializer.initializeSubscriptions(
+      SubscriptionConfig(
+        googleKey: revenue_cat_config.SubscriptionConfig.apiKey,
+        appleKey: revenue_cat_config.SubscriptionConfig.apiKey,
+        premiumEntitlementId:
+            revenue_cat_config.SubscriptionConfig.premiumEntitlementId,
+      ),
+    );
   } catch (e) {
     // エラーでも起動は継続（プレミアム判定は false 扱いになる）
   }
@@ -120,8 +138,6 @@ void main() async {
 
   final container = ProviderContainer(
     overrides: [
-      // 理科コレのキャラクターノティファイアを注入
-      characterStateProvider.overrideWith(CharacterNotifier.new),
       // 理科コレのショップアイテム装着状態ノティファイアを注入
       equippedItemsProvider.overrideWith(EquippedItemsNotifier.new),
       // 統一バッジシステム（Phase 4.1）: 理科コレ用バッジを主題タグで初期化
@@ -138,7 +154,7 @@ void main() async {
       // 保存されたロケール設定を注入
       localeProvider.overrideWith((ref) => LocaleNotifier(savedLocale)),
       // Phase 4.7: 統一サブスクリプション管理（PremiumProvider）
-      premiumProvider.overrideWith(PremiumNotifier.new),
+      premiumProvider.overrideWith((ref) => PremiumNotifier()),
       // マルチプレイ対戦（レートマッチング）: shared_core のハンドラ注入方式に
       // Firestore デフォルト実装（rika_ プレフィックス付きコレクション）を接続
       matchmakingHandlersProvider
@@ -150,6 +166,8 @@ void main() async {
 
   // バッジシステム初期化: 統一バッジを主題タグで初期化
   container.read(badgeProvider.notifier).setBadgeDefinitions(unifiedBadges, subject: 'rika');
+
+  final currentUserId = FirebaseAuth.instance.currentUser?.uid;
 
   // Firestore ランキング・フレンド・ミッション サービスの初期化
   final rankingService = FirestoreRankingService();
@@ -166,10 +184,9 @@ void main() async {
 
   // Phase 4.5: デイリーミッション統一
   // ミッション Handler を shared_core provider に注入
+  // (進捗更新・報酬付与は shared_core 組み込みの Firestore フォールバックに委譲)
   container.read(missionProvider.notifier)
-    ..setFetchHandler(missionService.fetchMissions)
-    ..setProgressHandler(missionService.updateProgress)
-    ..setCompleteHandler(missionService.completeMission);
+      .setFetchHandler(missionService.fetchMissions);
 
   // Phase 4.20: 週次ボーナスシステム Firestore 永続化
   final weeklyBonusRef = FirebaseFirestore.instance.collection('users').doc(currentUserId).collection('bonuses').doc('weekly');
@@ -190,8 +207,8 @@ void main() async {
   );
 
   // Phase 4.7: 統一サブスクリプション初期化
-  final currentUserId = FirebaseAuth.instance.currentUser?.uid;
-  if (currentUserId != null) {
+  final purchaseService = SharedCoreInitializer.getPurchaseService();
+  if (currentUserId != null && purchaseService != null) {
     container.read(premiumProvider.notifier)
       ..setCheckHandler((userId) => purchaseService.isSubscribed(userId))
       ..setExpiryHandler((userId) => purchaseService.getSubscriptionExpirationDate(userId));

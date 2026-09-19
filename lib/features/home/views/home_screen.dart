@@ -365,9 +365,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               Builder(
                 builder: (context) {
                   final notifications = ref.watch(notificationProvider);
-                  return NotificationBadge(
-                    notificationCount: notifications.length,
-                    onPressed: () {
+                  return GestureDetector(
+                    onTap: () {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text('通知: ${notifications.length}件'),
@@ -375,6 +374,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         ),
                       );
                     },
+                    child: const NotificationBadge(),
                   );
                 },
               ),

@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_core/shared_core.dart';
+import 'package:shared_core/shared_core.dart' hide AppColors;
 import '../../../shared/constants/app_colors.dart';
 import '../../../features/progress/providers/user_progress_provider.dart';
 import '../../../data/seeds/stages.dart';

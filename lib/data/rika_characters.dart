@@ -7,6 +7,7 @@ const List<BaseCharacter> kRikaCharacters = [
   BaseCharacter(
     id: 'komuji', name: 'コムシ', emoji: '🐛', tier: 1, unlockAt: 0,
     subject: '昆虫・植物',
+    appSubject: Subject.rika,
     backstory: 'コムシは昆虫の森にすむ科学の妖精。\n'
         '「虫の体は頭・胸・腹の3つに分かれているよ！」が口ぐせ。\n'
         '小さな虫や植物を観察するのが大好きで、\n'
@@ -17,6 +18,7 @@ const List<BaseCharacter> kRikaCharacters = [
   BaseCharacter(
     id: 'hanako', name: 'ハナコ', emoji: '🌸', tier: 1, unlockAt: 3,
     subject: '植物の育ち',
+    appSubject: Subject.rika,
     backstory: 'ハナコは植物の精霊。種から芽が出る瞬間が一番好き。\n'
         '「水と光と空気があれば、どんな種も芽を出せるよ！」\n'
         'と教えてくれる。雨の日には特に元気になる不思議な子。\n'
@@ -27,6 +29,7 @@ const List<BaseCharacter> kRikaCharacters = [
   BaseCharacter(
     id: 'magne', name: 'マグネ', emoji: '🧲', tier: 1, unlockAt: 5,
     subject: '磁石',
+    appSubject: Subject.rika,
     backstory: 'マグネは磁石の力を使う魔法使い。\n'
         '「南極と北極は引き合うけど、同じ極は反発するんだよ！」\n'
         'が好きなセリフ。鉄のものを見ると勝手に引き寄せてしまって、\n'
@@ -37,6 +40,7 @@ const List<BaseCharacter> kRikaCharacters = [
   BaseCharacter(
     id: 'densuke', name: 'デンスケ', emoji: '💡', tier: 1, unlockAt: 8,
     subject: '電気の通り道',
+    appSubject: Subject.rika,
     backstory: 'デンスケは電気の精霊。豆電球を頭に光らせて飛び回る。\n'
         '「電気は一つながりの輪を作らないと流れないよ！」と得意げ。\n'
         '暗い場所で光るので、友だちから懐中電灯がわりにされちゃう。\n'
@@ -49,6 +53,7 @@ const List<BaseCharacter> kRikaCharacters = [
   BaseCharacter(
     id: 'kazumaru', name: 'カゼマル', emoji: '🌤️', tier: 2, unlockAt: 12,
     subject: '天気・気象',
+    appSubject: Subject.rika,
     backstory: 'カゼマルは雲の上に住む気象博士の見習い。\n'
         '「天気は西から東へ変わることが多いよ！」と毎朝空を見上げる。\n'
         '雨が降ると悲しそうだけど、「雨は必要なんだ」と言い聞かせてる。\n'
@@ -59,6 +64,7 @@ const List<BaseCharacter> kRikaCharacters = [
   BaseCharacter(
     id: 'tsukimi', name: 'ツキミ', emoji: '🌙', tier: 2, unlockAt: 16,
     subject: '月・星・太陽',
+    appSubject: Subject.rika,
     backstory: 'ツキミは月明かりの下で生まれた星の子。\n'
         '「月は自分では光らない、太陽の光を反射しているんだよ！」\n'
         'と夜空を見上げて説明してくれる。満月の夜が一番元気で、\n'
@@ -69,6 +75,7 @@ const List<BaseCharacter> kRikaCharacters = [
   BaseCharacter(
     id: 'honetaro', name: 'ホネタロウ', emoji: '🦴', tier: 2, unlockAt: 20,
     subject: '人体の運動',
+    appSubject: Subject.rika,
     backstory: 'ホネタロウは体の中から飛び出してきた骨の博士。\n'
         '「骨と筋肉が一緒に働くから体が動くんだよ！」が持論。\n'
         'いつも姿勢よくピンと立っていて、「骨を大事に！」と呼びかける。\n'
@@ -79,6 +86,7 @@ const List<BaseCharacter> kRikaCharacters = [
   BaseCharacter(
     id: 'mizukichi', name: 'ミズキチ', emoji: '💧', tier: 2, unlockAt: 24,
     subject: '空気と水の性質',
+    appSubject: Subject.rika,
     backstory: 'ミズキチは水辺に住む実験好きの精霊。\n'
         '「空気も水も押すと体積が変わるけど、縮み方が違うんだよ！」\n'
         'と注射器を持って走り回る。水鉄砲の達人でもある。\n'
@@ -91,6 +99,7 @@ const List<BaseCharacter> kRikaCharacters = [
   BaseCharacter(
     id: 'tokero', name: 'トケロー', emoji: '🧪', tier: 3, unlockAt: 28,
     subject: '物の溶け方',
+    appSubject: Subject.rika,
     backstory: 'トケローは実験室から生まれた溶解の専門家。\n'
         '「食塩は水に溶けても消えてないよ！蒸発させると戻るんだ！」\n'
         'が自慢の知識。いつも試験管とビーカーを持ち歩いて、\n'
@@ -101,6 +110,7 @@ const List<BaseCharacter> kRikaCharacters = [
   BaseCharacter(
     id: 'furiko', name: 'フリコ', emoji: '⏰', tier: 3, unlockAt: 32,
     subject: '振り子の動き',
+    appSubject: Subject.rika,
     backstory: 'フリコは時計の国からやってきた振り子妖精。\n'
         '「振り子の周期は、糸の長さで決まるんだよ！重さは関係ない！」\n'
         'とリズミカルに教えてくれる。いつも一定のリズムで歩いていて、\n'
@@ -111,6 +121,7 @@ const List<BaseCharacter> kRikaCharacters = [
   BaseCharacter(
     id: 'birika', name: 'ビリカ', emoji: '⚡', tier: 3, unlockAt: 36,
     subject: '電流と電磁石',
+    appSubject: Subject.rika,
     backstory: 'ビリカは電流を操る電磁石の達人。\n'
         '「コイルに電流を流すと磁石になるよ！これが電磁石！」\n'
         'と興奮して説明する。ビリッとした静電気が好きで、\n'
@@ -121,6 +132,7 @@ const List<BaseCharacter> kRikaCharacters = [
   BaseCharacter(
     id: 'tanekichi', name: 'タネキチ', emoji: '🌱', tier: 3, unlockAt: 40,
     subject: '植物の発芽・成長',
+    appSubject: Subject.rika,
     backstory: 'タネキチは種の中に住む生命力あふれる精霊。\n'
         '「種が芽を出すには水・空気・適切な温度が必要だよ！」と語る。\n'
         '土の匂いが大好きで、春になると必ずどこかの畑に遊びに行く。\n'
@@ -133,6 +145,7 @@ const List<BaseCharacter> kRikaCharacters = [
   BaseCharacter(
     id: 'chisoun', name: 'チソウン', emoji: '🗻', tier: 4, unlockAt: 44,
     subject: '地層・岩石',
+    appSubject: Subject.rika,
     backstory: 'チソウンは大地の記憶を読む地層博士。\n'
         '「地層を見れば何万年もの歴史がわかるんだよ！」と感動する。\n'
         '化石を見つけるのが得意で、どこへ行っても地面を眺めている。\n'
@@ -143,6 +156,7 @@ const List<BaseCharacter> kRikaCharacters = [
   BaseCharacter(
     id: 'moeru', name: 'モエール', emoji: '🔥', tier: 4, unlockAt: 48,
     subject: '物の燃え方',
+    appSubject: Subject.rika,
     backstory: 'モエールは炎の精霊。燃焼の三要素を体で表現できる。\n'
         '「燃えるには燃料・酸素・温度の3つが必要なんだよ！」\n'
         'と炎を揺らしながら説明する。消防士にも尊敬されている。\n'
@@ -153,6 +167,7 @@ const List<BaseCharacter> kRikaCharacters = [
   BaseCharacter(
     id: 'taborun', name: 'タベルン', emoji: '🌿', tier: 4, unlockAt: 52,
     subject: '生物と環境',
+    appSubject: Subject.rika,
     backstory: 'タベルンは食物連鎖の繋がりを守る森の守護者。\n'
         '「すべての生き物は繋がり合っているんだよ！」と力説する。\n'
         '草から虫、鳥、タカまで友だちで、誰も傷つけてほしくない。\n'
@@ -163,6 +178,7 @@ const List<BaseCharacter> kRikaCharacters = [
   BaseCharacter(
     id: 'hakase_master', name: '理科マスター', emoji: '🔬', tier: 4, unlockAt: 56,
     subject: '理科総合',
+    appSubject: Subject.rika,
     backstory: '理科コレを完全制覇した者だけが出会える伝説の博士。\n'
         '「観察・実験・考察、これが理科の三原則だよ！」と微笑む。\n'
         'すべての理科の精霊たちから慕われており、\n'
