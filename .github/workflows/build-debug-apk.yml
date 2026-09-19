@@ -81,6 +81,34 @@ jobs:
           flutter clean
           flutter pub get --no-example
 
+      - name: Provide placeholder google-services.json
+        run: |
+          if [ ! -f android/app/google-services.json ]; then
+            cat > android/app/google-services.json << 'EOF'
+          {
+            "project_info": {
+              "project_number": "000000000000",
+              "project_id": "shokollen-science-ci-placeholder",
+              "storage_bucket": "shokollen-science-ci-placeholder.appspot.com"
+            },
+            "client": [
+              {
+                "client_info": {
+                  "mobilesdk_app_id": "1:000000000000:android:0000000000000000000000",
+                  "android_client_info": {
+                    "package_name": "com.petitworksapps.shougakukore.rika"
+                  }
+                },
+                "oauth_client": [],
+                "api_key": [{"current_key": "AIzaSyPlaceholder00000000000000000000000"}],
+                "services": {"appinvite_service": {"other_platform_oauth_client": []}}
+              }
+            ],
+            "configuration_version": "1"
+          }
+          EOF
+          fi
+
       - name: Analyze code
         continue-on-error: true
         run: flutter analyze
