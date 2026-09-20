@@ -47,42 +47,21 @@ class LearnScreen extends ConsumerWidget {
                     // 動画で調べるボタン（YouTube検索）
                     Container(
                       margin: const EdgeInsets.fromLTRB(0, 0, 0, 8),
-                      child: Column(
-                        children: [
-                          OutlinedButton.icon(
-                            onPressed: () {
-                              final stageName = stageData['stageName'] as String;
-                              final query = Uri.encodeComponent('$stageName 理科 小学校 実験');
-                              _launchUrl('https://www.youtube.com/results?search_query=$query');
-                            },
-                            icon: const Text('▶️', style: TextStyle(fontSize: 16)),
-                            label: const Text('YouTubeで動画を探す'),
-                            style: OutlinedButton.styleFrom(
-                              foregroundColor: const Color(0xFFFF0000),
-                              side: const BorderSide(color: Color(0xFFFF0000)),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12)),
-                              minimumSize: const Size(double.infinity, 44),
-                            ),
-                          ),
-                          const SizedBox(height: 6),
-                          OutlinedButton.icon(
-                            onPressed: () {
-                              final stageName = stageData['stageName'] as String;
-                              final query = Uri.encodeComponent('$stageName 理科');
-                              _launchUrl('https://www2.nhk.or.jp/school/movie/bangumi.cgi?das_id=&keyword=${Uri.encodeComponent(stageName)}');
-                            },
-                            icon: const Text('📺', style: TextStyle(fontSize: 16)),
-                            label: const Text('NHK for School で調べる'),
-                            style: OutlinedButton.styleFrom(
-                              foregroundColor: Colors.blue[700],
-                              side: BorderSide(color: Colors.blue.shade300),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12)),
-                              minimumSize: const Size(double.infinity, 44),
-                            ),
-                          ),
-                        ],
+                      child: OutlinedButton.icon(
+                        onPressed: () {
+                          final stageName = stageData['stageName'] as String;
+                          final query = Uri.encodeComponent('$stageName 理科 小学校 実験');
+                          _launchUrl('https://www.youtube.com/results?search_query=$query');
+                        },
+                        icon: const Text('▶️', style: TextStyle(fontSize: 16)),
+                        label: const Text('YouTubeで動画を探す'),
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: const Color(0xFFFF0000),
+                          side: const BorderSide(color: Color(0xFFFF0000)),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12)),
+                          minimumSize: const Size(double.infinity, 44),
+                        ),
                       ),
                     ),
                   ],
