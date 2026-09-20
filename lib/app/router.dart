@@ -39,6 +39,7 @@ import '../features/quiz/views/quiz_screen.dart';
 import '../features/quiz/views/timer_quiz_result_screen.dart';
 import '../features/quiz/views/timer_quiz_screen.dart';
 import '../features/review/views/review_screen.dart';
+import '../features/settings/views/premium_plan_screen.dart';
 import '../features/settings/views/settings_screen.dart';
 import '../features/sky/views/tonight_sky_screen.dart';
 import '../features/test/views/comprehensive_test_screen.dart';
@@ -394,6 +395,12 @@ class AppRouter {
         path: '/settings',
         name: 'settings',
         builder: (_, __) => const SettingsScreen(),
+      ),
+      // プレミアム会員プラン確認・購入・復元
+      GoRoute(
+        path: '/premium',
+        name: 'premium',
+        builder: (_, __) => const PremiumPlanScreen(),
       ),
 
       // バグ報告・改善要望（shared_core 共通フォーム）
