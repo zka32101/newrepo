@@ -121,25 +121,52 @@ final Map<String, Map<int, Map<String, String>>> allExplanations = {
   'stage_6_012': explanations_stage_6_012,
 };
 
+/// 解説データの内容が実際のステージ内容と照合済みのステージID一覧。
+///
+/// このファイルの解説データは、`stages.dart` でステージ構成が変更された際に
+/// 中身が更新されず、実際とは無関係な別単元の解説が入ったままになっている
+/// ものが47ステージ中33件見つかった（例: 「てこの規則性」のステージの
+/// 解説ファイルの中身が「生命の進化」になっている）。内容を照合し直すまでは
+/// 誤った解説を出さないよう、確認済みのステージのみ許可する。
+///
+/// TODO: 残りのステージも内容を照合・修正し、順次このリストに追加する。
+const Set<String> _verifiedExplanationStageIds = {
+  'stage_3_001',
+  'stage_3_002',
+  'stage_3_003',
+  'stage_3_004',
+  'stage_3_005',
+  'stage_3_006',
+  'stage_3_007',
+  'stage_3_008',
+  'stage_4_001',
+  'stage_4_002',
+  'stage_4_003',
+  'stage_4_004',
+  'stage_4_005',
+  'stage_4_006',
+};
+
 /// ステージIDから解説を取得するヘルパー関数
 /// ```dart
 /// final explanation = getExplanation('stage_3_001', 1);
 /// ```
 Map<String, String>? getExplanation(String stageId, int questionNumber) {
+  if (!_verifiedExplanationStageIds.contains(stageId)) return null;
   return allExplanations[stageId]?[questionNumber];
 }
 
 /// 正解理由だけを取得するヘルパー関数
 String? getCorrectReason(String stageId, int questionNumber) {
-  return allExplanations[stageId]?[questionNumber]?['correctReason'];
+  return getExplanation(stageId, questionNumber)?['correctReason'];
 }
 
 /// よくある間違いだけを取得するヘルパー関数
 String? getCommonMistakes(String stageId, int questionNumber) {
-  return allExplanations[stageId]?[questionNumber]?['commonMistakes'];
+  return getExplanation(stageId, questionNumber)?['commonMistakes'];
 }
 
 /// 発展学習だけを取得するヘルパー関数
 String? getAdvancedLearning(String stageId, int questionNumber) {
-  return allExplanations[stageId]?[questionNumber]?['advancedLearning'];
+  return getExplanation(stageId, questionNumber)?['advancedLearning'];
 }
