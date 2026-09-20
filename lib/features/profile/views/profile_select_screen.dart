@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:shared_core/shared_core.dart'
     hide profileProvider, ProfileState, ProfileNotifier, AppColors;
 import '../../../shared/constants/app_colors.dart';
+import '../../../shared/widgets/profile_avatar_image.dart';
 import '../providers/profile_provider.dart';
 import '../models/profile_model.dart';
 
@@ -211,8 +212,7 @@ class _ProfileCard extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-            Text(profile.avatarEmoji,
-                style: const TextStyle(fontSize: 52)),
+            ProfileAvatarImage(avatar: profile.avatarEmoji, size: 52),
             const SizedBox(height: 8),
             Text(
               profile.nickname,

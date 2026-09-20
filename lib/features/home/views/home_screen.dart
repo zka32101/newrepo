@@ -23,7 +23,9 @@ import '../../encyclopedia/views/encyclopedia_screen.dart';
 import '../../learn/views/learn_tab_screen.dart';
 import '../../shop/views/shop_screen.dart';
 import '../../trial/providers/trial_provider.dart';
+import '../../profile/models/profile_model.dart';
 import '../../profile/providers/profile_provider.dart';
+import '../../../shared/widgets/profile_avatar_image.dart';
 import '../../daily/providers/daily_challenge_provider.dart';
 import '../../settings/providers/theme_provider.dart';
 import '../../../shared/widgets/doctor_character_widget.dart';
@@ -222,8 +224,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(activeProfile?.avatarEmoji ?? '🐻',
-                          style: const TextStyle(fontSize: 16)),
+                      ProfileAvatarImage(
+                        avatar: activeProfile?.avatarEmoji ??
+                            ProfileModel.avatarChoices[0],
+                        size: 18,
+                      ),
                       const SizedBox(width: 4),
                       Text(
                         activeProfile?.nickname ?? 'たろう',

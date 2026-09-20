@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_core/shared_core.dart';
 
+import '../../../shared/widgets/profile_avatar_image.dart';
 import '../providers/multiplayer_identity_provider.dart';
 
 /// 対戦相手探索中の待機画面（shared_core の共通ウィジェットを使用）。
@@ -82,8 +83,7 @@ class _MatchingWaitingScreenState
                 ? _buildErrorView(
                     context, identity, matchmakingState.errorMessage)
                 : MatchmakingSearchWidget(
-                    avatar: Text(identity.avatarEmoji,
-                        style: const TextStyle(fontSize: 48)),
+                    avatar: ProfileAvatarImage(avatar: identity.avatarEmoji, size: 48),
                     displayName: identity.displayName,
                     rating: _myRating,
                     onCancel: () async {
