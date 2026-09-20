@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:shared_core/shared_core.dart'
     hide profileProvider, ProfileState, ProfileNotifier, AppColors;
 import '../../../shared/constants/app_colors.dart';
+import '../../../shared/widgets/profile_avatar_image.dart';
 import '../providers/profile_provider.dart';
 import '../models/profile_model.dart';
 
@@ -158,18 +159,34 @@ class _ProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      onLongPress: onDelete != null
+      onLongPress: (isActive || onDelete != null)
           ? () => showModalBottomSheet<void>(
                 context: context,
                 builder: (_) => SafeArea(
-                  child: ListTile(
-                    leading:
-                        const Icon(Icons.delete_outline, color: Colors.red),
-                    title: Text('${profile.nickname} を削除'),
-                    onTap: () {
-                      Navigator.pop(context);
-                      onDelete?.call();
-                    },
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (isActive)
+                        ListTile(
+                          leading: const Icon(Icons.face_retouching_natural,
+                              color: AppColors.sciencePrimary),
+                          title: const Text('アバターを変更'),
+                          onTap: () {
+                            Navigator.pop(context);
+                            context.push('/avatar-shop');
+                          },
+                        ),
+                      if (onDelete != null)
+                        ListTile(
+                          leading: const Icon(Icons.delete_outline,
+                              color: Colors.red),
+                          title: Text('${profile.nickname} を削除'),
+                          onTap: () {
+                            Navigator.pop(context);
+                            onDelete?.call();
+                          },
+                        ),
+                    ],
                   ),
                 ),
               )
@@ -211,8 +228,7 @@ class _ProfileCard extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-            Text(profile.avatarEmoji,
-                style: const TextStyle(fontSize: 52)),
+            ProfileAvatarImage(avatar: profile.avatarEmoji, size: 52),
             const SizedBox(height: 8),
             Text(
               profile.nickname,
