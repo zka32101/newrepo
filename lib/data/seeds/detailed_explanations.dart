@@ -1,7 +1,4 @@
-/// 詳細な解説データ（学習指導要領準拠・YouTube動画付き）
-///
-/// 動画ソース: NHK for School（教育目的の公開動画）
-/// https://www.nhk.or.jp/school/
+/// 詳細な解説データ（学習指導要領準拠）
 
 final detailedExplanationsData = [
   // ══════════════════════════════════════════════════════
@@ -43,20 +40,7 @@ final detailedExplanationsData = [
       {'emoji': '🛡️', 'text': '外骨格で体を守る'},
       {'emoji': '🔄', 'text': '脱皮して成長する'},
     ],
-    'videos': [
-      {
-        'youtubeId': 'PJZE5xIiW2A',
-        'title': '昆虫の体のつくり【NHK for School】',
-        'source': 'NHK for School',
-        'durationSeconds': 235,
-      },
-      {
-        'youtubeId': 'U1p4FGKuWeg',
-        'title': '身近な昆虫を観察しよう',
-        'source': 'NHK for School',
-        'durationSeconds': 180,
-      },
-    ],
+    'videos': <Map<String, dynamic>>[],
     'realWorldExample': '''
 **🦋 身の周りの昆虫の役割：**
 - **チョウ・ミツバチ** → 花の受粉を助ける → 野菜や果物ができる
@@ -112,14 +96,7 @@ final detailedExplanationsData = [
       {'emoji': '⬇️', 'text': '根は下に向かって伸びる'},
       {'emoji': '🥕', 'text': 'ニンジン・ダイコンは根を食べている'},
     ],
-    'videos': [
-      {
-        'youtubeId': 'PPxvGDxIKlM',
-        'title': '植物の根・茎・葉のはたらき【NHK for School】',
-        'source': 'NHK for School',
-        'durationSeconds': 212,
-      },
-    ],
+    'videos': <Map<String, dynamic>>[],
     'realWorldExample': '''
 **🌾 食べている「根」の野菜：**
 - 🥕 ニンジン → 橙色の根
@@ -178,14 +155,7 @@ final detailedExplanationsData = [
       {'emoji': '🎯', 'text': '両皿が同じ高さ＝重さが等しい'},
       {'emoji': '📏', 'text': '重さの単位は g と kg'},
     ],
-    'videos': [
-      {
-        'youtubeId': 'tWRoqfYwYBg',
-        'title': '重さをはかろう【NHK for School】',
-        'source': 'NHK for School',
-        'durationSeconds': 198,
-      },
-    ],
+    'videos': <Map<String, dynamic>>[],
     'realWorldExample': '''
 **⚖️ 重さを測る場面：**
 - 🛒 スーパー → 野菜・肉を100g単位で量る
@@ -244,14 +214,7 @@ final detailedExplanationsData = [
       {'emoji': '📍', 'text': '両端（N極・S極）が最も強い'},
       {'emoji': '📏', 'text': '近いほど磁力が強い'},
     ],
-    'videos': [
-      {
-        'youtubeId': 'pXcEEfetILw',
-        'title': '磁石のひみつ【NHK for School】',
-        'source': 'NHK for School',
-        'durationSeconds': 224,
-      },
-    ],
+    'videos': <Map<String, dynamic>>[],
     'realWorldExample': '''
 **🧲 磁石が使われているもの：**
 - 🧲 冷蔵庫のマグネット → 鉄板に付く
@@ -306,14 +269,7 @@ final detailedExplanationsData = [
       {'emoji': '🔁', 'text': '並列→電圧は変わらない'},
       {'emoji': '⏰', 'text': '並列→電池が長持ち'},
     ],
-    'videos': [
-      {
-        'youtubeId': 'B8ULWsE12KY',
-        'title': '電池のつなぎ方【NHK for School】',
-        'source': 'NHK for School',
-        'durationSeconds': 208,
-      },
-    ],
+    'videos': <Map<String, dynamic>>[],
     'comparisonTable': {
       'headerA': '直列つなぎ',
       'headerB': '並列つなぎ',
@@ -385,14 +341,7 @@ final detailedExplanationsData = [
       {'emoji': '↔️', 'text': '振れ幅も関係しない（等時性）'},
       {'emoji': '⏰', 'text': '振り子時計はこの法則を利用'},
     ],
-    'videos': [
-      {
-        'youtubeId': 'yVkdfJ9PkRQ',
-        'title': '振り子の決まり【NHK for School】',
-        'source': 'NHK for School',
-        'durationSeconds': 190,
-      },
-    ],
+    'videos': <Map<String, dynamic>>[],
     'realWorldExample': '''
 **⏰ 振り子の利用例：**
 - 🕰️ **ふりこ時計** → 一定の周期を使って時間を刻む
