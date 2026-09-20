@@ -29,6 +29,7 @@ import '../features/onboarding/views/onboarding_screen.dart';
 import '../features/parent/views/parent_dashboard_screen.dart';
 import '../features/parent/views/praise_send_screen.dart';
 import '../features/parent/views/screen_time_settings_screen.dart';
+import '../features/profile/views/avatar_shop_screen.dart';
 import '../features/profile/views/profile_create_screen.dart';
 import '../features/profile/views/profile_select_screen.dart';
 import '../features/progress/views/daily_mystery_omikuji_screen.dart';
@@ -133,6 +134,12 @@ class AppRouter {
         path: '/profile-create',
         name: 'profile-create',
         builder: (_, __) => const ProfileCreateScreen(),
+      ),
+      // アバターショップ（アクティブなプロフィールのアバター変更・購入）
+      GoRoute(
+        path: '/avatar-shop',
+        name: 'avatar-shop',
+        builder: (_, __) => const AvatarShopScreen(),
       ),
       // デイリーチャレンジ
       GoRoute(

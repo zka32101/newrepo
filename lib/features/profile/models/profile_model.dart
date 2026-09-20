@@ -1,6 +1,11 @@
 class ProfileModel {
   final String id;
   final String nickname;
+
+  /// アバター画像アセットのパス（例: 'assets/images/avatars/01_bear.png'）。
+  /// 旧バージョンで作成されたプロフィールでは絵文字（例: '🐻'）が
+  /// 入っていることがあり、表示側の [ProfileAvatarImage] がどちらの形式
+  /// にも対応する。
   final String avatarEmoji;
   final int gradeLevel; // 3, 4, 5, 6
   final String createdAt; // YYYY-MM-DD
@@ -23,10 +28,66 @@ class ProfileModel {
     this.lastGradeAdvancementDate,
   });
 
+  /// アバター画像アセットの選択肢。
+  /// 過去バージョンで絵文字が保存されている場合は
+  /// [ProfileAvatarImage] 側でフォールバック表示する。
   static const avatarChoices = [
-    '🐻', '🐱', '🐸', '🦊', '🐧', '🦁', '🐨', '🐼',
-    '🐰', '🐹', '🦋', '🐬',
+    'assets/images/avatars/01_bear.png',
+    'assets/images/avatars/02_cat.png',
+    'assets/images/avatars/03_panda.png',
+    'assets/images/avatars/04_fox.png',
+    'assets/images/avatars/05_rabbit.png',
+    'assets/images/avatars/06_tiger.png',
+    'assets/images/avatars/07_lion.png',
+    'assets/images/avatars/08_frog.png',
+    'assets/images/avatars/09_duck.png',
+    'assets/images/avatars/10_pig.png',
+    'assets/images/avatars/11_koala.png',
+    'assets/images/avatars/12_giraffe.png',
+    'assets/images/avatars/13_kangaroo.png',
+    'assets/images/avatars/14_dog.png',
+    'assets/images/avatars/15_raccoon.png',
+    'assets/images/avatars/16_sloth.png',
   ];
+
+  /// [avatarChoices] の先頭 [avatarFreeCount] 個は最初から無料で使える。
+  /// 残りはコインでの購入が必要（[avatarPrices] に対応する価格）。
+  static const avatarFreeCount = 4;
+
+  /// [avatarChoices] と同じ並びのショップ価格（無料分は 0）。
+  static const avatarPrices = [
+    0, 0, 0, 0, // bear, cat, panda, fox（無料）
+    100, // rabbit
+    150, // tiger
+    150, // lion
+    80, // frog
+    80, // duck
+    100, // pig
+    120, // koala
+    150, // giraffe
+    150, // kangaroo
+    120, // dog
+    130, // raccoon
+    180, // sloth
+  ];
+
+  /// アバターを [UserProgress.purchasedItemIds] で管理するための
+  /// 購入アイテムID（例: 'avatar_04'）。
+  static String purchaseIdFor(int avatarIndex) =>
+      'avatar_${avatarIndex.toString().padLeft(2, '0')}';
+
+  /// そのアバターが最初から使えるか（無料枠内か）。
+  static bool isAvatarFree(int avatarIndex) =>
+      avatarIndex < avatarFreeCount;
+
+  /// [avatarChoices] のうち、無料または購入済みで選択可能なもの一覧。
+  static List<String> unlockedAvatars(List<String> purchasedItemIds) {
+    return [
+      for (var i = 0; i < avatarChoices.length; i++)
+        if (isAvatarFree(i) || purchasedItemIds.contains(purchaseIdFor(i)))
+          avatarChoices[i],
+    ];
+  }
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -41,7 +102,7 @@ class ProfileModel {
   factory ProfileModel.fromJson(Map<String, dynamic> json) => ProfileModel(
         id: json['id'] as String,
         nickname: json['nickname'] as String,
-        avatarEmoji: json['avatarEmoji'] as String? ?? '🐻',
+        avatarEmoji: json['avatarEmoji'] as String? ?? avatarChoices[0],
         gradeLevel: (json['gradeLevel'] as num?)?.toInt() ?? 3,
         createdAt: json['createdAt'] as String? ?? '',
         startMonth: (json['startMonth'] as num?)?.toInt(),

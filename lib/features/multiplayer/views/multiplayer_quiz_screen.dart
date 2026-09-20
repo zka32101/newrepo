@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:shared_core/shared_core.dart' hide FuriganaText, AppColors;
 
 import '../../../shared/constants/app_colors.dart';
+import '../../../shared/widgets/profile_avatar_image.dart';
 import '../../../shared/widgets/furigana_text.dart';
 import '../../progress/providers/user_progress_provider.dart';
 import '../../quiz/models/question_model.dart';
@@ -224,8 +225,8 @@ class _MultiplayerQuizScreenState
         children: [
           Row(
             children: [
-              _buildScoreChip('${identity.avatarEmoji} ${identity.displayName}',
-                  _myScore),
+              _buildScoreChip(identity.displayName, _myScore,
+                  avatar: identity.avatarEmoji),
               const Spacer(),
               Text('${_currentIndex + 1} / ${_questions.length}',
                   style: const TextStyle(
@@ -251,12 +252,23 @@ class _MultiplayerQuizScreenState
     );
   }
 
-  Widget _buildScoreChip(String label, int score) {
+  Widget _buildScoreChip(String label, int score, {String? avatar}) {
     return Column(
       children: [
-        Text(label,
-            style: const TextStyle(color: Colors.white, fontSize: 11),
-            overflow: TextOverflow.ellipsis),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (avatar != null) ...[
+              ProfileAvatarImage(avatar: avatar, size: 16),
+              const SizedBox(width: 4),
+            ],
+            Flexible(
+              child: Text(label,
+                  style: const TextStyle(color: Colors.white, fontSize: 11),
+                  overflow: TextOverflow.ellipsis),
+            ),
+          ],
+        ),
         Text('$score',
             style: const TextStyle(
                 color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
