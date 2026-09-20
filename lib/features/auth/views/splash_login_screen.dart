@@ -64,8 +64,10 @@ class _SplashLoginScreenState extends ConsumerState<SplashLoginScreen>
         // プロフィール作成済み → ホームへ直遷移（profile-select をスキップ）
         context.go('/home');
       }
-    } catch (e) {
-      // エラーが発生した場合はプロフィール作成画面へ
+    } catch (e, st) {
+      // プロフィール読み込みで例外が起きると、既存プロフィールがあっても
+      // 毎回作成画面に飛ばされてしまう。原因を追跡できるようログを残す。
+      debugPrint('SplashLoginScreen: プロフィール読み込みに失敗しました: $e\n$st');
       if (mounted) {
         context.go('/profile-create');
       }
