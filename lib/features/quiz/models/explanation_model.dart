@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class VideoResource {
   final String youtubeId;   // YouTube 動画ID（例: "dQw4w9WgXcQ"）
   final String title;        // 動画タイトル
-  final String source;       // 提供元（例: "NHK for School"）
+  final String source;       // 提供元
   final int durationSeconds; // 秒単位の動画長さ
 
   const VideoResource({
