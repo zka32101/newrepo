@@ -83,10 +83,9 @@ class QuizNotifier extends Notifier<QuizState> {
       orElse: () => {'stageName': '理科クイズ'},
     );
 
-    // 問題データをフィルタリング（最大10問）
+    // 問題データをフィルタリング（そのステージの全問題を使用）
     final rawList = sampleQuestionsData
         .where((q) => q['stageId'] == stageId)
-        .take(10)
         .toList();
 
     final questions = rawList.map((q) {
