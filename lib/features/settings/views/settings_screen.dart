@@ -6,6 +6,7 @@ import 'package:shared_core/shared_core.dart'
     show NotificationSettingsPage, RetentionDashboard, AddFriendDialog;
 
 import '../../../shared/constants/app_colors.dart';
+import '../../trial/providers/trial_provider.dart';
 import '../providers/theme_provider.dart';
 
 /// 設定画面。テーマ切り替えや各種設定・お問い合わせ導線をまとめる。
@@ -15,6 +16,7 @@ class SettingsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isDark = ref.watch(themeProvider) == ThemeMode.dark;
+    final trial = ref.watch(trialProvider).value;
 
     return Scaffold(
       appBar: AppBar(
@@ -25,6 +27,26 @@ class SettingsScreen extends ConsumerWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 8),
         children: [
+          _SectionHeader('プレミアム会員'),
+          ListTile(
+            leading: Icon(
+              trial?.isPremium == true
+                  ? Icons.workspace_premium
+                  : Icons.workspace_premium_outlined,
+              color: AppColors.sciencePrimary,
+            ),
+            title: Text(
+              trial?.isPremium == true
+                  ? 'プレミアム会員です'
+                  : (trial?.isTrialActive == true
+                      ? '無料トライアル中（あと${trial!.trialDaysRemaining}日）'
+                      : 'プレミアムプランを見る'),
+            ),
+            subtitle: const Text('プラン確認・登録・購入の復元'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => context.push('/premium'),
+          ),
+          const Divider(height: 24),
           _SectionHeader('表示'),
           SwitchListTile(
             secondary: Icon(
