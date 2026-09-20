@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
@@ -51,11 +52,24 @@ class ProfileNotifier extends AsyncNotifier<ProfileState> {
 
     if (raw == null) return const ProfileState();
     try {
-      final list = (jsonDecode(raw) as List)
-          .map((e) => ProfileModel.fromJson(e as Map<String, dynamic>))
-          .toList();
-      return ProfileState(profiles: list, activeProfileId: activeId ?? (list.isNotEmpty ? list.first.id : null));
-    } catch (_) {
+      final decoded = jsonDecode(raw) as List;
+      final list = <ProfileModel>[];
+      for (final e in decoded) {
+        try {
+          list.add(ProfileModel.fromJson(e as Map<String, dynamic>));
+        } catch (err, st) {
+          // 1件だけ壊れたデータがあっても、他のプロフィールまで
+          // 巻き添えで失われないようスキップする。
+          debugPrint('ProfileNotifier: 壊れたプロフィールをスキップしました: $err\n$st');
+        }
+      }
+      return ProfileState(
+        profiles: list,
+        activeProfileId:
+            activeId ?? (list.isNotEmpty ? list.first.id : null),
+      );
+    } catch (err, st) {
+      debugPrint('ProfileNotifier: プロフィール一覧の読み込みに失敗しました: $err\n$st');
       return const ProfileState();
     }
   }
