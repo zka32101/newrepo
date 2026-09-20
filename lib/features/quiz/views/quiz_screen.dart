@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../data/seeds/explanations/explanations_index.dart';
 import '../../../services/tts_service.dart';
 import '../../../shared/constants/app_colors.dart';
 import '../../../shared/widgets/furigana_text.dart';
@@ -135,6 +136,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
                           selectedIdx == q.correctAnswerIndex,
                           q.answers[q.correctAnswerIndex],
                           quiz.stageId,
+                          q.questionNumber,
                         ),
                       ),
 
@@ -358,7 +360,12 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
     bool isCorrect,
     String correctAnswerText,
     String stageId,
+    int questionNumber,
   ) {
+    final detailed = getExplanation(stageId, questionNumber);
+    final commonMistakes = detailed?['commonMistakes'];
+    final advancedLearning = detailed?['advancedLearning'];
+
     return Container(
       margin: const EdgeInsets.only(top: 4),
       decoration: BoxDecoration(
@@ -470,6 +477,76 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
                     height: 1.8,
                   ),
                 ),
+                // 不正解のとき → よくある間違いの解説（自分がハマった
+                // パターンに近いものを見せることで学習効果を高める）
+                if (!isCorrect && commonMistakes != null) ...[
+                  const SizedBox(height: 14),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.6),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                          color: AppColors.error.withOpacity(0.25)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          '❌ よくあるまちがい',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.textGray,
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        FuriganaText(
+                          commonMistakes,
+                          style: const TextStyle(
+                            fontSize: 13,
+                            color: AppColors.textDark,
+                            height: 1.7,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+                // もっと学びたい子向けの発展学習（折りたたみ表示）
+                if (advancedLearning != null) ...[
+                  const SizedBox(height: 10),
+                  Theme(
+                    data: Theme.of(context)
+                        .copyWith(dividerColor: Colors.transparent),
+                    child: ExpansionTile(
+                      tilePadding: EdgeInsets.zero,
+                      childrenPadding: const EdgeInsets.only(bottom: 4),
+                      title: const Text(
+                        '🚀 もっとくわしく学ぼう',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.sciencePrimary,
+                        ),
+                      ),
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: FuriganaText(
+                            advancedLearning,
+                            style: const TextStyle(
+                              fontSize: 13,
+                              color: AppColors.textDark,
+                              height: 1.7,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
                 // 不正解のとき → まなぶへのリンク
                 if (!isCorrect) ...[
                   const SizedBox(height: 12),
