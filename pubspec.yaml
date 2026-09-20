@@ -138,6 +138,7 @@ flutter:
     - assets/icon/
     - assets/illustrations/stage_3/
     - assets/images/monsters/
+    - assets/images/avatars/
     - lib/l10n/
     - lib/assets/images/features/ai_chat/
     - lib/assets/images/features/tonight_sky/
