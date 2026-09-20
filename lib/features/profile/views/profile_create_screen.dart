@@ -67,13 +67,13 @@ class _ProfileCreateScreenState
               // アバター表示
               ProfileAvatarImage(avatar: _selectedEmoji, size: 100),
               const SizedBox(height: 8),
-              // アバター選択
+              // アバター選択（最初から使える分のみ。残りは作成後にコインで購入）
               SizedBox(
                 height: 60,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   padding: const EdgeInsets.symmetric(horizontal: 24),
-                  itemCount: ProfileModel.avatarChoices.length,
+                  itemCount: ProfileModel.avatarFreeCount,
                   separatorBuilder: (_, __) => const SizedBox(width: 10),
                   itemBuilder: (_, i) {
                     final avatar = ProfileModel.avatarChoices[i];

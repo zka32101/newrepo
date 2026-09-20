@@ -159,18 +159,34 @@ class _ProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      onLongPress: onDelete != null
+      onLongPress: (isActive || onDelete != null)
           ? () => showModalBottomSheet<void>(
                 context: context,
                 builder: (_) => SafeArea(
-                  child: ListTile(
-                    leading:
-                        const Icon(Icons.delete_outline, color: Colors.red),
-                    title: Text('${profile.nickname} を削除'),
-                    onTap: () {
-                      Navigator.pop(context);
-                      onDelete?.call();
-                    },
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (isActive)
+                        ListTile(
+                          leading: const Icon(Icons.face_retouching_natural,
+                              color: AppColors.sciencePrimary),
+                          title: const Text('アバターを変更'),
+                          onTap: () {
+                            Navigator.pop(context);
+                            context.push('/avatar-shop');
+                          },
+                        ),
+                      if (onDelete != null)
+                        ListTile(
+                          leading: const Icon(Icons.delete_outline,
+                              color: Colors.red),
+                          title: Text('${profile.nickname} を削除'),
+                          onTap: () {
+                            Navigator.pop(context);
+                            onDelete?.call();
+                          },
+                        ),
+                    ],
                   ),
                 ),
               )

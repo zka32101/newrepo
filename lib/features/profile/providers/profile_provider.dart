@@ -102,6 +102,29 @@ class ProfileNotifier extends AsyncNotifier<ProfileState> {
     state = AsyncData(updated);
   }
 
+  /// プロフィールのアバターを変更する
+  Future<void> updateAvatar(String profileId, String avatar) async {
+    final current = state.value ?? const ProfileState();
+    final newProfiles = [
+      for (final p in current.profiles)
+        if (p.id == profileId)
+          ProfileModel(
+            id: p.id,
+            nickname: p.nickname,
+            avatarEmoji: avatar,
+            gradeLevel: p.gradeLevel,
+            createdAt: p.createdAt,
+            startMonth: p.startMonth,
+            lastGradeAdvancementDate: p.lastGradeAdvancementDate,
+          )
+        else
+          p,
+    ];
+    final updated = current.copyWith(profiles: newProfiles);
+    await _save(updated);
+    state = AsyncData(updated);
+  }
+
   /// プロフィールを削除する
   Future<void> deleteProfile(String profileId) async {
     final current = state.value ?? const ProfileState();

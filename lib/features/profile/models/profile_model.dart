@@ -50,6 +50,45 @@ class ProfileModel {
     'assets/images/avatars/16_sloth.png',
   ];
 
+  /// [avatarChoices] の先頭 [avatarFreeCount] 個は最初から無料で使える。
+  /// 残りはコインでの購入が必要（[avatarPrices] に対応する価格）。
+  static const avatarFreeCount = 4;
+
+  /// [avatarChoices] と同じ並びのショップ価格（無料分は 0）。
+  static const avatarPrices = [
+    0, 0, 0, 0, // bear, cat, panda, fox（無料）
+    100, // rabbit
+    150, // tiger
+    150, // lion
+    80, // frog
+    80, // duck
+    100, // pig
+    120, // koala
+    150, // giraffe
+    150, // kangaroo
+    120, // dog
+    130, // raccoon
+    180, // sloth
+  ];
+
+  /// アバターを [UserProgress.purchasedItemIds] で管理するための
+  /// 購入アイテムID（例: 'avatar_04'）。
+  static String purchaseIdFor(int avatarIndex) =>
+      'avatar_${avatarIndex.toString().padLeft(2, '0')}';
+
+  /// そのアバターが最初から使えるか（無料枠内か）。
+  static bool isAvatarFree(int avatarIndex) =>
+      avatarIndex < avatarFreeCount;
+
+  /// [avatarChoices] のうち、無料または購入済みで選択可能なもの一覧。
+  static List<String> unlockedAvatars(List<String> purchasedItemIds) {
+    return [
+      for (var i = 0; i < avatarChoices.length; i++)
+        if (isAvatarFree(i) || purchasedItemIds.contains(purchaseIdFor(i)))
+          avatarChoices[i],
+    ];
+  }
+
   Map<String, dynamic> toJson() => {
         'id': id,
         'nickname': nickname,
