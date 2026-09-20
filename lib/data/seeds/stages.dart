@@ -474,7 +474,7 @@ final stagesData = [
     'gradeLevel': 4,
     'category': 'physics',
     'difficultyLevel': 'hard',
-    'totalQuestions': 10,
+    'totalQuestions': 15,
     'learningGuide': '''
 ## 【学習目標】
 ⭐ 理解：電気回路の基本と電流の流れを知る
@@ -687,7 +687,7 @@ final stagesData = [
     'gradeLevel': 5,
     'category': 'physics',
     'difficultyLevel': 'hard',
-    'totalQuestions': 10,
+    'totalQuestions': 15,
     'learningGuide': '''
 ## 【学習目標】
 ⭐ 理解：振り子の周期が糸の長さで決まることを知る
@@ -900,7 +900,7 @@ final stagesData = [
     'gradeLevel': 6,
     'category': 'chemistry',
     'difficultyLevel': 'hard',
-    'totalQuestions': 10,
+    'totalQuestions': 15,
     'learningGuide': '''
 ## 【学習目標】
 ⭐ 理解：水溶液には酸性・中性・アルカリ性があることを知る
@@ -970,7 +970,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
     'gradeLevel': 6,
     'category': 'physics',
     'difficultyLevel': 'hard',
-    'totalQuestions': 10,
+    'totalQuestions': 15,
     'learningGuide': '''
 ## 【学習目標】
 ⭐ 理解：電気がどのように作られ、使われるかを知る
@@ -1005,7 +1005,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
     'gradeLevel': 6,
     'category': 'physics',
     'difficultyLevel': 'hard',
-    'totalQuestions': 10,
+    'totalQuestions': 15,
     'learningGuide': '''
 ## 【学習目標】
 ⭐ 理解：てこの原理を知る
