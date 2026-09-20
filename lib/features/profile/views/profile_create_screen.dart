@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../shared/constants/app_colors.dart';
+import '../../../shared/widgets/profile_avatar_image.dart';
 import '../models/profile_model.dart';
 import '../providers/profile_provider.dart';
 
@@ -64,24 +65,21 @@ class _ProfileCreateScreenState
               ),
               const SizedBox(height: 24),
               // アバター表示
-              Text(
-                _selectedEmoji,
-                style: const TextStyle(fontSize: 80),
-              ),
+              ProfileAvatarImage(avatar: _selectedEmoji, size: 100),
               const SizedBox(height: 8),
-              // アバター選択
+              // アバター選択（最初から使える分のみ。残りは作成後にコインで購入）
               SizedBox(
                 height: 60,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   padding: const EdgeInsets.symmetric(horizontal: 24),
-                  itemCount: ProfileModel.avatarChoices.length,
+                  itemCount: ProfileModel.avatarFreeCount,
                   separatorBuilder: (_, __) => const SizedBox(width: 10),
                   itemBuilder: (_, i) {
-                    final emoji = ProfileModel.avatarChoices[i];
-                    final selected = emoji == _selectedEmoji;
+                    final avatar = ProfileModel.avatarChoices[i];
+                    final selected = avatar == _selectedEmoji;
                     return GestureDetector(
-                      onTap: () => setState(() => _selectedEmoji = emoji),
+                      onTap: () => setState(() => _selectedEmoji = avatar),
                       child: AnimatedContainer(
                         duration: const Duration(milliseconds: 150),
                         width: 52,
@@ -99,8 +97,7 @@ class _ProfileCreateScreenState
                             width: 2,
                           ),
                         ),
-                        child: Text(emoji,
-                            style: const TextStyle(fontSize: 28)),
+                        child: ProfileAvatarImage(avatar: avatar, size: 44),
                       ),
                     );
                   },

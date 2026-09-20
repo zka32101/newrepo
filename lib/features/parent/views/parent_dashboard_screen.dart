@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:shared_core/shared_core.dart'
     hide profileProvider, ProfileState, ProfileNotifier, AppColors;
 import '../../../shared/constants/app_colors.dart';
+import '../../../shared/widgets/profile_avatar_image.dart';
 import '../../progress/providers/user_progress_provider.dart';
 import '../../profile/providers/profile_provider.dart';
 import '../../../data/seeds/stages.dart';
@@ -230,7 +231,7 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
       ),
       child: Row(
         children: [
-          Text(profile.avatarEmoji as String, style: const TextStyle(fontSize: 40)),
+          ProfileAvatarImage(avatar: profile.avatarEmoji as String, size: 40),
           const SizedBox(width: 12),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

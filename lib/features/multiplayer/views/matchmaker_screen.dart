@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:shared_core/shared_core.dart' hide AppColors;
 
 import '../../../shared/constants/app_colors.dart';
+import '../../../shared/widgets/profile_avatar_image.dart';
 import '../providers/multiplayer_identity_provider.dart';
 
 /// マルチプレイ対戦のトップ画面（自分のレーティング・対戦履歴・クイックマッチ）。
@@ -90,8 +91,7 @@ class _MatchmakerBody extends ConsumerWidget {
             error: (e, _) => Text('レーティングの取得に失敗しました: $e'),
             data: (rating) => PlayerRatingCard(
               rating: rating,
-              avatar: Text(identity.avatarEmoji,
-                  style: const TextStyle(fontSize: 36)),
+              avatar: ProfileAvatarImage(avatar: identity.avatarEmoji, size: 36),
               gradientStart: AppColors.sciencePrimary,
               gradientEnd: AppColors.scienceSecondary,
             ),
