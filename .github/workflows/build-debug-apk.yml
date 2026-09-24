@@ -136,9 +136,13 @@ jobs:
           BUILD_TIME=$(date -u +'%Y-%m-%d %H:%M:%S UTC')
           echo "BUILD_TIME=$BUILD_TIME" >> $GITHUB_ENV
           echo "COMMIT_SHA=${{ github.sha }}" >> $GITHUB_ENV
-          echo "COMMIT_MSG<<COMMIT_MSG_EOF" >> $GITHUB_ENV
+          # コミットメッセージ本文にたまたま含まれていても衝突しないよう、
+          # 実行ごとにランダムな区切り文字を生成する（固定文字列は本文に
+          # 出現するとヒアドキュメントの終端検出が壊れるため使わない）。
+          delimiter="EOF_$(openssl rand -hex 12)"
+          echo "COMMIT_MSG<<$delimiter" >> $GITHUB_ENV
           git log -1 --pretty=%B >> $GITHUB_ENV
-          echo "COMMIT_MSG_EOF" >> $GITHUB_ENV
+          echo "$delimiter" >> $GITHUB_ENV
 
       - name: Create build metadata
         run: |
