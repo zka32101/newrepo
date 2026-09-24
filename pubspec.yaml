@@ -72,7 +72,7 @@ dependencies:
   json_annotation: ^4.9.0
 
   # ============== Charts ==============
-  fl_chart: ^0.68.0
+  fl_chart: ^0.70.2
 
   # ============== Shared Core ==============
   shared_core:
