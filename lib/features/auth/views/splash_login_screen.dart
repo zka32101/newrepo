@@ -87,94 +87,110 @@ class _SplashLoginScreenState extends ConsumerState<SplashLoginScreen>
       body: Container(
         decoration: const BoxDecoration(gradient: AppColors.scienceGradient),
         child: SafeArea(
-          child: Center(
-            child: FadeTransition(
-              opacity: _fadeAnim,
-              child: ScaleTransition(
-                scale: _scaleAnim,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // 組織ロゴ（3倍サイズ。画面幅に収まるよう自動縮小）
-                    FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Container(
-                        width: 360,
-                        height: 360,
-                        decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.9),
-                          shape: BoxShape.circle,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withValues(alpha: 0.2),
-                              blurRadius: 20,
-                              offset: const Offset(0, 6),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              // 組織ロゴは従来の3倍(360)を目安に、画面に収まる範囲で自動縮小する
+              const reservedHeight = 280.0; // ロゴ以外のテキスト・余白の目安の高さ
+              final logoSize = (constraints.maxHeight - reservedHeight)
+                  .clamp(100.0, 360.0)
+                  .toDouble()
+                  .clamp(0.0, constraints.maxWidth * 0.8);
+              return SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                  child: Center(
+                    child: FadeTransition(
+                      opacity: _fadeAnim,
+                      child: ScaleTransition(
+                        scale: _scaleAnim,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            // 組織ロゴ
+                            Container(
+                              width: logoSize,
+                              height: logoSize,
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.9),
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withValues(alpha: 0.2),
+                                    blurRadius: 20,
+                                    offset: const Offset(0, 6),
+                                  ),
+                                ],
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '🔬',
+                                  style: TextStyle(fontSize: logoSize * 0.5),
+                                ),
+                              ),
                             ),
+                            const SizedBox(height: 32),
+                            const Text(
+                              '小学コレ！',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white70,
+                                letterSpacing: 3,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            const SizedBox(height: 6),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 8,
+                              ),
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: Colors.white.withValues(alpha: 0.6),
+                                    width: 2,
+                                  ),
+                                ),
+                              ),
+                              child: const Text(
+                                '理解',
+                                style: TextStyle(
+                                  fontSize: 48,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  letterSpacing: 4,
+                                  shadows: [
+                                    Shadow(
+                                      color: Colors.black12,
+                                      offset: Offset(2, 2),
+                                      blurRadius: 4,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            const Text(
+                              'りかの世界へようこそ',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.white70,
+                                fontStyle: FontStyle.italic,
+                                letterSpacing: 1,
+                              ),
+                            ),
+                            const SizedBox(height: 64),
+                            // ローディングドット
+                            _LoadingDots(),
                           ],
                         ),
-                        child: const Center(
-                          child: Text('🔬', style: TextStyle(fontSize: 180)),
-                        ),
                       ),
                     ),
-                    const SizedBox(height: 32),
-                    const Text(
-                      '小学コレ！',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white70,
-                        letterSpacing: 3,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: Colors.white.withValues(alpha: 0.6),
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                      child: const Text(
-                        '理解',
-                        style: TextStyle(
-                          fontSize: 48,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          letterSpacing: 4,
-                          shadows: [
-                            Shadow(
-                              color: Colors.black12,
-                              offset: Offset(2, 2),
-                              blurRadius: 4,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      'りかの世界へようこそ',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.white70,
-                        fontStyle: FontStyle.italic,
-                        letterSpacing: 1,
-                      ),
-                    ),
-                    const SizedBox(height: 64),
-                    // ローディングドット
-                    _LoadingDots(),
-                  ],
+                  ),
                 ),
-              ),
-            ),
+              );
+            },
           ),
         ),
       ),
