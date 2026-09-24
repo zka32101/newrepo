@@ -16,7 +16,7 @@ class AppConstants {
   static const int trialDays = 7;
 
   // App info
-  static const String appName = '小学コレ！理科';
+  static const String appName = '小学コレ！理解';
   static const String appVersion = '1.0.1';
 
   // Firebase collections

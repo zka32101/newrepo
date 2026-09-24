@@ -40,8 +40,7 @@ class ShareContent {
 
 /// SNS シェアサービス
 class SocialShareService {
-  static final SocialShareService _instance =
-      SocialShareService._internal();
+  static final SocialShareService _instance = SocialShareService._internal();
   static SocialShareService get instance => _instance;
 
   factory SocialShareService() {
@@ -63,15 +62,17 @@ class SocialShareService {
 
       final content = ShareContent(
         title: '理科クイズに挑戦中！',
-        message: '''$emoji スコア: $score点
+        message:
+            '''$emoji スコア: $score点
 $categoryName で学習中！
 
 $streakEmoji 連続学習: $currentStreak日間
 📊 最高記録: $maxStreak日間
 
-小学コレ！理科で学習しよう！''',
-        hashtags: '#小学コレ理科 #理科学習 #クイズ #連続学習 #教育アプリ',
-        url: 'https://play.google.com/store/apps/details?id=com.example.shokollen_science',
+小学コレ！理解で学習しよう！''',
+        hashtags: '#小学コレ理解 #理科学習 #クイズ #連続学習 #教育アプリ',
+        url:
+            'https://play.google.com/store/apps/details?id=com.example.shokollen_science',
       );
 
       await _share(content);
@@ -90,14 +91,16 @@ $streakEmoji 連続学習: $currentStreak日間
     try {
       final content = ShareContent(
         title: 'ストリーク達成！',
-        message: '''$milestoneEmoji $milestoneTitle を達成しました！
+        message:
+            '''$milestoneEmoji $milestoneTitle を達成しました！
 
 🔥 $streakDays 日間連続で学習を継続！
 
-小学コレ！理科は毎日の学習を応援しています。
+小学コレ！理解は毎日の学習を応援しています。
 一緒に楽しく理科を学びませんか？''',
-        hashtags: '#小学コレ理科 #ストリーク達成 #連続学習 #頑張った #理科',
-        url: 'https://play.google.com/store/apps/details?id=com.example.shokollen_science',
+        hashtags: '#小学コレ理解 #ストリーク達成 #連続学習 #頑張った #理科',
+        url:
+            'https://play.google.com/store/apps/details?id=com.example.shokollen_science',
       );
 
       await _share(content);
@@ -116,14 +119,16 @@ $streakEmoji 連続学習: $currentStreak日間
     try {
       final content = ShareContent(
         title: 'バッジ獲得！',
-        message: '''$badgeEmoji 新しいバッジを獲得しました！
+        message:
+            '''$badgeEmoji 新しいバッジを獲得しました！
 
 🎖️ $badgeTitle
 $description
 
-小学コレ！理科で楽しく学習しよう！''',
-        hashtags: '#小学コレ理科 #バッジ獲得 #頑張った #理科学習 #教育',
-        url: 'https://play.google.com/store/apps/details?id=com.example.shokollen_science',
+小学コレ！理解で楽しく学習しよう！''',
+        hashtags: '#小学コレ理解 #バッジ獲得 #頑張った #理科学習 #教育',
+        url:
+            'https://play.google.com/store/apps/details?id=com.example.shokollen_science',
       );
 
       await _share(content);
@@ -145,15 +150,17 @@ $description
 
       final content = ShareContent(
         title: 'ランキング入賞！',
-        message: '''$rankEmoji $periodText ランキング $rank 位に入賞！
+        message:
+            '''$rankEmoji $periodText ランキング $rank 位に入賞！
 
 🎯 スコア: $score点
 📊 $periodText ランキング入賞おめでとう！
 
-小学コレ！理科はランキング機能で競い合いながら学習できます。
+小学コレ！理解はランキング機能で競い合いながら学習できます。
 あなたも挑戦してみませんか？''',
-        hashtags: '#小学コレ理科 #ランキング入賞 #競い合い #理科学習 #教育アプリ',
-        url: 'https://play.google.com/store/apps/details?id=com.example.shokollen_science',
+        hashtags: '#小学コレ理解 #ランキング入賞 #競い合い #理科学習 #教育アプリ',
+        url:
+            'https://play.google.com/store/apps/details?id=com.example.shokollen_science',
       );
 
       await _share(content);
@@ -172,14 +179,16 @@ $description
     try {
       final content = ShareContent(
         title: '今日の学習問題',
-        message: '''📚 $categoryName の問題に挑戦中！
+        message:
+            '''📚 $categoryName の問題に挑戦中！
 
 Q) $questionText
 A) $correctAnswer
 
-小学コレ！理科で毎日新しい問題に挑戦しよう！''',
-        hashtags: '#小学コレ理科 #理科学習 #クイズ #勉強 #教育',
-        url: 'https://play.google.com/store/apps/details?id=com.example.shokollen_science',
+小学コレ！理解で毎日新しい問題に挑戦しよう！''',
+        hashtags: '#小学コレ理解 #理科学習 #クイズ #勉強 #教育',
+        url:
+            'https://play.google.com/store/apps/details?id=com.example.shokollen_science',
       );
 
       await _share(content);
@@ -271,10 +280,7 @@ A) $correctAnswer
   /// システムシェアダイアログを表示
   Future<void> _share(ShareContent content) async {
     try {
-      await Share.share(
-        content.message,
-        subject: content.title,
-      );
+      await Share.share(content.message, subject: content.title);
     } catch (e) {
       developer.log('Error in share dialog: $e', error: e);
       rethrow;

@@ -28,9 +28,10 @@ class _SplashLoginScreenState extends ConsumerState<SplashLoginScreen>
       duration: const Duration(milliseconds: 800),
     );
     _fadeAnim = CurvedAnimation(parent: _animCtrl, curve: Curves.easeIn);
-    _scaleAnim = Tween<double>(begin: 0.85, end: 1.0).animate(
-      CurvedAnimation(parent: _animCtrl, curve: Curves.easeOutBack),
-    );
+    _scaleAnim = Tween<double>(
+      begin: 0.85,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _animCtrl, curve: Curves.easeOutBack));
     _animCtrl.forward();
 
     // 2.5秒後に自動遷移
@@ -84,7 +85,7 @@ class _SplashLoginScreenState extends ConsumerState<SplashLoginScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(gradient: AppColors.warmLiteratureGradient),
+        decoration: const BoxDecoration(gradient: AppColors.scienceGradient),
         child: SafeArea(
           child: Center(
             child: FadeTransition(
@@ -94,23 +95,26 @@ class _SplashLoginScreenState extends ConsumerState<SplashLoginScreen>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // アイコン（ペンと本）
-                    Container(
-                      width: 120,
-                      height: 120,
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.9),
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.2),
-                            blurRadius: 20,
-                            offset: const Offset(0, 6),
-                          ),
-                        ],
-                      ),
-                      child: const Center(
-                        child: Text('📚', style: TextStyle(fontSize: 60)),
+                    // 組織ロゴ（3倍サイズ。画面幅に収まるよう自動縮小）
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Container(
+                        width: 360,
+                        height: 360,
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.9),
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.2),
+                              blurRadius: 20,
+                              offset: const Offset(0, 6),
+                            ),
+                          ],
+                        ),
+                        child: const Center(
+                          child: Text('🔬', style: TextStyle(fontSize: 180)),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 32),
@@ -125,7 +129,10 @@ class _SplashLoginScreenState extends ConsumerState<SplashLoginScreen>
                     ),
                     const SizedBox(height: 6),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
                       decoration: BoxDecoration(
                         border: Border(
                           bottom: BorderSide(
@@ -135,7 +142,7 @@ class _SplashLoginScreenState extends ConsumerState<SplashLoginScreen>
                         ),
                       ),
                       child: const Text(
-                        '国語',
+                        '理解',
                         style: TextStyle(
                           fontSize: 48,
                           fontWeight: FontWeight.bold,
@@ -153,7 +160,7 @@ class _SplashLoginScreenState extends ConsumerState<SplashLoginScreen>
                     ),
                     const SizedBox(height: 16),
                     const Text(
-                      'ことばの世界へようこそ',
+                      'りかの世界へようこそ',
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.white70,
@@ -188,8 +195,9 @@ class _LoadingDotsState extends State<_LoadingDots>
   void initState() {
     super.initState();
     _ctrl = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 1200))
-      ..repeat();
+      vsync: this,
+      duration: const Duration(milliseconds: 1200),
+    )..repeat();
   }
 
   @override
