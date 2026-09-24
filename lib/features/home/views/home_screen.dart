@@ -287,7 +287,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           const SizedBox(width: 8),
                           // プレミアム / トライアル状態
                           GestureDetector(
-                            onTap: () => setState(() => _selectedIndex = 3),
+                            onTap: () => context.push('/premium'),
                             child: Container(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 10,
@@ -454,7 +454,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               if (!isPremium && trialRemaining <= 0) ...[
                 const SizedBox(height: 8),
                 GestureDetector(
-                  onTap: () => setState(() => _selectedIndex = 3),
+                  onTap: () => context.push('/premium'),
                   child: Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(
