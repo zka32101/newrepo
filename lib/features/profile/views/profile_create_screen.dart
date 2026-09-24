@@ -15,8 +15,7 @@ class ProfileCreateScreen extends ConsumerStatefulWidget {
       _ProfileCreateScreenState();
 }
 
-class _ProfileCreateScreenState
-    extends ConsumerState<ProfileCreateScreen> {
+class _ProfileCreateScreenState extends ConsumerState<ProfileCreateScreen> {
   final _controller = TextEditingController();
   String _selectedEmoji = ProfileModel.avatarChoices[0];
   int _selectedGrade = 3;
@@ -32,86 +31,87 @@ class _ProfileCreateScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: AppColors.scienceGradient,
-        ),
+        decoration: const BoxDecoration(gradient: AppColors.scienceGradient),
         child: SafeArea(
-          child: Column(
-            children: [
-              // ヘッダー
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-                child: Row(
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.arrow_back_rounded,
-                          color: Colors.white),
-                      onPressed: () => context.pop(),
-                    ),
-                    const Expanded(
-                      child: Text(
-                        'プロフィールをつくる',
-                        style: TextStyle(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                // ヘッダー
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                  child: Row(
+                    children: [
+                      IconButton(
+                        icon: const Icon(
+                          Icons.arrow_back_rounded,
                           color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
                         ),
-                        textAlign: TextAlign.center,
+                        onPressed: () => context.pop(),
                       ),
-                    ),
-                    const SizedBox(width: 48),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 24),
-              // アバター表示
-              ProfileAvatarImage(avatar: _selectedEmoji, size: 100),
-              const SizedBox(height: 8),
-              // アバター選択（最初から使える分のみ。残りは作成後にコインで購入）
-              SizedBox(
-                height: 60,
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  itemCount: ProfileModel.avatarFreeCount,
-                  separatorBuilder: (_, __) => const SizedBox(width: 10),
-                  itemBuilder: (_, i) {
-                    final avatar = ProfileModel.avatarChoices[i];
-                    final selected = avatar == _selectedEmoji;
-                    return GestureDetector(
-                      onTap: () => setState(() => _selectedEmoji = avatar),
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 150),
-                        width: 52,
-                        height: 52,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: selected
-                              ? Colors.white
-                              : Colors.white.withValues(alpha: 0.25),
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: selected
-                                ? AppColors.sciencePrimary
-                                : Colors.transparent,
-                            width: 2,
+                      const Expanded(
+                        child: Text(
+                          'プロフィールをつくる',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
                           ),
+                          textAlign: TextAlign.center,
                         ),
-                        child: ProfileAvatarImage(avatar: avatar, size: 44),
                       ),
-                    );
-                  },
+                      const SizedBox(width: 48),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 24),
-              // フォーム
-              Expanded(
-                child: Container(
+                const SizedBox(height: 24),
+                // アバター表示
+                ProfileAvatarImage(avatar: _selectedEmoji, size: 100),
+                const SizedBox(height: 8),
+                // アバター選択（最初から使える分のみ。残りは作成後にコインで購入）
+                SizedBox(
+                  height: 60,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    itemCount: ProfileModel.avatarFreeCount,
+                    separatorBuilder: (_, __) => const SizedBox(width: 10),
+                    itemBuilder: (_, i) {
+                      final avatar = ProfileModel.avatarChoices[i];
+                      final selected = avatar == _selectedEmoji;
+                      return GestureDetector(
+                        onTap: () => setState(() => _selectedEmoji = avatar),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 150),
+                          width: 52,
+                          height: 52,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: selected
+                                ? Colors.white
+                                : Colors.white.withValues(alpha: 0.25),
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: selected
+                                  ? AppColors.sciencePrimary
+                                  : Colors.transparent,
+                              width: 2,
+                            ),
+                          ),
+                          child: ProfileAvatarImage(avatar: avatar, size: 44),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(height: 24),
+                // フォーム
+                Container(
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
                     color: Theme.of(context).cardColor,
-                    borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(28)),
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(28),
+                    ),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,20 +155,18 @@ class _ProfileCreateScreenState
                           final sel = _selectedGrade == g;
                           return Expanded(
                             child: GestureDetector(
-                              onTap: () =>
-                                  setState(() => _selectedGrade = g),
+                              onTap: () => setState(() => _selectedGrade = g),
                               child: AnimatedContainer(
-                                duration:
-                                    const Duration(milliseconds: 150),
+                                duration: const Duration(milliseconds: 150),
                                 margin: const EdgeInsets.only(right: 8),
                                 padding: const EdgeInsets.symmetric(
-                                    vertical: 12),
+                                  vertical: 12,
+                                ),
                                 decoration: BoxDecoration(
                                   color: sel
                                       ? AppColors.sciencePrimary
                                       : const Color(0xFFF5F5F5),
-                                  borderRadius:
-                                      BorderRadius.circular(12),
+                                  borderRadius: BorderRadius.circular(12),
                                 ),
                                 child: Text(
                                   '$g年',
@@ -186,7 +184,7 @@ class _ProfileCreateScreenState
                           );
                         }).toList(),
                       ),
-                      const Spacer(),
+                      const SizedBox(height: 32),
                       SizedBox(
                         width: double.infinity,
                         height: 52,
@@ -201,7 +199,8 @@ class _ProfileCreateScreenState
                           ),
                           child: _isCreating
                               ? const CircularProgressIndicator(
-                                  color: Colors.white)
+                                  color: Colors.white,
+                                )
                               : const Text(
                                   'つくる！',
                                   style: TextStyle(
@@ -211,11 +210,12 @@ class _ProfileCreateScreenState
                                 ),
                         ),
                       ),
+                      const SizedBox(height: 8),
                     ],
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -225,13 +225,15 @@ class _ProfileCreateScreenState
   Future<void> _create() async {
     final name = _controller.text.trim();
     if (name.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('なまえをいれてね')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('なまえをいれてね')));
       return;
     }
     setState(() => _isCreating = true);
-    await ref.read(profileProvider.notifier).createProfile(
+    await ref
+        .read(profileProvider.notifier)
+        .createProfile(
           nickname: name,
           avatarEmoji: _selectedEmoji,
           gradeLevel: _selectedGrade,

@@ -7,11 +7,11 @@ import '../shared/theme/app_theme.dart';
 
 /// シェアボタンのタイプ
 enum ShareType {
-  score,      // スコアシェア
-  streak,     // ストリークシェア
-  badge,      // バッジシェア
-  ranking,    // ランキングシェア
-  question,   // 問題シェア
+  score, // スコアシェア
+  streak, // ストリークシェア
+  badge, // バッジシェア
+  ranking, // ランキングシェア
+  question, // 問題シェア
 }
 
 /// シェアボタンウィジェット
@@ -43,9 +43,7 @@ class ShareButton extends StatelessWidget {
         backgroundColor: backgroundColor ?? Colors.blue,
         foregroundColor: textColor ?? Colors.white,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     );
   }
@@ -157,10 +155,7 @@ class ShareOptionsDialog extends ConsumerWidget {
         ),
         child: Row(
           children: [
-            Text(
-              icon,
-              style: const TextStyle(fontSize: 24),
-            ),
+            Text(icon, style: const TextStyle(fontSize: 24)),
             const SizedBox(width: 12),
             Expanded(
               child: Text(
@@ -237,15 +232,15 @@ class ShareOptionsDialog extends ConsumerWidget {
       case ShareType.score:
         return ShareContent(
           title: '理科クイズに挑戦中！',
-          message: '''⭐ スコア: ${shareData['score']}点
+          message:
+              '''⭐ スコア: ${shareData['score']}点
 ${shareData['categoryName']} で学習中！
 
 🔥 連続学習: ${shareData['streak']}日間
 📊 最高記録: ${shareData['maxStreak']}日間
 
-小学コレ！理科で学習しよう！''',
-          hashtags:
-              '#小学コレ理科 #理科学習 #クイズ #連続学習 #教育アプリ',
+小学コレ！理解で学習しよう！''',
+          hashtags: '#小学コレ理解 #理科学習 #クイズ #連続学習 #教育アプリ',
         );
 
       case ShareType.streak:
@@ -256,9 +251,8 @@ ${shareData['categoryName']} で学習中！
 
 🔥 ${shareData['days']} 日間連続で学習を継続！
 
-小学コレ！理科は毎日の学習を応援しています。''',
-          hashtags:
-              '#小学コレ理科 #ストリーク達成 #連続学習 #頑張った #理科',
+小学コレ！理解は毎日の学習を応援しています。''',
+          hashtags: '#小学コレ理解 #ストリーク達成 #連続学習 #頑張った #理科',
         );
 
       case ShareType.badge:
@@ -270,9 +264,8 @@ ${shareData['categoryName']} で学習中！
 🎖️ ${shareData['badgeTitle']}
 ${shareData['description']}
 
-小学コレ！理科で楽しく学習しよう！''',
-          hashtags:
-              '#小学コレ理科 #バッジ獲得 #頑張った #理科学習 #教育',
+小学コレ！理解で楽しく学習しよう！''',
+          hashtags: '#小学コレ理解 #バッジ獲得 #頑張った #理科学習 #教育',
         );
 
       case ShareType.ranking:
@@ -284,9 +277,8 @@ ${shareData['description']}
 🎯 スコア: ${shareData['score']}点
 📊 ランキング入賞おめでとう！
 
-小学コレ！理科であなたも挑戦してみませんか？''',
-          hashtags:
-              '#小学コレ理科 #ランキング入賞 #競い合い #理科学習 #教育アプリ',
+小学コレ！理解であなたも挑戦してみませんか？''',
+          hashtags: '#小学コレ理解 #ランキング入賞 #競い合い #理科学習 #教育アプリ',
         );
 
       case ShareType.question:
@@ -298,9 +290,8 @@ ${shareData['description']}
 Q) ${shareData['question']}
 A) ${shareData['answer']}
 
-小学コレ！理科で毎日新しい問題に挑戦しよう！''',
-          hashtags:
-              '#小学コレ理科 #理科学習 #クイズ #勉強 #教育',
+小学コレ！理解で毎日新しい問題に挑戦しよう！''',
+          hashtags: '#小学コレ理解 #理科学習 #クイズ #勉強 #教育',
         );
     }
   }
@@ -435,12 +426,7 @@ class QuickShareButtons extends ConsumerWidget {
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: Colors.grey.shade300),
         ),
-        child: Center(
-          child: Text(
-            icon,
-            style: const TextStyle(fontSize: 24),
-          ),
-        ),
+        child: Center(child: Text(icon, style: const TextStyle(fontSize: 24))),
       ),
     );
   }

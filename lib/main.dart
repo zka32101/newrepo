@@ -11,7 +11,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart'
         UncontrolledProviderScope,
         ConsumerStatefulWidget,
         ConsumerState;
-import 'package:shared_core/config/subscription_config.dart' as revenue_cat_config;
+import 'package:shared_core/config/subscription_config.dart'
+    as revenue_cat_config;
 import 'package:shared_core/shared_core.dart'
     hide
         progressProvider,
@@ -147,25 +148,31 @@ void main() async {
       // 理科コレの学習コンテンツ（解説記事）ノティファイアを注入
       lessonProvider.overrideWith(LessonNotifier.new),
       // まちがい図鑑・復習タイムカプセルの永続化リポジトリを注入
-      incorrectMonsterRepositoryProvider
-          .overrideWithValue(IncorrectMonsterRepositoryImpl(prefs)),
-      reviewTimeCapsuleRepositoryProvider
-          .overrideWithValue(ReviewTimeCapsuleRepositoryImpl(prefs)),
+      incorrectMonsterRepositoryProvider.overrideWithValue(
+        IncorrectMonsterRepositoryImpl(prefs),
+      ),
+      reviewTimeCapsuleRepositoryProvider.overrideWithValue(
+        ReviewTimeCapsuleRepositoryImpl(prefs),
+      ),
       // 保存されたロケール設定を注入
       localeProvider.overrideWith((ref) => LocaleNotifier(savedLocale)),
       // Phase 4.7: 統一サブスクリプション管理（PremiumProvider）
       premiumProvider.overrideWith((ref) => PremiumNotifier()),
       // マルチプレイ対戦（レートマッチング）: shared_core のハンドラ注入方式に
       // Firestore デフォルト実装（rika_ プレフィックス付きコレクション）を接続
-      matchmakingHandlersProvider
-          .overrideWithValue(MultiplayerService.instance.matchmakingHandlers),
-      matchHandlersProvider
-          .overrideWithValue(MultiplayerService.instance.matchHandlers),
+      matchmakingHandlersProvider.overrideWithValue(
+        MultiplayerService.instance.matchmakingHandlers,
+      ),
+      matchHandlersProvider.overrideWithValue(
+        MultiplayerService.instance.matchHandlers,
+      ),
     ],
   );
 
   // バッジシステム初期化: 統一バッジを主題タグで初期化
-  container.read(badgeProvider.notifier).setBadgeDefinitions(unifiedBadges, subject: 'rika');
+  container
+      .read(badgeProvider.notifier)
+      .setBadgeDefinitions(unifiedBadges, subject: 'rika');
 
   final currentUserId = FirebaseAuth.instance.currentUser?.uid;
 
@@ -175,8 +182,12 @@ void main() async {
   final missionService = FirestoreMissionService();
 
   // Handler を shared_core provider に注入
-  container.read(rankingProvider.notifier).setFetchHandler(rankingService.fetchRankings);
-  container.read(globalRankingProvider.notifier).setFetchHandler(rankingService.fetchGlobalRankings);
+  container
+      .read(rankingProvider.notifier)
+      .setFetchHandler(rankingService.fetchRankings);
+  container
+      .read(globalRankingProvider.notifier)
+      .setFetchHandler(rankingService.fetchGlobalRankings);
   container.read(friendProvider.notifier)
     ..setFetchHandler(friendService.fetchFriends)
     ..setAddFriendHandler(friendService.addFriend)
@@ -185,47 +196,56 @@ void main() async {
   // Phase 4.5: デイリーミッション統一
   // ミッション Handler を shared_core provider に注入
   // (進捗更新・報酬付与は shared_core 組み込みの Firestore フォールバックに委譲)
-  container.read(missionProvider.notifier)
+  container
+      .read(missionProvider.notifier)
       .setFetchHandler(missionService.fetchMissions);
 
   // Phase 4.20: 週次ボーナスシステム Firestore 永続化
-  final weeklyBonusRef = FirebaseFirestore.instance.collection('users').doc(currentUserId).collection('bonuses').doc('weekly');
-  container.read(weeklyBonusProvider.notifier).setPersistHandler(
-    (userId, bonusState) async {
-      try {
-        await weeklyBonusRef.set({
-          'consecutiveDays': bonusState.consecutiveDays,
-          'lastClaimedDate': bonusState.lastClaimedDate?.toIso8601String(),
-          'weeklyResetDate': bonusState.weeklyResetDate?.toIso8601String(),
-          'totalCoinsEarned': bonusState.totalCoinsEarned,
-          'updatedAt': FieldValue.serverTimestamp(),
-        }, SetOptions(merge: true));
-      } catch (e) {
-        debugPrint('Error persisting weekly bonus: $e');
-      }
-    },
-  );
+  final weeklyBonusRef = FirebaseFirestore.instance
+      .collection('users')
+      .doc(currentUserId)
+      .collection('bonuses')
+      .doc('weekly');
+  container.read(weeklyBonusProvider.notifier).setPersistHandler((
+    userId,
+    bonusState,
+  ) async {
+    try {
+      await weeklyBonusRef.set({
+        'consecutiveDays': bonusState.consecutiveDays,
+        'lastClaimedDate': bonusState.lastClaimedDate?.toIso8601String(),
+        'weeklyResetDate': bonusState.weeklyResetDate?.toIso8601String(),
+        'totalCoinsEarned': bonusState.totalCoinsEarned,
+        'updatedAt': FieldValue.serverTimestamp(),
+      }, SetOptions(merge: true));
+    } catch (e) {
+      debugPrint('Error persisting weekly bonus: $e');
+    }
+  });
 
   // Phase 4.7: 統一サブスクリプション初期化
   final purchaseService = SharedCoreInitializer.getPurchaseService();
   if (currentUserId != null && purchaseService != null) {
     container.read(premiumProvider.notifier)
       ..setCheckHandler((userId) => purchaseService.isSubscribed(userId))
-      ..setExpiryHandler((userId) => purchaseService.getSubscriptionExpirationDate(userId));
-    unawaited(container.read(premiumProvider.notifier).checkSubscription(currentUserId));
+      ..setExpiryHandler(
+        (userId) => purchaseService.getSubscriptionExpirationDate(userId),
+      );
+    unawaited(
+      container.read(premiumProvider.notifier).checkSubscription(currentUserId),
+    );
   }
 
   // ミッション初期化: 現在のユーザー ID で初期化
   if (currentUserId != null) {
-    unawaited(container.read(missionProvider.notifier).initializeDailyMissions(currentUserId, 'rika'));
+    unawaited(
+      container
+          .read(missionProvider.notifier)
+          .initializeDailyMissions(currentUserId, 'rika'),
+    );
   }
 
-  runApp(
-    UncontrolledProviderScope(
-      container: container,
-      child: const MyApp(),
-    ),
-  );
+  runApp(UncontrolledProviderScope(container: container, child: const MyApp()));
 }
 
 class MyApp extends ConsumerStatefulWidget {
@@ -253,7 +273,7 @@ class _MyAppState extends ConsumerState<MyApp> {
     final locale = ref.watch(localeProvider);
 
     return MaterialApp.router(
-      title: '小学コレ！理科',
+      title: '小学コレ！理解',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: themeMode,
@@ -264,10 +284,7 @@ class _MyAppState extends ConsumerState<MyApp> {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [
-        Locale('ja'),
-        Locale('en'),
-      ],
+      supportedLocales: const [Locale('ja'), Locale('en')],
       routerConfig: AppRouter.router,
       debugShowCheckedModeBanner: false,
     );

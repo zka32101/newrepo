@@ -41,10 +41,9 @@ class _PraiseSendScreenState extends ConsumerState<PraiseSendScreen> {
     super.dispose();
   }
 
-  String get _message =>
-      _customController.text.trim().isNotEmpty
-          ? _customController.text.trim()
-          : (_selectedPreset ?? '');
+  String get _message => _customController.text.trim().isNotEmpty
+      ? _customController.text.trim()
+      : (_selectedPreset ?? '');
 
   bool get _canSend =>
       _message.isNotEmpty && _senderController.text.trim().isNotEmpty;
@@ -54,7 +53,9 @@ class _PraiseSendScreenState extends ConsumerState<PraiseSendScreen> {
     setState(() => _sending = true);
 
     final sender = _senderController.text.trim();
-    await ref.read(praiseProvider.notifier).sendPraise(
+    await ref
+        .read(praiseProvider.notifier)
+        .sendPraise(
           message: _message,
           senderName: sender,
           stageId: widget.stageId,
@@ -119,10 +120,7 @@ class _PraiseSendScreenState extends ConsumerState<PraiseSendScreen> {
                       children: [
                         const Text(
                           '全問正解！',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white70,
-                          ),
+                          style: TextStyle(fontSize: 14, color: Colors.white70),
                         ),
                         FuriganaText(
                           widget.stageName,
@@ -160,9 +158,15 @@ class _PraiseSendScreenState extends ConsumerState<PraiseSendScreen> {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide: const BorderSide(color: Color(0xFFE91E8C), width: 2),
+                  borderSide: const BorderSide(
+                    color: Color(0xFFE91E8C),
+                    width: 2,
+                  ),
                 ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 12,
+                ),
               ),
             ),
             const SizedBox(height: 20),
@@ -170,14 +174,16 @@ class _PraiseSendScreenState extends ConsumerState<PraiseSendScreen> {
             // プリセット選択
             _sectionLabel('メッセージを選ぶ'),
             const SizedBox(height: 8),
-            ..._presetMessages.map((msg) => _PresetTile(
-                  message: msg,
-                  isSelected: _selectedPreset == msg,
-                  onTap: () => setState(() {
-                    _selectedPreset = msg;
-                    _customController.clear();
-                  }),
-                )),
+            ..._presetMessages.map(
+              (msg) => _PresetTile(
+                message: msg,
+                isSelected: _selectedPreset == msg,
+                onTap: () => setState(() {
+                  _selectedPreset = msg;
+                  _customController.clear();
+                }),
+              ),
+            ),
             const SizedBox(height: 16),
 
             // カスタムメッセージ
@@ -204,7 +210,10 @@ class _PraiseSendScreenState extends ConsumerState<PraiseSendScreen> {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide: const BorderSide(color: Color(0xFFE91E8C), width: 2),
+                  borderSide: const BorderSide(
+                    color: Color(0xFFE91E8C),
+                    width: 2,
+                  ),
                 ),
                 contentPadding: const EdgeInsets.all(16),
               ),
@@ -221,12 +230,18 @@ class _PraiseSendScreenState extends ConsumerState<PraiseSendScreen> {
                     ? const SizedBox(
                         width: 20,
                         height: 20,
-                        child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                          strokeWidth: 2,
+                        ),
                       )
                     : const Text('💌', style: TextStyle(fontSize: 22)),
                 label: Text(
                   _sending ? '送信中…' : 'ほめメッセージを送る',
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFE91E8C),
@@ -297,7 +312,9 @@ class _PresetTile extends StatelessWidget {
                 message,
                 style: TextStyle(
                   fontSize: 14,
-                  color: isSelected ? const Color(0xFFC2185B) : AppColors.textDark,
+                  color: isSelected
+                      ? const Color(0xFFC2185B)
+                      : AppColors.textDark,
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                 ),
               ),
@@ -333,8 +350,10 @@ class _SentDialogState extends State<_SentDialog>
   @override
   void initState() {
     super.initState();
-    _ctrl = AnimationController(vsync: this, duration: const Duration(milliseconds: 800))
-      ..forward();
+    _ctrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    )..forward();
   }
 
   @override
@@ -348,8 +367,10 @@ class _SentDialogState extends State<_SentDialog>
     return Dialog(
       backgroundColor: Colors.transparent,
       child: ScaleTransition(
-        scale: Tween<double>(begin: 0.5, end: 1.0)
-            .animate(CurvedAnimation(parent: _ctrl, curve: Curves.elasticOut)),
+        scale: Tween<double>(
+          begin: 0.5,
+          end: 1.0,
+        ).animate(CurvedAnimation(parent: _ctrl, curve: Curves.elasticOut)),
         child: Container(
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
@@ -404,7 +425,7 @@ class _SentDialogState extends State<_SentDialog>
                       '🎉 子どもが「${widget.stageName}」を全問正解しました！\n'
                       '「${widget.message}」\n'
                       '― ${widget.senderName}より\n'
-                      '#小学コレ理科 #小学生 #理科好き';
+                      '#小学コレ理解 #小学生 #理科好き';
                   Share.share(shareText);
                 },
                 icon: const Icon(Icons.share, size: 18),
@@ -414,7 +435,8 @@ class _SentDialogState extends State<_SentDialog>
                   side: const BorderSide(color: Color(0xFFE91E8C)),
                   minimumSize: const Size(double.infinity, 44),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
               ),
               const SizedBox(height: 8),
@@ -424,9 +446,14 @@ class _SentDialogState extends State<_SentDialog>
                   backgroundColor: const Color(0xFFE91E8C),
                   foregroundColor: Colors.white,
                   minimumSize: const Size(double.infinity, 44),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
-                child: const Text('OK', style: TextStyle(fontWeight: FontWeight.bold)),
+                child: const Text(
+                  'OK',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
             ],
           ),

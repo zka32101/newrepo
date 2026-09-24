@@ -18,7 +18,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   static const _pages = [
     _OnboardingPage(
       emoji: '🔬',
-      title: '小学コレ！理科へようこそ',
+      title: '小学コレ！理解へようこそ',
       description: '小学3〜6年生の理科を\nたのしく学べるアプリです！',
       color1: Color(0xFF5C9BD4),
       color2: Color(0xFF3A7DC9),
@@ -79,35 +79,47 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           // ドットインジケーター
           Positioned(
             bottom: 100,
-            left: 0, right: 0,
+            left: 0,
+            right: 0,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(_pages.length, (i) => AnimatedContainer(
-                duration: const Duration(milliseconds: 250),
-                margin: const EdgeInsets.symmetric(horizontal: 4),
-                width: _currentPage == i ? 24 : 8,
-                height: 8,
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: _currentPage == i ? 1 : 0.5),
-                  borderRadius: BorderRadius.circular(4),
+              children: List.generate(
+                _pages.length,
+                (i) => AnimatedContainer(
+                  duration: const Duration(milliseconds: 250),
+                  margin: const EdgeInsets.symmetric(horizontal: 4),
+                  width: _currentPage == i ? 24 : 8,
+                  height: 8,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(
+                      alpha: _currentPage == i ? 1 : 0.5,
+                    ),
+                    borderRadius: BorderRadius.circular(4),
+                  ),
                 ),
-              )),
+              ),
             ),
           ),
           // ボタン
           Positioned(
-            bottom: 32, left: 24, right: 24,
+            bottom: 32,
+            left: 24,
+            right: 24,
             child: Row(
               children: [
                 if (_currentPage > 0)
                   Expanded(
                     child: OutlinedButton(
                       onPressed: () => _pageCtrl.previousPage(
-                          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut),
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      ),
                       style: OutlinedButton.styleFrom(
                         foregroundColor: Colors.white,
                         side: const BorderSide(color: Colors.white54),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14),
+                        ),
                         minimumSize: const Size(0, 48),
                       ),
                       child: const Text('もどる'),
@@ -119,17 +131,24 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   child: ElevatedButton(
                     onPressed: _currentPage < _pages.length - 1
                         ? () => _pageCtrl.nextPage(
-                            duration: const Duration(milliseconds: 300), curve: Curves.easeInOut)
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeInOut,
+                          )
                         : _finish,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: _pages[_currentPage].color1,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14),
+                      ),
                       minimumSize: const Size(0, 48),
                     ),
                     child: Text(
                       _currentPage < _pages.length - 1 ? 'つぎへ' : 'はじめる！',
-                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
@@ -139,10 +158,14 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           // スキップ
           if (_currentPage < _pages.length - 1)
             Positioned(
-              top: 48, right: 20,
+              top: 48,
+              right: 20,
               child: TextButton(
                 onPressed: _finish,
-                child: const Text('スキップ', style: TextStyle(color: Colors.white70, fontSize: 13)),
+                child: const Text(
+                  'スキップ',
+                  style: TextStyle(color: Colors.white70, fontSize: 13),
+                ),
               ),
             ),
         ],
@@ -167,21 +190,39 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  width: 140, height: 140,
+                  width: 140,
+                  height: 140,
                   decoration: BoxDecoration(
                     color: Colors.white.withValues(alpha: 0.15),
                     shape: BoxShape.circle,
                   ),
-                  child: Center(child: Text(page.emoji, style: const TextStyle(fontSize: 72))),
+                  child: Center(
+                    child: Text(
+                      page.emoji,
+                      style: const TextStyle(fontSize: 72),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 40),
-                Text(page.title,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white)),
+                Text(
+                  page.title,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
                 const SizedBox(height: 16),
-                Text(page.description,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 16, color: Colors.white, height: 1.7)),
+                Text(
+                  page.description,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                    height: 1.7,
+                  ),
+                ),
                 const SizedBox(height: 80),
               ],
             ),
@@ -199,7 +240,10 @@ class _OnboardingPage {
   final Color color1;
   final Color color2;
   const _OnboardingPage({
-    required this.emoji, required this.title, required this.description,
-    required this.color1, required this.color2,
+    required this.emoji,
+    required this.title,
+    required this.description,
+    required this.color1,
+    required this.color2,
   });
 }
