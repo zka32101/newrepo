@@ -49,6 +49,7 @@ import 'features/progress/data/repositories/review_time_capsule_repository.dart'
 import 'features/progress/providers/incorrect_monster_provider.dart';
 import 'features/progress/providers/review_time_capsule_provider.dart';
 import 'features/settings/providers/theme_provider.dart';
+import 'providers/character_provider.dart';
 import 'providers/equipped_items_provider.dart';
 import 'providers/locale_provider.dart';
 import 'providers/lesson_provider.dart' show LessonNotifier, lessonProvider;
@@ -141,6 +142,9 @@ void main() async {
     overrides: [
       // 理科コレのショップアイテム装着状態ノティファイアを注入
       equippedItemsProvider.overrideWith(EquippedItemsNotifier.new),
+      // shared_core の CoinShopPage / CharacterCollectionPage が内部で直接
+      // 参照する旧キャラクターシステム（characterStateProvider）を注入
+      characterStateProvider.overrideWith(LegacyCharacterNotifier.new),
       // 統一バッジシステム（Phase 4.1）: 理科コレ用バッジを主題タグで初期化
       badgeProvider.overrideWith(() => BadgeNotifier()),
       // 理科コレの利用時間制限（スクリーンタイム管理）ノティファイアを注入

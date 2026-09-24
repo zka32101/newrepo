@@ -18,6 +18,21 @@ class CharacterNotifier extends BaseCharacterProfileNotifier {
 }
 
 /// 統一キャラクタープロバイダー（Phase 4.1）
-final characterProvider = NotifierProvider<CharacterNotifier, CharacterProfileMap>(
-  CharacterNotifier.new,
-);
+final characterProvider =
+    NotifierProvider<CharacterNotifier, CharacterProfileMap>(
+      CharacterNotifier.new,
+    );
+
+// ─── shared_core 旧キャラクターシステム（characterStateProvider）対応 ──────
+
+/// shared_core の CoinShopPage / CharacterCollectionPage が内部で直接参照する
+/// 旧キャラクターシステム（[characterStateProvider]、CharacterState ベース）
+/// 用の実装。Phase 4.1 の [CharacterProfile] ベース（[characterProvider]）とは
+/// 別物のため、両方を main.dart でオーバーライドする必要がある。
+class LegacyCharacterNotifier extends BaseCharacterNotifier {
+  @override
+  List<BaseCharacter> get characterList => kRikaCharacters;
+
+  @override
+  String get storageKey => 'rika_character_states';
+}
