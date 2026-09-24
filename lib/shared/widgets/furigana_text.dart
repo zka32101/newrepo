@@ -11,29 +11,21 @@ class FuriganaText extends StatelessWidget {
   final TextStyle? style;
   final TextAlign? textAlign;
 
-  const FuriganaText(
-    this.text, {
-    super.key,
-    this.style,
-    this.textAlign,
-  });
+  const FuriganaText(this.text, {super.key, this.style, this.textAlign});
 
   @override
   Widget build(BuildContext context) {
-    final base = style ??
-        DefaultTextStyle.of(context).style.copyWith(
-              fontSize: 14,
-              color: Colors.black87,
-            );
-    return Text(
-      _toPlainText(text),
-      style: base,
-      textAlign: textAlign,
-    );
+    final base =
+        style ??
+        DefaultTextStyle.of(
+          context,
+        ).style.copyWith(fontSize: 14, color: Colors.black87);
+    return Text(toPlainText(text), style: base, textAlign: textAlign);
   }
 
-  /// {漢字|ふりがな} → 漢字（ふりがな） に変換する
-  static String _toPlainText(String text) {
+  /// {漢字|ふりがな} → 漢字（ふりがな） に変換する。
+  /// Text ウィジェット以外（共有テキストなど）でも使えるよう公開している。
+  static String toPlainText(String text) {
     final pattern = RegExp(r'\{([^|{}]+)\|([^}]+)\}');
     return text.replaceAllMapped(
       pattern,

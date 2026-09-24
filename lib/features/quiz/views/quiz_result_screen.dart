@@ -21,8 +21,7 @@ class QuizResultScreen extends ConsumerStatefulWidget {
   const QuizResultScreen({super.key});
 
   @override
-  ConsumerState<QuizResultScreen> createState() =>
-      _QuizResultScreenState();
+  ConsumerState<QuizResultScreen> createState() => _QuizResultScreenState();
 }
 
 class _QuizResultScreenState extends ConsumerState<QuizResultScreen> {
@@ -42,11 +41,16 @@ class _QuizResultScreenState extends ConsumerState<QuizResultScreen> {
     final quiz = ref.read(quizProvider);
 
     // 間違えた問題のリストを取得
-    final wrongAnswers = quiz.questions.asMap().entries
-        .where((e) =>
-            e.key < quiz.selectedAnswers.length &&
-            quiz.selectedAnswers[e.key] != null &&
-            quiz.selectedAnswers[e.key] != quiz.questions[e.key].correctAnswerIndex)
+    final wrongAnswers = quiz.questions
+        .asMap()
+        .entries
+        .where(
+          (e) =>
+              e.key < quiz.selectedAnswers.length &&
+              quiz.selectedAnswers[e.key] != null &&
+              quiz.selectedAnswers[e.key] !=
+                  quiz.questions[e.key].correctAnswerIndex,
+        )
         .toList();
 
     final wrongNums = wrongAnswers.map((e) => e.key + 1).toList();
@@ -63,7 +67,9 @@ class _QuizResultScreenState extends ConsumerState<QuizResultScreen> {
       final questionId = '${quiz.stageId}_q$questionNumber';
       final questionTitle = question.question;
 
-      final alreadyExists = await monsterNotifier.hasIncorrectMonster(questionId);
+      final alreadyExists = await monsterNotifier.hasIncorrectMonster(
+        questionId,
+      );
 
       await monsterNotifier.recordIncorrect(
         questionId: questionId,
@@ -81,7 +87,9 @@ class _QuizResultScreenState extends ConsumerState<QuizResultScreen> {
     final timeCapsuleNotifier = ref.read(timeCapsuleProvider.notifier);
 
     for (int i = 0; i < quiz.questions.length; i++) {
-      final selectedAnswer = i < quiz.selectedAnswers.length ? quiz.selectedAnswers[i] : null;
+      final selectedAnswer = i < quiz.selectedAnswers.length
+          ? quiz.selectedAnswers[i]
+          : null;
       final correctIndex = quiz.questions[i].correctAnswerIndex;
       final question = quiz.questions[i];
 
@@ -146,11 +154,13 @@ class _QuizResultScreenState extends ConsumerState<QuizResultScreen> {
 
     // 🎯 ランキングにスコアを記録
     try {
-      await ref.read(updateScoreProvider({
-        'score': quiz.earnedPoints,
-        'correctAnswers': quiz.correctCount,
-        'totalQuestions': quiz.totalQuestions,
-      }).future);
+      await ref.read(
+        updateScoreProvider({
+          'score': quiz.earnedPoints,
+          'correctAnswers': quiz.correctCount,
+          'totalQuestions': quiz.totalQuestions,
+        }).future,
+      );
     } catch (e) {
       // エラーログを出力するが、ユーザー体験を阻害しない
       developer.log('Error updating ranking score: $e', error: e);
@@ -158,10 +168,9 @@ class _QuizResultScreenState extends ConsumerState<QuizResultScreen> {
 
     // 全問正解: 親ほめ待ちリストに登録
     if (quiz.correctCount == quiz.totalQuestions && quiz.totalQuestions > 0) {
-      final stageName = quiz.stageId; // ステージ名はIDで代用（表示は別途調整可）
       await ref
           .read(pendingPraiseProvider.notifier)
-          .addClearedStage(quiz.stageId, stageName);
+          .addClearedStage(quiz.stageId, quiz.stageName);
     }
 
     // 🎯 NEW: モンスター進化ダイアログを表示（優先度: 最初、複数進化した場合は順番に表示）
@@ -271,161 +280,172 @@ class _QuizResultScreenState extends ConsumerState<QuizResultScreen> {
     return Stack(
       clipBehavior: Clip.hardEdge,
       children: [
-      Container(
-      width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(24, 32, 24, 28),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [gradeColor.withOpacity(0.85), AppColors.scienceSecondary],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(32)),
-      ),
-      child: Column(
-        children: [
-          Text(gradeEmoji, style: const TextStyle(fontSize: 64)),
-          const SizedBox(height: 12),
-          Text(
-            isPerfect ? '全問正解！ すごい！' : 'クイズ終了！',
-            style: const TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-          const SizedBox(height: 20),
-          Container(
-            width: 120,
-            height: 120,
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
-              shape: BoxShape.circle,
-              border: Border.all(
-                  color: Colors.white.withOpacity(0.5), width: 3),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  '${quiz.correctCount}',
-                  style: const TextStyle(
-                    fontSize: 42,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                Text(
-                  '/ ${quiz.totalQuestions}',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white.withOpacity(0.8),
-                  ),
-                ),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.fromLTRB(24, 32, 24, 28),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                gradeColor.withOpacity(0.85),
+                AppColors.scienceSecondary,
               ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: const BorderRadius.vertical(
+              bottom: Radius.circular(32),
             ),
           ),
-          const SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Column(
             children: [
-              Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 16, vertical: 6),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.circular(20),
+              Text(gradeEmoji, style: const TextStyle(fontSize: 64)),
+              const SizedBox(height: 12),
+              Text(
+                isPerfect ? '全問正解！ すごい！' : 'クイズ終了！',
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
+              ),
+              const SizedBox(height: 20),
+              Container(
+                width: 120,
+                height: 120,
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.2),
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: Colors.white.withOpacity(0.5),
+                    width: 3,
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'ランク ',
-                      style: TextStyle(
-                        color: gradeColor,
-                        fontSize: 14,
+                      '${quiz.correctCount}',
+                      style: const TextStyle(
+                        fontSize: 42,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                     Text(
-                      grade,
+                      '/ ${quiz.totalQuestions}',
                       style: TextStyle(
-                        color: gradeColor,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: Colors.white.withOpacity(0.8),
                       ),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(width: 10),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(20),
-                  border:
-                      Border.all(color: Colors.white.withOpacity(0.5)),
-                ),
-                child: Column(
-                  children: [
-                    Text(
-                      '+${quiz.earnedPoints} pt',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                      ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 6,
                     ),
-                    if (_coinsEarned > 0)
-                      Text(
-                        '🪙 +$_coinsEarned',
-                        style: TextStyle(
-                          color: Colors.yellow[200],
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'ランク ',
+                          style: TextStyle(
+                            color: gradeColor,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                  ],
-                ),
+                        Text(
+                          grade,
+                          style: TextStyle(
+                            color: gradeColor,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colors.white.withOpacity(0.5)),
+                    ),
+                    child: Column(
+                      children: [
+                        Text(
+                          '+${quiz.earnedPoints} pt',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        if (_coinsEarned > 0)
+                          Text(
+                            '🪙 +$_coinsEarned',
+                            style: TextStyle(
+                              color: Colors.yellow[200],
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
-        ],
-      ),
-    ),
-    Positioned(
-      right: -20,
-      top: -20,
-      child: Opacity(
-        opacity: 0.08,
-        child: Container(
-          width: 140,
-          height: 140,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
+        ),
+        Positioned(
+          right: -20,
+          top: -20,
+          child: Opacity(
+            opacity: 0.08,
+            child: Container(
+              width: 140,
+              height: 140,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+            ),
           ),
         ),
-      ),
-    ),
-    Positioned(
-      left: -30,
-      bottom: 0,
-      child: Opacity(
-        opacity: 0.06,
-        child: Container(
-          width: 100,
-          height: 100,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
+        Positioned(
+          left: -30,
+          bottom: 0,
+          child: Opacity(
+            opacity: 0.06,
+            child: Container(
+              width: 100,
+              height: 100,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+            ),
           ),
         ),
-      ),
-    ),
-    ],);
+      ],
+    );
   }
 
   // ── 詳細スタッツ ──────────────────────────────────────
@@ -505,8 +525,7 @@ class _QuizResultScreenState extends ConsumerState<QuizResultScreen> {
   }
 
   // ── ボタン ────────────────────────────────────────────
-  Widget _buildButtons(
-      BuildContext context, WidgetRef ref, QuizState quiz) {
+  Widget _buildButtons(BuildContext context, WidgetRef ref, QuizState quiz) {
     final wrongCount = quiz.totalQuestions - quiz.correctCount;
     final isLowScore = quiz.accuracy < 0.5;
     final isPerfect = quiz.correctCount == quiz.totalQuestions;
@@ -520,7 +539,7 @@ class _QuizResultScreenState extends ConsumerState<QuizResultScreen> {
             GestureDetector(
               onTap: () => context.push(
                 '/praise-send/${quiz.stageId}',
-                extra: {'stageName': quiz.stageId},
+                extra: {'stageName': quiz.stageName},
               ),
               child: Container(
                 padding: const EdgeInsets.all(14),
@@ -557,7 +576,10 @@ class _QuizResultScreenState extends ConsumerState<QuizResultScreen> {
                           SizedBox(height: 2),
                           Text(
                             '全問正解を伝えてほめメッセージを受け取ろう',
-                            style: TextStyle(fontSize: 11, color: Colors.white70),
+                            style: TextStyle(
+                              fontSize: 11,
+                              color: Colors.white70,
+                            ),
                           ),
                         ],
                       ),
@@ -583,13 +605,16 @@ class _QuizResultScreenState extends ConsumerState<QuizResultScreen> {
                 label: Text(
                   'まちがえた$wrongCount問だけやり直す',
                   style: const TextStyle(
-                      fontSize: 15, fontWeight: FontWeight.bold),
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.error,
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14)),
+                    borderRadius: BorderRadius.circular(14),
+                  ),
                 ),
               ),
             ),
@@ -603,13 +628,16 @@ class _QuizResultScreenState extends ConsumerState<QuizResultScreen> {
               child: OutlinedButton.icon(
                 onPressed: () => context.go('/learn/${quiz.stageId}'),
                 icon: const Icon(Icons.menu_book_rounded),
-                label: const Text('まなんでから再挑戦 →',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                label: const Text(
+                  'まなんでから再挑戦 →',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
                 style: OutlinedButton.styleFrom(
                   foregroundColor: const Color(0xFF2E7D32),
                   side: const BorderSide(color: Color(0xFF2E7D32), width: 1.5),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14)),
+                    borderRadius: BorderRadius.circular(14),
+                  ),
                 ),
               ),
             ),
@@ -627,14 +655,14 @@ class _QuizResultScreenState extends ConsumerState<QuizResultScreen> {
               icon: const Icon(Icons.refresh_rounded),
               label: const Text(
                 'もう一度やる（全問）',
-                style: TextStyle(
-                    fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.sciencePrimary,
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14)),
+                  borderRadius: BorderRadius.circular(14),
+                ),
               ),
             ),
           ),
@@ -645,14 +673,16 @@ class _QuizResultScreenState extends ConsumerState<QuizResultScreen> {
             child: OutlinedButton.icon(
               onPressed: () => context.go('/home'),
               icon: const Icon(Icons.home_rounded),
-              label: const Text('ホームに戻る',
-                  style: TextStyle(fontSize: 15)),
+              label: const Text('ホームに戻る', style: TextStyle(fontSize: 15)),
               style: OutlinedButton.styleFrom(
                 foregroundColor: AppColors.sciencePrimary,
                 side: const BorderSide(
-                    color: AppColors.sciencePrimary, width: 1.5),
+                  color: AppColors.sciencePrimary,
+                  width: 1.5,
+                ),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14)),
+                  borderRadius: BorderRadius.circular(14),
+                ),
               ),
             ),
           ),
@@ -680,8 +710,7 @@ class _StatCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding:
-            const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
+        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
         decoration: BoxDecoration(
           color: color.withOpacity(0.08),
           borderRadius: BorderRadius.circular(12),
@@ -701,10 +730,7 @@ class _StatCard extends StatelessWidget {
             ),
             Text(
               label,
-              style: const TextStyle(
-                fontSize: 11,
-                color: AppColors.textGray,
-              ),
+              style: const TextStyle(fontSize: 11, color: AppColors.textGray),
             ),
           ],
         ),
@@ -735,12 +761,9 @@ class _QuestionResultRow extends ConsumerWidget {
       onTap: () => _showExplanationDialog(context, ref),
       child: Container(
         margin: const EdgeInsets.only(bottom: 8),
-        padding:
-            const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         decoration: BoxDecoration(
-          color: isCorrect
-              ? const Color(0xFFE8F5E9)
-              : const Color(0xFFFCE4EC),
+          color: isCorrect ? const Color(0xFFE8F5E9) : const Color(0xFFFCE4EC),
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
             color: isCorrect
@@ -791,11 +814,7 @@ class _QuestionResultRow extends ConsumerWidget {
                 ],
               ),
             ),
-            Icon(
-              Icons.chevron_right,
-              color: AppColors.textGray,
-              size: 18,
-            ),
+            Icon(Icons.chevron_right, color: AppColors.textGray, size: 18),
           ],
         ),
       ),
@@ -810,10 +829,7 @@ class _QuestionResultRow extends ConsumerWidget {
       builder: (context) => AlertDialog(
         title: Text(
           '問$number の解説',
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         content: SingleChildScrollView(
           child: Column(
@@ -862,9 +878,7 @@ class _QuestionResultRow extends ConsumerWidget {
                   decoration: BoxDecoration(
                     color: const Color(0xFFFCE4EC),
                     borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                      color: AppColors.error.withOpacity(0.3),
-                    ),
+                    border: Border.all(color: AppColors.error.withOpacity(0.3)),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
