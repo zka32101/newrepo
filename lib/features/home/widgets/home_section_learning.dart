@@ -15,13 +15,21 @@ class HomeSectionLearning extends ConsumerStatefulWidget {
   const HomeSectionLearning({super.key});
 
   @override
-  ConsumerState<HomeSectionLearning> createState() => _HomeSectionLearningState();
+  ConsumerState<HomeSectionLearning> createState() =>
+      _HomeSectionLearningState();
 }
 
 class _HomeSectionLearningState extends ConsumerState<HomeSectionLearning> {
   int _selectedGrade = 3; // ステージリスト選択学年
   final _todayStage = stagesData[0]; // stage_3_001 昆虫と植物
   final int _totalCreatures = 16;
+
+  static const _categoryEmoji = {
+    'biology': '🌱',
+    'physics': '⚡',
+    'chemistry': '🧪',
+    'earth': '🌍',
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +50,12 @@ class _HomeSectionLearningState extends ConsumerState<HomeSectionLearning> {
   // ── にがて問題カード ──────────────────────────────────
   Widget _buildReviewCard() {
     final progressAsync = ref.watch(userProgressProvider);
-    final wrongCount = progressAsync.value?.wrongAnswers.values
-        .fold(0, (sum, list) => sum + list.length) ?? 0;
+    final wrongCount =
+        progressAsync.value?.wrongAnswers.values.fold(
+          0,
+          (sum, list) => sum + list.length,
+        ) ??
+        0;
     if (wrongCount == 0) return const SizedBox.shrink();
 
     return GestureDetector(
@@ -63,7 +75,11 @@ class _HomeSectionLearningState extends ConsumerState<HomeSectionLearning> {
             Expanded(
               child: Text(
                 'にがて問題 $wrongCount問 — やり直してみよう！',
-                style: TextStyle(fontSize: 13, color: Colors.red[700], fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 13,
+                  color: Colors.red[700],
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             Icon(Icons.chevron_right_rounded, color: Colors.red[400]),
@@ -171,7 +187,9 @@ class _HomeSectionLearningState extends ConsumerState<HomeSectionLearning> {
               children: [
                 Container(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 10, vertical: 4),
+                    horizontal: 10,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(20),
@@ -221,10 +239,8 @@ class _HomeSectionLearningState extends ConsumerState<HomeSectionLearning> {
                   width: double.infinity,
                   height: 46,
                   child: ElevatedButton.icon(
-                    onPressed: () => context
-                        .go('/quiz/${_todayStage['id']}'),
-                    icon: const Icon(Icons.play_arrow_rounded,
-                        size: 22),
+                    onPressed: () => context.go('/quiz/${_todayStage['id']}'),
+                    icon: const Icon(Icons.play_arrow_rounded, size: 22),
                     label: const Text(
                       '探索を開始 →',
                       style: TextStyle(
@@ -304,10 +320,7 @@ class _HomeSectionLearningState extends ConsumerState<HomeSectionLearning> {
             children: [
               Text(
                 '$completedCreatures / $_totalCreatures 発見',
-                style: const TextStyle(
-                  fontSize: 12,
-                  color: AppColors.textGray,
-                ),
+                style: const TextStyle(fontSize: 12, color: AppColors.textGray),
               ),
               const SizedBox(width: 8),
               Expanded(
@@ -316,8 +329,7 @@ class _HomeSectionLearningState extends ConsumerState<HomeSectionLearning> {
                   child: LinearProgressIndicator(
                     value: completedCreatures / _totalCreatures,
                     backgroundColor: AppColors.borderGray,
-                    valueColor: const AlwaysStoppedAnimation(
-                        AppColors.success),
+                    valueColor: const AlwaysStoppedAnimation(AppColors.success),
                     minHeight: 6,
                   ),
                 ),
@@ -328,8 +340,7 @@ class _HomeSectionLearningState extends ConsumerState<HomeSectionLearning> {
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            gridDelegate:
-                const SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 4,
               mainAxisSpacing: 8,
               crossAxisSpacing: 8,
@@ -406,7 +417,9 @@ class _HomeSectionLearningState extends ConsumerState<HomeSectionLearning> {
                   child: Container(
                     margin: const EdgeInsets.only(right: 8),
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 6),
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
                     decoration: BoxDecoration(
                       color: isSelected
                           ? AppColors.sciencePrimary
@@ -418,9 +431,7 @@ class _HomeSectionLearningState extends ConsumerState<HomeSectionLearning> {
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
-                        color: isSelected
-                            ? Colors.white
-                            : AppColors.textDark,
+                        color: isSelected ? Colors.white : AppColors.textDark,
                       ),
                     ),
                   ),
@@ -430,57 +441,58 @@ class _HomeSectionLearningState extends ConsumerState<HomeSectionLearning> {
           ),
           const SizedBox(height: 12),
           // Stage preview for selected grade
-          ...(stagesData.where((s) => s['gradeLevel'] == _selectedGrade)
-                  .take(3)
+          ...(stagesData.where((s) => s['gradeLevel'] == _selectedGrade).take(3)
                   as Iterable<Map<String, dynamic>>)
-              .map((stage) => Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: GestureDetector(
-                      onTap: () => context.push('/quiz/${stage['id']}'),
-                      child: Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[100],
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                              color: Colors.grey[300]!,
-                              width: 0.5),
-                        ),
-                        child: Row(
-                          children: [
-                            Text(stage['icon'] as String,
-                                style: const TextStyle(fontSize: 18)),
-                            const SizedBox(width: 8),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    stage['stageName'] as String,
-                                    style: const TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    stage['description'] as String,
-                                    style: const TextStyle(
-                                      fontSize: 11,
-                                      color: AppColors.textGray,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const Icon(
-                                Icons.chevron_right_rounded,
-                                size: 20),
-                          ],
+              .map(
+                (stage) => Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: GestureDetector(
+                    onTap: () => context.push('/quiz/${stage['id']}'),
+                    child: Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[100],
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: Colors.grey[300]!,
+                          width: 0.5,
                         ),
                       ),
+                      child: Row(
+                        children: [
+                          Text(
+                            _categoryEmoji[stage['category']] ?? '🔬',
+                            style: const TextStyle(fontSize: 18),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                FuriganaText(
+                                  stage['stageName'] as String,
+                                  style: const TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  stage['description'] as String,
+                                  style: const TextStyle(
+                                    fontSize: 11,
+                                    color: AppColors.textGray,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const Icon(Icons.chevron_right_rounded, size: 20),
+                        ],
+                      ),
                     ),
-                  ))
+                  ),
+                ),
+              )
               .toList(),
           const SizedBox(height: 8),
           SizedBox(
@@ -489,8 +501,9 @@ class _HomeSectionLearningState extends ConsumerState<HomeSectionLearning> {
               onPressed: () => context.push('/learn'),
               style: OutlinedButton.styleFrom(
                 side: const BorderSide(
-                    color: AppColors.sciencePrimary,
-                    width: 1.5),
+                  color: AppColors.sciencePrimary,
+                  width: 1.5,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -592,9 +605,10 @@ class _Badge extends StatelessWidget {
       child: Text(
         text,
         style: const TextStyle(
-            color: Colors.white,
-            fontSize: 11,
-            fontWeight: FontWeight.bold),
+          color: Colors.white,
+          fontSize: 11,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
@@ -605,10 +619,7 @@ class _CreatureCell extends StatelessWidget {
   final Map<String, dynamic> creatureData;
   final bool unlocked;
 
-  const _CreatureCell({
-    required this.creatureData,
-    required this.unlocked,
-  });
+  const _CreatureCell({required this.creatureData, required this.unlocked});
 
   static const _categoryEmoji = {
     'insect': '🦋',
@@ -623,9 +634,7 @@ class _CreatureCell extends StatelessWidget {
     final emoji = _categoryEmoji[creatureData['category']] ?? '🔬';
     return Container(
       decoration: BoxDecoration(
-        color: unlocked
-            ? AppColors.scienceLight
-            : const Color(0xFFEEEEEE),
+        color: unlocked ? AppColors.scienceLight : const Color(0xFFEEEEEE),
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
           color: unlocked
@@ -641,9 +650,7 @@ class _CreatureCell extends StatelessWidget {
               : const Icon(Icons.lock, color: Colors.grey, size: 20),
           const SizedBox(height: 2),
           Text(
-            unlocked
-                ? (creatureData['name'] as String).substring(0, 3)
-                : '？',
+            unlocked ? (creatureData['name'] as String).substring(0, 3) : '？',
             style: TextStyle(
               fontSize: 10,
               fontWeight: FontWeight.bold,
@@ -698,16 +705,12 @@ class _ComingSoonCard extends StatelessWidget {
             const SizedBox(height: 2),
             Text(
               subtitle,
-              style: const TextStyle(
-                fontSize: 10,
-                color: AppColors.textGray,
-              ),
+              style: const TextStyle(fontSize: 10, color: AppColors.textGray),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 6),
             Container(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 6, vertical: 2),
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
               decoration: BoxDecoration(
                 color: Colors.amber[100],
                 borderRadius: BorderRadius.circular(10),

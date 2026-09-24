@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../data/seeds/experiment_data.dart';
 import '../../../data/seeds/stages.dart';
 import '../../../shared/constants/app_colors.dart';
+import '../../../shared/widgets/furigana_text.dart';
 import '../../progress/providers/user_progress_provider.dart';
 
 /// まなぶタブ - 全学年ステージ一覧
@@ -43,9 +44,7 @@ class _LearnTabScreenState extends ConsumerState<LearnTabScreen> {
               itemBuilder: (_, i) => _LearnStageTile(
                 stageData: gradeStages[i],
                 bestScore: clearedStages[gradeStages[i]['id']],
-                onTap: () => context.push(
-                  '/learn/${gradeStages[i]['id']}',
-                ),
+                onTap: () => context.push('/learn/${gradeStages[i]['id']}'),
               ),
             ),
           ),
@@ -65,8 +64,7 @@ class _LearnTabScreenState extends ConsumerState<LearnTabScreen> {
                 end: Alignment.bottomRight,
               )
             : AppColors.scienceGradient,
-        borderRadius:
-            const BorderRadius.vertical(bottom: Radius.circular(20)),
+        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(20)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -118,7 +116,9 @@ class _LearnTabScreenState extends ConsumerState<LearnTabScreen> {
             fontSize: 13,
             fontWeight: FontWeight.bold,
             color: active
-                ? (_showExperiment ? Colors.orange[700] : AppColors.sciencePrimary)
+                ? (_showExperiment
+                      ? Colors.orange[700]
+                      : AppColors.sciencePrimary)
                 : Colors.white,
           ),
         ),
@@ -160,20 +160,24 @@ class _LearnTabScreenState extends ConsumerState<LearnTabScreen> {
                     color: Colors.orange.shade50,
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Text(exp['emoji'] as String,
-                      style: const TextStyle(fontSize: 22)),
+                  child: Text(
+                    exp['emoji'] as String,
+                    style: const TextStyle(fontSize: 22),
+                  ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(exp['title'] as String,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.textDark,
-                          )),
+                      Text(
+                        exp['title'] as String,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.textDark,
+                        ),
+                      ),
                       const SizedBox(height: 2),
                       Text(
                         '${exp['grade']}年生 ⏱ ${exp['estimatedMinutes']}分',
@@ -185,8 +189,10 @@ class _LearnTabScreenState extends ConsumerState<LearnTabScreen> {
                     ],
                   ),
                 ),
-                Icon(Icons.chevron_right_rounded,
-                    color: Colors.orange.shade400),
+                Icon(
+                  Icons.chevron_right_rounded,
+                  color: Colors.orange.shade400,
+                ),
               ],
             ),
           ),
@@ -233,18 +239,14 @@ class _LearnTabScreenState extends ConsumerState<LearnTabScreen> {
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
-                        color: selected
-                            ? Colors.white
-                            : AppColors.textDark,
+                        color: selected ? Colors.white : AppColors.textDark,
                       ),
                     ),
                     Text(
                       '$cleared/${gradeStages.length}',
                       style: TextStyle(
                         fontSize: 10,
-                        color: selected
-                            ? Colors.white70
-                            : AppColors.textGray,
+                        color: selected ? Colors.white70 : AppColors.textGray,
                       ),
                     ),
                   ],
@@ -320,15 +322,15 @@ class _LearnStageTile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
-                  child: Text(emoji,
-                      style: const TextStyle(fontSize: 22))),
+                child: Text(emoji, style: const TextStyle(fontSize: 22)),
+              ),
             ),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  FuriganaText(
                     stageData['stageName'] as String,
                     style: const TextStyle(
                       fontSize: 14,
@@ -353,11 +355,7 @@ class _LearnStageTile extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Icon(
-                  Icons.menu_book_rounded,
-                  color: color,
-                  size: 18,
-                ),
+                Icon(Icons.menu_book_rounded, color: color, size: 18),
                 if (isCleared) ...[
                   const SizedBox(height: 4),
                   Text(

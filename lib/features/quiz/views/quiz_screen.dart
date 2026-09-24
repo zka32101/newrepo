@@ -33,13 +33,10 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
       vsync: this,
       duration: const Duration(milliseconds: 400),
     );
-    _explanationSlide = Tween<Offset>(
-      begin: const Offset(0, 1),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _explanationAnim,
-      curve: Curves.easeOutCubic,
-    ));
+    _explanationSlide =
+        Tween<Offset>(begin: const Offset(0, 1), end: Offset.zero).animate(
+          CurvedAnimation(parent: _explanationAnim, curve: Curves.easeOutCubic),
+        );
 
     // ステージをロード
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -74,9 +71,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
     });
 
     if (quiz.questions.isEmpty) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
     final q = quiz.currentQuestion;
@@ -110,18 +105,18 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
                         opacity: isEliminated ? 0.35 : 1.0,
                         child: _AnswerButton(
                           label: ['A', 'B', 'C', 'D'][i],
-                          text: isEliminated
-                              ? '✕ (ちがう答え)'
-                              : q.answers[i],
+                          text: isEliminated ? '✕ (ちがう答え)' : q.answers[i],
                           state: _answerState(
-                            i, selectedIdx, q.correctAnswerIndex,
+                            i,
+                            selectedIdx,
+                            q.correctAnswerIndex,
                             quiz.isAnswered,
                           ),
                           onTap: (quiz.isAnswered || isEliminated)
                               ? null
                               : () => ref
-                                  .read(quizProvider.notifier)
-                                  .selectAnswer(i),
+                                    .read(quizProvider.notifier)
+                                    .selectAnswer(i),
                         ),
                       );
                     }),
@@ -150,24 +145,19 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
       ),
 
       // ── 次の問題 / 結果へ ボタン ──
-      bottomNavigationBar: quiz.isAnswered
-          ? _buildNextButton(quiz)
-          : null,
+      bottomNavigationBar: quiz.isAnswered ? _buildNextButton(quiz) : null,
     );
   }
 
   // ── ヘッダー（グラデーション + プログレスバー） ──────────
   Widget _buildHeader(QuizState quiz) {
-    final progress =
-        (quiz.currentIndex + 1) / quiz.totalQuestions;
+    final progress = (quiz.currentIndex + 1) / quiz.totalQuestions;
 
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
       decoration: const BoxDecoration(
         gradient: AppColors.scienceGradient,
-        borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(20),
-        ),
+        borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
       ),
       child: Column(
         children: [
@@ -180,19 +170,20 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
               ),
               const SizedBox(width: 4),
               Expanded(
-                child: Text(
+                child: FuriganaText(
                   quiz.stageName,
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
-                  overflow: TextOverflow.ellipsis,
                 ),
               ),
               Container(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: 12, vertical: 4),
+                  horizontal: 12,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.25),
                   borderRadius: BorderRadius.circular(20),
@@ -215,8 +206,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
             child: LinearProgressIndicator(
               value: progress,
               backgroundColor: Colors.white.withOpacity(0.3),
-              valueColor:
-                  const AlwaysStoppedAnimation<Color>(Colors.white),
+              valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
               minHeight: 6,
             ),
           ),
@@ -264,29 +254,43 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
               height: 1.5,
             ),
           ),
-                const SizedBox(height: 10),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: GestureDetector(
-                    onTap: () => ttsService.speak(question),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                      decoration: BoxDecoration(
-                        color: AppColors.scienceLight,
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: AppColors.borderGray),
-                      ),
-                      child: const Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(Icons.volume_up_rounded, size: 16, color: AppColors.sciencePrimary),
-                          SizedBox(width: 4),
-                          Text('よむ', style: TextStyle(fontSize: 12, color: AppColors.sciencePrimary, fontWeight: FontWeight.bold)),
-                        ],
+          const SizedBox(height: 10),
+          Align(
+            alignment: Alignment.centerRight,
+            child: GestureDetector(
+              onTap: () => ttsService.speak(question),
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 5,
+                ),
+                decoration: BoxDecoration(
+                  color: AppColors.scienceLight,
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: AppColors.borderGray),
+                ),
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.volume_up_rounded,
+                      size: 16,
+                      color: AppColors.sciencePrimary,
+                    ),
+                    SizedBox(width: 4),
+                    Text(
+                      'よむ',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: AppColors.sciencePrimary,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
+                  ],
                 ),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -296,7 +300,8 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
   Widget _buildHintButton(QuizState quiz) {
     final progress = ref.watch(userProgressProvider).value;
     final hintsLeft = progress?.hintsRemaining ?? 0;
-    if (quiz.isAnswered || _eliminatedIndex != null) return const SizedBox.shrink();
+    if (quiz.isAnswered || _eliminatedIndex != null)
+      return const SizedBox.shrink();
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
@@ -338,14 +343,15 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
             TextButton.icon(
               onPressed: () => context.push('/learn/${quiz.stageId}'),
               icon: const Text('📖', style: TextStyle(fontSize: 14)),
-              label: const Text('まなぶをみる',
-                  style: TextStyle(fontSize: 13)),
+              label: const Text('まなぶをみる', style: TextStyle(fontSize: 13)),
               style: TextButton.styleFrom(
                 foregroundColor: AppColors.sciencePrimary,
                 backgroundColor: AppColors.scienceLight,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
-                  side: BorderSide(color: AppColors.sciencePrimary.withOpacity(0.3)),
+                  side: BorderSide(
+                    color: AppColors.sciencePrimary.withOpacity(0.3),
+                  ),
                 ),
               ),
             ),
@@ -369,9 +375,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
     return Container(
       margin: const EdgeInsets.only(top: 4),
       decoration: BoxDecoration(
-        color: isCorrect
-            ? const Color(0xFFE8F5E9)
-            : const Color(0xFFFCE4EC),
+        color: isCorrect ? const Color(0xFFE8F5E9) : const Color(0xFFFCE4EC),
         borderRadius: BorderRadius.circular(14),
         border: Border.all(
           color: isCorrect
@@ -391,7 +395,9 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
               color: isCorrect
                   ? AppColors.success.withOpacity(0.15)
                   : AppColors.error.withOpacity(0.12),
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(12),
+              ),
             ),
             child: Row(
               children: [
@@ -416,18 +422,20 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 14, vertical: 10),
+                      horizontal: 14,
+                      vertical: 10,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.success.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
-                          color: AppColors.success.withOpacity(0.4)),
+                        color: AppColors.success.withOpacity(0.4),
+                      ),
                     ),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('⭕',
-                            style: TextStyle(fontSize: 18)),
+                        const Text('⭕', style: TextStyle(fontSize: 18)),
                         const SizedBox(width: 8),
                         Expanded(
                           child: Column(
@@ -488,7 +496,8 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
                       color: Colors.white.withOpacity(0.6),
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
-                          color: AppColors.error.withOpacity(0.25)),
+                        color: AppColors.error.withOpacity(0.25),
+                      ),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -518,8 +527,9 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
                 if (advancedLearning != null) ...[
                   const SizedBox(height: 10),
                   Theme(
-                    data: Theme.of(context)
-                        .copyWith(dividerColor: Colors.transparent),
+                    data: Theme.of(
+                      context,
+                    ).copyWith(dividerColor: Colors.transparent),
                     child: ExpansionTile(
                       tilePadding: EdgeInsets.zero,
                       childrenPadding: const EdgeInsets.only(bottom: 4),
@@ -559,7 +569,8 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
                         color: AppColors.sciencePrimary.withOpacity(0.08),
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
-                            color: AppColors.sciencePrimary.withOpacity(0.3)),
+                          color: AppColors.sciencePrimary.withOpacity(0.3),
+                        ),
                       ),
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -589,8 +600,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
 
   // ── 次の問題ボタン ────────────────────────────────────────
   Widget _buildNextButton(QuizState quiz) {
-    final isLast =
-        quiz.currentIndex == quiz.totalQuestions - 1;
+    final isLast = quiz.currentIndex == quiz.totalQuestions - 1;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
@@ -598,19 +608,13 @@ class _QuizScreenState extends ConsumerState<QuizScreen>
           width: double.infinity,
           height: 52,
           child: ElevatedButton.icon(
-            onPressed: () =>
-                ref.read(quizProvider.notifier).nextQuestion(),
+            onPressed: () => ref.read(quizProvider.notifier).nextQuestion(),
             icon: Icon(
-              isLast
-                  ? Icons.flag_rounded
-                  : Icons.arrow_forward_rounded,
+              isLast ? Icons.flag_rounded : Icons.arrow_forward_rounded,
             ),
             label: Text(
               isLast ? '結果を見る' : '次の問題へ',
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.sciencePrimary,
@@ -683,8 +687,7 @@ class _AnswerButton extends StatelessWidget {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         margin: const EdgeInsets.only(bottom: 10),
-        padding: const EdgeInsets.symmetric(
-            horizontal: 14, vertical: 14),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
         decoration: BoxDecoration(
           color: bg,
           borderRadius: BorderRadius.circular(12),
@@ -704,10 +707,7 @@ class _AnswerButton extends StatelessWidget {
               width: 32,
               height: 32,
               alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: labelBg,
-                shape: BoxShape.circle,
-              ),
+              decoration: BoxDecoration(color: labelBg, shape: BoxShape.circle),
               child: Text(
                 label,
                 style: TextStyle(
@@ -733,11 +733,13 @@ class _AnswerButton extends StatelessWidget {
               ),
             ),
             if (state == _AnswerState.correct)
-              const Icon(Icons.check_circle,
-                  color: AppColors.success, size: 20),
+              const Icon(
+                Icons.check_circle,
+                color: AppColors.success,
+                size: 20,
+              ),
             if (state == _AnswerState.wrong)
-              const Icon(Icons.cancel,
-                  color: AppColors.error, size: 20),
+              const Icon(Icons.cancel, color: AppColors.error, size: 20),
           ],
         ),
       ),

@@ -205,215 +205,247 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     ],
                   ),
                   const Spacer(),
-                  // プロフィール切り替えボタン
-                  GestureDetector(
-                    onTap: () => context.push('/profile-select'),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.2),
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color:
-                              frameColor ?? Colors.white.withValues(alpha: 0.4),
-                          width: frameColor != null ? 2 : 1,
-                        ),
-                      ),
+                  Flexible(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      reverse: true,
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          ProfileAvatarImage(
-                            avatar:
-                                activeProfile?.avatarEmoji ??
-                                ProfileModel.avatarChoices[0],
-                            size: 18,
+                          // プロフィール切り替えボタン
+                          GestureDetector(
+                            onTap: () => context.push('/profile-select'),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.2),
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(
+                                  color:
+                                      frameColor ??
+                                      Colors.white.withValues(alpha: 0.4),
+                                  width: frameColor != null ? 2 : 1,
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  ProfileAvatarImage(
+                                    avatar:
+                                        activeProfile?.avatarEmoji ??
+                                        ProfileModel.avatarChoices[0],
+                                    size: 18,
+                                  ),
+                                  const SizedBox(width: 4),
+                                  Text(
+                                    activeProfile?.nickname ?? 'たろう',
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                          const SizedBox(width: 4),
-                          Text(
-                            activeProfile?.nickname ?? 'たろう',
-                            style: const TextStyle(
+                          const SizedBox(width: 8),
+                          // コイン残高
+                          GestureDetector(
+                            onTap: () => setState(() => _selectedIndex = 3),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 5,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Row(
+                                children: [
+                                  const Text(
+                                    '🪙',
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                  const SizedBox(width: 4),
+                                  Text(
+                                    '$coins',
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          // プレミアム / トライアル状態
+                          GestureDetector(
+                            onTap: () => context.push('/premium'),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 5,
+                              ),
+                              decoration: BoxDecoration(
+                                color: isPremium
+                                    ? Colors.amber.withOpacity(0.8)
+                                    : Colors.white.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Text(
+                                isPremium
+                                    ? '👑 プレミアム'
+                                    : '⏳ あと${trialRemaining}日',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 6),
+                          // ダークモード切り替え
+                          IconButton(
+                            onPressed: () =>
+                                ref.read(themeProvider.notifier).toggle(),
+                            icon: Icon(
+                              ref.watch(themeProvider) == ThemeMode.dark
+                                  ? Icons.light_mode_rounded
+                                  : Icons.dark_mode_rounded,
                               color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
+                              size: 18,
+                            ),
+                            tooltip: ref.watch(themeProvider) == ThemeMode.dark
+                                ? 'ライトモードに切り替え'
+                                : 'ダークモードに切り替え',
+                            style: IconButton.styleFrom(
+                              backgroundColor: Colors.white.withValues(
+                                alpha: 0.2,
+                              ),
+                              shape: const CircleBorder(),
+                              minimumSize: const Size(44, 44),
+                            ),
+                          ),
+                          const SizedBox(width: 6),
+                          // 保護者ダッシュボード
+                          IconButton(
+                            onPressed: () => context.push('/parent-dashboard'),
+                            icon: const Icon(
+                              Icons.shield_outlined,
+                              color: Colors.white,
+                              size: 18,
+                            ),
+                            tooltip: '保護者ダッシュボード',
+                            style: IconButton.styleFrom(
+                              backgroundColor: Colors.white.withValues(
+                                alpha: 0.2,
+                              ),
+                              shape: const CircleBorder(),
+                              minimumSize: const Size(44, 44),
+                            ),
+                          ),
+                          const SizedBox(width: 6),
+                          // デイリーミッション
+                          IconButton(
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (_) => DailyMissionPage(
+                                    primaryColor: AppColors.sciencePrimary,
+                                    appTitle: '小学コレ！理解',
+                                    filterSubject: 'science',
+                                  ),
+                                ),
+                              );
+                            },
+                            icon: const Icon(
+                              Icons.assignment,
+                              color: Colors.white,
+                              size: 18,
+                            ),
+                            tooltip: 'デイリーミッション',
+                            style: IconButton.styleFrom(
+                              backgroundColor: Colors.white.withValues(
+                                alpha: 0.2,
+                              ),
+                              shape: const CircleBorder(),
+                              minimumSize: const Size(44, 44),
+                            ),
+                          ),
+                          const SizedBox(width: 6),
+                          // フレンドボタン（Phase 4.4 フレンド機能）
+                          IconButton(
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (_) => const FriendsListPage(),
+                                ),
+                              );
+                            },
+                            icon: const Icon(
+                              Icons.people,
+                              color: Colors.white,
+                              size: 18,
+                            ),
+                            tooltip: 'フレンド',
+                            style: IconButton.styleFrom(
+                              backgroundColor: Colors.white.withValues(
+                                alpha: 0.2,
+                              ),
+                              shape: const CircleBorder(),
+                              minimumSize: const Size(44, 44),
+                            ),
+                          ),
+                          const SizedBox(width: 6),
+                          // Phase 4.23: ローカル通知・リマインダーシステム
+                          Builder(
+                            builder: (context) {
+                              final notifications = ref.watch(
+                                notificationProvider,
+                              );
+                              return GestureDetector(
+                                onTap: () {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        '通知: ${notifications.length}件',
+                                      ),
+                                      duration: const Duration(seconds: 2),
+                                    ),
+                                  );
+                                },
+                                child: const NotificationBadge(),
+                              );
+                            },
+                          ),
+                          const SizedBox(width: 6),
+                          // 設定（バグ報告・ご意見はこちら）
+                          IconButton(
+                            onPressed: () => context.push('/settings'),
+                            icon: const Icon(
+                              Icons.settings_outlined,
+                              color: Colors.white,
+                              size: 18,
+                            ),
+                            tooltip: '設定',
+                            style: IconButton.styleFrom(
+                              backgroundColor: Colors.white.withValues(
+                                alpha: 0.2,
+                              ),
+                              shape: const CircleBorder(),
+                              minimumSize: const Size(44, 44),
                             ),
                           ),
                         ],
                       ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  // コイン残高
-                  GestureDetector(
-                    onTap: () => setState(() => _selectedIndex = 3),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 5,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Row(
-                        children: [
-                          const Text('🪙', style: TextStyle(fontSize: 14)),
-                          const SizedBox(width: 4),
-                          Text(
-                            '$coins',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  // プレミアム / トライアル状態
-                  GestureDetector(
-                    onTap: () => setState(() => _selectedIndex = 3),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 5,
-                      ),
-                      decoration: BoxDecoration(
-                        color: isPremium
-                            ? Colors.amber.withOpacity(0.8)
-                            : Colors.white.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        isPremium ? '👑 プレミアム' : '⏳ あと${trialRemaining}日',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 11,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 6),
-                  // ダークモード切り替え
-                  IconButton(
-                    onPressed: () => ref.read(themeProvider.notifier).toggle(),
-                    icon: Icon(
-                      ref.watch(themeProvider) == ThemeMode.dark
-                          ? Icons.light_mode_rounded
-                          : Icons.dark_mode_rounded,
-                      color: Colors.white,
-                      size: 18,
-                    ),
-                    tooltip: ref.watch(themeProvider) == ThemeMode.dark
-                        ? 'ライトモードに切り替え'
-                        : 'ダークモードに切り替え',
-                    style: IconButton.styleFrom(
-                      backgroundColor: Colors.white.withValues(alpha: 0.2),
-                      shape: const CircleBorder(),
-                      minimumSize: const Size(44, 44),
-                    ),
-                  ),
-                  const SizedBox(width: 6),
-                  // 保護者ダッシュボード
-                  IconButton(
-                    onPressed: () => context.push('/parent-dashboard'),
-                    icon: const Icon(
-                      Icons.shield_outlined,
-                      color: Colors.white,
-                      size: 18,
-                    ),
-                    tooltip: '保護者ダッシュボード',
-                    style: IconButton.styleFrom(
-                      backgroundColor: Colors.white.withValues(alpha: 0.2),
-                      shape: const CircleBorder(),
-                      minimumSize: const Size(44, 44),
-                    ),
-                  ),
-                  const SizedBox(width: 6),
-                  // デイリーミッション
-                  IconButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => DailyMissionPage(
-                            primaryColor: AppColors.sciencePrimary,
-                            appTitle: '小学コレ！理解',
-                            filterSubject: 'science',
-                          ),
-                        ),
-                      );
-                    },
-                    icon: const Icon(
-                      Icons.assignment,
-                      color: Colors.white,
-                      size: 18,
-                    ),
-                    tooltip: 'デイリーミッション',
-                    style: IconButton.styleFrom(
-                      backgroundColor: Colors.white.withValues(alpha: 0.2),
-                      shape: const CircleBorder(),
-                      minimumSize: const Size(44, 44),
-                    ),
-                  ),
-                  const SizedBox(width: 6),
-                  // フレンドボタン（Phase 4.4 フレンド機能）
-                  IconButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => const FriendsListPage(),
-                        ),
-                      );
-                    },
-                    icon: const Icon(
-                      Icons.people,
-                      color: Colors.white,
-                      size: 18,
-                    ),
-                    tooltip: 'フレンド',
-                    style: IconButton.styleFrom(
-                      backgroundColor: Colors.white.withValues(alpha: 0.2),
-                      shape: const CircleBorder(),
-                      minimumSize: const Size(44, 44),
-                    ),
-                  ),
-                  const SizedBox(width: 6),
-                  // Phase 4.23: ローカル通知・リマインダーシステム
-                  Builder(
-                    builder: (context) {
-                      final notifications = ref.watch(notificationProvider);
-                      return GestureDetector(
-                        onTap: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('通知: ${notifications.length}件'),
-                              duration: const Duration(seconds: 2),
-                            ),
-                          );
-                        },
-                        child: const NotificationBadge(),
-                      );
-                    },
-                  ),
-                  const SizedBox(width: 6),
-                  // 設定（バグ報告・ご意見はこちら）
-                  IconButton(
-                    onPressed: () => context.push('/settings'),
-                    icon: const Icon(
-                      Icons.settings_outlined,
-                      color: Colors.white,
-                      size: 18,
-                    ),
-                    tooltip: '設定',
-                    style: IconButton.styleFrom(
-                      backgroundColor: Colors.white.withValues(alpha: 0.2),
-                      shape: const CircleBorder(),
-                      minimumSize: const Size(44, 44),
                     ),
                   ),
                 ],
@@ -422,7 +454,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               if (!isPremium && trialRemaining <= 0) ...[
                 const SizedBox(height: 8),
                 GestureDetector(
-                  onTap: () => setState(() => _selectedIndex = 3),
+                  onTap: () => context.push('/premium'),
                   child: Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(
