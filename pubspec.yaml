@@ -89,7 +89,7 @@ dependencies:
   youtube_player_iframe: ^6.0.2   # YouTube インライン再生
   flutter_tts: ^4.2.0                  # 音声読み上げ
   flutter_markdown: ^0.7.3         # マークダウンレンダリング
-  shimmer: ^3.0.0                  # ローディングシマー効果
+  shimmer: ^4.0.0                  # ローディングシマー効果
 
   # Phase 4.2: RevenueCat SDK for subscription management
   purchases_flutter: ^10.13.1
