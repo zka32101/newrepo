@@ -129,7 +129,7 @@ final Map<String, Map<int, Map<String, String>>> allExplanations = {
 /// 解説ファイルの中身が「生命の進化」になっている）。内容を照合し直すまでは
 /// 誤った解説を出さないよう、確認済みのステージのみ許可する。
 ///
-/// TODO: 残りのステージも内容を照合・修正し、順次このリストに追加する。
+/// 47ステージ全ての照合・修正が完了済み。
 const Set<String> _verifiedExplanationStageIds = {
   'stage_3_001',
   'stage_3_002',
@@ -139,12 +139,45 @@ const Set<String> _verifiedExplanationStageIds = {
   'stage_3_006',
   'stage_3_007',
   'stage_3_008',
+  'stage_3_009',
+  'stage_3_010',
+  'stage_3_011',
+  'stage_3_012',
   'stage_4_001',
   'stage_4_002',
   'stage_4_003',
   'stage_4_004',
   'stage_4_005',
   'stage_4_006',
+  'stage_4_007',
+  'stage_4_008',
+  'stage_4_009',
+  'stage_4_010',
+  'stage_4_011',
+  'stage_5_001',
+  'stage_5_002',
+  'stage_5_003',
+  'stage_5_004',
+  'stage_5_005',
+  'stage_5_006',
+  'stage_5_007',
+  'stage_5_008',
+  'stage_5_009',
+  'stage_5_010',
+  'stage_5_011',
+  'stage_5_012',
+  'stage_6_001',
+  'stage_6_002',
+  'stage_6_003',
+  'stage_6_004',
+  'stage_6_005',
+  'stage_6_006',
+  'stage_6_007',
+  'stage_6_008',
+  'stage_6_009',
+  'stage_6_010',
+  'stage_6_011',
+  'stage_6_012',
 };
 
 /// ステージIDから解説を取得するヘルパー関数
