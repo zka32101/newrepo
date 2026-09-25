@@ -7,8 +7,20 @@ class ProfileModel {
   /// 入っていることがあり、表示側の [ProfileAvatarImage] がどちらの形式
   /// にも対応する。
   final String avatarEmoji;
+
+  /// クイズ・ステージ選択などコンテンツ表示に使う学年（3, 4, 5, 6 のみ）。
+  /// [realGradeLevel] が3〜6の範囲外（小学未満・1年・2年・中学生以上）の場合は
+  /// 最も近い学年（3 または 6）にクランプされた値がここに入る。
+  /// 既存のランキング・マルチプレイ対戦・バッジ表示などはすべてこの値を
+  /// 前提にしているため、常に3〜6の範囲であることを保証する。
   final int gradeLevel; // 3, 4, 5, 6
   final String createdAt; // YYYY-MM-DD
+
+  /// プロフィール作成時に実際に選択した学年区分。
+  /// 0=小学未満, 1=小学1年, 2=小学2年, 3〜6=3〜6年生, 7=中学生以上。
+  /// 表示（プロフィールカードの「○年生」ラベルなど）にのみ使用し、
+  /// コンテンツ選択には使わない（[gradeLevel] を使うこと）。
+  final int realGradeLevel;
 
   /// ユーザーが学習を開始した月（1-12）
   /// 用途: 開始月別ランキング、学年度計算
@@ -23,10 +35,43 @@ class ProfileModel {
     required this.nickname,
     required this.avatarEmoji,
     required this.gradeLevel,
+    int? realGradeLevel,
     required this.createdAt,
     this.startMonth,
     this.lastGradeAdvancementDate,
-  });
+  }) : realGradeLevel = realGradeLevel ?? gradeLevel;
+
+  /// プロフィール作成画面で選択できる学年区分（表示用の値）。
+  static const List<int> selectableGrades = [0, 1, 2, 3, 4, 5, 6, 7];
+
+  /// [selectableGrades] の各値に対応する表示ラベル（選択チップ用の短縮表記）。
+  static const Map<int, String> gradeLabels = {
+    0: '小学未満',
+    1: '小学1年',
+    2: '小学2年',
+    3: '3年',
+    4: '4年',
+    5: '5年',
+    6: '6年',
+    7: '中学生以上',
+  };
+
+  /// プロフィールカードなどで使う完全な表示ラベル（「生」の要否を考慮）。
+  static const Map<int, String> gradeFullLabels = {
+    0: '小学未満',
+    1: '小学1年生',
+    2: '小学2年生',
+    3: '3年生',
+    4: '4年生',
+    5: '5年生',
+    6: '6年生',
+    7: '中学生以上',
+  };
+
+  /// 実際に選択した学年（[realGradeLevel]）から、コンテンツ表示に使う
+  /// 学年（3〜6）を求める。範囲外は最も近い学年年に丸める
+  /// （小学未満・1・2年 → 3年生の内容、中学生以上 → 6年生の内容）。
+  static int contentGradeFor(int realGradeLevel) => realGradeLevel.clamp(3, 6);
 
   /// アバター画像アセットの選択肢。
   /// 過去バージョンで絵文字が保存されている場合は
@@ -77,8 +122,7 @@ class ProfileModel {
       'avatar_${avatarIndex.toString().padLeft(2, '0')}';
 
   /// そのアバターが最初から使えるか（無料枠内か）。
-  static bool isAvatarFree(int avatarIndex) =>
-      avatarIndex < avatarFreeCount;
+  static bool isAvatarFree(int avatarIndex) => avatarIndex < avatarFreeCount;
 
   /// [avatarChoices] のうち、無料または購入済みで選択可能なもの一覧。
   static List<String> unlockedAvatars(List<String> purchasedItemIds) {
@@ -90,22 +134,26 @@ class ProfileModel {
   }
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'nickname': nickname,
-        'avatarEmoji': avatarEmoji,
-        'gradeLevel': gradeLevel,
-        'createdAt': createdAt,
-        'startMonth': startMonth,
-        'lastGradeAdvancementDate': lastGradeAdvancementDate,
-      };
+    'id': id,
+    'nickname': nickname,
+    'avatarEmoji': avatarEmoji,
+    'gradeLevel': gradeLevel,
+    'realGradeLevel': realGradeLevel,
+    'createdAt': createdAt,
+    'startMonth': startMonth,
+    'lastGradeAdvancementDate': lastGradeAdvancementDate,
+  };
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) => ProfileModel(
-        id: json['id'] as String,
-        nickname: json['nickname'] as String,
-        avatarEmoji: json['avatarEmoji'] as String? ?? avatarChoices[0],
-        gradeLevel: (json['gradeLevel'] as num?)?.toInt() ?? 3,
-        createdAt: json['createdAt'] as String? ?? '',
-        startMonth: (json['startMonth'] as num?)?.toInt(),
-        lastGradeAdvancementDate: json['lastGradeAdvancementDate'] as String?,
-      );
+    id: json['id'] as String,
+    nickname: json['nickname'] as String,
+    avatarEmoji: json['avatarEmoji'] as String? ?? avatarChoices[0],
+    gradeLevel: (json['gradeLevel'] as num?)?.toInt() ?? 3,
+    // 旧バージョンのプロフィールには realGradeLevel が存在しないため、
+    // その場合は gradeLevel をそのまま実際の学年として扱う。
+    realGradeLevel: (json['realGradeLevel'] as num?)?.toInt(),
+    createdAt: json['createdAt'] as String? ?? '',
+    startMonth: (json['startMonth'] as num?)?.toInt(),
+    lastGradeAdvancementDate: json['lastGradeAdvancementDate'] as String?,
+  );
 }

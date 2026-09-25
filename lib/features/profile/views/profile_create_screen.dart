@@ -18,7 +18,7 @@ class ProfileCreateScreen extends ConsumerStatefulWidget {
 class _ProfileCreateScreenState extends ConsumerState<ProfileCreateScreen> {
   final _controller = TextEditingController();
   String _selectedEmoji = ProfileModel.avatarChoices[0];
-  int _selectedGrade = 3;
+  int _selectedRealGrade = 3;
   bool _isCreating = false;
 
   @override
@@ -150,34 +150,34 @@ class _ProfileCreateScreenState extends ConsumerState<ProfileCreateScreen> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      Row(
-                        children: [3, 4, 5, 6].map((g) {
-                          final sel = _selectedGrade == g;
-                          return Expanded(
-                            child: GestureDetector(
-                              onTap: () => setState(() => _selectedGrade = g),
-                              child: AnimatedContainer(
-                                duration: const Duration(milliseconds: 150),
-                                margin: const EdgeInsets.only(right: 8),
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 12,
-                                ),
-                                decoration: BoxDecoration(
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: ProfileModel.selectableGrades.map((g) {
+                          final sel = _selectedRealGrade == g;
+                          return GestureDetector(
+                            onTap: () => setState(() => _selectedRealGrade = g),
+                            child: AnimatedContainer(
+                              duration: const Duration(milliseconds: 150),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 14,
+                                vertical: 12,
+                              ),
+                              decoration: BoxDecoration(
+                                color: sel
+                                    ? AppColors.sciencePrimary
+                                    : const Color(0xFFF5F5F5),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Text(
+                                ProfileModel.gradeLabels[g]!,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
                                   color: sel
-                                      ? AppColors.sciencePrimary
-                                      : const Color(0xFFF5F5F5),
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: Text(
-                                  '$g年',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: sel
-                                        ? Colors.white
-                                        : AppColors.textDark,
-                                  ),
+                                      ? Colors.white
+                                      : AppColors.textDark,
                                 ),
                               ),
                             ),
@@ -236,7 +236,8 @@ class _ProfileCreateScreenState extends ConsumerState<ProfileCreateScreen> {
         .createProfile(
           nickname: name,
           avatarEmoji: _selectedEmoji,
-          gradeLevel: _selectedGrade,
+          gradeLevel: ProfileModel.contentGradeFor(_selectedRealGrade),
+          realGradeLevel: _selectedRealGrade,
         );
     if (mounted) context.go('/home');
   }

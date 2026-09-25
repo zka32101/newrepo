@@ -16,12 +16,9 @@ class ProfileSelectScreen extends ConsumerWidget {
     final profileState = ref.watch(profileProvider);
 
     return profileState.when(
-      loading: () => const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      ),
-      error: (_, __) => const Scaffold(
-        body: Center(child: Text('エラーが発生しました')),
-      ),
+      loading: () =>
+          const Scaffold(body: Center(child: CircularProgressIndicator())),
+      error: (_, __) => const Scaffold(body: Center(child: Text('エラーが発生しました'))),
       data: (state) => _ProfileSelectView(state: state),
     );
   }
@@ -35,9 +32,7 @@ class _ProfileSelectView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: AppColors.scienceGradient,
-        ),
+        decoration: const BoxDecoration(gradient: AppColors.scienceGradient),
         child: SafeArea(
           child: Column(
             children: [
@@ -47,8 +42,10 @@ class _ProfileSelectView extends ConsumerWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 8, top: 8, bottom: 16),
                   child: IconButton(
-                    icon: const Icon(Icons.arrow_back_ios_new,
-                        color: Colors.white),
+                    icon: const Icon(
+                      Icons.arrow_back_ios_new,
+                      color: Colors.white,
+                    ),
                     onPressed: () => Navigator.pop(context),
                     tooltip: '戻る',
                   ),
@@ -78,19 +75,21 @@ class _ProfileSelectView extends ConsumerWidget {
                   crossAxisSpacing: 16,
                   childAspectRatio: 0.9,
                   children: [
-                    ...state.profiles.map((p) => _ProfileCard(
-                          profile: p,
-                          isActive: p.id == state.activeProfileId,
-                          onTap: () async {
-                            await ref
-                                .read(profileProvider.notifier)
-                                .switchProfile(p.id);
-                            if (context.mounted) context.go('/home');
-                          },
-                          onDelete: state.profiles.length > 1
-                              ? () => _confirmDelete(context, ref, p)
-                              : null,
-                        )),
+                    ...state.profiles.map(
+                      (p) => _ProfileCard(
+                        profile: p,
+                        isActive: p.id == state.activeProfileId,
+                        onTap: () async {
+                          await ref
+                              .read(profileProvider.notifier)
+                              .switchProfile(p.id);
+                          if (context.mounted) context.go('/home');
+                        },
+                        onDelete: state.profiles.length > 1
+                            ? () => _confirmDelete(context, ref, p)
+                            : null,
+                      ),
+                    ),
                     if (state.profiles.length < kMaxProfiles)
                       _AddProfileCard(
                         onTap: () => context.push('/profile-create'),
@@ -107,7 +106,10 @@ class _ProfileSelectView extends ConsumerWidget {
   }
 
   Future<void> _confirmDelete(
-      BuildContext context, WidgetRef ref, ProfileModel profile) async {
+    BuildContext context,
+    WidgetRef ref,
+    ProfileModel profile,
+  ) async {
     // 進捗データを含むプロフィール全削除のため、先に保護者ゲートで確認する
     final passedGate = await requireParentalGate(
       context,
@@ -161,35 +163,39 @@ class _ProfileCard extends StatelessWidget {
       onTap: onTap,
       onLongPress: (isActive || onDelete != null)
           ? () => showModalBottomSheet<void>(
-                context: context,
-                builder: (_) => SafeArea(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      if (isActive)
-                        ListTile(
-                          leading: const Icon(Icons.face_retouching_natural,
-                              color: AppColors.sciencePrimary),
-                          title: const Text('アバターを変更'),
-                          onTap: () {
-                            Navigator.pop(context);
-                            context.push('/avatar-shop');
-                          },
+              context: context,
+              builder: (_) => SafeArea(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (isActive)
+                      ListTile(
+                        leading: const Icon(
+                          Icons.face_retouching_natural,
+                          color: AppColors.sciencePrimary,
                         ),
-                      if (onDelete != null)
-                        ListTile(
-                          leading: const Icon(Icons.delete_outline,
-                              color: Colors.red),
-                          title: Text('${profile.nickname} を削除'),
-                          onTap: () {
-                            Navigator.pop(context);
-                            onDelete?.call();
-                          },
+                        title: const Text('アバターを変更'),
+                        onTap: () {
+                          Navigator.pop(context);
+                          context.push('/avatar-shop');
+                        },
+                      ),
+                    if (onDelete != null)
+                      ListTile(
+                        leading: const Icon(
+                          Icons.delete_outline,
+                          color: Colors.red,
                         ),
-                    ],
-                  ),
+                        title: Text('${profile.nickname} を削除'),
+                        onTap: () {
+                          Navigator.pop(context);
+                          onDelete?.call();
+                        },
+                      ),
+                  ],
                 ),
-              )
+              ),
+            )
           : null,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
@@ -213,8 +219,10 @@ class _ProfileCard extends StatelessWidget {
           children: [
             if (isActive)
               Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 2,
+                ),
                 margin: const EdgeInsets.only(bottom: 6),
                 decoration: BoxDecoration(
                   color: AppColors.sciencePrimary,
@@ -223,9 +231,10 @@ class _ProfileCard extends StatelessWidget {
                 child: const Text(
                   'いま選んでるよ',
                   style: TextStyle(
-                      fontSize: 9,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
+                    fontSize: 9,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ProfileAvatarImage(avatar: profile.avatarEmoji, size: 52),
@@ -243,14 +252,14 @@ class _ProfileCard extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
               decoration: BoxDecoration(
                 color: AppColors.scienceLight,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Text(
-                '${profile.gradeLevel}年生',
+                ProfileModel.gradeFullLabels[profile.realGradeLevel] ??
+                    '${profile.gradeLevel}年生',
                 style: const TextStyle(
                   fontSize: 11,
                   color: AppColors.sciencePrimary,
@@ -278,7 +287,9 @@ class _AddProfileCard extends StatelessWidget {
           color: Colors.white.withValues(alpha: 0.2),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-              color: Colors.white.withValues(alpha: 0.5), width: 2),
+            color: Colors.white.withValues(alpha: 0.5),
+            width: 2,
+          ),
         ),
         child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
