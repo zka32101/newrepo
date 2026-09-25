@@ -13,29 +13,24 @@ class ProfileState {
   final List<ProfileModel> profiles;
   final String? activeProfileId;
 
-  const ProfileState({
-    this.profiles = const [],
-    this.activeProfileId,
-  });
+  const ProfileState({this.profiles = const [], this.activeProfileId});
 
-  ProfileModel? get activeProfile =>
-      profiles.isEmpty
-          ? null
-          : profiles.firstWhere(
-              (p) => p.id == activeProfileId,
-              orElse: () => profiles.first,
-            );
+  ProfileModel? get activeProfile => profiles.isEmpty
+      ? null
+      : profiles.firstWhere(
+          (p) => p.id == activeProfileId,
+          orElse: () => profiles.first,
+        );
 
   bool get hasProfiles => profiles.isNotEmpty;
 
   ProfileState copyWith({
     List<ProfileModel>? profiles,
     String? activeProfileId,
-  }) =>
-      ProfileState(
-        profiles: profiles ?? this.profiles,
-        activeProfileId: activeProfileId ?? this.activeProfileId,
-      );
+  }) => ProfileState(
+    profiles: profiles ?? this.profiles,
+    activeProfileId: activeProfileId ?? this.activeProfileId,
+  );
 }
 
 class ProfileNotifier extends AsyncNotifier<ProfileState> {
@@ -65,8 +60,7 @@ class ProfileNotifier extends AsyncNotifier<ProfileState> {
       }
       return ProfileState(
         profiles: list,
-        activeProfileId:
-            activeId ?? (list.isNotEmpty ? list.first.id : null),
+        activeProfileId: activeId ?? (list.isNotEmpty ? list.first.id : null),
       );
     } catch (err, st) {
       debugPrint('ProfileNotifier: プロフィール一覧の読み込みに失敗しました: $err\n$st');
@@ -77,7 +71,9 @@ class ProfileNotifier extends AsyncNotifier<ProfileState> {
   Future<void> _save(ProfileState s) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(
-        _profilesKey, jsonEncode(s.profiles.map((p) => p.toJson()).toList()));
+      _profilesKey,
+      jsonEncode(s.profiles.map((p) => p.toJson()).toList()),
+    );
     if (s.activeProfileId != null) {
       await prefs.setString(_activeIdKey, s.activeProfileId!);
     }
@@ -88,6 +84,7 @@ class ProfileNotifier extends AsyncNotifier<ProfileState> {
     required String nickname,
     required String avatarEmoji,
     required int gradeLevel,
+    int? realGradeLevel,
   }) async {
     final current = state.value ?? const ProfileState();
     final now = DateTime.now();
@@ -96,6 +93,7 @@ class ProfileNotifier extends AsyncNotifier<ProfileState> {
       nickname: nickname,
       avatarEmoji: avatarEmoji,
       gradeLevel: gradeLevel,
+      realGradeLevel: realGradeLevel,
       createdAt:
           '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}',
     );
@@ -127,6 +125,7 @@ class ProfileNotifier extends AsyncNotifier<ProfileState> {
             nickname: p.nickname,
             avatarEmoji: avatar,
             gradeLevel: p.gradeLevel,
+            realGradeLevel: p.realGradeLevel,
             createdAt: p.createdAt,
             startMonth: p.startMonth,
             lastGradeAdvancementDate: p.lastGradeAdvancementDate,
@@ -142,17 +141,21 @@ class ProfileNotifier extends AsyncNotifier<ProfileState> {
   /// プロフィールを削除する
   Future<void> deleteProfile(String profileId) async {
     final current = state.value ?? const ProfileState();
-    final newProfiles =
-        current.profiles.where((p) => p.id != profileId).toList();
+    final newProfiles = current.profiles
+        .where((p) => p.id != profileId)
+        .toList();
     final newActiveId = current.activeProfileId == profileId
         ? (newProfiles.isNotEmpty ? newProfiles.first.id : null)
         : current.activeProfileId;
     final updated = ProfileState(
-        profiles: newProfiles, activeProfileId: newActiveId);
+      profiles: newProfiles,
+      activeProfileId: newActiveId,
+    );
     await _save(updated);
     state = AsyncData(updated);
   }
 }
 
-final profileProvider =
-    AsyncNotifierProvider<ProfileNotifier, ProfileState>(ProfileNotifier.new);
+final profileProvider = AsyncNotifierProvider<ProfileNotifier, ProfileState>(
+  ProfileNotifier.new,
+);
