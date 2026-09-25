@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:shared_core/shared_core.dart'
     hide profileProvider, ProfileState, ProfileNotifier, AppColors;
 import '../../../shared/constants/app_colors.dart';
+import '../../../shared/widgets/furigana_text.dart';
 import '../../../shared/widgets/profile_avatar_image.dart';
 import '../../progress/providers/user_progress_provider.dart';
 import '../../profile/providers/profile_provider.dart';
@@ -13,7 +14,8 @@ import '../providers/praise_provider.dart';
 class ParentDashboardScreen extends ConsumerStatefulWidget {
   const ParentDashboardScreen({super.key});
   @override
-  ConsumerState<ParentDashboardScreen> createState() => _ParentDashboardScreenState();
+  ConsumerState<ParentDashboardScreen> createState() =>
+      _ParentDashboardScreenState();
 }
 
 class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
@@ -53,9 +55,7 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
       body: Container(
         decoration: const BoxDecoration(gradient: AppColors.scienceGradient),
         child: const SafeArea(
-          child: Center(
-            child: CircularProgressIndicator(color: Colors.white),
-          ),
+          child: Center(child: CircularProgressIndicator(color: Colors.white)),
         ),
       ),
     );
@@ -78,8 +78,14 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
               onPressed: () => context.pop(),
             ),
             flexibleSpace: const FlexibleSpaceBar(
-              title: Text('保護者ダッシュボード',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
+              title: Text(
+                '保護者ダッシュボード',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
               background: DecoratedBox(
                 decoration: BoxDecoration(gradient: AppColors.scienceGradient),
               ),
@@ -87,7 +93,12 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
           ),
           SliverToBoxAdapter(
             child: progressAsync.when(
-              loading: () => const Center(child: Padding(padding: EdgeInsets.all(32), child: CircularProgressIndicator())),
+              loading: () => const Center(
+                child: Padding(
+                  padding: EdgeInsets.all(32),
+                  child: CircularProgressIndicator(),
+                ),
+              ),
               error: (_, __) => const Center(child: Text('エラー')),
               data: (progress) {
                 final profile = profileAsync.value?.activeProfile;
@@ -107,10 +118,15 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
                       // 学年別進捗
                       _sectionTitle('📚 学年別クリア状況'),
                       const SizedBox(height: 8),
-                      ...[3, 4, 5, 6].map((grade) => _gradeProgress(grade, progress.clearedStages)),
+                      ...[3, 4, 5, 6].map(
+                        (grade) =>
+                            _gradeProgress(grade, progress.clearedStages),
+                      ),
                       const SizedBox(height: 16),
                       // バッジ
-                      _sectionTitle('🏅 獲得バッジ: ${progress.earnedBadgeIds.length}/10'),
+                      _sectionTitle(
+                        '🏅 獲得バッジ: ${progress.earnedBadgeIds.length}/10',
+                      ),
                       const SizedBox(height: 8),
                       _badgeBar(progress.earnedBadgeIds.length),
                       const SizedBox(height: 16),
@@ -189,7 +205,7 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
                     '全問正解！',
                     style: TextStyle(fontSize: 11, color: Colors.white70),
                   ),
-                  Text(
+                  FuriganaText(
                     stageName,
                     style: const TextStyle(
                       fontSize: 15,
@@ -227,7 +243,9 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(14),
-        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 8)],
+        boxShadow: [
+          BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 8),
+        ],
       ),
       child: Row(
         children: [
@@ -236,10 +254,17 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(profile.nickname as String,
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              Text('${profile.gradeLevel}年生',
-                  style: const TextStyle(fontSize: 13, color: AppColors.textGray)),
+              Text(
+                profile.nickname as String,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                '${profile.gradeLevel}年生',
+                style: const TextStyle(fontSize: 13, color: AppColors.textGray),
+              ),
             ],
           ),
         ],
@@ -250,9 +275,19 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
   Widget _summaryRow(dynamic progress) {
     return Row(
       children: [
-        _summaryCard('🎯', 'クリア数', '${progress.clearedCount}/36ステージ', AppColors.sciencePrimary),
+        _summaryCard(
+          '🎯',
+          'クリア数',
+          '${progress.clearedCount}/36ステージ',
+          AppColors.sciencePrimary,
+        ),
         const SizedBox(width: 10),
-        _summaryCard('⭐', '平均スコア', '${progress.averageScore}%', AppColors.success),
+        _summaryCard(
+          '⭐',
+          '平均スコア',
+          '${progress.averageScore}%',
+          AppColors.success,
+        ),
         const SizedBox(width: 10),
         _summaryCard('🔥', '連続日数', '${progress.streakDays}日', Colors.orange),
       ],
@@ -272,8 +307,18 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
           children: [
             Text(emoji, style: const TextStyle(fontSize: 22)),
             const SizedBox(height: 4),
-            Text(value, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: color)),
-            Text(label, style: const TextStyle(fontSize: 10, color: AppColors.textGray)),
+            Text(
+              value,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: color,
+              ),
+            ),
+            Text(
+              label,
+              style: const TextStyle(fontSize: 10, color: AppColors.textGray),
+            ),
           ],
         ),
       ),
@@ -281,12 +326,19 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
   }
 
   Widget _gradeProgress(int grade, Map<String, int> cleared) {
-    final gradeStages = stagesData.where((s) => s['gradeLevel'] == grade).toList();
-    final clearedCount = gradeStages.where((s) => cleared.containsKey(s['id'])).length;
-    final total = gradeStages.length;
-    final avg = gradeStages.isEmpty ? 0 : gradeStages
+    final gradeStages = stagesData
+        .where((s) => s['gradeLevel'] == grade)
+        .toList();
+    final clearedCount = gradeStages
         .where((s) => cleared.containsKey(s['id']))
-        .fold(0, (sum, s) => sum + (cleared[s['id']] ?? 0)) ~/ (clearedCount == 0 ? 1 : clearedCount);
+        .length;
+    final total = gradeStages.length;
+    final avg = gradeStages.isEmpty
+        ? 0
+        : gradeStages
+                  .where((s) => cleared.containsKey(s['id']))
+                  .fold(0, (sum, s) => sum + (cleared[s['id']] ?? 0)) ~/
+              (clearedCount == 0 ? 1 : clearedCount);
 
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
@@ -294,7 +346,9 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(12),
-        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 6)],
+        boxShadow: [
+          BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 6),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -302,9 +356,17 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('$grade年生', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-              Text('$clearedCount/$total クリア  平均$avg%',
-                  style: const TextStyle(fontSize: 12, color: AppColors.textGray)),
+              Text(
+                '$grade年生',
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+              ),
+              Text(
+                '$clearedCount/$total クリア  平均$avg%',
+                style: const TextStyle(fontSize: 12, color: AppColors.textGray),
+              ),
             ],
           ),
           const SizedBox(height: 6),
@@ -313,7 +375,9 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
             child: LinearProgressIndicator(
               value: total == 0 ? 0 : clearedCount / total,
               backgroundColor: Colors.grey[200],
-              valueColor: AlwaysStoppedAnimation<Color>(AppColors.sciencePrimary),
+              valueColor: AlwaysStoppedAnimation<Color>(
+                AppColors.sciencePrimary,
+              ),
               minHeight: 8,
             ),
           ),
@@ -325,7 +389,10 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
   Widget _badgeBar(int count) {
     return Container(
       padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -339,7 +406,10 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
             ),
           ),
           const SizedBox(height: 6),
-          Text('$count個獲得', style: const TextStyle(fontSize: 12, color: AppColors.textGray)),
+          Text(
+            '$count個獲得',
+            style: const TextStyle(fontSize: 12, color: AppColors.textGray),
+          ),
         ],
       ),
     );
@@ -361,7 +431,9 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
       decoration: BoxDecoration(
         color: AppColors.scienceLight,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.sciencePrimary.withValues(alpha: 0.3)),
+        border: Border.all(
+          color: AppColors.sciencePrimary.withValues(alpha: 0.3),
+        ),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -369,7 +441,14 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
           const Text('💡', style: TextStyle(fontSize: 20)),
           const SizedBox(width: 10),
           Expanded(
-            child: Text(advice, style: const TextStyle(fontSize: 13, height: 1.6, color: AppColors.textDark)),
+            child: Text(
+              advice,
+              style: const TextStyle(
+                fontSize: 13,
+                height: 1.6,
+                color: AppColors.textDark,
+              ),
+            ),
           ),
         ],
       ),
@@ -382,8 +461,8 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
     final statusText = !settings.enabled
         ? '制限なし'
         : settings.dailyLimitMinutes != null
-            ? '1日 ${settings.dailyLimitMinutes}分まで（今日 ${screenTime.usage.usedMinutes}分利用）'
-            : '制限なし';
+        ? '1日 ${settings.dailyLimitMinutes}分まで（今日 ${screenTime.usage.usedMinutes}分利用）'
+        : '制限なし';
 
     return GestureDetector(
       onTap: () => context.push('/screen-time-settings'),
@@ -392,12 +471,19 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(14),
-          boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 8)],
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.05),
+              blurRadius: 8,
+            ),
+          ],
         ),
         child: Row(
           children: [
             Icon(
-              settings.enabled ? Icons.hourglass_bottom_rounded : Icons.all_inclusive_rounded,
+              settings.enabled
+                  ? Icons.hourglass_bottom_rounded
+                  : Icons.all_inclusive_rounded,
               color: AppColors.sciencePrimary,
             ),
             const SizedBox(width: 12),
@@ -405,9 +491,18 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('1日の利用時間', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+                  const Text(
+                    '1日の利用時間',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                  ),
                   const SizedBox(height: 2),
-                  Text(statusText, style: const TextStyle(fontSize: 12, color: AppColors.textGray)),
+                  Text(
+                    statusText,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: AppColors.textGray,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -419,6 +514,13 @@ class _ParentDashboardScreenState extends ConsumerState<ParentDashboardScreen> {
   }
 
   Widget _sectionTitle(String title) {
-    return Text(title, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: AppColors.textDark));
+    return Text(
+      title,
+      style: const TextStyle(
+        fontSize: 15,
+        fontWeight: FontWeight.bold,
+        color: AppColors.textDark,
+      ),
+    );
   }
 }

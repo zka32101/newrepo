@@ -422,7 +422,7 @@ class _SentDialogState extends State<_SentDialog>
               OutlinedButton.icon(
                 onPressed: () {
                   final shareText =
-                      '🎉 子どもが「${widget.stageName}」を全問正解しました！\n'
+                      '🎉 子どもが「${FuriganaText.toPlainText(widget.stageName)}」を全問正解しました！\n'
                       '「${widget.message}」\n'
                       '― ${widget.senderName}より\n'
                       '#小学コレ理解 #小学生 #理科好き';
