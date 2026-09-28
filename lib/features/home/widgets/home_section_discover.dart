@@ -177,6 +177,14 @@ class HomeSectionDiscover extends ConsumerWidget {
               ),
               _buildFeatureCard(
                 context: context,
+                emoji: '📋',
+                title: '実験ガイド',
+                subtitle: '手順つきで実験しよう',
+                color: const Color(0xFF00695C),
+                onTap: () => context.push('/experiment-guides'),
+              ),
+              _buildFeatureCard(
+                context: context,
                 emoji: '🌌',
                 title: '今夜の空',
                 subtitle: '星・月を観察しよう',

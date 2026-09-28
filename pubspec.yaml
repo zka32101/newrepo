@@ -84,6 +84,7 @@ dependencies:
   intl: ^0.20.3
   uuid: ^4.0.0
   share_plus: ^10.0.0
+  url_launcher: ^6.3.2
 
   # ============== 印刷 ==============
   pdf: ^3.11.1                         # 実験・おうちラボの印刷用PDF生成
