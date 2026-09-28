@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import '../../../data/seeds/sample_questions.dart';
 import '../../../data/seeds/stages.dart';
 import '../../../shared/constants/app_colors.dart';
+import '../../../shared/utils/quiz_choice_shuffler.dart';
 import '../../../shared/widgets/furigana_text.dart';
 import '../../progress/providers/user_progress_provider.dart';
 
@@ -33,7 +34,7 @@ class _TimerQuizScreenState extends ConsumerState<TimerQuizScreen> {
     final qs = sampleQuestionsData
         .where((q) => q['stageId'] == widget.stageId)
         .toList();
-    _questions = qs.take(10).toList();
+    _questions = qs.take(10).map(shuffleQuestionMap).toList();
     _allSelected = List.filled(_questions.length, null);
     _startTimer();
   }

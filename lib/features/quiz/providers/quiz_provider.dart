@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../data/seeds/sample_questions.dart';
 import '../../../data/seeds/stages.dart';
+import '../../../shared/utils/quiz_choice_shuffler.dart';
 import '../models/question_model.dart';
 
 // ─── ポイント定数 ────────────────────────────────────────
@@ -89,13 +90,14 @@ class QuizNotifier extends Notifier<QuizState> {
         .toList();
 
     final questions = rawList.map((q) {
+      final shuffled = shuffleQuestionMap(q);
       return QuestionModel(
         id: '${q['stageId']}_${q['questionNumber']}',
         stageId: q['stageId'] as String,
         questionNumber: q['questionNumber'] as int,
         question: q['question'] as String,
-        answers: List<String>.from(q['answers'] as List),
-        correctAnswerIndex: q['correctAnswerIndex'] as int,
+        answers: List<String>.from(shuffled['answers'] as List),
+        correctAnswerIndex: shuffled['correctAnswerIndex'] as int,
         explanation: q['explanation'] as String,
         timeLimit: q['timeLimit'] as int,
         difficultyLevel: q['difficultyLevel'] as int,

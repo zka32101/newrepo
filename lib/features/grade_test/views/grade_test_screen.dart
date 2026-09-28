@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../data/seeds/sample_questions.dart';
 import '../../../data/seeds/stages.dart';
 import '../../../shared/constants/app_colors.dart';
+import '../../../shared/utils/quiz_choice_shuffler.dart';
 import '../../../shared/widgets/furigana_text.dart';
 
 class GradeTestScreen extends ConsumerStatefulWidget {
@@ -27,7 +28,7 @@ class _GradeTestScreenState extends ConsumerState<GradeTestScreen> {
         .where((q) => (q['stageId'] as String).startsWith(prefix))
         .toList();
     gradeQs.shuffle();
-    final picked = gradeQs.take(20).toList();
+    final picked = gradeQs.take(20).map(shuffleQuestionMap).toList();
     setState(() {
       _questions = picked;
       _selected = List.filled(picked.length, null);

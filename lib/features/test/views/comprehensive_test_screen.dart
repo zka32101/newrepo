@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import '../../../data/seeds/sample_questions.dart';
 import '../../../data/seeds/stages.dart';
 import '../../../shared/constants/app_colors.dart';
+import '../../../shared/utils/quiz_choice_shuffler.dart';
 import '../../../shared/widgets/furigana_text.dart';
 import '../../progress/providers/user_progress_provider.dart';
 
@@ -47,7 +48,7 @@ class _ComprehensiveTestScreenState
     // シャッフルして最大15問
     final seed = DateTime.now().millisecondsSinceEpoch;
     all.shuffle(Random(seed));
-    return all.take(15).toList();
+    return all.take(15).map(shuffleQuestionMap).toList();
   }
 
   @override

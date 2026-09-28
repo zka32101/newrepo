@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../data/seeds/sample_questions.dart';
 import '../../../data/seeds/stages.dart';
 import '../../../shared/constants/app_colors.dart';
+import '../../../shared/utils/quiz_choice_shuffler.dart';
 import '../../../shared/widgets/furigana_text.dart';
 import '../../progress/providers/user_progress_provider.dart';
 
@@ -43,7 +44,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
       }
     }
     setState(() {
-      _reviewQuestions = questions.take(10).toList();
+      _reviewQuestions = questions.take(10).map(shuffleQuestionMap).toList();
       _selected = List.filled(_reviewQuestions.length, null);
     });
   }
