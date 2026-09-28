@@ -41,7 +41,7 @@ final stagesData = [
   },
   {
     'id': 'stage_3_002',
-    'stageName': '{花|はな}を{育|そだ}てよう',
+    'stageName': '花を{育|そだ}てよう',
     'description': '植物を育てて成長を観察しよう',
     'stageNumber': 2,
     'gradeLevel': 3,
@@ -183,7 +183,7 @@ final stagesData = [
   },
   {
     'id': 'stage_3_006',
-    'stageName': 'ゴムや{風|かぜ}の{力|ちから}',
+    'stageName': 'ゴムや風の力',
     'description': 'ゴムや風のちからを調べよう',
     'stageNumber': 6,
     'gradeLevel': 3,
@@ -255,7 +255,7 @@ final stagesData = [
   },
   {
     'id': 'stage_3_008',
-    'stageName': '{天気|てんき}と{気温|きおん}',
+    'stageName': '天気と{気温|きおん}',
     'description': '天気の変化と気温を調べよう',
     'stageNumber': 8,
     'gradeLevel': 3,
@@ -293,7 +293,7 @@ final stagesData = [
 
   {
     'id': 'stage_4_001',
-    'stageName': '{季節|きせつ}と{生|い}き{物|もの}（{春|はる}）',
+    'stageName': '{季節|きせつ}と生き{物|もの}（春）',
     'description': '春の生き物の変化を観察しよう',
     'stageNumber': 9,
     'gradeLevel': 4,
@@ -328,7 +328,7 @@ final stagesData = [
   },
   {
     'id': 'stage_4_002',
-    'stageName': '{季節|きせつ}と{生|い}き{物|もの}（{夏|なつ}）',
+    'stageName': '{季節|きせつ}と生き{物|もの}（夏）',
     'description': '夏の生き物の活動を観察しよう',
     'stageNumber': 10,
     'gradeLevel': 4,
@@ -363,7 +363,7 @@ final stagesData = [
   },
   {
     'id': 'stage_4_003',
-    'stageName': '{季節|きせつ}と{生|い}き{物|もの}（{秋|あき}）',
+    'stageName': '{季節|きせつ}と生き{物|もの}（秋）',
     'description': '秋の生き物の変化を観察しよう',
     'stageNumber': 11,
     'gradeLevel': 4,
@@ -398,7 +398,7 @@ final stagesData = [
   },
   {
     'id': 'stage_4_004',
-    'stageName': '{季節|きせつ}と{生|い}き{物|もの}（{冬|ふゆ}）',
+    'stageName': '{季節|きせつ}と生き{物|もの}（冬）',
     'description': '冬の生き物の生活を観察しよう',
     'stageNumber': 12,
     'gradeLevel': 4,
@@ -433,7 +433,7 @@ final stagesData = [
   },
   {
     'id': 'stage_4_005',
-    'stageName': '{金属|きんぞく}・{水|みず}・{空気|くうき}と{温度|おんど}',
+    'stageName': '{金属|きんぞく}・水・空気と{温度|おんど}',
     'description': '温度による物の変化を調べよう',
     'stageNumber': 13,
     'gradeLevel': 4,
@@ -468,7 +468,7 @@ final stagesData = [
   },
   {
     'id': 'stage_4_006',
-    'stageName': '{電気|でんき}のはたらき',
+    'stageName': '電気のはたらき',
     'description': '電気の性質と利用を学ぼう',
     'stageNumber': 14,
     'gradeLevel': 4,
@@ -503,7 +503,7 @@ final stagesData = [
   },
   {
     'id': 'stage_4_007',
-    'stageName': '{月|つき}や{星|ほし}の{動|うご}き',
+    'stageName': '月や星の{動|うご}き',
     'description': '月や星の動きと位置を観察しよう',
     'stageNumber': 15,
     'gradeLevel': 4,
@@ -538,7 +538,7 @@ final stagesData = [
   },
   {
     'id': 'stage_4_008',
-    'stageName': '{雨水|あまみず}と{流|なが}れ',
+    'stageName': '雨水と{流|なが}れ',
     'description': '雨水の流れと水の循環を調べよう',
     'stageNumber': 16,
     'gradeLevel': 4,
@@ -646,7 +646,7 @@ final stagesData = [
   },
   {
     'id': 'stage_5_003',
-    'stageName': '{物|もの}の{溶|と}け{方|かた}',
+    'stageName': '{物|もの}の{溶|と}け方',
     'description': '物質の溶解と飽和を調べよう',
     'stageNumber': 19,
     'gradeLevel': 5,
@@ -681,7 +681,7 @@ final stagesData = [
   },
   {
     'id': 'stage_5_004',
-    'stageName': '{振|ふ}り{子|こ}の{運動|うんどう}',
+    'stageName': '{振|ふ}り子の{運動|うんどう}',
     'description': '振り子の周期と法則を調べよう',
     'stageNumber': 20,
     'gradeLevel': 5,
@@ -751,7 +751,7 @@ final stagesData = [
   },
   {
     'id': 'stage_5_006',
-    'stageName': '{天気|てんき}の{変化|へんか}',
+    'stageName': '天気の{変化|へんか}',
     'description': '気象現象と天気予報を学ぼう',
     'stageNumber': 22,
     'gradeLevel': 5,
@@ -824,7 +824,7 @@ final stagesData = [
 
   {
     'id': 'stage_6_001',
-    'stageName': '{植物|しょくぶつ}の{成長|せいちょう}と{水|みず}・{日光|にっこう}',
+    'stageName': '{植物|しょくぶつ}の{成長|せいちょう}と水・日光',
     'description': '植物の根と茎の機能を調べよう',
     'stageNumber': 24,
     'gradeLevel': 6,
@@ -859,7 +859,7 @@ final stagesData = [
   },
   {
     'id': 'stage_6_002',
-    'stageName': '{人|ひと}の{体|からだ}',
+    'stageName': '人の体',
     'description': '人体の各器官の働きを学ぼう',
     'stageNumber': 25,
     'gradeLevel': 6,
@@ -964,7 +964,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
   },
   {
     'id': 'stage_6_005',
-    'stageName': '{電気|でんき}の{利用|りよう}',
+    'stageName': '電気の{利用|りよう}',
     'description': '発電と電気エネルギーを学ぼう',
     'stageNumber': 28,
     'gradeLevel': 6,
@@ -1034,7 +1034,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
   },
   {
     'id': 'stage_6_007',
-    'stageName': '{月|つき}と{太陽|たいよう}',
+    'stageName': '月と{太陽|たいよう}',
     'description': '月の満ち欠けと潮汐を学ぼう',
     'stageNumber': 30,
     'gradeLevel': 6,
@@ -1069,7 +1069,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
   },
   {
     'id': 'stage_6_008',
-    'stageName': '{大地|だいち}の{変化|へんか}',
+    'stageName': '大地の{変化|へんか}',
     'description': '火山と地震を学ぼう',
     'stageNumber': 31,
     'gradeLevel': 6,
@@ -1106,7 +1106,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
   // ========== 3年生 追加ステージ ==========
   {
     'id': 'stage_3_009',
-    'stageName': '{光|ひかり}と{音|おと}の{性質|せいしつ}',
+    'stageName': '光と音の{性質|せいしつ}',
     'description': '光の反射・屈折と音の伝わりを調べよう',
     'stageNumber': 32,
     'gradeLevel': 3,
@@ -1141,7 +1141,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
   },
   {
     'id': 'stage_3_010',
-    'stageName': '{電気|でんき}の{通|とお}り{道|みち}',
+    'stageName': '電気の通り道',
     'description': '豆電球と乾電池で回路を作ろう',
     'stageNumber': 33,
     'gradeLevel': 3,
@@ -1178,7 +1178,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
   // ========== 4年生 追加ステージ ==========
   {
     'id': 'stage_4_009',
-    'stageName': '{人|ひと}の{体|からだ}のつくりと{運動|うんどう}',
+    'stageName': '人の体のつくりと{運動|うんどう}',
     'description': '骨・筋肉・関節の働きを学ぼう',
     'stageNumber': 34,
     'gradeLevel': 4,
@@ -1213,7 +1213,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
   },
   {
     'id': 'stage_4_010',
-    'stageName': '{空気|くうき}と{水|みず}の{性質|せいしつ}',
+    'stageName': '空気と水の{性質|せいしつ}',
     'description': '空気と水の体積変化を調べよう',
     'stageNumber': 35,
     'gradeLevel': 4,
@@ -1322,7 +1322,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
   },
   {
     'id': 'stage_5_009',
-    'stageName': '{台風|たいふう}と{天気|てんき}の{変化|へんか}',
+    'stageName': '台風と天気の{変化|へんか}',
     'description': '台風のしくみと天気の変わり方を学ぼう',
     'stageNumber': 38,
     'gradeLevel': 5,
@@ -1430,7 +1430,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
   },
   {
     'id': 'stage_4_011',
-    'stageName': '{天気|てんき}の{様子|ようす}',
+    'stageName': '天気の{様子|ようす}',
     'description': '雲の観察と天気の変化を学ぼう',
     'stageNumber': 41,
     'gradeLevel': 4,
@@ -1607,7 +1607,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
   },
   {
     'id': 'stage_5_012',
-    'stageName': '{植物|しょくぶつ}の{体|からだ}のつくり',
+    'stageName': '{植物|しょくぶつ}の体のつくり',
     'description': '根・茎・葉の断面と維管束を調べよう',
     'stageNumber': 46,
     'gradeLevel': 5,
