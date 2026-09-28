@@ -16,6 +16,9 @@ import '../features/experiments/views/troubleshoot_screen.dart';
 import '../features/grade_test/views/certificate_screen.dart';
 import '../features/grade_test/views/grade_test_screen.dart';
 import '../features/home/views/home_screen.dart';
+import '../features/home_lab/data/experiment_guides_data.dart';
+import '../features/home_lab/views/experiment_guide_detail_screen.dart';
+import '../features/home_lab/views/experiment_guide_list_screen.dart';
 import '../features/home_lab/views/home_lab_screen.dart';
 import '../features/learn/views/learn_screen.dart';
 import '../screens/mission/mission_screen.dart';
@@ -292,6 +295,22 @@ class AppRouter {
         path: '/home-lab',
         name: 'home-lab',
         builder: (_, __) => const HomeLabScreen(),
+      ),
+
+      // 実験ガイド
+      GoRoute(
+        path: '/experiment-guides',
+        name: 'experiment-guides',
+        builder: (_, __) => const ExperimentGuideListScreen(),
+      ),
+      GoRoute(
+        path: '/experiment-guide/:guideId',
+        name: 'experiment-guide-detail',
+        builder: (_, state) {
+          final guideId =
+              state.pathParameters['guideId'] ?? experimentGuidesData.first.id;
+          return ExperimentGuideDetailScreen(guideId: guideId);
+        },
       ),
 
       // ④ 今夜の空

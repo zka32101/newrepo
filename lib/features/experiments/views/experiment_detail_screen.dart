@@ -6,6 +6,7 @@ import 'package:shared_core/widgets/premium_gate_widget.dart';
 
 import '../../../data/seeds/experiment_data.dart';
 import '../../../shared/constants/app_colors.dart';
+import '../../../shared/utils/experiment_pdf_generator.dart';
 
 class ExperimentDetailScreen extends ConsumerWidget {
   final String experimentId;
@@ -80,6 +81,22 @@ class ExperimentDetailScreen extends ConsumerWidget {
         icon: const Icon(Icons.arrow_back_rounded, color: Colors.white),
         onPressed: () => context.pop(),
       ),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.print_rounded, color: Colors.white),
+          tooltip: '印刷する',
+          onPressed: () => printExperiment(
+            PrintableExperiment(
+              title: data['title'] as String,
+              grade: data['grade'] as int,
+              materials: (data['materials'] as List).cast<String>(),
+              steps: (data['steps'] as List).cast<String>(),
+              tips: data['point'] as String?,
+              safetyNote: data['safetyNote'] as String?,
+            ),
+          ),
+        ),
+      ],
       flexibleSpace: FlexibleSpaceBar(
         title: Text(
           data['title'] as String,

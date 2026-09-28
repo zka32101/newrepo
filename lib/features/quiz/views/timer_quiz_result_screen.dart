@@ -263,7 +263,7 @@ class _TimerQuizResultScreenState extends State<TimerQuizResultScreen> {
                           style: const TextStyle(fontSize: 13),
                         ),
                         const SizedBox(height: 6),
-                        Text(
+                        FuriganaText(
                           '正解: ${answers[correctIndex]}',
                           style: TextStyle(
                             fontSize: 12,
@@ -272,7 +272,7 @@ class _TimerQuizResultScreenState extends State<TimerQuizResultScreen> {
                           ),
                         ),
                         if (!isCorrect && !isTimeout && selected != null)
-                          Text(
+                          FuriganaText(
                             'あなたの答え: ${answers[selected]}',
                             style: TextStyle(
                               fontSize: 12,

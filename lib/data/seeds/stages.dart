@@ -6,44 +6,79 @@ final stagesData = [
   // 生き物観察
   {
     'id': 'stage_3_001',
-    'stageName': '{昆虫|こんちゅう}と{植物|しょくぶつ}',
-    'description': '身近な昆虫や植物の特徴を観察しよう',
+    'stageName': '{昆虫|こんちゅう}の体のつくり',
+    'description': '昆虫の体のつくりをくわしく観察しよう',
     'stageNumber': 1,
     'gradeLevel': 3,
     'category': 'biology',
     'difficultyLevel': 'easy',
-    'totalQuestions': 10,
+    'totalQuestions': 5,
     'learningGuide': '''
 ## 【学習目標】
-⭐ 理解：昆虫と植物の特徴を知る
-📌 技能：生き物を観察する方法を身につける
-❤️ 態度：身近な生き物に興味を持つ
+⭐ 理解：昆虫の体のつくり（頭・胸・腹、6本の脚、触角、複眼）を知る
+📌 技能：昆虫を観察して体のつくりを見分ける方法を身につける
+❤️ 態度：小さな生き物の体のしくみに興味を持つ
 
 ## 【学年・学期との関連】
 小学3年 1学期「身近な生き物の観察」
 ↓ 学習指導要領 A(1)「生き物の体のつくり」
 
 ## 【実験・観察のポイント】
-✅ 懐中電灯で夜間の昆虫を探すとき、目が慣れるまで3分待つ
-✅ 触角を傷つけないようにそっと観察する
-✅ 「頭・胸・腹」「6本の脚」を数えて確認する
+✅ 虫眼鏡を使って、頭・胸・腹の3つの部分をよく見る
+✅ 脚が何本あるか、どこについているかを数える
+✅ 触角や複眼のようすをそっと観察する
 ✅ 観察後は必ず生き物を逃がす
 
 ## 【このステージで学ぶ大事なコト】
-昆虫は「頭・胸・腹」と「6本の脚」が特徴。蝶やバッタなど、いろいろな種類がいるよ！
+昆虫の体は「頭・胸・腹」の3つの部分からできていて、6本の脚はすべて胸についているよ。触角や複眼など、体のつくりを知るとクモなどの仲間との違いも分かるようになるよ！
 
 ## 【キーワード】
-昆虫、植物、体のつくり、頭・胸・腹、脚、触角、観察
+昆虫、体のつくり、頭・胸・腹、6本の脚、触角、複眼、観察
 
 ## 【次のステージへのステップ】
-✓ このステージをクリアしたら → Stage 2「花を育てよう」で植物の成長を学ぼう
+✓ このステージをクリアしたら → 「植物の体のつくり」で植物の根・茎・葉のはたらきを学ぼう
+''',
+  },
+  {
+    'id': 'stage_3_013',
+    'stageName': '{植物|しょくぶつ}の体のつくり',
+    'description': '植物の体のつくりをくわしく観察しよう',
+    'stageNumber': 2,
+    'gradeLevel': 3,
+    'category': 'biology',
+    'difficultyLevel': 'easy',
+    'totalQuestions': 5,
+    'learningGuide': '''
+## 【学習目標】
+⭐ 理解：植物の体のつくり（根・茎・葉）とそれぞれの役割を知る
+📌 技能：植物を観察して体のつくりを見分ける方法を身につける
+❤️ 態度：身近な植物の体のしくみに興味を持つ
+
+## 【学年・学期との関連】
+小学3年 1学期「身近な生き物の観察」
+↓ 学習指導要領 A(1)「生き物の体のつくり」
+
+## 【実験・観察のポイント】
+✅ 植物を土からそっと抜いて、根のようすを観察する（観察後は土に戻す）
+✅ 茎をさわって、水を運ぶ通り道になっていることを確かめる
+✅ 葉の形や色をよく見て、光を受けているようすを観察する
+✅ 種から芽が出たときの子葉のようすも観察してみる
+
+## 【このステージで学ぶ大事なコト】
+植物の体は「根・茎・葉」の3つの部分からできていて、それぞれに大事な役割があるよ。根は水と栄養を吸い、茎はそれを運び、葉は光合成をして養分を作るんだ！
+
+## 【キーワード】
+植物、体のつくり、根、茎、葉、光合成、子葉、観察
+
+## 【次のステージへのステップ】
+✓ このステージをクリアしたら → 「花を育てよう」で植物の成長を観察しよう
 ''',
   },
   {
     'id': 'stage_3_002',
-    'stageName': '{花|はな}を{育|そだ}てよう',
+    'stageName': '花を{育|そだ}てよう',
     'description': '植物を育てて成長を観察しよう',
-    'stageNumber': 2,
+    'stageNumber': 3,
     'gradeLevel': 3,
     'category': 'biology',
     'difficultyLevel': 'easy',
@@ -76,17 +111,52 @@ final stagesData = [
   },
   {
     'id': 'stage_3_003',
-    'stageName': 'チョウの{育|そだ}ち',
-    'description': 'チョウの成長過程（変態）を学ぼう',
-    'stageNumber': 3,
+    'stageName': '{卵|たまご}と{幼虫|ようちゅう}のすがた',
+    'description': 'チョウの卵から幼虫になるまでのすがたと育ち方を学ぼう',
+    'stageNumber': 4,
     'gradeLevel': 3,
     'category': 'biology',
     'difficultyLevel': 'normal',
-    'totalQuestions': 10,
+    'totalQuestions': 5,
     'learningGuide': '''
 ## 【学習目標】
-⭐ 理解：チョウの完全変態（4段階）を知る
-📌 技能：卵から蛹（さなぎ）への変化を観察できる
+⭐ 理解：チョウが卵から幼虫へと育つようすを知る
+📌 技能：幼虫の食べ物やからだのつくりを観察できる
+❤️ 態度：小さな卵から命が育つことに関心を持つ
+
+## 【学年・学期との関連】
+小学3年 1学期「昆虫の生活環」
+↓ 学習指導要領 A(1)「昆虫の育ち方（卵・幼虫）」
+
+## 【実験・観察のポイント】
+✅ 卵のサイズは米粒くらい。毎日見比べて大きさを記録する
+✅ 幼虫（毛虫）はキャベツの葉を毎日新鮮な物に変える
+✅ 幼虫がかえった直後は卵のからを食べることに注目する
+✅ 幼虫は脱皮をくり返しながら大きくなるので、皮のぬけがらを探してみる
+
+## 【このステージで学ぶ大事なコト】
+チョウは卵から幼虫（イモムシ）へと育つ。幼虫はキャベツなどの葉を食べて脱皮をくり返し、どんどん大きくなるよ！
+
+## 【キーワード】
+卵、幼虫、脱皮、アブラナ科、キャベツ、成長
+
+## 【次のステージへのステップ】
+✓ このステージをクリアしたら → 「さなぎから成虫へ」で変態の続きを学ぼう
+''',
+  },
+  {
+    'id': 'stage_3_014',
+    'stageName': 'さなぎから{成虫|せいちゅう}へ',
+    'description': 'チョウのさなぎから成虫になるまでのすがたと、完全変態のしくみを学ぼう',
+    'stageNumber': 5,
+    'gradeLevel': 3,
+    'category': 'biology',
+    'difficultyLevel': 'normal',
+    'totalQuestions': 5,
+    'learningGuide': '''
+## 【学習目標】
+⭐ 理解：さなぎの中でおきる変化と、完全変態のしくみを知る
+📌 技能：成虫のからだの特ちょう（はね・口）を観察できる
 ❤️ 態度：昆虫の不思議な変身に驚きと感動を持つ
 
 ## 【学年・学期との関連】
@@ -94,16 +164,16 @@ final stagesData = [
 ↓ 学習指導要領 A(1)「完全変態」
 
 ## 【実験・観察のポイント】
-✅ 卵のサイズは米粒くらい。毎日見比べて大きさを記録する
-✅ 幼虫（毛虫）はキャベツの葉を毎日新鮮な物に変える
-✅ 蛹になると動きがほぼ止まるが、内部で大きく変わっている
+✅ さなぎになると動きがほぼ止まるが、内部で大きく変わっている
 ✅ 羽化する朝に見守ると、美しい瞬間が見られる
+✅ 成虫のはねについている鱗粉をルーペで観察する
+✅ バッタなど他の昆虫の育ち方と比べて、さなぎがあるかないかを調べる
 
 ## 【このステージで学ぶ大事なコト】
-チョウは「卵→幼虫→蛹→成虫」と4つの姿に変わる。これが完全変態だよ！
+チョウは「さなぎ→成虫」と姿を変え、はねの生えた成虫になる。さなぎがある育ち方を完全変態、さなぎがない育ち方を不完全変態というよ！
 
 ## 【キーワード】
-卵、幼虫、蛹、成虫、変態、生活環、羽化、毛虫
+さなぎ、成虫、羽化、完全変態、不完全変態、鱗粉
 
 ## 【次のステージへのステップ】
 ✓ このステージをクリアしたら → Stage 4「物と重さ」で物質の性質を学ぼう
@@ -115,7 +185,7 @@ final stagesData = [
     'id': 'stage_3_004',
     'stageName': '{物|もの}と{重|おも}さ',
     'description': '物の重さと体積の関係を調べよう',
-    'stageNumber': 4,
+    'stageNumber': 6,
     'gradeLevel': 3,
     'category': 'physics',
     'difficultyLevel': 'normal',
@@ -150,7 +220,7 @@ final stagesData = [
     'id': 'stage_3_005',
     'stageName': '{磁石|じしゃく}のはたらき',
     'description': '磁石の性質と磁力を調べよう',
-    'stageNumber': 5,
+    'stageNumber': 7,
     'gradeLevel': 3,
     'category': 'physics',
     'difficultyLevel': 'normal',
@@ -183,17 +253,17 @@ final stagesData = [
   },
   {
     'id': 'stage_3_006',
-    'stageName': 'ゴムや{風|かぜ}の{力|ちから}',
-    'description': 'ゴムや風のちからを調べよう',
-    'stageNumber': 6,
+    'stageName': 'ゴムの力',
+    'description': 'ゴムのちからを調べよう',
+    'stageNumber': 8,
     'gradeLevel': 3,
     'category': 'physics',
     'difficultyLevel': 'normal',
-    'totalQuestions': 10,
+    'totalQuestions': 5,
     'learningGuide': '''
 ## 【学習目標】
-⭐ 理解：ゴムの伸び縮みと風の力を知る
-📌 技能：力の大きさを測定し、記録できる
+⭐ 理解：ゴムの伸び縮みと弾性力を知る
+📌 技能：ゴムの伸ばし方や本数と力の大きさの関係を調べられる
 ❤️ 態度：目に見えない力を感じる感覚を育む
 
 ## 【学年・学期との関連】
@@ -203,61 +273,131 @@ final stagesData = [
 ## 【実験・観察のポイント】
 ✅ ゴムを引く力が強いほど、物が遠く飛ぶ
 ✅ 複数本のゴムを重ねると、より大きな力が出る
-✅ 風の強さを「人間が倒れそう」「髪が揺れる」など観察する
 ✅ ばね計りを使って、ゴムの引く力を数値で測定する
+✅ 手をはなすとゴムが元の長さにもどる様子を観察する
 
 ## 【このステージで学ぶ大事なコト】
-ゴムの伸び縮みと風には力がある。この力の大きさは測ることができるよ！
+ゴムの伸び縮みには力がある。伸ばす長さや本数を変えると、その力の大きさも変わるよ！
 
 ## 【キーワード】
-ゴム、伸縮、張力、風、力、動き、ばね計り、加速度
+ゴム、伸縮、弾性力、張力、本数、ばね計り
 
 ## 【次のステージへのステップ】
-✓ このステージをクリアしたら → Stage 7「太陽と地面の様子」で地球を学ぼう
+✓ このステージをクリアしたら → 次は「風の力」で目に見えない風のはたらきを学ぼう
+''',
+  },
+  {
+    'id': 'stage_3_015',
+    'stageName': '風の力',
+    'description': '風のちからを調べよう',
+    'stageNumber': 9,
+    'gradeLevel': 3,
+    'category': 'physics',
+    'difficultyLevel': 'normal',
+    'totalQuestions': 5,
+    'learningGuide': '''
+## 【学習目標】
+⭐ 理解：風の力の大きさとはたらきを知る
+📌 技能：帆の大きさや風の強さと車の動きの関係を調べられる
+❤️ 態度：目に見えない力を感じる感覚を育む
+
+## 【学年・学期との関連】
+小学3年 2学期「力の性質」
+↓ 学習指導要領 C(3)「力」
+
+## 【実験・観察のポイント】
+✅ 風の強さを「人間が倒れそう」「髪が揺れる」など観察する
+✅ 帆を大きくするほど、車が受ける力が大きくなる
+✅ かざぐるまや旗の動きで、目に見えない風の力を確かめる
+✅ 風力発電など、風の力を利用した仕組みを調べる
+
+## 【このステージで学ぶ大事なコト】
+風には目に見えない力がある。この力の大きさは、帆の大きさや風の強さによって変わるよ！
+
+## 【キーワード】
+風、帆、風力発電、風車、力、動き
+
+## 【次のステージへのステップ】
+✓ このステージをクリアしたら → 「太陽と地面の様子」で地球を学ぼう
 ''',
   },
 
   // 地球・宇宙
   {
     'id': 'stage_3_007',
-    'stageName': '{太陽|たいよう}と{地面|じめん}の{様子|ようす}',
-    'description': '太陽の動きと地面の変化を観察しよう',
-    'stageNumber': 7,
+    'stageName': '{太陽|たいよう}の{動|うご}きとかげ',
+    'description': '太陽の1日の動きと、かげの向き・長さの変化を観察しよう',
+    'stageNumber': 10,
     'gradeLevel': 3,
     'category': 'earth',
     'difficultyLevel': 'easy',
-    'totalQuestions': 10,
+    'totalQuestions': 5,
     'learningGuide': '''
 ## 【学習目標】
-⭐ 理解：太陽の東から西への動きと影の変化を知る
-📌 技能：温度計を正しく読んで、記録できる
-❤️ 態度：毎日の自然現象に目を向ける習慣をつける
+⭐ 理解：太陽の東から西への動きと、かげの向き・長さの変化を知る
+📌 技能：方位磁針を使って太陽の位置を記録できる
+❤️ 態度：毎日の太陽とかげの変化に目を向ける習慣をつける
 
 ## 【学年・学期との関連】
-小学3年 3学期「地面の様子」
-↓ 学習指導要領 D(1)「地面の様子」
+小学3年 3学期「太陽と地面の様子」
+↓ 学習指導要領 D(1)「太陽と地面の様子」
 
 ## 【実験・観察のポイント】
-✅ 同じ場所で毎時間、影の長さと方向を記録する
-✅ 朝・昼・晩で地面の温度が変わることを測定する
-✅ 暗い場所より日当たり場所が温かいことを確認する
+✅ 同じ場所で毎時間、かげの長さと向きを記録する
+✅ 太陽の位置とかげの向きの関係を確かめる
 ✅ 方位磁針を使って、太陽が出ている方角を記録する
+✅ 正午ごろのかげの向きと長さを観察する
 
 ## 【このステージで学ぶ大事なコト】
-太陽は東から出て、西に沈む。時間とともに影が動き、地面の温度も変わるよ！
+太陽は東から出て、西に沈む。時間とともにかげの向きと長さが変わるよ！
 
 ## 【キーワード】
-太陽、日の出、日の入り、影、温度、方位、東、西
+太陽、日の出、日の入り、かげ、方位、東、西、南中
 
 ## 【次のステージへのステップ】
-✓ このステージをクリアしたら → Stage 8「天気と気温」で気象を学ぼう
+✓ このステージをクリアしたら → 「日なたと日かげの地面の温度」で温度の変化を学ぼう
+''',
+  },
+  {
+    'id': 'stage_3_016',
+    'stageName': '日なたと日かげの{地面|じめん}の{温度|おんど}',
+    'description': '日なたと日かげの地面の温度を比べて、太陽の熱の伝わり方を調べよう',
+    'stageNumber': 11,
+    'gradeLevel': 3,
+    'category': 'earth',
+    'difficultyLevel': 'easy',
+    'totalQuestions': 5,
+    'learningGuide': '''
+## 【学習目標】
+⭐ 理解：日なたと日かげで地面の温度が異なることを知る
+📌 技能：温度計を正しく使って地面の温度を測り、記録できる
+❤️ 態度：身近な自然現象を自分の目と手で確かめようとする態度を育む
+
+## 【学年・学期との関連】
+小学3年 3学期「太陽と地面の様子」
+↓ 学習指導要領 D(1)「太陽と地面の様子」
+
+## 【実験・観察のポイント】
+✅ 日なたと日かげで、同じ時刻に地面の温度を測って比べる
+✅ 温度計に直射日光が直接当たらないよう、おおいをして測る
+✅ 温度計の目もりを、目の高さに合わせてまっすぐ読む
+✅ 朝・昼・夕方で地面の温度がどう変化するか記録する
+
+## 【このステージで学ぶ大事なコト】
+日なたの地面は太陽の光を受けて温まるので、日かげより温度が高くなるよ！
+
+## 【キーワード】
+太陽、地面、温度、温度計、日なた、日かげ、日光
+
+## 【次のステージへのステップ】
+✓ このステージをクリアしたら → Stage「天気と気温」で気象を学ぼう
 ''',
   },
   {
     'id': 'stage_3_008',
-    'stageName': '{天気|てんき}と{気温|きおん}',
+    'stageName': '天気と{気温|きおん}',
     'description': '天気の変化と気温を調べよう',
-    'stageNumber': 8,
+    'stageNumber': 12,
     'gradeLevel': 3,
     'category': 'earth',
     'difficultyLevel': 'easy',
@@ -293,9 +433,9 @@ final stagesData = [
 
   {
     'id': 'stage_4_001',
-    'stageName': '{季節|きせつ}と{生|い}き{物|もの}（{春|はる}）',
+    'stageName': '{季節|きせつ}と生き{物|もの}（春）',
     'description': '春の生き物の変化を観察しよう',
-    'stageNumber': 9,
+    'stageNumber': 13,
     'gradeLevel': 4,
     'category': 'biology',
     'difficultyLevel': 'normal',
@@ -328,9 +468,9 @@ final stagesData = [
   },
   {
     'id': 'stage_4_002',
-    'stageName': '{季節|きせつ}と{生|い}き{物|もの}（{夏|なつ}）',
+    'stageName': '{季節|きせつ}と生き{物|もの}（夏）',
     'description': '夏の生き物の活動を観察しよう',
-    'stageNumber': 10,
+    'stageNumber': 14,
     'gradeLevel': 4,
     'category': 'biology',
     'difficultyLevel': 'normal',
@@ -363,9 +503,9 @@ final stagesData = [
   },
   {
     'id': 'stage_4_003',
-    'stageName': '{季節|きせつ}と{生|い}き{物|もの}（{秋|あき}）',
+    'stageName': '{季節|きせつ}と生き{物|もの}（秋）',
     'description': '秋の生き物の変化を観察しよう',
-    'stageNumber': 11,
+    'stageNumber': 15,
     'gradeLevel': 4,
     'category': 'biology',
     'difficultyLevel': 'normal',
@@ -398,9 +538,9 @@ final stagesData = [
   },
   {
     'id': 'stage_4_004',
-    'stageName': '{季節|きせつ}と{生|い}き{物|もの}（{冬|ふゆ}）',
+    'stageName': '{季節|きせつ}と生き{物|もの}（冬）',
     'description': '冬の生き物の生活を観察しよう',
-    'stageNumber': 12,
+    'stageNumber': 16,
     'gradeLevel': 4,
     'category': 'biology',
     'difficultyLevel': 'normal',
@@ -433,9 +573,9 @@ final stagesData = [
   },
   {
     'id': 'stage_4_005',
-    'stageName': '{金属|きんぞく}・{水|みず}・{空気|くうき}と{温度|おんど}',
+    'stageName': '{金属|きんぞく}・水・空気と{温度|おんど}',
     'description': '温度による物の変化を調べよう',
-    'stageNumber': 13,
+    'stageNumber': 17,
     'gradeLevel': 4,
     'category': 'physics',
     'difficultyLevel': 'normal',
@@ -468,9 +608,9 @@ final stagesData = [
   },
   {
     'id': 'stage_4_006',
-    'stageName': '{電気|でんき}のはたらき',
+    'stageName': '電気のはたらき',
     'description': '電気の性質と利用を学ぼう',
-    'stageNumber': 14,
+    'stageNumber': 18,
     'gradeLevel': 4,
     'category': 'physics',
     'difficultyLevel': 'hard',
@@ -503,9 +643,9 @@ final stagesData = [
   },
   {
     'id': 'stage_4_007',
-    'stageName': '{月|つき}や{星|ほし}の{動|うご}き',
+    'stageName': '月や星の{動|うご}き',
     'description': '月や星の動きと位置を観察しよう',
-    'stageNumber': 15,
+    'stageNumber': 19,
     'gradeLevel': 4,
     'category': 'earth',
     'difficultyLevel': 'hard',
@@ -538,9 +678,9 @@ final stagesData = [
   },
   {
     'id': 'stage_4_008',
-    'stageName': '{雨水|あまみず}と{流|なが}れ',
+    'stageName': '雨水と{流|なが}れ',
     'description': '雨水の流れと水の循環を調べよう',
-    'stageNumber': 16,
+    'stageNumber': 20,
     'gradeLevel': 4,
     'category': 'earth',
     'difficultyLevel': 'normal',
@@ -578,7 +718,7 @@ final stagesData = [
     'id': 'stage_5_001',
     'stageName': '{植物|しょくぶつ}の{発芽|はつが}・{成長|せいちょう}',
     'description': '植物の成長に必要な条件を調べよう',
-    'stageNumber': 17,
+    'stageNumber': 21,
     'gradeLevel': 5,
     'category': 'biology',
     'difficultyLevel': 'normal',
@@ -613,7 +753,7 @@ final stagesData = [
     'id': 'stage_5_002',
     'stageName': '{動物|どうぶつ}の{誕生|たんじょう}',
     'description': '動物の成長過程と生殖を学ぼう',
-    'stageNumber': 18,
+    'stageNumber': 22,
     'gradeLevel': 5,
     'category': 'biology',
     'difficultyLevel': 'normal',
@@ -646,9 +786,9 @@ final stagesData = [
   },
   {
     'id': 'stage_5_003',
-    'stageName': '{物|もの}の{溶|と}け{方|かた}',
+    'stageName': '{物|もの}の{溶|と}け方',
     'description': '物質の溶解と飽和を調べよう',
-    'stageNumber': 19,
+    'stageNumber': 23,
     'gradeLevel': 5,
     'category': 'chemistry',
     'difficultyLevel': 'normal',
@@ -681,9 +821,9 @@ final stagesData = [
   },
   {
     'id': 'stage_5_004',
-    'stageName': '{振|ふ}り{子|こ}の{運動|うんどう}',
+    'stageName': '{振|ふ}り子の{運動|うんどう}',
     'description': '振り子の周期と法則を調べよう',
-    'stageNumber': 20,
+    'stageNumber': 24,
     'gradeLevel': 5,
     'category': 'physics',
     'difficultyLevel': 'hard',
@@ -718,7 +858,7 @@ final stagesData = [
     'id': 'stage_5_005',
     'stageName': '{電磁石|でんじしゃく}の{働|はたら}き',
     'description': '電磁石の性質と応用を学ぼう',
-    'stageNumber': 21,
+    'stageNumber': 25,
     'gradeLevel': 5,
     'category': 'physics',
     'difficultyLevel': 'hard',
@@ -751,9 +891,9 @@ final stagesData = [
   },
   {
     'id': 'stage_5_006',
-    'stageName': '{天気|てんき}の{変化|へんか}',
+    'stageName': '天気の{変化|へんか}',
     'description': '気象現象と天気予報を学ぼう',
-    'stageNumber': 22,
+    'stageNumber': 26,
     'gradeLevel': 5,
     'category': 'earth',
     'difficultyLevel': 'hard',
@@ -788,7 +928,7 @@ final stagesData = [
     'id': 'stage_5_007',
     'stageName': '{流水|りゅうすい}の{働|はたら}き',
     'description': '川の流れと地形変化を観察しよう',
-    'stageNumber': 23,
+    'stageNumber': 27,
     'gradeLevel': 5,
     'category': 'earth',
     'difficultyLevel': 'normal',
@@ -824,9 +964,9 @@ final stagesData = [
 
   {
     'id': 'stage_6_001',
-    'stageName': '{植物|しょくぶつ}の{成長|せいちょう}と{水|みず}・{日光|にっこう}',
+    'stageName': '{植物|しょくぶつ}の{成長|せいちょう}と水・日光',
     'description': '植物の根と茎の機能を調べよう',
-    'stageNumber': 24,
+    'stageNumber': 28,
     'gradeLevel': 6,
     'category': 'biology',
     'difficultyLevel': 'normal',
@@ -859,9 +999,9 @@ final stagesData = [
   },
   {
     'id': 'stage_6_002',
-    'stageName': '{人|ひと}の{体|からだ}',
+    'stageName': '人の体',
     'description': '人体の各器官の働きを学ぼう',
-    'stageNumber': 25,
+    'stageNumber': 29,
     'gradeLevel': 6,
     'category': 'biology',
     'difficultyLevel': 'hard',
@@ -896,7 +1036,7 @@ final stagesData = [
     'id': 'stage_6_003',
     'stageName': '{水溶液|すいようえき}の{性質|せいしつ}',
     'description': 'pH と化学反応を調べよう',
-    'stageNumber': 26,
+    'stageNumber': 30,
     'gradeLevel': 6,
     'category': 'chemistry',
     'difficultyLevel': 'hard',
@@ -931,7 +1071,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
     'id': 'stage_6_004',
     'stageName': '{燃焼|ねんしょう}の{仕組|しく}み',
     'description': '燃焼と酸化を学ぼう',
-    'stageNumber': 27,
+    'stageNumber': 31,
     'gradeLevel': 6,
     'category': 'chemistry',
     'difficultyLevel': 'hard',
@@ -964,9 +1104,9 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
   },
   {
     'id': 'stage_6_005',
-    'stageName': '{電気|でんき}の{利用|りよう}',
+    'stageName': '電気の{利用|りよう}',
     'description': '発電と電気エネルギーを学ぼう',
-    'stageNumber': 28,
+    'stageNumber': 32,
     'gradeLevel': 6,
     'category': 'physics',
     'difficultyLevel': 'hard',
@@ -1001,7 +1141,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
     'id': 'stage_6_006',
     'stageName': 'てこの{規則性|きそくせい}',
     'description': 'てこの原理と応用を学ぼう',
-    'stageNumber': 29,
+    'stageNumber': 33,
     'gradeLevel': 6,
     'category': 'physics',
     'difficultyLevel': 'hard',
@@ -1034,9 +1174,9 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
   },
   {
     'id': 'stage_6_007',
-    'stageName': '{月|つき}と{太陽|たいよう}',
+    'stageName': '月と{太陽|たいよう}',
     'description': '月の満ち欠けと潮汐を学ぼう',
-    'stageNumber': 30,
+    'stageNumber': 34,
     'gradeLevel': 6,
     'category': 'earth',
     'difficultyLevel': 'hard',
@@ -1069,9 +1209,9 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
   },
   {
     'id': 'stage_6_008',
-    'stageName': '{大地|だいち}の{変化|へんか}',
+    'stageName': '大地の{変化|へんか}',
     'description': '火山と地震を学ぼう',
-    'stageNumber': 31,
+    'stageNumber': 35,
     'gradeLevel': 6,
     'category': 'earth',
     'difficultyLevel': 'hard',
@@ -1106,34 +1246,69 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
   // ========== 3年生 追加ステージ ==========
   {
     'id': 'stage_3_009',
-    'stageName': '{光|ひかり}と{音|おと}の{性質|せいしつ}',
-    'description': '光の反射・屈折と音の伝わりを調べよう',
-    'stageNumber': 32,
+    'stageName': '光の{性質|せいしつ}',
+    'description': '光の反射や屈折のふしぎを調べよう',
+    'stageNumber': 36,
     'gradeLevel': 3,
     'category': 'physics',
     'difficultyLevel': 'normal',
-    'totalQuestions': 10,
+    'totalQuestions': 5,
     'learningGuide': '''
 ## 【学習目標】
-⭐ 理解：光は反射し、音は振動して伝わることを知る
-📌 技能：鏡を使った反射実験ができる
-❤️ 態度：物理現象への好奇心を深める
+⭐ 理解：光は反射し、レンズを通ると屈折して1点に集まることを知る
+📌 技能：鏡や虫めがねを使った光の実験ができる
+❤️ 態度：光という物理現象への好奇心を深める
 
 ## 【学年・学期との関連】
-小学3年 3学期「光と音の性質」
+小学3年 3学期「光の性質」
 ↓ 学習指導要領 C(4)「光と音」
 
 ## 【実験・観察のポイント】
 ✅ 鏡を傾けて光を反射させ、入射角と反射角が同じことを確認する
-✅ スピーカーの振動を見て、音が振動から生まれることを理解する
-✅ 糸電話で音が振動として伝わることを体験する
-✅ 雷と音の速度差から、光の方が速いことを学ぶ
+✅ 虫めがねで太陽の光を集め、紙が焦げるようすを観察する（直接太陽を見ないよう注意）
+✅ プリズムに光を通し、虹色に分かれるようすを観察する
+✅ 反射した後も光がまっすぐ進む「光の直進」を確かめる
 
 ## 【このステージで学ぶ大事なコト】
-光は鏡で反射し、音は振動して伝わる。どちらも波動だけど、速さが全く違うんだよ！
+光は鏡に当たると反射し、レンズを通ると屈折して1点に集まるよ。白い光は実は7色の光が混ざってできているんだ！
 
 ## 【キーワード】
-光、反射、入射角、反射角、音、振動、波、速度
+光、反射、直進、凸レンズ、焦点、屈折、プリズム、虹色
+
+## 【次のステージへのステップ】
+✓ このステージをクリアしたら → 「音の性質」で音のふしぎを学ぼう
+''',
+  },
+  {
+    'id': 'stage_3_017',
+    'stageName': '音の{性質|せいしつ}',
+    'description': '音の伝わり方と振動のふしぎを調べよう',
+    'stageNumber': 37,
+    'gradeLevel': 3,
+    'category': 'physics',
+    'difficultyLevel': 'normal',
+    'totalQuestions': 5,
+    'learningGuide': '''
+## 【学習目標】
+⭐ 理解：音は物の振動によって生まれ、振動が伝わることで聞こえることを知る
+📌 技能：糸電話などを使って音の伝わり方を確かめられる
+❤️ 態度：身の回りの音の仕組みへの興味を深める
+
+## 【学年・学期との関連】
+小学3年 3学期「音の性質」
+↓ 学習指導要領 C(4)「光と音」
+
+## 【実験・観察のポイント】
+✅ 太鼓やトライアングルを鳴らし、表面や物がふるえているようすを手でふれて確かめる
+✅ 糸電話を作り、糸の振動で声が伝わることを体験する
+✅ 輪ゴムなどをはじいて、振動の速さと音の高さの関係を調べる
+✅ 音は空気だけでなく固体や液体の中でも伝わることを学ぶ
+
+## 【このステージで学ぶ大事なコト】
+音は物がふるえる（振動する）ことで生まれ、その振動が空気や糸などを伝わって耳に届くんだよ！
+
+## 【キーワード】
+音、振動、糸電話、音の大きさ、音の高さ、固体、液体、気体
 
 ## 【次のステージへのステップ】
 ✓ このステージをクリアしたら → Stage 33「電気の通り道」で電気基礎を学ぼう
@@ -1141,46 +1316,81 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
   },
   {
     'id': 'stage_3_010',
-    'stageName': '{電気|でんき}の{通|とお}り{道|みち}',
-    'description': '豆電球と乾電池で回路を作ろう',
-    'stageNumber': 33,
+    'stageName': '{回路|かいろ}の{基本|きほん}',
+    'description': '豆電球と乾電池で回路をつくろう',
+    'stageNumber': 38,
     'gradeLevel': 3,
     'category': 'physics',
     'difficultyLevel': 'normal',
-    'totalQuestions': 10,
+    'totalQuestions': 5,
     'learningGuide': '''
 ## 【学習目標】
-⭐ 理解：電気が通る道（回路）があると豆電球が光ることを知る
-📌 技能：乾電池と豆電球で簡単な回路を作れる
-❤️ 態度：電気の便利さと安全な使い方への意識を持つ
+⭐ 理解：電気が流れる一つながりの道（回路）があると豆電球が光ることを知る
+📌 技能：乾電池と豆電球をつないで、光る回路と光らない回路を作り分けられる
+❤️ 態度：回路のしくみを考えながら実験を楽しむ態度を持つ
 
 ## 【学年・学期との関連】
 小学3年 3学期「電気の通り道」
 ↓ 学習指導要領 C(5)「電気」
 
 ## 【実験・観察のポイント】
-✅ 乾電池の＋と−をつなぐ一周した道を作って、豆電球を光らせる
-✅ 途中を切断すると、豆電球が消える（開く）ことを確認する
-✅ 導体（金属）と絶縁体（プラスチック・ゴム）を区別する
-✅ スイッチを作り、電気のオン・オフを制御できることを学ぶ
+✅ 乾電池の＋と－をつなぐ一周した道を作って、豆電球を光らせる
+✅ 途中を切断すると、豆電球が消える（回路が開く）ことを確認する
+✅ 豆電球を2個直列につなぐと、1個のときより暗くなることを確かめる
+✅ 乾電池を2個直列につなぐと、豆電球が明るくなることを確かめる
 
 ## 【このステージで学ぶ大事なコト】
-電気は「＋から−へ一周した完全な道」がないと流れない。この道が「回路」だよ！
+電気は「＋から－へ一周した完全な道（回路）」がないと流れない。この道が切れると豆電球は消えてしまうよ！
 
 ## 【キーワード】
-電気、回路、豆電球、乾電池、導体、絶縁体、スイッチ
+電気、回路、豆電球、乾電池、直列
 
 ## 【次のステージへのステップ】
-✓ このステージをクリアしたら → Stage 34「人の体のつくりと運動」で4年生へ
+✓ このステージをクリアしたら → 「導体と絶縁体」で電気を通すもの・通さないものを学ぼう
+''',
+  },
+  {
+    'id': 'stage_3_018',
+    'stageName': '{導体|どうたい}と{絶縁体|ぜつえんたい}',
+    'description': '電気を通すもの・通さないものを調べよう',
+    'stageNumber': 39,
+    'gradeLevel': 3,
+    'category': 'physics',
+    'difficultyLevel': 'normal',
+    'totalQuestions': 5,
+    'learningGuide': '''
+## 【学習目標】
+⭐ 理解：金属は電気を通し（導体）、プラスチックやゴムは電気を通さない（絶縁体）ことを知る
+📌 技能：身の回りのものが導体か絶縁体かを予想し、回路につないで確かめられる
+❤️ 態度：電気を安全に使うための注意点に関心を持つ
+
+## 【学年・学期との関連】
+小学3年 3学期「電気の通り道」
+↓ 学習指導要領 C(5)「電気」
+
+## 【実験・観察のポイント】
+✅ 導体（金属）と絶縁体（プラスチック・ゴム・紙）を回路につないで区別する
+✅ 導線がビニールでおおわれている理由（感電・ショート防止）を考える
+✅ 乾電池の＋極と－極を直接つなぐ（ショート）と危険なことを確認する
+✅ スイッチのしくみ（回路をつないだり切ったりする）を理解する
+
+## 【このステージで学ぶ大事なコト】
+電気を通すもの（導体）と通さないもの（絶縁体）を正しく見分けて、安全に使うことが大切だよ！
+
+## 【キーワード】
+導体、絶縁体、金属、スイッチ、ショート、安全
+
+## 【次のステージへのステップ】
+✓ このステージをクリアしたら → 「人の体のつくりと運動」で4年生へ
 ''',
   },
 
   // ========== 4年生 追加ステージ ==========
   {
     'id': 'stage_4_009',
-    'stageName': '{人|ひと}の{体|からだ}のつくりと{運動|うんどう}',
+    'stageName': '人の体のつくりと{運動|うんどう}',
     'description': '骨・筋肉・関節の働きを学ぼう',
-    'stageNumber': 34,
+    'stageNumber': 40,
     'gradeLevel': 4,
     'category': 'biology',
     'difficultyLevel': 'normal',
@@ -1213,9 +1423,9 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
   },
   {
     'id': 'stage_4_010',
-    'stageName': '{空気|くうき}と{水|みず}の{性質|せいしつ}',
+    'stageName': '空気と水の{性質|せいしつ}',
     'description': '空気と水の体積変化を調べよう',
-    'stageNumber': 35,
+    'stageNumber': 41,
     'gradeLevel': 4,
     'category': 'physics',
     'difficultyLevel': 'normal',
@@ -1252,7 +1462,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
     'id': 'stage_6_009',
     'stageName': '{生物|せいぶつ}と{環境|かんきょう}',
     'description': '食物連鎖と生態系を学ぼう',
-    'stageNumber': 36,
+    'stageNumber': 42,
     'gradeLevel': 6,
     'category': 'biology',
     'difficultyLevel': 'hard',
@@ -1289,7 +1499,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
     'id': 'stage_5_008',
     'stageName': '{植物|しょくぶつ}の{養分|ようぶん}（{光合成|こうごうせい}）',
     'description': '植物がでんぷんをつくるしくみを学ぼう',
-    'stageNumber': 37,
+    'stageNumber': 43,
     'gradeLevel': 5,
     'category': 'biology',
     'difficultyLevel': 'normal',
@@ -1322,9 +1532,9 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
   },
   {
     'id': 'stage_5_009',
-    'stageName': '{台風|たいふう}と{天気|てんき}の{変化|へんか}',
+    'stageName': '台風と天気の{変化|へんか}',
     'description': '台風のしくみと天気の変わり方を学ぼう',
-    'stageNumber': 38,
+    'stageNumber': 44,
     'gradeLevel': 5,
     'category': 'earth',
     'difficultyLevel': 'normal',
@@ -1359,7 +1569,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
     'id': 'stage_5_010',
     'stageName': 'メダカのたんじょう',
     'description': 'メダカの誕生と成長を観察しよう',
-    'stageNumber': 39,
+    'stageNumber': 45,
     'gradeLevel': 5,
     'category': 'biology',
     'difficultyLevel': 'easy',
@@ -1397,7 +1607,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
     'id': 'stage_3_011',
     'stageName': '{身近|みぢか}な{自然|しぜん}の{観察|かんさつ}',
     'description': '観察の方法と道具の使い方を学ぼう',
-    'stageNumber': 40,
+    'stageNumber': 46,
     'gradeLevel': 3,
     'category': 'biology',
     'difficultyLevel': 'easy',
@@ -1430,9 +1640,9 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
   },
   {
     'id': 'stage_4_011',
-    'stageName': '{天気|てんき}の{様子|ようす}',
+    'stageName': '天気の{様子|ようす}',
     'description': '雲の観察と天気の変化を学ぼう',
-    'stageNumber': 41,
+    'stageNumber': 47,
     'gradeLevel': 4,
     'category': 'earth',
     'difficultyLevel': 'normal',
@@ -1467,7 +1677,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
     'id': 'stage_5_011',
     'stageName': '{植物|しょくぶつ}の{結実|けつじつ}',
     'description': '受粉・花粉・実のできかたを学ぼう',
-    'stageNumber': 42,
+    'stageNumber': 48,
     'gradeLevel': 5,
     'category': 'biology',
     'difficultyLevel': 'normal',
@@ -1502,7 +1712,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
     'id': 'stage_6_010',
     'stageName': '{地球|ちきゅう}と{環境|かんきょう}',
     'description': '地球温暖化とSDGsを学ぼう',
-    'stageNumber': 43,
+    'stageNumber': 49,
     'gradeLevel': 6,
     'category': 'earth',
     'difficultyLevel': 'normal',
@@ -1537,7 +1747,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
     'id': 'stage_6_011',
     'stageName': '{化石|かせき}と{地球|ちきゅう}の{歴史|れきし}',
     'description': '化石と大昔の地球の姿を学ぼう',
-    'stageNumber': 44,
+    'stageNumber': 50,
     'gradeLevel': 6,
     'category': 'earth',
     'difficultyLevel': 'hard',
@@ -1574,7 +1784,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
     'id': 'stage_3_012',
     'stageName': '{不完全変態|ふかんぜんへんたい}の{昆虫|こんちゅう}',
     'description': 'バッタ・セミ・トンボの育ち方を学ぼう',
-    'stageNumber': 45,
+    'stageNumber': 51,
     'gradeLevel': 3,
     'category': 'biology',
     'difficultyLevel': 'normal',
@@ -1607,9 +1817,9 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
   },
   {
     'id': 'stage_5_012',
-    'stageName': '{植物|しょくぶつ}の{体|からだ}のつくり',
+    'stageName': '{植物|しょくぶつ}の体のつくり',
     'description': '根・茎・葉の断面と維管束を調べよう',
-    'stageNumber': 46,
+    'stageNumber': 52,
     'gradeLevel': 5,
     'category': 'biology',
     'difficultyLevel': 'normal',
@@ -1644,7 +1854,7 @@ pH、酸性、アルカリ性、中性、指示薬、中和、イオン
     'id': 'stage_6_012',
     'stageName': '{消化|しょうか}と{吸収|きゅうしゅう}のしくみ',
     'description': '食べ物が体の中で変化する様子を学ぼう',
-    'stageNumber': 47,
+    'stageNumber': 53,
     'gradeLevel': 6,
     'category': 'biology',
     'difficultyLevel': 'normal',

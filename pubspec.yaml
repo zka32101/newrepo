@@ -48,6 +48,7 @@ dependencies:
   firebase_core: ^3.0.0
   firebase_auth: ^5.5.4
   cloud_firestore: ^5.0.0
+  cloud_functions: ^5.1.3
   firebase_analytics: ^11.0.0
   firebase_messaging: ^15.2.10
 
@@ -78,12 +79,17 @@ dependencies:
   shared_core:
     git:
       url: https://github.com/zka32101/shared_core.git
-      ref: main
+      ref: e8bf20dec6ed5390b34fcec902e24ba831abf701
 
   # ============== Utility ==============
   intl: ^0.20.3
   uuid: ^4.0.0
   share_plus: ^10.0.0
+  url_launcher: ^6.3.2
+
+  # ============== 印刷 ==============
+  pdf: ^3.11.1                         # 実験・おうちラボの印刷用PDF生成
+  printing: ^5.13.4                    # OS印刷/共有ダイアログ
 
   # ============== 解説画面強化 ==============
   youtube_player_iframe: ^6.0.2   # YouTube インライン再生

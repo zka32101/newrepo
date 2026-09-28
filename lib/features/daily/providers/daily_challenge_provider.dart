@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../data/seeds/sample_questions.dart';
+import '../../../shared/utils/quiz_choice_shuffler.dart';
 import '../../profile/providers/profile_provider.dart';
 
 class DailyChallengeState {
@@ -54,7 +55,7 @@ class DailyChallengeNotifier extends AsyncNotifier<DailyChallengeState> {
     final rng = Random(seed);
     final all = List<Map<String, dynamic>>.from(sampleQuestionsData);
     all.shuffle(rng);
-    return all.take(3).toList();
+    return all.take(3).map(shuffleQuestionMap).toList();
   }
 
   Future<void> markCompleted() async {

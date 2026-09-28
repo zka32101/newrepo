@@ -2,11 +2,24 @@
 // Phase 4.2: Subscription & In-App Purchase Management
 
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show PlatformException;
 import 'package:purchases_flutter/purchases_flutter.dart';
-import 'package:shared_core/shared_core.dart' show SubscriptionConfig;
+
+/// 全アプリ共通のプレミアム Entitlement ID（RevenueCat ダッシュボードで作成済み）。
+const String _premiumEntitlementId = 'premium';
+
+const String _appleApiKey = String.fromEnvironment(
+  'REVENUE_CAT_APPLE_KEY',
+  defaultValue: 'appl_PLACEHOLDER',
+);
+const String _googleApiKey = String.fromEnvironment(
+  'REVENUE_CAT_GOOGLE_KEY',
+  defaultValue: 'goog_PLACEHOLDER',
+);
+String get _revenueCatApiKey => Platform.isIOS ? _appleApiKey : _googleApiKey;
 
 class RevenueCatService {
   static final RevenueCatService _instance = RevenueCatService._internal();
@@ -30,7 +43,7 @@ class RevenueCatService {
     try {
       // Set API key (Phase 4.7: Unified via SubscriptionConfig)
       await Purchases.configure(
-        PurchasesConfiguration(SubscriptionConfig.apiKey),
+        PurchasesConfiguration(_revenueCatApiKey),
       );
 
       _isInitialized = true;
@@ -58,7 +71,7 @@ class RevenueCatService {
     try {
       final customerInfo = await Purchases.getCustomerInfo();
       final isActive = customerInfo.entitlements.active
-          .containsKey(SubscriptionConfig.premiumEntitlementId);
+          .containsKey(_premiumEntitlementId);
 
       if (kDebugMode) {
         print('[RevenueCat] Subscription check: $isActive');
@@ -93,7 +106,7 @@ class RevenueCatService {
     try {
       final result = await Purchases.purchasePackage(package);
       final isActive = result.customerInfo.entitlements.active
-          .containsKey(SubscriptionConfig.premiumEntitlementId);
+          .containsKey(_premiumEntitlementId);
 
       if (kDebugMode) {
         print('[RevenueCat] Purchase successful. Active: $isActive');
@@ -115,7 +128,7 @@ class RevenueCatService {
     try {
       final customerInfo = await Purchases.restorePurchases();
       final isActive = customerInfo.entitlements.active
-          .containsKey(SubscriptionConfig.premiumEntitlementId);
+          .containsKey(_premiumEntitlementId);
 
       if (kDebugMode) {
         print('[RevenueCat] Restore successful. Active: $isActive');
@@ -157,7 +170,7 @@ class RevenueCatService {
   /// Listen to customer info updates (subscription changes, etc.)
   void _onCustomerInfoUpdate(CustomerInfo customerInfo) {
     final isActive = customerInfo.entitlements.active
-        .containsKey(SubscriptionConfig.premiumEntitlementId);
+        .containsKey(_premiumEntitlementId);
     _subscriptionStatusController.add(isActive);
 
     if (kDebugMode) {

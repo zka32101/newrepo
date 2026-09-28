@@ -16,7 +16,7 @@ const List<BaseCharacter> kRikaCharacters = [
       '理科大好き！', 'もっと探そう', 'まだ見てない虫がいる', '一緒に探検しよう'],
   ),
   BaseCharacter(
-    id: 'hanako', name: 'ハナコ', emoji: '🌸', tier: 1, unlockAt: 3,
+    id: 'hanako', name: 'ハナコ', emoji: '🌸', tier: 1, unlockAt: 5,
     subject: '植物の育ち',
     appSubject: Subject.rika,
     backstory: 'ハナコは植物の精霊。種から芽が出る瞬間が一番好き。\n'
@@ -27,7 +27,7 @@ const List<BaseCharacter> kRikaCharacters = [
       '植物も生きてる', 'ありがとう！', '実がなったよ', '一緒に観察しよう'],
   ),
   BaseCharacter(
-    id: 'magne', name: 'マグネ', emoji: '🧲', tier: 1, unlockAt: 5,
+    id: 'magne', name: 'マグネ', emoji: '🧲', tier: 1, unlockAt: 8,
     subject: '磁石',
     appSubject: Subject.rika,
     backstory: 'マグネは磁石の力を使う魔法使い。\n'
@@ -38,7 +38,7 @@ const List<BaseCharacter> kRikaCharacters = [
       'N極・S極', '反発するよ', 'コンパスも磁石', '理科楽しい'],
   ),
   BaseCharacter(
-    id: 'densuke', name: 'デンスケ', emoji: '💡', tier: 1, unlockAt: 8,
+    id: 'densuke', name: 'デンスケ', emoji: '💡', tier: 1, unlockAt: 12,
     subject: '電気の通り道',
     appSubject: Subject.rika,
     backstory: 'デンスケは電気の精霊。豆電球を頭に光らせて飛び回る。\n'
@@ -51,7 +51,7 @@ const List<BaseCharacter> kRikaCharacters = [
 
   // ── Tier 2（4年生テーマ） ─────────────────────────────────
   BaseCharacter(
-    id: 'kazumaru', name: 'カゼマル', emoji: '🌤️', tier: 2, unlockAt: 12,
+    id: 'kazumaru', name: 'カゼマル', emoji: '🌤️', tier: 2, unlockAt: 18,
     subject: '天気・気象',
     appSubject: Subject.rika,
     backstory: 'カゼマルは雲の上に住む気象博士の見習い。\n'
@@ -62,7 +62,7 @@ const List<BaseCharacter> kRikaCharacters = [
       '西から雨が来る', '風向き覚えてね', '天気図読めたよ', '明日も晴れるかな'],
   ),
   BaseCharacter(
-    id: 'tsukimi', name: 'ツキミ', emoji: '🌙', tier: 2, unlockAt: 16,
+    id: 'tsukimi', name: 'ツキミ', emoji: '🌙', tier: 2, unlockAt: 22,
     subject: '月・星・太陽',
     appSubject: Subject.rika,
     backstory: 'ツキミは月明かりの下で生まれた星の子。\n'
@@ -73,7 +73,7 @@ const List<BaseCharacter> kRikaCharacters = [
       '月が変わった', '北斗七星発見', '惑星の順番覚えた', '宇宙って広い'],
   ),
   BaseCharacter(
-    id: 'honetaro', name: 'ホネタロウ', emoji: '🦴', tier: 2, unlockAt: 20,
+    id: 'honetaro', name: 'ホネタロウ', emoji: '🦴', tier: 2, unlockAt: 26,
     subject: '人体の運動',
     appSubject: Subject.rika,
     backstory: 'ホネタロウは体の中から飛び出してきた骨の博士。\n'
@@ -84,7 +84,7 @@ const List<BaseCharacter> kRikaCharacters = [
       'カルシウム補給', '運動しよう', '体のしくみって面白い', '骨は何本あるかな'],
   ),
   BaseCharacter(
-    id: 'mizukichi', name: 'ミズキチ', emoji: '💧', tier: 2, unlockAt: 24,
+    id: 'mizukichi', name: 'ミズキチ', emoji: '💧', tier: 2, unlockAt: 30,
     subject: '空気と水の性質',
     appSubject: Subject.rika,
     backstory: 'ミズキチは水辺に住む実験好きの精霊。\n'
@@ -97,7 +97,7 @@ const List<BaseCharacter> kRikaCharacters = [
 
   // ── Tier 3（5年生テーマ） ─────────────────────────────────
   BaseCharacter(
-    id: 'tokero', name: 'トケロー', emoji: '🧪', tier: 3, unlockAt: 28,
+    id: 'tokero', name: 'トケロー', emoji: '🧪', tier: 3, unlockAt: 34,
     subject: '物の溶け方',
     appSubject: Subject.rika,
     backstory: 'トケローは実験室から生まれた溶解の専門家。\n'
@@ -108,7 +108,7 @@ const List<BaseCharacter> kRikaCharacters = [
       '濃度を測ろう', '蒸発してみた', '飽和溶液発見', '化学面白い'],
   ),
   BaseCharacter(
-    id: 'furiko', name: 'フリコ', emoji: '⏰', tier: 3, unlockAt: 32,
+    id: 'furiko', name: 'フリコ', emoji: '⏰', tier: 3, unlockAt: 38,
     subject: '振り子の動き',
     appSubject: Subject.rika,
     backstory: 'フリコは時計の国からやってきた振り子妖精。\n'
@@ -119,7 +119,7 @@ const List<BaseCharacter> kRikaCharacters = [
       'リズムが大事', '等時性すごい', 'ガリレオと同じ発見', '理科って面白い'],
   ),
   BaseCharacter(
-    id: 'birika', name: 'ビリカ', emoji: '⚡', tier: 3, unlockAt: 36,
+    id: 'birika', name: 'ビリカ', emoji: '⚡', tier: 3, unlockAt: 42,
     subject: '電流と電磁石',
     appSubject: Subject.rika,
     backstory: 'ビリカは電流を操る電磁石の達人。\n'
@@ -130,7 +130,7 @@ const List<BaseCharacter> kRikaCharacters = [
       'N極が変わった', 'モーター動いた', '電流強いほど強力', '発電してみた'],
   ),
   BaseCharacter(
-    id: 'tanekichi', name: 'タネキチ', emoji: '🌱', tier: 3, unlockAt: 40,
+    id: 'tanekichi', name: 'タネキチ', emoji: '🌱', tier: 3, unlockAt: 46,
     subject: '植物の発芽・成長',
     appSubject: Subject.rika,
     backstory: 'タネキチは種の中に住む生命力あふれる精霊。\n'
@@ -143,7 +143,7 @@ const List<BaseCharacter> kRikaCharacters = [
 
   // ── Tier 4（6年生・スペシャル） ──────────────────────────
   BaseCharacter(
-    id: 'chisoun', name: 'チソウン', emoji: '🗻', tier: 4, unlockAt: 44,
+    id: 'chisoun', name: 'チソウン', emoji: '🗻', tier: 4, unlockAt: 50,
     subject: '地層・岩石',
     appSubject: Subject.rika,
     backstory: 'チソウンは大地の記憶を読む地層博士。\n'
@@ -154,7 +154,7 @@ const List<BaseCharacter> kRikaCharacters = [
       '火成岩も発見', '示準化石すごい', '地球の歴史を見た', '億年単位で考える'],
   ),
   BaseCharacter(
-    id: 'moeru', name: 'モエール', emoji: '🔥', tier: 4, unlockAt: 48,
+    id: 'moeru', name: 'モエール', emoji: '🔥', tier: 4, unlockAt: 54,
     subject: '物の燃え方',
     appSubject: Subject.rika,
     backstory: 'モエールは炎の精霊。燃焼の三要素を体で表現できる。\n'
@@ -165,7 +165,7 @@ const List<BaseCharacter> kRikaCharacters = [
       '消火は3要素を断つ', 'ろうそくの炎だ', '完全燃焼成功', '炎の色が変わる'],
   ),
   BaseCharacter(
-    id: 'taborun', name: 'タベルン', emoji: '🌿', tier: 4, unlockAt: 52,
+    id: 'taborun', name: 'タベルン', emoji: '🌿', tier: 4, unlockAt: 58,
     subject: '生物と環境',
     appSubject: Subject.rika,
     backstory: 'タベルンは食物連鎖の繋がりを守る森の守護者。\n'
@@ -176,7 +176,7 @@ const List<BaseCharacter> kRikaCharacters = [
       '水と空気の循環', '環境を守ろう', '生物多様性すごい', 'みんなで生きてる'],
   ),
   BaseCharacter(
-    id: 'hakase_master', name: '理科マスター', emoji: '🔬', tier: 4, unlockAt: 56,
+    id: 'hakase_master', name: '理科マスター', emoji: '🔬', tier: 4, unlockAt: 62,
     subject: '理科総合',
     appSubject: Subject.rika,
     backstory: '理科コレを完全制覇した者だけが出会える伝説の博士。\n'
