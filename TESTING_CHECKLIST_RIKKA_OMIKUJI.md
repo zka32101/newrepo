@@ -327,7 +327,6 @@ adb install -r shokollen_science-app-release.apk
 ### フィードバック送信
 
 ```
-メール: fukushima.mitsuru@petit-works.com
 件名: [QA] ⑲ 理科おみくじ - バグ報告 / フィードバック
 本文: 上記テンプレートに従って記入
 添付: バグ報告テンプレート + スクリーンショット

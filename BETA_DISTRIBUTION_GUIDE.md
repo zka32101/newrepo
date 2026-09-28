@@ -139,7 +139,6 @@ https://drive.google.com/...
 問題が見つかった場合は、以下の情報をお知らせください:
 
 【バグ報告メール】
-宛先: fukushima.mitsuru@petit-works.com
 件名: [Beta QA] ⑲ 理科おみくじ - バグ報告
 
 【記入項目】
@@ -171,7 +170,6 @@ https://drive.google.com/...
 不具合やご質問がある場合は、遠慮なくご連絡ください。
 
 Slack: #qa-rikka-omikuji チャネル
-Email: fukushima.mitsuru@petit-works.com
 
 よろしくお願いいたします！
 
