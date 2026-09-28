@@ -358,7 +358,7 @@ class _GradeTestScreenState extends ConsumerState<GradeTestScreen> {
                               ),
                               const SizedBox(width: 12),
                               Expanded(
-                                child: Text(
+                                child: FuriganaText(
                                   answers[i],
                                   style: TextStyle(
                                     color: textColor,
@@ -412,7 +412,7 @@ class _GradeTestScreenState extends ConsumerState<GradeTestScreen> {
                             ],
                           ),
                           const SizedBox(height: 8),
-                          Text(
+                          FuriganaText(
                             question['explanation'] as String,
                             style: const TextStyle(
                               fontSize: 14,

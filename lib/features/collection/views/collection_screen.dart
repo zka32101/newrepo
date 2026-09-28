@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../data/seeds/experiment_data.dart';
 import '../../../data/seeds/stages.dart';
 import '../../../shared/constants/app_colors.dart';
+import '../../../shared/widgets/furigana_text.dart';
 import '../../progress/models/badge_model.dart';
 import '../../progress/providers/user_progress_provider.dart';
 
@@ -151,7 +152,7 @@ class _CollectionScreenState extends ConsumerState<CollectionScreen>
                       Text(isCleared ? catEmoji : '🔒',
                           style: TextStyle(fontSize: isCleared ? 24 : 20)),
                       const SizedBox(height: 4),
-                      Text(
+                      FuriganaText(
                         stage['stageName'] as String,
                         style: TextStyle(
                           fontSize: 9.5,

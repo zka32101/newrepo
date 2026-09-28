@@ -78,7 +78,7 @@ dependencies:
   shared_core:
     git:
       url: https://github.com/zka32101/shared_core.git
-      ref: main
+      ref: e8bf20dec6ed5390b34fcec902e24ba831abf701
 
   # ============== Utility ==============
   intl: ^0.20.3

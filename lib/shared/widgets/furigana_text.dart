@@ -10,8 +10,11 @@ class FuriganaText extends StatelessWidget {
   final String text;
   final TextStyle? style;
   final TextAlign? textAlign;
+  final int? maxLines;
+  final TextOverflow? overflow;
 
-  const FuriganaText(this.text, {super.key, this.style, this.textAlign});
+  const FuriganaText(this.text,
+      {super.key, this.style, this.textAlign, this.maxLines, this.overflow});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +23,13 @@ class FuriganaText extends StatelessWidget {
         DefaultTextStyle.of(
           context,
         ).style.copyWith(fontSize: 14, color: Colors.black87);
-    return Text(toPlainText(text), style: base, textAlign: textAlign);
+    return Text(
+      toPlainText(text),
+      style: base,
+      textAlign: textAlign,
+      maxLines: maxLines,
+      overflow: overflow,
+    );
   }
 
   /// {漢字|ふりがな} → 漢字（ふりがな） に変換する。
