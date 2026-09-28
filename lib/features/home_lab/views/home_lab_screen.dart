@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../shared/utils/experiment_pdf_generator.dart';
 import '../data/home_lab_data.dart';
 import '../providers/home_lab_provider.dart';
 
@@ -40,6 +41,22 @@ class _HomeLabScreenState extends ConsumerState<HomeLabScreen> {
         backgroundColor: const Color(0xFF2E7D32),
         foregroundColor: Colors.white,
         elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.print_rounded),
+            tooltip: '印刷する',
+            onPressed: () => printExperiment(
+              PrintableExperiment(
+                title: mission.title,
+                grade: mission.grade,
+                materials: mission.materials,
+                steps: [mission.description],
+                tips: mission.sciencePoint,
+                safetyNote: null,
+              ),
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
