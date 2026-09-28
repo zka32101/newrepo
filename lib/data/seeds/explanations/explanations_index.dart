@@ -14,6 +14,12 @@ import 'explanations_stage_3_009.dart';
 import 'explanations_stage_3_010.dart';
 import 'explanations_stage_3_011.dart';
 import 'explanations_stage_3_012.dart';
+import 'explanations_stage_3_013.dart';
+import 'explanations_stage_3_014.dart';
+import 'explanations_stage_3_015.dart';
+import 'explanations_stage_3_016.dart';
+import 'explanations_stage_3_017.dart';
+import 'explanations_stage_3_018.dart';
 
 // Stage 4 (4年生)
 import 'explanations_stage_4_001.dart';
@@ -81,6 +87,12 @@ final Map<String, Map<int, Map<String, String>>> allExplanations = {
   'stage_3_010': explanations_stage_3_010,
   'stage_3_011': explanations_stage_3_011,
   'stage_3_012': explanations_stage_3_012,
+  'stage_3_013': explanations_stage_3_013,
+  'stage_3_014': explanations_stage_3_014,
+  'stage_3_015': explanations_stage_3_015,
+  'stage_3_016': explanations_stage_3_016,
+  'stage_3_017': explanations_stage_3_017,
+  'stage_3_018': explanations_stage_3_018,
   // Stage 4
   'stage_4_001': explanations_stage_4_001,
   'stage_4_002': explanations_stage_4_002,
@@ -143,6 +155,12 @@ const Set<String> _verifiedExplanationStageIds = {
   'stage_3_010',
   'stage_3_011',
   'stage_3_012',
+  'stage_3_013',
+  'stage_3_014',
+  'stage_3_015',
+  'stage_3_016',
+  'stage_3_017',
+  'stage_3_018',
   'stage_4_001',
   'stage_4_002',
   'stage_4_003',
