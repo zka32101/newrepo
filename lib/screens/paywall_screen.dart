@@ -20,13 +20,13 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
   @override
   Widget build(BuildContext context) {
     final subscriptionState = ref.watch(subscriptionProvider);
-    final detailsState = ref.watch(subscriptionDetailsProvider);
+    final packages = subscriptionState.availableOfferings;
+    final priceString = (packages != null && packages.isNotEmpty)
+        ? packages.first.storeProduct.priceString
+        : null;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('プレミアム版に登録'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text('プレミアム版に登録'), centerTitle: true),
       body: ListView(
         children: [
           // Header Section
@@ -47,16 +47,16 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
                 Text(
                   '${AppConstants.appName}プレミアム',
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 12),
                 Text(
                   '無制限でクイズを学習できます',
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.white70,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(color: Colors.white70),
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -71,9 +71,9 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
               children: [
                 Text(
                   'プレミアムの特典',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 16),
                 _buildFeatureItem(
@@ -105,46 +105,42 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
           // Pricing Section
           Padding(
             padding: const EdgeInsets.all(20),
-            child: detailsState.when(
-              data: (details) => Column(
-                children: [
-                  Text(
-                    '価格',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+            child: (priceString != null)
+                ? Column(
+                    children: [
+                      Text(
+                        '価格',
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
-                  ),
-                  const SizedBox(height: 16),
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey.shade300),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Column(
-                      children: [
-                        Text(
-                          details.localizedPrice,
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall
-                              ?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
+                      ),
+                      const SizedBox(height: 16),
+                      Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey.shade300),
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                        const SizedBox(height: 8),
-                        Text(
-                          '月額（7日間無料トライアル付き）',
-                          style: Theme.of(context).textTheme.bodySmall,
+                        child: Column(
+                          children: [
+                            Text(
+                              priceString,
+                              style: Theme.of(context).textTheme.displaySmall
+                                  ?.copyWith(fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              '月額（7日間無料トライアル付き）',
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              loading: () => const CircularProgressIndicator(),
-              error: (err, _) => Text('価格情報を取得できません: $err'),
-            ),
+                      ),
+                    ],
+                  )
+                : (subscriptionState.errorMessage != null)
+                ? Text('価格情報を取得できません: ${subscriptionState.errorMessage}')
+                : const CircularProgressIndicator(),
           ),
 
           const SizedBox(height: 20),
@@ -254,15 +250,12 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
             children: [
               Text(
                 title,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 4),
-              Text(
-                description,
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
+              Text(description, style: Theme.of(context).textTheme.bodySmall),
             ],
           ),
         ),
@@ -274,21 +267,25 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
     setState(() => _isLoading = true);
 
     try {
+      final packages = ref.read(subscriptionProvider).availableOfferings;
+      if (packages == null || packages.isEmpty) {
+        throw Exception('購入可能なプランがありません');
+      }
       await ref
           .read(subscriptionProvider.notifier)
-          .purchaseSubscription();
+          .purchaseSubscription(packages.first);
 
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('登録が完了しました！')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('登録が完了しました！')));
         Navigator.pop(context);
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('エラーが発生しました: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('エラーが発生しました: $e')));
       }
     } finally {
       if (mounted) {
@@ -301,20 +298,18 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
     setState(() => _isLoading = true);
 
     try {
-      await ref
-          .read(subscriptionProvider.notifier)
-          .restorePurchases();
+      await ref.read(subscriptionProvider.notifier).restorePurchases();
 
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('復元が完了しました！')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('復元が完了しました！')));
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('復元に失敗しました: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('復元に失敗しました: $e')));
       }
     } finally {
       if (mounted) {
