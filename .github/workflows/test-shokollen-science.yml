@@ -55,12 +55,14 @@ jobs:
         run: flutter test test/six_point_test.dart --coverage
 
       - name: Upload coverage
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         if: always()
         with:
           files: ./coverage/lcov.info
           flags: unittests
           name: codecov-umbrella
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
 
   # ========== Android Emulator Integration Tests ==========
   emulator-tests:
