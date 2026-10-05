@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     if: success()
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
       
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
